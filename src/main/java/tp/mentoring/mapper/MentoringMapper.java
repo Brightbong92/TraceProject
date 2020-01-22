@@ -15,4 +15,6 @@ public interface MentoringMapper {
 	List<Mentoring> selectMentoringListMedia(MentoringPagingVo mentoringpaingVo);
 	List<Mentoring> selectMentoringListBeauty(MentoringPagingVo mentoringpaingVo);
 	List<Mentoring> selectMentoringListBeverage(MentoringPagingVo mentoringpaingVo);
+	List<Mentoring> selectMentoringListSearch(MentoringPagingVo mentoringpaingVo);
+	int selectMentoringSearchCount(String word);
 }

@@ -16,7 +16,8 @@ public class MentoringListResult {
 	private int pageSize;
 	private List<Mentoring> mtr_list;
 	private int totalPageCount;
-	private String category_no;
+	private String category_no; // 정렬리스트에서는 category_no , 검색에서는 word
+	
 	
 	public MentoringListResult(int currentPage, int totalCount, int pageSize, List<Mentoring> mtr_list, String category_no) {
 		super();
@@ -27,6 +28,8 @@ public class MentoringListResult {
 		this.totalPageCount = calTotPageCount();
 		this.category_no = category_no;
 	}
+	
+	
 	public int calTotPageCount() {
 		int tpc = totalCount / pageSize;
 		if((totalCount % pageSize) != 0) {

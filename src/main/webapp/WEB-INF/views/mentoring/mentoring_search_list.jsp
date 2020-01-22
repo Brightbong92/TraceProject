@@ -1,0 +1,90 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html; charset=utf-8" import="tp.vo.MentoringListResult"%>
+<jsp:include page="../top.jsp" />
+
+<body>
+
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">멘토링 리스트 :
+      <small>검색한 멘토링</small>
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Portfolio 2</li>
+    </ol>
+
+	<c:if test="${!empty mentoringListResultSearch}">
+    <div class="row">
+    <c:forEach items="${mentoringListResultSearch.mtr_list}" var="list">
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">${list.mtr_subject}</a>
+            </h4>
+				<p class="card-text"><b>${list.mtr_hashtag}</b></p>
+				<p class="card-text">지역:<b>${list.mtr_area}</b></p>
+				<p class="card-text">금액:<b>${list.mtr_price}원</b></p>
+			    <p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>
+          </div>
+        </div>
+      </div>
+    </c:forEach>
+    </div><!-- /.row -->
+	    <c:if test="${empty mentoringListResultSearch.mtr_list}">
+	        <div align="center">찾으시는 멘토링이 없습니다.</div>
+	    </c:if>
+    </c:if>
+    
+    <!-- 페이징  -->
+<%
+		MentoringListResult lr = (MentoringListResult)request.getAttribute("mentoringListResultSearch");
+%>
+    <c:if test="${!empty mentoringListResultSearch.totalCount}">
+<%
+		int pageCount = lr.getTotalPageCount();
+		int pageBlock = 3;
+		int startPage = ((lr.getCurrentPage() - 1) / pageBlock) * pageBlock+1;
+		int endPage = startPage + pageBlock - 1;
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		if(startPage > pageBlock) {
+%>
+		<a href="searchList.do?cp=1&word=<%=lr.getCategory_no()%>">[처음]</a> 
+		<a href="searchList.do?cp=<%=lr.getCurrentPage() - 1%>&word=<%=lr.getCategory_no()%>">[이전]</a>
+<%
+		}
+%>
+    <c:forEach begin="<%=startPage%>" end="<%=endPage%>" var ="i">
+			<a href="searchList.do?cp=${i}&word=<%=lr.getCategory_no()%>">
+		<c:choose>
+			<c:when test="${i==listResult.currentPage}">
+				<b>${i}</b>
+			</c:when>
+			<c:otherwise>
+				${i}
+			</c:otherwise>
+		</c:choose>
+		</a>&nbsp;
+	</c:forEach>
+<%
+		if(endPage < pageCount) {
+%>
+		<a href="searchList.do?cp=<%=startPage + 3 %>&word=<%=lr.getCategory_no()%>">[다음]</a>
+		<a href="searchList.do?cp=<%=pageCount%>&word=<%=lr.getCategory_no()%>">[끝]</a>
+<%
+		}
+%>
+	 </c:if>
+  </div><!-- /.container -->
+
+<%@include file="../footer.jsp"%>

@@ -10,29 +10,23 @@
     <h1 class="mt-4 mb-3">멘토링 : 
       <small>현재 진행중인 멘토링</small>
     </h1>
-
- <div align="center">
-   <a href="../mentoring/mentoring_list.do?sort=99">99전체</a> &nbsp;&nbsp;
-   <a href="../mentoring/mentoring_list.do?sort=0">0운동</a> &nbsp;&nbsp;
-   <a href="../mentoring/mentoring_list.do?sort=1">1음악</a> &nbsp;&nbsp;
-   <a href="../mentoring/mentoring_list.do?sort=2">2공예</a> &nbsp;&nbsp;
-   <a href="../mentoring/mentoring_list.do?sort=3">3요리</a> &nbsp;&nbsp;
-   <a href="../mentoring/mentoring_list.do?sort=4">4사진&영상</a> &nbsp;&nbsp;
-   <a href="../mentoring/mentoring_list.do?sort=5">5뷰티</a> &nbsp;&nbsp;
-   <a href="../mentoring/mentoring_list.do?sort=6">6음료</a> &nbsp;&nbsp;
-   </div>
-
-
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="/">Home</a>
       </li>
-      <li class="breadcrumb-item active">멘토링</li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=99">99전체</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=0">0운동</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=1">1음악</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=2">2공예</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=3">3요리</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=4">4사진&영상</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=5">5뷰티</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=6">6음료</a></li>
     </ol>
     <!-- 전체 일 경우 -->
 		<c:if test="${!empty listResultAll}">
 		   	 <div class="row">
-			   	 	<c:forEach items="${listResultAll.mtr_list}" var="list">
+		   	 <c:forEach items="${listResultAll.mtr_list}" var="list">
 					      <div class="col-lg-4 col-sm-6 portfolio-item">
 					        <div class="card h-100">
 					          <a href="${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
@@ -48,8 +42,11 @@
 					          </div>
 					        </div>
 					      </div>
-			   	 	</c:forEach>
+			</c:forEach>
 			</div><!--/ .row -->
+			<c:if test="${empty listResultAll.mtr_list}">
+				<div align='center'>찾으시는 멘토링이 없습니다.</div>
+			</c:if>
 		</c:if>
 		<!-- 운동 일 경우 -->
 		<c:if test="${!empty listResultExercise}">
@@ -72,6 +69,9 @@
 					      </div>
 			   	 	</c:forEach>
 			</div><!--/ .row -->
+			<c:if test="${empty listResultExcercise.mtr_list}">
+				<div align='center'>찾으시는 멘토링이 없습니다.</div>
+			</c:if>
 		</c:if>
 		<!-- 음악 일 경우 -->
 		<c:if test="${!empty listResultMusic}">
@@ -94,6 +94,9 @@
 					      </div>
 			   	 	</c:forEach>
 			</div><!--/ .row -->
+			<c:if test="${empty listResultMusic.mtr_list}">
+				<div align='center'>찾으시는 멘토링이 없습니다.</div>
+			</c:if>
 		</c:if>
 	<!-- 공예 일 경우 -->
 			<c:if test="${!empty listResultCraft}">
@@ -116,6 +119,9 @@
 					      </div>
 			   	 	</c:forEach>
 			</div><!--/ .row -->
+			<c:if test="${empty listResultCraft.mtr_list}">
+				<div align='center'>찾으시는 멘토링이 없습니다.</div>
+			</c:if>
 		</c:if>
 		<!-- 요리 일 경우 -->
 			<c:if test="${!empty listResultCooking}">
@@ -138,6 +144,9 @@
 					      </div>
 			   	 	</c:forEach>
 			</div><!--/ .row -->
+			<c:if test="${empty listResultCooking.mtr_list}">
+				<div align='center'>찾으시는 멘토링이 없습니다.</div>
+			</c:if>
 		</c:if>
 	<!-- 사진&영상일경우 -->
 		<c:if test="${!empty listResultMedia}">
@@ -160,6 +169,9 @@
 					      </div>
 			   	 	</c:forEach>
 			</div><!--/ .row -->
+			<c:if test="${empty listResultMedia.mtr_list}">
+				<div align='center'>찾으시는 멘토링이 없습니다.</div>
+			</c:if>
 		</c:if>
 	<!-- 뷰티일 경우 -->
 			<c:if test="${!empty listResultBeauty}">
@@ -182,6 +194,9 @@
 					      </div>
 			   	 	</c:forEach>
 			</div><!--/ .row -->
+			<c:if test="${empty listResultBeauty.mtr_list}">
+				<div align='center'>찾으시는 멘토링이 없습니다.</div>
+			</c:if>
 		</c:if>
 		
 		<!-- 음료일 경우 -->
@@ -205,6 +220,9 @@
 					      </div>
 			   	 	</c:forEach>
 			</div><!--/ .row -->
+		    <c:if test="${empty listResultBeverage.mtr_list}">
+				<div align='center'>찾으시는 멘토링이 없습니다.</div>
+			</c:if>
 		</c:if>
    <script>
     currentPage = 1;

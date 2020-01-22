@@ -72,4 +72,17 @@
 			 where rnum>#{startRow} and rnum<=#{endRow}
 	    ]]>
  	</select>
+ 	<select id="selectMentoringListSearch" resultType="Mentoring" parameterType="MentoringPagingVo">
+ 		<![CDATA[
+ 		 select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	     from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTR_SUBJECT like '%'||#{word}||'%' order by MTR_SEQ desc) aa)
+	     where rnum>#{startRow} and rnum<=#{endRow}
+ 		]]>
+ 	</select>
+ 	<select id="selectMentoringSearchCount" resultType="int" parameterType="String">
+ 		<![CDATA[
+ 		select count(MTR_SEQ) from Mentoring where MTR_SUBJECT like '%'||#{word}||'%'
+ 		]]>
+ 	</select>
+ 	
 </mapper>

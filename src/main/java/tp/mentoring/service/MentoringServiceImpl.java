@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
 import tp.domain.Mentoring;
 import tp.mentoring.mapper.MentoringMapper;
 import tp.vo.MentoringListResult;
@@ -12,11 +13,11 @@ import tp.vo.MentoringPagingVo;
 
 @Service
 @AllArgsConstructor
+@Log4j
 public class MentoringServiceImpl implements MentoringService {
 	
 	private MentoringMapper mentoringMapper;
-	
-	
+
 	@Override
 	public MentoringListResult getMentoringListResult(int cp, int ps, String sort) {
 		if(sort.equals("99")) {//전체 정렬시
@@ -66,6 +67,14 @@ public class MentoringServiceImpl implements MentoringService {
 			String category_no = "99";
 			return new MentoringListResult(cp, totalCount, ps, list, category_no);
 		}
+	}
+	@Override
+	public MentoringListResult getMentoringListResultSearch(int cp, int ps, String word) {
+			int totalCount = mentoringMapper.selectMentoringSearchCount(word);
+			MentoringPagingVo mentoringPagingVo = new MentoringPagingVo(word, cp, ps);
+			log.info("#cp: " + cp + "#ps: " + ps);
+			List<Mentoring> list = mentoringMapper.selectMentoringListSearch(mentoringPagingVo);
+			return new MentoringListResult(cp, totalCount, ps, list, word);
 	}
 
 }
