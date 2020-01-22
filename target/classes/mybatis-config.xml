@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <typeAliases>
+	   <typeAlias alias="Mentoring" type="tp.domain.Mentoring"/>
+	   <typeAlias alias="Mentoring_detail_info" type="tp.domain.Mentoring_Detail_Info"/>
+	   <typeAlias alias="MentoringPagingVo" type="tp.vo.MentoringPagingVo"/>
+   </typeAliases>
+   
+   <mappers>
+   	   <mapper resource="tp/md/mapper/MentoringMapper.xml"/>
+   	   <!--  <mapper resource="bong/md/mapper/AddressMapper2.xml"/>-->
+   </mappers>
+    
+</configuration>

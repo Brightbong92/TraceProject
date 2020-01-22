@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tp.mentoring.mapper.MentoringMapper">
+ 	<!-- 전체 정렬시 -->
+ 	<select id="selectMentoringList" resultType="Mentoring" parameterType="MentoringPagingVo">
+	    <![CDATA[
+	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	     from (select ROWNUM rnum , aa.* from (select * from Mentoring order by MTR_SEQ desc) aa)
+			 where rnum>#{startRow} and rnum<=#{endRow}
+	    ]]>
+ 	</select>
+	<select id="selectMentoringCount" resultType="int">
+		<![CDATA[
+	    select count(MTR_SEQ) from MENTORING
+	    ]]>
+	</select>
+	<!-- 운동 정렬시 -->
+	 <select id="selectMentoringListExercise" resultType="Mentoring" parameterType="MentoringPagingVo">
+	    <![CDATA[
+	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	     from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 0 order by MTR_SEQ desc) aa)
+			 where rnum>#{startRow} and rnum<=#{endRow}
+	    ]]>
+ 	</select>
+ 	<!-- 음악 정렬시 -->
+ 	<select id="selectMentoringListMusic" resultType="Mentoring" parameterType="MentoringPagingVo">
+	    <![CDATA[
+	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	     from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 1 order by MTR_SEQ desc) aa)
+			 where rnum>#{startRow} and rnum<=#{endRow}
+	    ]]>
+ 	</select>
+ 	<!-- 공예 정렬시 -->
+  	<select id="selectMentoringListCraft" resultType="Mentoring" parameterType="MentoringPagingVo">
+	    <![CDATA[
+	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	     from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 2 order by MTR_SEQ desc) aa)
+			 where rnum>#{startRow} and rnum<=#{endRow}
+	    ]]>
+ 	</select>
+	<!-- 요리 정렬시 -->
+  	<select id="selectMentoringListCooking" resultType="Mentoring" parameterType="MentoringPagingVo">
+	    <![CDATA[
+	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	     from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 3 order by MTR_SEQ desc) aa)
+			 where rnum>#{startRow} and rnum<=#{endRow}
+	    ]]>
+ 	</select>
+	<!-- 사진&영상정렬시 -->
+  	<select id="selectMentoringListMedia" resultType="Mentoring" parameterType="MentoringPagingVo">
+	    <![CDATA[
+	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	     from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 4 order by MTR_SEQ desc) aa)
+			 where rnum>#{startRow} and rnum<=#{endRow}
+	    ]]>
+ 	</select>
+	<!-- 뷰티 정렬시 -->
+  	<select id="selectMentoringListBeauty" resultType="Mentoring" parameterType="MentoringPagingVo">
+	    <![CDATA[
+	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	     from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 5 order by MTR_SEQ desc) aa)
+			 where rnum>#{startRow} and rnum<=#{endRow}
+	    ]]>
+ 	</select>
+	<!-- 음료 정렬시 -->
+  	<select id="selectMentoringListBeverage" resultType="Mentoring" parameterType="MentoringPagingVo">
+	    <![CDATA[
+	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	     from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 6 order by MTR_SEQ desc) aa)
+			 where rnum>#{startRow} and rnum<=#{endRow}
+	    ]]>
+ 	</select>
+</mapper>
