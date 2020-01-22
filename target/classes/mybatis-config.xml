@@ -7,11 +7,12 @@
 	   <typeAlias alias="Mentoring" type="tp.domain.Mentoring"/>
 	   <typeAlias alias="Mentoring_detail_info" type="tp.domain.Mentoring_Detail_Info"/>
 	   <typeAlias alias="MentoringPagingVo" type="tp.vo.MentoringPagingVo"/>
+	   <typeAlias alias="Member" type="tp.domain.Member"/>
    </typeAliases>
    
    <mappers>
    	   <mapper resource="tp/mentoring/mapper/MentoringMapper.xml"/>
-   	   <!--  <mapper resource="bong/md/mapper/AddressMapper2.xml"/>-->
+   	   <mapper resource="tp/login/mapper/LoginMapper.xml"/>
    </mappers>
     
 </configuration>

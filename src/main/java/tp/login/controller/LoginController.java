@@ -2,6 +2,7 @@ package tp.login.controller;
 
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,16 +16,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.AllArgsConstructor;
+import tp.domain.Member;
 import tp.login.service.LoginService;
-import tp.vo.MemberVo;
+import tp.login.service.LoginSet;
 
 
 @RequestMapping("login/*")
 @Controller
 @AllArgsConstructor
 public class LoginController {
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	 
+
 	private LoginService service;
 
 	@GetMapping("login.do")
@@ -33,18 +34,29 @@ public class LoginController {
 	}
 	
 	@PostMapping("loginCheck.do")
-	public ModelAndView loginCheck(@ModelAttribute MemberVo vo, HttpSession session) {
-		boolean result = service.loginCheck(vo,session);
-		ModelAndView mav = new ModelAndView();
-		if (result == true) { // 로그인 성공
-            // main.jsp로 이동
-            mav.setViewName("index");
-            mav.addObject("msg", "success");
-        } else {    // 로그인 실패
-            // login.jsp로 이동
-            mav.setViewName("member/login");
-            mav.addObject("msg", "failure");
-        }
-        return mav;
+	public ModelAndView loginCheck(@ModelAttribute Member member, HttpServletRequest request) {
+		String mem_email = member.getMem_email();
+		String mem_pwd = member.getMem_pwd();
+		System.out.println(mem_email+ " " +mem_pwd);
+		int result = service.loginCheck(mem_email, mem_pwd);
+		ModelAndView mv = new ModelAndView();
+		if(result == LoginSet.PASS) {//로그인 성공
+			System.out.println("로그인 성공");
+			HttpSession session = request.getSession();
+			Member m = service.getMembersInfo(mem_email);
+			session.setAttribute("loginUser", m);
+			mv.setViewName("index/index");
+	        return mv;
+		}else {
+			mv.setViewName("login/login");
+	        return mv;
+		}
 	}
+	@RequestMapping("logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("loginUser");
+		return "index/index";
+	}
+	
 }

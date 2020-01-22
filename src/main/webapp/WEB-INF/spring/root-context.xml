@@ -35,10 +35,11 @@
 		<context:component-scan base-package="tp.mentoring.service"/>
 		<context:component-scan base-package="tp.mentoring.mapper"/>
 		<mybatis-spring:scan base-package="tp.mentoring.mapper" />
+		
 		<context:component-scan base-package="tp.login.service"/>
-		<context:component-scan base-package="tp.login.dao"/>
-		<context:component-scan base-package="tp.login.membermapper"/>
-		<mybatis-spring:scan base-package="tp.login.membermapper" />
+		<context:component-scan base-package="tp.login.mapper"/>
+		<mybatis-spring:scan base-package="tp.login.mapper" />
+		
 		<context:annotation-config></context:annotation-config>
 		<context:component-scan base-package="tp.metoring.aop"/>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
@@ -47,9 +48,6 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	<bean id="sqlSessionTemplate"
-            class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg ref="sqlSessionFactory"></constructor-arg>
-    </bean>
+	
 	<tx:annotation-driven/>
 </beans>

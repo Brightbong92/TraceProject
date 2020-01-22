@@ -36,7 +36,7 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/">발견하라 자신의 취미</a>
+      <a class="navbar-brand" href="/">발견하라</a>
       <input type="text" style="width:300px;" id="searchBar" placeholder="하고 싶은 멘토링을 검색해 보세요." onkeydown="find(this)"/>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -70,13 +70,18 @@
          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              	닉네임나와야함
+              	${loginUser.mem_nick} 님
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="blog-home-1.html">마이페이지</a>
               <a class="dropdown-item" href="blog-home-2.html">개인정보 수정</a>
               <a class="dropdown-item" href="blog-post.html">수강중인멘토링</a>
             </div>
+            <li class="nav-item">
+            <a class="nav-link" href="../login/logout.do" >
+              	로그아웃
+            </a>
+            </li>
           </li>
           </c:if>
            <!-- 로그인안했을 시 나오게끔 -->

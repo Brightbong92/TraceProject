@@ -6,16 +6,16 @@
  <script>
 	$(document).ready(function(){
 		$("#btnLogin").click(function(){
-			var userEmail = $("#userEmail").val();
-			var userPwd = $("#userPwd").val();
-			if(userEmail == ""){
+			var mem_email = $("#mem_email").val();
+			var mem_pwd = $("#mem_pwd").val();
+			if(mem_email == ""){
 				alert("이메일을 입력하세요.");
-				$('#userEmail').focus();
+				$('#mem_email').focus();
 				return;
 			}
-			if(userPwd ==""){
+			if(mem_pwd ==""){
 				alert("비밀번호를 입력하세요.");
-				$("#userPwd").focus();
+				$("#mem_pwd").focus();
 				return;
 			}
 			document.form1.action="${path}/login/loginCheck.do"
@@ -34,10 +34,10 @@
    <br/>
     <form name="form1" method="post">
         <div class="form-group">
-            <input type="email" name="userEmail" id="userEmail" placeholder="Email Address">
+            <input type="email" name="mem_email" id="mem_email" placeholder="Email Address">
         </div>
         <div class="form-group">
-            <input type="password" name="userPwd" id="userPwd" placeholder="Password">
+            <input type="password" name="mem_pwd" id="mem_pwd" placeholder="Password">
         </div>
          <br/>
         <button type="button" id="btnLogin">로그인</button>
