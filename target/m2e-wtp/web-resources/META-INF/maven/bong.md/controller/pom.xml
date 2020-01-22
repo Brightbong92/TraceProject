@@ -267,7 +267,12 @@
             <version>${org.springframework-version}</version>
         </dependency>
 
-	
+	<!-- Bcrypt암호화 -->
+	<dependency>
+	  <groupId>org.mindrot</groupId>
+	  <artifactId>jbcrypt</artifactId>
+	  <version>0.3m</version>
+	</dependency>
 			
 	<!-- 트랜잭션 
 	<dependency>

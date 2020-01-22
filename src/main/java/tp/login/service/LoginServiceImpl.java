@@ -2,6 +2,7 @@ package tp.login.service;
 
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,7 @@ import tp.login.mapper.LoginMapper;
 public class LoginServiceImpl implements LoginService{
 	@Autowired
 	private LoginMapper loginMapper;
-	/*@Autowired
-	BCryptPasswordEncoder BCrypt;*/
+	
 	
 	public int loginCheck(String mem_email, String mem_pwd) {
 		Member m = loginMapper.getMembers(mem_email);
@@ -25,19 +25,13 @@ public class LoginServiceImpl implements LoginService{
 		}else {
 			String pwdDb = m.getMem_pwd();
 			if(pwdDb != null) pwdDb = pwdDb.trim();
-			/*boolean hashPwd = BCrypt.matches("mem_pwd", m.getMem_pwd());
+			boolean hashPwd = BCrypt.checkpw(mem_pwd, m.getMem_pwd());
 			if(hashPwd == false) {
 				return LoginSet.NO_PWD; //비밀번호 불일치
 			}else {
 				return LoginSet.PASS; //로그인 성공
-			}	*/
-			if(pwdDb.equals(mem_pwd)) {
-				return LoginSet.PASS;
-			}else {
-				return LoginSet.NO_PWD;
-			}
+			}	
 		}
-		//return -1;
 	}
 	public Member getMembersInfo(String mem_email) {
 		return loginMapper.getMembers(mem_email);
