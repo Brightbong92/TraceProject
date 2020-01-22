@@ -18,10 +18,8 @@
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/images/**" location="/resources/images/" />
 	<resources mapping="/mentoring_list_images/**" location="/resources/mentoring_list_images/" />
-	
-	
 	<resources mapping="vendor/**" location="/resources/vendor/" />
-	
+	<resources mapping="/arrow/**" location="/resources/arrow/" />
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

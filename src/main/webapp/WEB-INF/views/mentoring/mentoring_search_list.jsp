@@ -45,6 +45,8 @@
     </c:if>
     
     <!-- 페이징  -->
+    <div class="page_wrap">
+    <div class="page_nation">
 <%
 		MentoringListResult lr = (MentoringListResult)request.getAttribute("mentoringListResultSearch");
 %>
@@ -59,32 +61,33 @@
 		}
 		if(startPage > pageBlock) {
 %>
-		<a href="searchList.do?cp=1&word=<%=lr.getCategory_no()%>">[처음]</a> 
-		<a href="searchList.do?cp=<%=lr.getCurrentPage() - 1%>&word=<%=lr.getCategory_no()%>">[이전]</a>
+		<a class="arrow pprev" href="searchList.do?cp=1&word=<%=lr.getCategory_no()%>"></a> 
+		<a class="arrow prev" href="searchList.do?cp=<%=lr.getCurrentPage() - 1%>&word=<%=lr.getCategory_no()%>"></a>
 <%
 		}
 %>
     <c:forEach begin="<%=startPage%>" end="<%=endPage%>" var ="i">
-			<a href="searchList.do?cp=${i}&word=<%=lr.getCategory_no()%>">
-		<c:choose>
-			<c:when test="${i==listResult.currentPage}">
-				<b>${i}</b>
+   		<c:choose>
+	   		<c:when test="${i == mentoringListResultSearch.currentPage}">
+				<a class="active" href="searchList.do?cp=${i}&word=<%=lr.getCategory_no()%>">${i}</a>&nbsp;
 			</c:when>
 			<c:otherwise>
-				${i}
+				<a href="searchList.do?cp=${i}&word=<%=lr.getCategory_no()%>">${i}</a>
 			</c:otherwise>
 		</c:choose>
-		</a>&nbsp;
 	</c:forEach>
 <%
 		if(endPage < pageCount) {
 %>
-		<a href="searchList.do?cp=<%=startPage + 3 %>&word=<%=lr.getCategory_no()%>">[다음]</a>
-		<a href="searchList.do?cp=<%=pageCount%>&word=<%=lr.getCategory_no()%>">[끝]</a>
+		<a class="arrow next" href="searchList.do?cp=<%=startPage + 3 %>&word=<%=lr.getCategory_no()%>"></a>
+		<a class="arrow nnext" href="searchList.do?cp=<%=pageCount%>&word=<%=lr.getCategory_no()%>"></a>
 <%
 		}
 %>
 	 </c:if>
+	 	</div><!-- .page_nation -->
+	 </div><!-- .page_wrap -->
+
   </div><!-- /.container -->
 
 <%@include file="../footer.jsp"%>

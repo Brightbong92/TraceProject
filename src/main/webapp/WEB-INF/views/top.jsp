@@ -20,7 +20,8 @@
   
   <!-- Custom styles for this template -->
   <link href="../css/modern-business.css" rel="stylesheet">
-  
+  <!-- Paging CSS -->
+  <link href="../css/paging.css" rel="stylesheet">  
 </head>
 <script type="text/javascript">
 		function find(e) {
