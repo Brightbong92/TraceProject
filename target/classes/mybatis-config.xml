@@ -10,7 +10,7 @@
    </typeAliases>
    
    <mappers>
-   	   <mapper resource="tp/md/mapper/MentoringMapper.xml"/>
+   	   <mapper resource="tp/mentoring/mapper/MentoringMapper.xml"/>
    	   <!--  <mapper resource="bong/md/mapper/AddressMapper2.xml"/>-->
    </mappers>
     
