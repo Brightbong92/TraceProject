@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="tp.notice.mapper.NoticeMapper">
+
+    <select id="selectPerPage" resultType="Notice" parameterType="NoticeVo">
+        <![CDATA[
+        select * from (select ROWNUM rnum , aa.* from (select * from NOTICE order by noti_seq desc) aa)
+             where rnum>#{startRow} and rnum<=#{endRow}
+        ]]>
+    </select>
+    <select id="selectCount" resultType="int">
+    	select count(noti_seq) from NOTICE
+    </select>
+    <select id="selectBySeq" resultType="Notice" parameterType="long">
+    	select * from NOTICE where NOTI_SEQ=#{noti_seq}
+    </select>
+    <insert id="insertN" parameterType="Notice">
+    	insert into NOTICE values(notice_seq.nextval, #{noti_subject}, #{noti_content}, SYSDATE, 0, #{mem_email})
+    </insert>
+    <update id="updateCnt" parameterType="long">
+    	update NOTICE set noti_readcnt = noti_readcnt+1 where noti_seq=#{noti_seq}
+    </update>
+    <select id="selectSearchCount" resultType="int" parameterType="String">
+ 		<![CDATA[
+ 		select count(NOTI_SEQ) from NOTICE where NOTI_SUBJECT like '%'||#{keyword}||'%'
+ 		]]>
+ 	</select>
+ 	<select id="selectNoticeListSearch" resultType="Notice" parameterType="NoticeVo">
+ 		<![CDATA[
+ 		 select * from (select ROWNUM rnum , aa.* from (select * from NOTICE where NOTI_SUBJECT like '%'||#{keyword}||'%' order by NOTI_SEQ desc) aa)
+	     where rnum>#{startRow} and rnum<=#{endRow}
+ 		]]>
+ 	</select>
+ 	<select id="selectPreContent" resultType="Notice" parameterType="long">
+ 		<![CDATA[
+ 		select NOTI_SEQ,NOTI_SUBJECT from NOTICE where NOTI_SEQ = (Select max(NOTI_SEQ) from NOTICE where NOTI_SEQ < #{NOTI_SEQ})
+ 		]]>
+ 	</select>
+ 	<select id="selectNextContent" resultType="Notice" parameterType="long">
+ 		<![CDATA[
+ 		select NOTI_SEQ,NOTI_SUBJECT from NOTICE where NOTI_SEQ = (Select min(NOTI_SEQ) from NOTICE where NOTI_SEQ > #{NOTI_SEQ})
+ 		]]>
+ 	</select>
+ 	<delete id="deleteN" parameterType="long">
+ 		delete from NOTICE where NOTI_SEQ = #{NOTI_SEQ}
+ 	</delete>
+ 	<update id="updateN" parameterType="Notice">
+		update NOTICE set  NOTI_SUBJECT = #{noti_subject}, NOTI_CONTENT = #{noti_content} where NOTI_SEQ = #{noti_seq}
+	</update>
+</mapper>

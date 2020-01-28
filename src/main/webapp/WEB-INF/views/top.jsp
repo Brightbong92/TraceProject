@@ -5,18 +5,16 @@
 
 <head>
 
-  <meta charset="utf-8">
+   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
   <title>발자취 - 발견하라 자신의 취미를</title>
   
-  <!-- JQuery사용용도 -->
+ <!-- JQuery사용용도 -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-  <!-- 회원가입 CheckByteLen용도 -->
-  <script src="../js/trim.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
@@ -24,12 +22,14 @@
   <link href="../css/modern-business.css" rel="stylesheet">
   <!-- Paging CSS -->
   <link href="../css/paging.css" rel="stylesheet">  
+  
+ 
 </head>
 <script type="text/javascript">
 		function find(e) {
 			var word = document.getElementById('searchBar').value;
 			if(event.keyCode == 13) {
-				location.href="../mentoring/searchList.do?word="+word+"&cp=1";
+				location.href="../mentoring/searchList.do?word="+word;
 			}
 		}
 </script>
@@ -41,7 +41,7 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/">발견하라</a>
-      <input type="text" style="width:300px;" id="searchBar" placeholder="하고 싶은 멘토링을 검색해 보세요." onkeydown="find(this)"/><!-- 검색 -->
+      <input type="text" style="width:300px;" id="searchBar" placeholder="하고 싶은 멘토링을 검색해 보세요." onkeydown="find(this)"/>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -70,43 +70,31 @@
           </li>
           
             <!-- 로그인했을 시 나오게끔 -->
-	          <c:if test="${!empty loginUser}">
-	          <li class="nav-item dropdown">
-	            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	              	${loginUser.mem_nick} 님
-	            </a>
-	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-	              <a class="dropdown-item" href="#">마이페이지</a>
-	              <a class="dropdown-item" href="#">개인정보 수정</a>
-	              <a class="dropdown-item" href="#">수강중인멘토링</a>
-	              <c:if test="${loginUser.mem_auth > 0}">
-	              <a class="dropdown-item" href="">멘토링등록하기</a>
-	              </c:if>
-	              <a class="dropdown-item" href="../login/logout.do">로그아웃</a>
-	            </div>
-	          </li>
-	          </c:if>
+          <c:if test="${!empty loginUser}">
+         
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              	${loginUser.mem_nick} 님
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="blog-home-1.html">마이페이지</a>
+              <a class="dropdown-item" href="blog-home-2.html">개인정보 수정</a>
+              <a class="dropdown-item" href="blog-post.html">수강중인멘토링</a>
+            </div>
+          </li>
+          </c:if>
            <!-- 로그인안했을 시 나오게끔 -->
-	      <c:if test="${empty loginUser}">
-		          <li class="nav-item">
-		            <a class="nav-link" href="../login/login.do">로그인</a>
-		          </li>
+          <c:if test="${empty loginUser}">
+          <li class="nav-item">
+            <a class="nav-link" href="../login/login.do">로그인</a>
+          </li>
           </c:if>
+          
           <!-- 관리자로그인 했을시 나오게끔 -->
-         <c:if test="${loginUser.mem_email eq 'admin'}">
-	          <li class="nav-item dropdown">
-	            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	              	관리자 페이지
-	            </a>
-	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-	              <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-	              <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-	              <a class="dropdown-item" href="faq.html">FAQ</a>
-	              <a class="dropdown-item" href="404.html">404</a>
-	              <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-	            </div>
-	          </li>
-          </c:if>
+         
+          <li class="nav-item">
+            <a class="nav-link" href="../admin/dashboard.do">관리자 페이지</a>
+          </li>
         </ul>
       </div>
     </div>
