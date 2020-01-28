@@ -5,14 +5,14 @@
 
 <head>
 
-  <meta charset="utf-8">
+   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
   <title>발자취 - 발견하라 자신의 취미를</title>
   
-  <!-- JQuery사용용도 -->
+ <!-- JQuery사용용도 -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <!-- Bootstrap core CSS -->
@@ -22,6 +22,8 @@
   <link href="../css/modern-business.css" rel="stylesheet">
   <!-- Paging CSS -->
   <link href="../css/paging.css" rel="stylesheet">  
+  
+ 
 </head>
 <script type="text/javascript">
 		function find(e) {
@@ -90,17 +92,8 @@
           
           <!-- 관리자로그인 했을시 나오게끔 -->
          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              	관리자 페이지
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-              <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-              <a class="dropdown-item" href="faq.html">FAQ</a>
-              <a class="dropdown-item" href="404.html">404</a>
-              <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="../admin/dashboard.do">관리자 페이지</a>
           </li>
         </ul>
       </div>

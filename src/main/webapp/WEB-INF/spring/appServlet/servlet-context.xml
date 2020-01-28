@@ -20,6 +20,7 @@
 	<resources mapping="/mentoring_list_images/**" location="/resources/mentoring_list_images/" />
 	<resources mapping="vendor/**" location="/resources/vendor/" />
 	<resources mapping="/arrow/**" location="/resources/arrow/" />
+	<resources mapping="/admin/**" location="/resources/admin/" />
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -47,6 +48,5 @@
 	<context:component-scan base-package="tp.notice.controller" />
 	<context:component-scan base-package="tp.mentor.controller" />
 	<context:component-scan base-package="tp.login.controller" />
-	
-	
+	<context:component-scan base-package="tp.admin.controller" />
 </beans:beans>

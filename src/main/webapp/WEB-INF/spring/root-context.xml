@@ -40,6 +40,14 @@
 		<context:component-scan base-package="tp.login.mapper"/>
 		<mybatis-spring:scan base-package="tp.login.mapper" />
 		
+		<context:component-scan base-package="tp.admin.service"/>
+		<context:component-scan base-package="tp.admin.mapper"/>
+		<mybatis-spring:scan base-package="tp.admin.mapper" />
+		
+		<context:component-scan base-package="tp.notice.service"/>
+		<context:component-scan base-package="tp.notice.mapper"/>
+		<mybatis-spring:scan base-package="tp.notice.mapper" />
+		
 		<context:annotation-config></context:annotation-config>
 		<context:component-scan base-package="tp.metoring.aop"/>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>

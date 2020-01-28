@@ -7,12 +7,23 @@
 	   <typeAlias alias="Mentoring" type="tp.domain.Mentoring"/>
 	   <typeAlias alias="Mentoring_detail_info" type="tp.domain.Mentoring_Detail_Info"/>
 	   <typeAlias alias="MentoringPagingVo" type="tp.vo.MentoringPagingVo"/>
+	   
 	   <typeAlias alias="Member" type="tp.domain.Member"/>
+	   <typeAlias alias="MemberPagingVo" type="tp.vo.MemberPagingVo"/>
+	   <typeAlias alias="MemberListResult" type="tp.vo.MemberListResult"/>
+	   <typeAlias alias="MemberVo" type="tp.vo.MemberVo"/>
+	   <typeAlias alias="MemberInfo" type="tp.vo.MemberInfo"/>
+	   
+	   <typeAlias alias="Notice" type="tp.domain.Notice"/>
+	   <typeAlias alias="NoticeVo" type="tp.vo.NoticeVo"/>
+	   <typeAlias alias="NoticeListResult" type="tp.vo.NoticeListResult"/>
    </typeAliases>
    
    <mappers>
    	   <mapper resource="tp/mentoring/mapper/MentoringMapper.xml"/>
    	   <mapper resource="tp/login/mapper/LoginMapper.xml"/>
+   	   <mapper resource="tp/admin/mapper/AdminMapper.xml"/>
+   	   <mapper resource="tp/notice/mapper/NoticeMapper.xml"/>
    </mappers>
     
 </configuration>
