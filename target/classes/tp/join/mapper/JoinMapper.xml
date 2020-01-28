@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tp.join.mapper.JoinMapper">
+   <insert id="insertKakaoMember" parameterType="Member"><!-- 카카오 가입 -->
+   <![CDATA[
+   		insert into MEMBER(MEM_EMAIL, MEM_AGE, MEM_GENDER, MEM_RDATE, MEM_POINT, MEM_AUTH, MEM_STATE, MEM_GUBUN)
+   		values(#{mem_email}, #{mem_age},#{mem_gender},SYSDATE,0,0,0,1)
+   	]]>
+   </insert>
+    
+   <!-- 트랜잭션 처리
+   <insert id="insertTraceMember" parameterType="Member"> 기본가입 시 인증전 mem_state ==2(인증전)
+   <![CDATA[
+   		insert into MEMBER
+   		values(#{mem_email}, #{mem_pwd}, #{mem_nick}, #{mem_age}, #{mem_gender} ,#{mem_profile}, SYSDATE, #{mem_point}, #{mem_auth}, #{mem_state})
+   ]]>
+   </insert>
+    -->
+    
+   <!-- mem_eamil 중복체크 --> 
+   <select id="selectCheckEmail" parameterType="String" resultType="String">
+   <![CDATA[
+   		select MEM_EMAIL from MEMBER where MEM_EMAIL like #{mem_email}
+   	]]>
+   </select>
+   
+   <!-- mem_eamil 중복체크 
+   <select id="selectCheckEmail" resultType="String" parameterType="hashmap">
+   <![CDATA[
+   		select MEM_EMAIL from MEMBER where MEM_EMAIL like #{mem_email} and like #{mem_gubun}
+   	]]>
+   </select>
+   -->
+   
+      <!-- mem_nick 중복체크 -->
+   <select id="selectCheckNick" parameterType="String" resultType="String">
+   <![CDATA[
+   		select MEM_NICK from MEMBER where MEM_NICK like #{mem_nick}
+   	]]>
+   </select>
+   
+   <!--  트랜잭션 처리
+   <insert id="insertEmailAuth" parameterType="hashmap">
+   <![CDATA[
+   		insert into EMAIL_AUTH values (#{mem_email}, #{email_uuid})
+   ]]>
+   </insert>
+   -->
+   <select id="selectEmailAuth" parameterType="String" resultType="Email_Auth">
+   	<![CDATA[
+   		select * from EMAIL_AUTH where MEM_EMAIL = #{mem_email}
+   	]]>
+   </select>
+   <!-- 트랜잭션 처리 
+   <delete id="deleteEmailAuth" parameterType="String">
+   <![CDATA[
+   		delete from EMAIL_AUTH where MEM_EMAIL = #{mem_email}
+   ]]>
+   </delete>
+   -->
+</mapper>

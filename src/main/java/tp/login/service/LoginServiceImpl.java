@@ -4,10 +4,9 @@ import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
+import tp.domain.Email_Auth;
 import tp.domain.Member;
 import tp.login.mapper.LoginMapper;
 
@@ -18,7 +17,7 @@ public class LoginServiceImpl implements LoginService{
 	
 	
 	public int loginCheck(String mem_email, String mem_pwd) {
-		Member m = loginMapper.getMembers(mem_email);
+		Member m = loginMapper.selectMember(mem_email);
 		
 		if(m == null) {
 			return LoginSet.NO_ID; // 이메일 없음
@@ -33,12 +32,33 @@ public class LoginServiceImpl implements LoginService{
 			}	
 		}
 	}
-	public Member getMembersInfo(String mem_email) {
-		return loginMapper.getMembers(mem_email);
+	public Member getMemberInfo(String mem_email) {
+		return loginMapper.selectMember(mem_email);
+	}
+	@Override
+	public boolean getKakaoMemberExist(String mem_email) {
+		String exist = loginMapper.selectKakaoMember(mem_email);
+		if(exist != null) {//존재 할시
+			return true; 
+		}else {//존재 안할시
+			return false;
+		}
 	}
 
 	@Override
 	public void logout(HttpSession session) {
 		session.invalidate();
 	}
+	@Override
+	public int emailAuthCheck(String mem_email) {
+		Member m = loginMapper.selectMember(mem_email);
+		int mem_state = (int)m.getMem_state();
+		if(mem_state == LoginSet.NO_EMAIL_AUTH_MEM_STATE) {//mem_state 체크
+			int email_uuid = loginMapper.selectEmailUuid(mem_email);
+			return email_uuid;
+		}else {//mem_state != 3
+			return LoginSet.OK_EMAIL_AUTH;
+		}
+	}
+	
 }

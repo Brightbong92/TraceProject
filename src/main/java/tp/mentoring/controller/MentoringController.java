@@ -60,6 +60,7 @@ public class MentoringController {
 		
 		//(2) ps 
 				int ps = 3;
+				/*
 				if(psStr == null) {
 					Object psObj = session.getAttribute("ps");
 					if(psObj != null) {
@@ -85,6 +86,7 @@ public class MentoringController {
 					
 					ps = psParam;
 				}
+				*/
 				session.setAttribute("ps", ps);
 		//log.info("#cp: " + cp + " #ps: " + ps + "#word: " + word);
 		MentoringListResult mentoringListResultSearch = service.getMentoringListResultSearch(cp, ps, word);		
@@ -93,182 +95,71 @@ public class MentoringController {
 		mv.addObject("mentoringListResultSearch",mentoringListResultSearch);
 		return mv;
 	}
-	
 	@GetMapping("mentoring_list.do")
 	public ModelAndView mentoringList(String sort) {//리스트 & 정렬
 		int cp = 1;
 		int ps = 6;
-	    if(sort.equals("0")){//운동
-			//log.info("#sort: "+ sort);
-			ModelAndView mv = new ModelAndView();
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			mv.setViewName("mentoring/mentoring_list");
-			mv.addObject("listResultExercise", mentoringListResult);
-			return mv;	
-		}else if(sort.equals("1")){//음악
-			//log.info("#sort: "+ sort);
-			ModelAndView mv = new ModelAndView();
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			mv.setViewName("mentoring/mentoring_list");
-			mv.addObject("listResultMusic", mentoringListResult);
-			return mv;	
-		}else if(sort.equals("2")){//공예
-			//log.info("#sort: "+ sort);
-			ModelAndView mv = new ModelAndView();
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			mv.setViewName("mentoring/mentoring_list");
-			mv.addObject("listResultCraft", mentoringListResult);
-			return mv;	
-		}else if(sort.equals("3")){//요리
-			//log.info("#sort: "+ sort);
-			ModelAndView mv = new ModelAndView();
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			mv.setViewName("mentoring/mentoring_list");
-			mv.addObject("listResultCooking", mentoringListResult);
-			return mv;	
-		}else if(sort.equals("4")){//사진&영상
-			//log.info("#sort: "+ sort);
-			ModelAndView mv = new ModelAndView();
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			mv.setViewName("mentoring/mentoring_list");
-			mv.addObject("listResultMedia", mentoringListResult);
-			return mv;	
-		}else if(sort.equals("5")){//5뷰티
-			//log.info("#sort: "+ sort);
-			ModelAndView mv = new ModelAndView();
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			mv.setViewName("mentoring/mentoring_list");
-			mv.addObject("listResultBeauty", mentoringListResult);
-			return mv;	
-		}else if(sort.equals("6")){//음료
-			//log.info("#sort: "+ sort);
-			ModelAndView mv = new ModelAndView();
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			mv.setViewName("mentoring/mentoring_list");
-			mv.addObject("listResultBeverage", mentoringListResult);
-			return mv;	
-		}else {//99전체일경우
-			//log.info("#sort: " + sort);
-			ModelAndView mv = new ModelAndView();
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			mv.setViewName("mentoring/mentoring_list");
-			mv.addObject("listResultAll", mentoringListResult);
-			return mv;
-		}
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mentoring/mentoring_list");
+		switch(sort) {
+		case "0": {MentoringListResult mentoringListResult = mentoringListResult(cp, ps, sort); 
+					mv.addObject("listResultExercise", mentoringListResult);
+					return mv;}//운동
+		case "1": {MentoringListResult mentoringListResult = mentoringListResult(cp, ps, sort); 
+					mv.addObject("listResultMusic", mentoringListResult);
+					return mv;}//음악
+		case "2": {MentoringListResult mentoringListResult = mentoringListResult(cp, ps, sort); 
+					mv.addObject("listResultCraft", mentoringListResult);
+					return mv;}//공예
+		case "3": {MentoringListResult mentoringListResult = mentoringListResult(cp, ps, sort); 
+					mv.addObject("listResultCooking", mentoringListResult);
+					return mv;}//요리
+		case "4": {MentoringListResult mentoringListResult = mentoringListResult(cp, ps, sort); 
+					mv.addObject("listResultMedia", mentoringListResult);
+					return mv;}//사진&영상
+		case "5": {MentoringListResult mentoringListResult = mentoringListResult(cp, ps, sort); 
+					mv.addObject("listResultBeauty", mentoringListResult);
+					return mv;}//뷰티
+		case "6": {MentoringListResult mentoringListResult = mentoringListResult(cp, ps, sort); 
+					mv.addObject("listResultBeverage", mentoringListResult);
+					return mv;}//음료
+		default: {MentoringListResult mentoringListResult = mentoringListResult(cp, ps, sort); 
+					mv.addObject("listResultAll", mentoringListResult);}
+					return mv;}//99 전체
+	}
+	private MentoringListResult mentoringListResult(int cp, int ps, String sort) {
+		MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
+		return mentoringListResult;
 	}
 	@GetMapping("ajaxList.do")
 	public void ajaxList(int cp, HttpServletResponse response, String sort) {
-		if(sort.equals("99")) {
-			int ps = 6;
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			ObjectMapper om = new ObjectMapper();
-			try {
-				String json = om.writeValueAsString(mentoringListResult);
-				response.setContentType("application/json;charset=utf-8");
-				PrintWriter pw = response.getWriter();
-				pw.print(json);
-			}catch(IOException ie) {
-				System.out.println("#ie: " + ie);
-			}
-		}else if(sort.equals("0")) {
-			int ps = 6;
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			ObjectMapper om = new ObjectMapper();
-			try {
-				String json = om.writeValueAsString(mentoringListResult);
-				response.setContentType("application/json;charset=utf-8");
-				PrintWriter pw = response.getWriter();
-				pw.print(json);
-			}catch(IOException ie) {
-				System.out.println("#ie: " + ie);
-			}
-		}else if(sort.equals("1")) {
-			int ps = 6;
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			ObjectMapper om = new ObjectMapper();
-			try {
-				String json = om.writeValueAsString(mentoringListResult);
-				response.setContentType("application/json;charset=utf-8");
-				PrintWriter pw = response.getWriter();
-				pw.print(json);
-			}catch(IOException ie) {
-				System.out.println("#ie: " + ie);
-			}
-		}else if(sort.equals("2")) {
-			int ps = 6;
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			ObjectMapper om = new ObjectMapper();
-			try {
-				String json = om.writeValueAsString(mentoringListResult);
-				response.setContentType("application/json;charset=utf-8");
-				PrintWriter pw = response.getWriter();
-				pw.print(json);
-			}catch(IOException ie) {
-				System.out.println("#ie: " + ie);
-			}
-		}else if(sort.equals("3")) {
-			int ps = 6;
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			ObjectMapper om = new ObjectMapper();
-			try {
-				String json = om.writeValueAsString(mentoringListResult);
-				response.setContentType("application/json;charset=utf-8");
-				PrintWriter pw = response.getWriter();
-				pw.print(json);
-			}catch(IOException ie) {
-				System.out.println("#ie: " + ie);
-			}
-		}else if(sort.equals("4")) {
-			int ps = 6;
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			ObjectMapper om = new ObjectMapper();
-			try {
-				String json = om.writeValueAsString(mentoringListResult);
-				response.setContentType("application/json;charset=utf-8");
-				PrintWriter pw = response.getWriter();
-				pw.print(json);
-			}catch(IOException ie) {
-				System.out.println("#ie: " + ie);
-			}
-		}else if(sort.equals("5")) {
-			int ps = 6;
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			ObjectMapper om = new ObjectMapper();
-			try {
-				String json = om.writeValueAsString(mentoringListResult);
-				response.setContentType("application/json;charset=utf-8");
-				PrintWriter pw = response.getWriter();
-				pw.print(json);
-			}catch(IOException ie) {
-				System.out.println("#ie: " + ie);
-			}
-		}else if(sort.equals("6")) {
-			int ps = 6;
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			ObjectMapper om = new ObjectMapper();
-			try {
-				String json = om.writeValueAsString(mentoringListResult);
-				response.setContentType("application/json;charset=utf-8");
-				PrintWriter pw = response.getWriter();
-				pw.print(json);
-			}catch(IOException ie) {
-				System.out.println("#ie: " + ie);
-			}
-		}else{
-			int ps = 6;
-			MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
-			ObjectMapper om = new ObjectMapper();
-			try {
-				String json = om.writeValueAsString(mentoringListResult);
-				response.setContentType("application/json;charset=utf-8");
-				PrintWriter pw = response.getWriter();
-				pw.print(json);
-			}catch(IOException ie) {
-				System.out.println("#ie: " + ie);
-			}
+		switch(sort) {
+		case "99": ajaxListWrite(cp, response, sort); break;
+		case "0": ajaxListWrite(cp, response, sort); break;
+		case "1": ajaxListWrite(cp, response, sort); break;
+		case "2": ajaxListWrite(cp, response, sort); break;
+		case "3": ajaxListWrite(cp, response, sort); break;
+		case "4": ajaxListWrite(cp, response, sort); break;
+		case "5": ajaxListWrite(cp, response, sort); break;
+		case "6": ajaxListWrite(cp, response, sort); break;
+		default: ajaxListWrite(cp, response, sort); break;
+		}
+		
+	}
+	
+	private void ajaxListWrite(int cp, HttpServletResponse response, String sort) {
+		int ps = 6;
+		MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
+		ObjectMapper om = new ObjectMapper();
+		try {
+			String json = om.writeValueAsString(mentoringListResult);
+			response.setContentType("application/json;charset=utf-8");
+			PrintWriter pw = response.getWriter();
+			pw.print(json);
+		}catch(IOException ie) {
+			System.out.println("#ie: " + ie);
 		}
 	}
-
 	
 	@GetMapping("list4.do")
 	public String list4() {

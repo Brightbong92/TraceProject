@@ -14,10 +14,11 @@ public class Member {
 	private String mem_pwd;
 	private String mem_nick;
 	private String mem_age;
-	private String mem_gender;
+	private int mem_gender;
 	private String mem_profile;
 	private Date mem_rdate;
 	private long mem_point;
 	private long mem_auth;
 	private long mem_state;
+	//private long mem_gubun;
 }

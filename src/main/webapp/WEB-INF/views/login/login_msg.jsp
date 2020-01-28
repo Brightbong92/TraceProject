@@ -2,12 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
-if(${requestScope.rCode} == <%=LoginSet.NO_ID%>){
+if(${requestScope.result} == <%=LoginSet.NO_ID%>){
 	   alert("없는 아이디 입니다 ");
-}else if(${rCode} == <%=LoginSet.NO_PWD%> ){
+	   location.href="./login.do";
+}else if(${result} == <%=LoginSet.NO_PWD%> ){
 	   alert("잘못된 비밀번호 입니다 ");
+	   location.href="./login.do";
 }else{
-	   alert("환영합니다 ${sessionScope.loginUser.mem_nickname} 님");
+	   alert("환영합니다 ${sessionScope.loginUser.mem_nick} 님");
+	   location.href="../";
 }
-	location.href="../index/index.do";
+	
 </script>

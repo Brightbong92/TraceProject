@@ -18,12 +18,13 @@ import tp.vo.MentoringPagingVo;
 public class LoginTests {
 	@Autowired
 	private LoginMapper loginMapper;
+	/*
 	@Test
 	public void testList() {
 		//log.info("#mentoringMapper: " + loginMapper.getClass().getName());
 		String mem_email = "a@naver.com";
 		//log.info("#LoginTests testList(): " + loginMapper.getMembers(mem_email));
-		Member m = loginMapper.getMembers(mem_email);
+		Member m = loginMapper.selectMember(mem_email);
 		String mem_pwd = "1234";
 		String pwdDb = m.getMem_pwd();
 		if(pwdDb != null) pwdDb = pwdDb.trim();
@@ -33,6 +34,22 @@ public class LoginTests {
 		}else {
 			log.info("로그인성공");//로그인 성공
 		}	
+	}
+	*/
+	@Test
+	public void testList() {
+		//log.info("#mentoringMapper: " + loginMapper.getClass().getName());
+		String mem_email = "a@naver.com";
+		//String mem_email = "kk070@hanmail.net";
+		//log.info("#LoginTests testList(): " + loginMapper.getMembers(mem_email));
+		String m = loginMapper.selectKakaoMember(mem_email);
+		if(m != null) {
+			log.info("#m: " + m);
+		}else {
+			log.info("#m: " + m);
+		}
+		
+		
 	}
 	/*
 	@Test
