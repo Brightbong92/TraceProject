@@ -47,6 +47,7 @@
 	<context:component-scan base-package="tp.mentoring.controller" />
 	<context:component-scan base-package="tp.notice.controller" />
 	<context:component-scan base-package="tp.mentor.controller" />
+	<context:component-scan base-package="tp.join.controller" />
 	<context:component-scan base-package="tp.login.controller" />
 	<context:component-scan base-package="tp.admin.controller" />
 </beans:beans>

@@ -32,21 +32,31 @@
 		<property name="configLocation"
 			 value="classpath:/mybatis-config.xml"/>
 	</bean>
+	<!-- 멘토링관련 -->
 		<context:component-scan base-package="tp.mentoring.service"/>
 		<context:component-scan base-package="tp.mentoring.mapper"/>
 		<mybatis-spring:scan base-package="tp.mentoring.mapper" />
 		
+	<!-- 로그인 관련 -->
 		<context:component-scan base-package="tp.login.service"/>
 		<context:component-scan base-package="tp.login.mapper"/>
 		<mybatis-spring:scan base-package="tp.login.mapper" />
 		
+	<!-- 회원가입 관련 -->
+		<context:component-scan base-package="tp.join.service"/>
+		<context:component-scan base-package="tp.join.mapper"/>
+		<mybatis-spring:scan base-package="tp.join.mapper" />
+		
+	<!-- 관리자 관련 -->
 		<context:component-scan base-package="tp.admin.service"/>
 		<context:component-scan base-package="tp.admin.mapper"/>
 		<mybatis-spring:scan base-package="tp.admin.mapper" />
 		
+	<!-- 공지사항 관련 -->
 		<context:component-scan base-package="tp.notice.service"/>
 		<context:component-scan base-package="tp.notice.mapper"/>
 		<mybatis-spring:scan base-package="tp.notice.mapper" />
+		
 		
 		<context:annotation-config></context:annotation-config>
 		<context:component-scan base-package="tp.metoring.aop"/>
@@ -56,6 +66,21 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	<!-- Gmail -->
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="wkdgusqhd080@gmail.com" />
+    <property name="password" value="txgilmddhiotgwce" /><!-- 나중에제거해야함 -->
+    <property name="javaMailProperties">
+    <props>
+      <prop key="mail.smtp.auth">true</prop>
+      <prop key="mail.smtp.starttls.enable">true</prop>
+    </props>
+    </property>
+  </bean>
+	
+	
 	
 	<tx:annotation-driven/>
 </beans>
