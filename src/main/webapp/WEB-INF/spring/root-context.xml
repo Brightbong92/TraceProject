@@ -57,10 +57,15 @@
 		<context:component-scan base-package="tp.notice.mapper"/>
 		<mybatis-spring:scan base-package="tp.notice.mapper" />
 		
+	<!-- 멘토신청 관련 -->
+		<context:component-scan base-package="tp.mentor.service"/>
+		<context:component-scan base-package="tp.mentor.mapper"/>
+		<mybatis-spring:scan base-package="tp.mentor.mapper" />
 		
-		<context:annotation-config></context:annotation-config>
-		<context:component-scan base-package="tp.metoring.aop"/>
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<!-- 인덱스 관련 -->
+		<context:component-scan base-package="tp.index.service"/>
+		<context:component-scan base-package="tp.index.mapper"/>
+		<mybatis-spring:scan base-package="tp.index.mapper" />
 	
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

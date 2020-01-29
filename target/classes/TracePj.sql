@@ -11,10 +11,17 @@ delete from REFUND_INFO;
 delete from PAYMENT_INFO;
 delete from MENTORING_QA_REPLY;
 delete from MENTORING_QA;
+<<<<<<< HEAD
 
 delete from MENTORING_REVIEW_LIKE;
 delete from MENTORING_REVIEW;
 
+=======
+delete from MENTORING_REVIEW_FILE;
+delete from MENTORING_REVIEW_LIKE;
+delete from MENTORING_REVIEW;
+delete from MENTORING_FILE;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 delete from MENTORING_DETAIL_INFO;
 delete from MENTORING;
 delete from MENTORING_CATEGORY;
@@ -27,6 +34,10 @@ delete from MEMBER;
 --drop trigger¹®--
 drop trigger PAYMENT_TRI;
 drop trigger REFUND_TRI;
+<<<<<<< HEAD
+=======
+drop trigger MENTOR_TRI;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 --drop table¹®--
 drop table NOTICE;
@@ -40,11 +51,19 @@ drop table CART;
 drop table MENTORING_QA_REPLY;
 drop table MENTORING_QA;
 
+<<<<<<< HEAD
 
 drop table MENTORING_REVIEW_LIKE;
 drop table MENTORING_REVIEW;
 
 
+=======
+drop table MENTORING_REVIEW_FILE;
+drop table MENTORING_REVIEW_LIKE;
+drop table MENTORING_REVIEW;
+
+drop table MENTORING_FILE;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 drop table MENTORING_DETAIL_INFO;
 drop table MENTORING;
@@ -62,7 +81,13 @@ drop sequence MENTORING_QA_REPLY_SEQ;
 drop sequence MENTORING_QA_SEQ;
 
 drop sequence MENTORING_REVIEW_SEQ;
+<<<<<<< HEAD
 
+=======
+drop sequence MENTORING_REVIEW_FILE_SEQ;
+
+drop sequence MENTORING_FILE_SEQ;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 drop sequence MENTORING_DETAIL_INFO_SEQ;
 drop sequence MENTORING_SEQ;
 
@@ -143,6 +168,11 @@ insert into MEMBER values('c4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8t
 insert into MEMBER values('c5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','¹®ÁöÀº','20',2,'ÇÁ·ÎÇÊ»çÁø.jpg',SYSDATE,0,0,1);
 insert into MEMBER values('c6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','¹®Áö¿µ','20',2,'ÇÁ·ÎÇÊ»çÁø.jpg',SYSDATE,0,0,1);
 insert into MEMBER values('c7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','±èÇü¼·','20',2,'ÇÁ·ÎÇÊ»çÁø.jpg',SYSDATE,0,0,1);
+<<<<<<< HEAD
+=======
+insert into MEMBER values('qqq@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','´Ü¹«Áö','20',2,'ÇÁ·ÎÇÊ»çÁø.jpg',SYSDATE,0,0,1);
+
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 
 insert into MEMBER(MEM_EMAIL, MEM_AGE, MEM_GENDER, MEM_RDATE, MEM_POINT, MEM_AUTH, MEM_STATE) values('disken@naver.com','20-29',2,SYSDATE,0,0,1);
@@ -175,6 +205,7 @@ ML_PHONE varchar2(11),
 ML_YOURSELF varchar2(1000),
 ML_BUSINESS varchar2(300),
 MTRCG_NO number,
+<<<<<<< HEAD
 constraint MENTOR_LIST_PK primary key(MEM_EMAIL)
 );
 
@@ -185,6 +216,28 @@ insert into MENTOR_LIST values('e@naver.com', '±èº¸¶ó', '01034534531', 'ÀÚ±â¼Ò°³
 insert into MENTOR_LIST values('f@naver.com', '¸ð°ÇÀÏ', '01078967855', 'ÀÚ±â¼Ò°³¼­¿ä','»ç¾÷ÀÚµî·ÏÁõ.jpg',4);
 insert into MENTOR_LIST values('g@naver.com', '°øº´Âù', '01034573463', 'ÀÚ±â¼Ò°³¼­¿ä','»ç¾÷ÀÚµî·ÏÁõ.jpg',5);
 insert into MENTOR_LIST values('h@naver.com', '¼Û½ÂÈÆ', '01064347422', 'ÀÚ±â¼Ò°³¼­¿ä','»ç¾÷ÀÚµî·ÏÁõ.jpg',6);
+=======
+constraint MENTOR_LIST_PK primary key(MEM_EMAIL),
+ML_APPLY number(1)
+);
+
+insert into MENTOR_LIST values('a@naver.com', 'ÀÓ¼ºÁö', '01021735831', 'ÀÚ±â¼Ò°³¼­¿ä','»ç¾÷ÀÚµî·ÏÁõ.jpg',0,0);
+insert into MENTOR_LIST values('c@naver.com', '±è¼ºÅÂ', '01046145442', 'ÀÚ±â¼Ò°³¼­¿ä','»ç¾÷ÀÚµî·ÏÁõ.jpg',1,0);
+insert into MENTOR_LIST values('d@naver.com', '¼Õ¿µºó', '01033453453', 'ÀÚ±â¼Ò°³¼­¿ä','»ç¾÷ÀÚµî·ÏÁõ.jpg',2,0);
+insert into MENTOR_LIST values('e@naver.com', '±èº¸¶ó', '01034534531', 'ÀÚ±â¼Ò°³¼­¿ä','»ç¾÷ÀÚµî·ÏÁõ.jpg',3,0);
+insert into MENTOR_LIST values('f@naver.com', '¸ð°ÇÀÏ', '01078967855', 'ÀÚ±â¼Ò°³¼­¿ä','»ç¾÷ÀÚµî·ÏÁõ.jpg',4,0);
+insert into MENTOR_LIST values('g@naver.com', '°øº´Âù', '01034573463', 'ÀÚ±â¼Ò°³¼­¿ä','»ç¾÷ÀÚµî·ÏÁõ.jpg',5,0);
+insert into MENTOR_LIST values('h@naver.com', '¼Û½ÂÈÆ', '01064347422', 'ÀÚ±â¼Ò°³¼­¿ä','»ç¾÷ÀÚµî·ÏÁõ.jpg',6,0);
+insert into MENTOR_LIST values('qqq@naver.com', '´Ü¹«Áö', '01012341234', 'ÀÚ±â¼Ò°³¼­¿ä','»ç¾÷ÀÚµî·ÏÁõ.jpg',0,1);
+
+create or replace trigger MENTOR_TRI
+after
+    update on MENTOR_LIST for each row
+begin
+    update MEMBER set MEM_AUTH = 1 where MEM_EMAIL = :NEW.MEM_EMAIL;
+end;
+/
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 select * from MENTOR_LIST;
 
@@ -208,7 +261,11 @@ select * from MENTORING_CATEGORY;
 create table MENTORING(
 MTR_SEQ number constraint MENTORING_PK primary key,
 MTR_SUBJECT varchar2(500),
+<<<<<<< HEAD
 MTR_CONTENT CLOB,
+=======
+MTR_CONTENT varchar2(1000),
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 MTR_PRICE number,
 MTR_AREA varchar2(100),
 MTR_ADDR varchar2(1000),
@@ -218,8 +275,12 @@ MTR_HASHTAG varchar2(500),
 MTRCG_NO number constraint MENTORING_FK references MENTORING_CATEGORY(MTRCG_NO),
 MEM_EMAIL varchar2(100) constraint MENTORING_FK2 references MEMBER(MEM_EMAIL) on delete cascade
 );
+<<<<<<< HEAD
 create sequence MENTORING_SEQ minvalue 0 start with 1 increment by 1 nocache;
 
+=======
+create sequence MENTORING_SEQ minvalue 0 start with 0 increment by 1 nocache;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 --delete from MENTORING;
 
@@ -267,6 +328,7 @@ insert into MENTORING values(9, 'º¹½Ì', '±âÃÊÃ¼·Â´Ü·ÃºÎÅÍ ¼±¼öÇÏ½ÇºÐ±îÁö ¸ðÁýÇÕ´
 insert into MENTORING values(10, 'Å×´Ï½º', '¹è¿ì±â ½¬¿î Å×´Ï½º ¶óÄÏ±¸¸Å ÇÊ¿ä¾øÀÌ ¹Ù·Î ¾Ë·Áµå¸®°Ú½À´Ï´Ù ', 20000, '¼­¿ï', '¼­¿ï Áß¶û±¸ ÁßÈ­µ¿ 311-5 ', 0, 'Å×´Ï½º.jpg', '#¶óÄÏ#´ÙÀÌ¾îÆ®', 0, 'a@naver.com');
 insert into MENTORING values(11, '·°ºñ', 'ÅÂÅ¬ ¸¹ÀÌ ¾ÈÇÕ´Ï´Ù ÀÏ´Ü¿À¼¼¿ä .', 20000, '°æ±â', 'ºÎÃµ½Ã ¿ø¹Ì±¸ ºÎÃµµ¿ ', 0, '·°ºñ.jpg', '#ÅÂÅ¬#¾ÈÀü', 0, 'a@naver.com');
 insert into MENTORING values(12, 'Ãà±¸', 'Á¶±âÃà±¸ºÎÅÍ ¿øÁ¤±îÁö ¿¬¶ô¸ÕÀúÁÖ¼¼¿ä.', 40000, '¼­¿ï', '¼­¿ï ¿ø¹Ì±¸ Áßµ¿', 0, 'Ãà±¸.jpg', '#µå¸®º¼#¹Ù³ª³ªÅ±', 0, 'a@naver.com');
+<<<<<<< HEAD
 insert into MENTORING values(13, 'Ã¼Á¶', 'Àü½ÅÀÇ À¯¿¬ÇÔ Ã¥ÀÓÁö°Ú½À´Ï´Ù ¤¾¤¾', 30000, '¼­¿ï', '¼­¿ï ¿ø¹Ì±¸ »óµ¿', 4, 'Ã¼Á¶.jpg', '#¸®µë#º¼·ý', 0, 'a@naver.com');
 insert into MENTORING values(14, '¼­ÇÎ', '³¯Ç®¸®´Â Áö±ÝÀÌ ¿©¸§À» Ã¥ÀÓÁý´Ï´Ù.', 50000, '¼­¿ï', '¼­¿ï µ¿ÀÛ±¸ ½Å´ë¹æ2µ¿', 2, '¼­ÇÎ.jpg', '#¿©¸§#¸öÂ¯', 0, 'a@naver.com');
 insert into MENTORING values(15, '¹èµå¹ÎÅÏ', '¾ß¿ÜX ½Ç³»Ã¼À°°ü ÀÖ½À´Ï´Ù', 30000, '¼­¿ï', '¼­¿ï µ¿ÀÛ±¸ ´ë¸²1µ¿', 5, '¹èµå¹ÎÅÏ.jpg', '#½¬¿î#´ÙÀÌ¾îÆ®', 0, 'a@naver.com');
@@ -309,19 +371,73 @@ insert into MENTORING values(50, 'ÀÌ¹ÌÁö¸ÞÀÌÅ·', 'Ç×»ó ¹àÀº ÀÚ½ÅÀÇ¸ð½ÀÀ» ¿¬»óÄÉÇ
 
 commit;
 /*
+=======
+insert into MENTORING values(13, 'Ã¼Á¶', 'Àü½ÅÀÇ À¯¿¬ÇÔ Ã¥ÀÓÁö°Ú½À´Ï´Ù ¤¾¤¾', 30000, '¼­¿ï', '¼­¿ï ¿ø¹Ì±¸ »óµ¿', 0, 'Ã¼Á¶.jpg', '#¸®µë#º¼·ý', 0, 'a@naver.com');
+insert into MENTORING values(14, '¼­ÇÎ', '³¯Ç®¸®´Â Áö±ÝÀÌ ¿©¸§À» Ã¥ÀÓÁý´Ï´Ù.', 50000, '¼­¿ï', '¼­¿ï µ¿ÀÛ±¸ ½Å´ë¹æ2µ¿', 0, '¼­ÇÎ.jpg', '#¿©¸§#¸öÂ¯', 0, 'a@naver.com');
+insert into MENTORING values(15, '¹èµå¹ÎÅÏ', '¾ß¿ÜX ½Ç³»Ã¼À°°ü ÀÖ½À´Ï´Ù', 30000, '¼­¿ï', '¼­¿ï µ¿ÀÛ±¸ ´ë¸²1µ¿', 0, '¹èµå¹ÎÅÏ.jpg', '#½¬¿î#´ÙÀÌ¾îÆ®', 0, 'a@naver.com');
+insert into MENTORING values(16, 'ÆÈÂî°ø¿¹', 'ÀÚ½ÅÇÑÅ× ¾Ë¸Â´Â ÆÈÂî ¸¸µé¾îº¸¾Æ¿ä!', 30000, '°æ±â', '¼­¿ï½Ã °ü¾Ç±¸ º¸¶ó¸Åµ¿ ', 0, 'ÆÈÂî°ø¿¹.jpg', '#¾Ç¼¼¼­¸®#º¸¼®', 2, 'd@naver.com');
+insert into MENTORING values(17, '¸®º»°ø¿¹', '¸Ó¸®²ö¸¸µé¾î¼­ ¼±¹°ÇÏ¼¼¿ä!', 20000, '¼­¿ï', '¼­¿ï °ü¾Ç±¸ ½Å»çµ¿', 0, '¸®º»°ø¿¹.jpg', '#¾Ç¼¼¼­¸®', 2, 'd@naver.com');
+insert into MENTORING values(18, 'ºñÁî°ø¿¹', '¹ÝÂ¦¹ÝÂ¦ ¸ðµÎ¸ðÀÌ¼¼¿ä', 25000, '¼­¿ï', '¼­¿ï °ü¾Ç±¸ ½Å¸²µ¿', 0, 'ºñÁî°ø¿¹.jpg', '#¾Ç¼¼¼­¸®#º¸¼®', 2, 'd@naver.com');
+insert into MENTORING values(19, '³ÀÅ²°ø¿¹', 'È£ÅÚ½ÄÀ¸·Î ÀÌ»Ú°ÔÁ¢´Â¹ý ¾Ë·Áµå·Á¿ä', 30000, '¼­¿ï', '¼­¿ï µ¿ÀÛ±¸ ³ë·®Áø2µ¿', 0, '³ÀÅ²°ø¿¹.jpg', '#ÈÞÁö#¾ÆÆ®', 2, 'd@naver.com');
+insert into MENTORING values(20, '¸Åµì°ø¿¹', '¸ÅµìÁ¾·ù´Â ¹«¼öÈ÷¸¹½À´Ï´Ù ¿Í¼­ ½Ç¿ëÀûÀÎ°É ¹è¿ö°¡¼¼¿ä', 35000, '¼­¿ï', '¼­¿ï ¿µµîÆ÷±¸ ½Å±æ1µ¿', 0, '¸Åµì°ø¿¹.jpg', '#»ýÈ°#²ö', 2, 'd@naver.com');
+insert into MENTORING values(21, 'À¯¸®°ø¿¹', 'À¯¸®ÀÇ ½ÅºñÇÔÀ» Ã¼ÇèÇØº¸¼¼¿ä', 35000, '°æ±â', '¼­¿ï½Ã ¿µµîÆ÷±¸ ¿µµîÆ÷º»µ¿ ', 0, 'À¯¸®°ø¿¹.jpg', '#¹°ÀÜ#±×¸©', 2, 'd@naver.com');
+insert into MENTORING values(22, '°¡Á×°ø¿¹', '½±°ÔÁ¢ÇÒ¼öÀÖ´Â °¡Á×À¸·Î ½Ç¿ëÇ°À» ¸¸µé¾îº¸¼¼¿ä', 45000, '¼­¿ï', '¼­¿ï ¸¶Æ÷±¸ °ø´öµ¿', 0, '°¡Á×°ø¿¹.jpg', '#Áö°©#º§Æ®', 2, 'd@naver.com');
+insert into MENTORING values(23, 'ÇÑ±¹¾çÃÊ°ø¿¹', '³ª¸¸ÀÇ ºûÀ» ¸¸µé¾îº¸¼¼¿ä', 50000, '¼­¿ï', '¼­¿ï ¸¶Æ÷±¸ ¿°¸®µ¿', 0, 'ÇÑ±¹¾çÃÊ°ø¿¹.jpg', '#ºû', 2, 'd@naver.com');
+insert into MENTORING values(24, '¾ç¸»°ø¿¹', 'Á÷Á¢¸¸µç ¾ç¸»À» ½Å¾îºÁ¿ä!', 30000, '¼­¿ï', '¼­¿ï ¸¶Æ÷±¸ È¿Ã¢µ¿', 0, '¾ç¸»°ø¿¹.jpg', '#¹ß°¡¶ô¾ç¸»', 2, 'd@naver.com');
+insert into MENTORING values(25, 'Ä¥º¸°ø¿¹', 'ÀÌ»Û Àå½Äµé °¡Á®°¡¼¼¿ä ¤¾¤¾', 50000, '¼­¿ï', '¼­¿ï ¸¶Æ÷±¸ Ã»ÆÄµ¿', 0, 'Ä¥º¸°ø¿¹.jpg', '#ÀÚ±â#Ä¥', 2, 'd@naver.com');
+insert into MENTORING values(26, '¼ÒÀÌÄµµé°ø¿¹', 'ÇâÃÊ Á÷Á¢¸¸µé¾îº¸¼¼¿ä', 30000, '°æ±â', '¼­¿ï½Ã °­¼­±¸ ¸¶°îµ¿ ', 0, '¼ÒÀÌÄµµé°ø¿¹.jpg', '#Çâ#»ö°¨', 2, 'd@naver.com');
+insert into MENTORING values(27, 'ÇÑÁö°ø¿¹', 'ÀüÅëÀÇ ¸ÚÀ» ¹è¿ì·¯¿À¼¼¿ä!', 45000, '¼­¿ï', '¼­¿ï °­¼­±¸ ¹æÈ­µ¿', 0, 'ÇÑÁö°ø¿¹.jpg', '#ÀüÅë', 2, 'd@naver.com');
+insert into MENTORING values(28, '±Ý¼Ó°ø¿¹', 'Ã¶ÀÇ ¾Æ¸§´Ù¿òÀ» ¹è¿öº¸¾Æ¿ä', 30000, '¼­¿ï', '¼­¿ï °­¼­±¸ µîÃÌµ¿', 0, '±Ý¼Ó°ø¿¹.jpg', '#½¬¿ò', 2, 'd@naver.com');
+insert into MENTORING values(29, '±Ô¹æ°ø¿¹', 'º¸ÀÚ±â Á÷Á¢ ¸¸µé¾îºÁ¿ä~', 30000, '¼­¿ï', '¼­¿ï °­¼­±¸ °¡¾çµ¿', 0, '±Ô¹æ°ø¿¹.jpg', '#º¸ÀÚ±â#Ãµ', 2, 'd@naver.com');
+insert into MENTORING values(30, '»çÁø°ø¿¹', 'ÀßÂïÀº »çÁøÀ¸·Î Ãß¾ïÀ» º¸°üÇÏ¼¼¿ä', 20000, '¼­¿ï', '¼­¿ï ¾çÃµ±¸ È­°îº»µ¿', 0, '»çÁø°ø¿¹.jpg', '#»çÁø#»çÁø±â', 2, 'd@naver.com');
+insert into MENTORING values(31, 'ºóÆ¼Áö°ø¿¹', '¾²´Ù³²Àº °¡Á×µé·Î ÀÌ»Û¾Ç¼¼¼­¸®¸¦ ¸¸µé¾îº¸¾Æ¿ë', 20000, '°æ±â', '¼­¿ï½Ã °­¼­±¸ ¿°Ã¢µ¿ ', 0, 'ºóÆ¼Áö°ø¿¹.jpg', '#»ý°¢Ä¡¸øÇÑ#¾Æ¸§´Ù¿ò', 2, 'd@naver.com');
+insert into MENTORING values(32, '¸Ó¸®¶ì°ø¿¹', 'ÀÌ»Û ¸Ó¸®Àå½Ä ¸¸µé¾îº¸¾Æ¿ä', 25000, '¼­¿ï', '¼­¿ï Á¾·Î±¸ µ¿¼þ4¶ó±æ 29', 0, '¸Ó¸®¶ì°ø¿¹.jpg', '#µþ¾ÆÀÌ#¸Ó¸®Àå½Ä', 2, 'd@naver.com');
+insert into MENTORING values(33, 'µµÀÚ±â ¸¸µé±â¼ö¾÷', 'µµÀÚ±â°¡¸£ÃÄ¿ä', 25000, '¼­¿ï', '¼­¿ï Á¾·Î±¸ µ¿¼þ±æ 148', 0, 'µµÀÚ±â¸¸µé±â¼ö¾÷.jpg', '#²Éº´#¹°º´', 2, 'd@naver.com');
+insert into MENTORING values(34, 'ºñ´Ò°ø¿¹', 'ºñ´Ò·Îµµ ¿¹¼úÀÌ °¡´ÉÇÕ´Ï´Ù', 45000, '¼­¿ï', '¼­¿ï ¼ººÏ±¸ »ï¼±±³·Î10¹Ù±æ 34', 0, 'ºñ´Ò°ø¿¹.jpg', '#Å«ºñ´Ò', 2, 'd@naver.com');
+insert into MENTORING values(35, 'Ç×¾Æ¸®°ø¿¹', '°ËÀº»ö Ç×¾Æ¸®´Â ÀÌÁ¦ º¸³»ÁÖ¼¼¿ä', 45000, '¼­¿ï', '¼­¿ï °­¼­±¸ È­°îµ¿', 0, 'Ç×¾Æ¸®°ø¿¹.jpg', '#±èÀåµ¶', 2, 'd@naver.com');
+insert into MENTORING values(36, '±âÅ¸°ø¿¹', '±âÅ¸Àå½Äµé ¸¸µé¾îºÁ¿ä', 40000, '°æ±â', '¼­¿ï ¼ººÏ±¸ ¾Æ¸®¶û·Î 68 ', 0, '±âÅ¸°ø¿¹.jpg', '#±âÅ¸#¹ö½ºÅ·', 2, 'd@naver.com');
+insert into MENTORING values(37, '¹ÝÁö°ø¿¹', '¹ÝÁö¸¦ ¸¸µé¾î ¼±¹°ÇØºÁ¿ä', 45000, '¼­¿ï', '¼­¿ï ¼­´ë¹®±¸ Ã¢Ãµµ¿', 0, '¹ÝÁö°ø¿¹.jpg', '#Ä¿ÇÃ#¼±¹°', 2, 'd@naver.com');
+insert into MENTORING values(38, '¹ßÂî°ø¿¹', '³²´Ù¸¥ ¾Ç¼¼¼­¸®¸¦ ¸¸µé¾îº¸¼¼¿ä', 35000, '¼­¿ï', '¼­¿ï ¼ººÏ±¸ µ·¾Ïµ¿ 42-32', 0, '¹ßÂî°ø¿¹.jpg', '#¾Ç¼¼¼­¸®', 2, 'd@naver.com');
+insert into MENTORING values(39, 'Çì¾î¹êµå°ø¿¹', '¸Ó¸® ¾Ç¼¼¼­¸® ¸¸µé¾îºÁ¿ä', 50000, '¼­¿ï', '¼­¿ï ¼ººÏ±¸ Á¤¸ª·Î46±æ 17', 0, 'Çì¾î¹êµå°ø¿¹.jpg', '#¸Ó¸®Àå½Ä', 2, 'd@naver.com');
+insert into MENTORING values(40, '±Í°ÉÀÌ°ø¿¹', '³ª¸¸ÀÇ ¾Ç¼¼¼­¸® ¸¸µé¾îº¸¼¼¿ä', 30000, '¼­¿ï', '±æÀ½µ¿ 21-71', 0, '±Í°ÉÀÌ°ø¿¹.jpg', '#¾Ç¼¼¼­¸®#ÇÚµå¸ÞÀÌµå', 2, 'd@naver.com');
+insert into MENTORING values(41, '±âÃÊÇì¾îÄ¿Æ®', '¾Õ¸Ó¸®1ÀÚ ³Ê¹« ¿¹Àü½ºÅ¸ÀÏÀÌ¿¡¿ä', 30000, '°æ±â', '¼­¿ï °­ºÏ±¸ µµºÀ·Î 10 ', 0, '±âÃÊÇì¾îÄ¿Æ®.jpg', '#Çì¾î#±âÃÊ', 5, 'g@naver.com');
+insert into MENTORING values(42, '¸ð¹ß°úÇÐ', '°Ç°­ÇÑ¸ð¹ß·Î ¾ÕÀ¸·ÎÀÇ ÀÚ½Å°¨ Ã¬±â¼¼¿ä!', 30000, '¼­¿ï', '¼­¿ï ¼ººÏ±¸ ÇÏ¿ù°îµ¿', 0, '¸ð¹ß°úÇÐ.jpg', '#Çì¾î#°Ç°­', 5,'g@naver.com');
+insert into MENTORING values(43, '¹Ì¿ëÀÛÇ°Á¦ÀÛ', '¼Õ¼ö¸¸µç ¹Ì¿ëµµ±¸¸¦ ¸¸³ªº¸¼¼¿ä!', 30000, '¼­¿ï', 'Ã»·®¸®µ¿ 207-41', 0, '¹Ì¿ëÀÛÇ°Á¦ÀÛ.jpg', '#¹Ì¿ë#µµ±¸', 5, 'g@naver.com');
+insert into MENTORING values(44, 'Çì¾î½ºÅ¸ÀÏ¸µ', 'ºü¸£°Ôº¯È­ÇÏ´Â Æ®·»µå ½±°Ô Á¢ÇØº¸¼¼¿ä ', 30000, '¼­¿ï', '¼­¿ï µ¿´ë¹®±¸ È«¸ª·Î 111-2', 0, 'Çì¾î½ºÅ¸ÀÏ¸µ.jpg', '#Çì¾î#½ºÅ¸ÀÏ¸µ', 5, 'g@naver.com');
+insert into MENTORING values(45, 'È­ÀåÇ°ÇÐ', 'ÇÇºÎ¿¡¸Â´Â È­ÀåÇ°Åæ È®½ÇÈ÷ ¾Ë·Áµå¸³´Ï´Ù', 50000, '¼­¿ï', 'Á¦±âµ¿ 1212', 0, 'È­ÀåÇ°ÇÐ.jpg', '#ÇÇºÎ#»öÁ¶', 5, 'g@naver.com');
+insert into MENTORING values(46, 'Ã¼Çü°ü¸®', '¿îµ¿»Ó¾Æ´Ï¶ó ¸Ô´Â°Íµµ ½Å°æ½á¾ß ÇÕ´Ï´Ù', 20000, '°æ±â', '¾È¾Ïµ¿4°¡ 23-3 ', 0, 'Ã¼Çü°ü¸®.jpg', '#¿îµ¿#°Ç°­', 5,'g@naver.com');
+insert into MENTORING values(47, '±âÃÊ¸ÞÀÌÅ©¾÷', '°¡Àå±âº»ÀÎ º£ÀÌ½ººÎÅÍ ½ÃÀÛÇÕ´Ï´Ù', 30000, '¼­¿ï', '»ó¿Õ½Ê¸®µ¿ 813', 0, '±âÃÊ¸ÞÀÌÅ©¾÷.jpg', '#¹Ì¿ë#±âÃÊ', 5, 'g@naver.com');
+insert into MENTORING values(48, 'ÀÀ¿ë¸ÞÀÌÅ©¾÷', '±âÃÊ¸ÞÀÌÅ©¾÷ ¿¬°è¼ö¾÷ÀÔ´Ï´Ù', 50000, '¼­¿ï', '¼­¿ï ¼ºµ¿±¸ »ó¿Õ½Ê¸®µ¿ 336-7', 0, 'ÀÀ¿ë¸ÞÀÌÅ©¾÷.jpg', '#¹Ì¿ë#ÀÀ¿ë', 5, 'g@naver.com');
+insert into MENTORING values(49, 'ÇÇºÎ¹Ì¿ëÇÐ', 'ÀâÆ¼ out', 30000, '¼­¿ï', '½Å´çµ¿ 153-13', 0, 'ÇÇºÎ¹Ì¿ëÇÐ.jpg', '#¹Ì¿ë#ÇÇºÎ', 5, 'g@naver.com');
+insert into MENTORING values(50, 'ÀÌ¹ÌÁö¸ÞÀÌÅ·', 'Ç×»ó ¹àÀº ÀÚ½ÅÀÇ¸ð½ÀÀ» ¿¬»óÄÉÇÏ´Ù!', 350000, '¼­¿ï', '½Å´çµ¿ 851', 0, 'ÀÌ¹ÌÁö¸ÞÀÌÅ·.jpg', '#Ç¥Á¤#ÀÌ¹ÌÁö', 5, 'g@naver.com');
+
+
+commit;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 select * from MENTORING order by MTR_SEQ desc;
 
 select * from MENTORING where MTR_SUBJECT like '%°ø¿¹%';
 
+<<<<<<< HEAD
 	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+=======
+	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL, MTR_HASHTAG 
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
         from (select ROWNUM rnum , aa.* from (select * from Mentoring order by MTR_SEQ desc) aa)
 			 where rnum>0 and rnum<=6;
              
              
+<<<<<<< HEAD
         	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
         from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 0 order by MTR_SEQ desc) aa)
 			 where rnum>0 and rnum<=6;     
   */           
+=======
+        	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL, MTR_HASHTAG 
+        from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 0 order by MTR_SEQ desc) aa)
+			 where rnum>0 and rnum<=6;     
+             
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
              
 
 --¸àÅä¸µ_»ó¼¼_Á¤º¸--
@@ -331,9 +447,16 @@ MTRDI_STIME timestamp,
 MTRDI_ETIME timestamp,
 MTRDI_MAX_PCNT number,
 MTRDI_NOW_PCNT number,
+<<<<<<< HEAD
 MTR_SEQ number constraint MENTORING_DETAIL_INFO_FK references MENTORING(MTR_SEQ) on delete cascade
 );
 create sequence MENTORING_DETAIL_INFO_SEQ minvalue 0 start with 1 increment by 1 nocache;
+=======
+MTRDI_STATE number(1),
+MTR_SEQ number constraint MENTORING_DETAIL_INFO_FK references MENTORING(MTR_SEQ) on delete cascade
+);
+create sequence MENTORING_DETAIL_INFO_SEQ minvalue 0 start with 0 increment by 1 nocache;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 --insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,TO_DATE('2020-01-18 16:00','YYYY-MM-DD HH24:MI'), TO_DATE('2020-01-18 18:00','YYYY-MM-DD HH24:MI'), 4, 0, 1, MENTORING_SEQ.currval);
 --insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,TO_DATE('2020-01-20 18:00','YYYY-MM-DD HH24:MI'), TO_DATE('2020-01-18 20:00','YYYY-MM-DD HH24:MI'), 4, 0, 1, MENTORING_SEQ.currval);
 --insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,TO_DATE('2020-01-24 20:00','YYYY-MM-DD HH24:MI'), TO_DATE('2020-01-18 22:00','YYYY-MM-DD HH24:MI'), 4, 0, 1, MENTORING_SEQ.currval);
@@ -354,6 +477,7 @@ select MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI'), TO_CHAR(MTRDI_ETIM
 select MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI'), TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI'), MTRDI_MAX_PCNT, MTRDI_NOW_PCNT, MTRDI_STATE, MTR_SEQ  from MENTORING_DETAIL_INFO;
 */
 
+<<<<<<< HEAD
 insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-18 16:00', '2020-01-18 18:00', 4, 0, 1);
 insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-20 18:00', '2020-01-20 20:00', 4, 0, 1);
 insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-24 20:00', '2020-01-24 22:00', 4, 0, 1);
@@ -369,6 +493,34 @@ commit;
 
 
 --select MENTORING_DETAIL_INFO_SEQ.nextval from dual;
+=======
+insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-18 16:00', '2020-01-18 18:00', 4, 0, 1, 1);
+insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-20 18:00', '2020-01-20 20:00', 4, 0, 1, 1);
+insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-24 20:00', '2020-01-24 22:00', 4, 0, 1, 1);
+
+insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-20 10:00','2020-01-20 13:00', 10, 0, 1, 2);
+insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-28 15:00','2020-01-28 17:00', 10, 0, 1, 2);
+insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-03-24 20:00','2020-03-24 23:00', 10, 0, 1, 2);
+
+
+select MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI'), TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI'), MTRDI_MAX_PCNT, MTRDI_NOW_PCNT, MTRDI_STATE, MTR_SEQ  from MENTORING_DETAIL_INFO;
+
+commit;
+--¸àÅä¸µ_ÆÄÀÏ--
+create table MENTORING_FILE(
+MTRF_SEQ number constraint MENTORING_FILE_PK primary key,
+MTRF_OFNAME varchar2(300),
+MTRF_FNAME varchar2(300),
+MTR_SEQ number constraint MENTORING_FILE_FK references MENTORING(MTR_SEQ) on delete cascade
+);
+create sequence MENTORING_FILE_SEQ minvalue 0 start with 0 increment by 1 nocache;
+
+insert into MENTORING_FILE values(MENTORING_FILE_SEQ.nextval, '¿À¸®Áö³¯ÆÄÀÏÀÌ¸§.jpg', 'ÆÄÀÏÀÌ¸§.jpg', 1);
+insert into MENTORING_FILE values(MENTORING_FILE_SEQ.nextval, '¿À¸®Áö³¯ÆÄÀÏÀÌ¸§.jpg', 'ÆÄÀÏÀÌ¸§.jpg', 1);
+--insert ½Ã MTR_SEQ´Â MENTORING Å×ÀÌºí¿¡ select MENTORING_SEQ.nextval from dual; »ç¿ëÇØ¼­ ³ÖÀº MTR_SEQº¯¼ö¸¦ ³Ö¾îÁÖ¸éµÊ ¸¶ÀÌ¹ÙÆ¼½º Æ®·£Àè¼Ç »ç¿ëÇØ¾ßÇÔ
+
+select * from MENTORING_FILE;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 --¸àÅä¸µ_QA--
 create table MENTORING_QA(
@@ -378,7 +530,11 @@ MTRQA_RDATE date,
 MEM_EMAIL varchar2(100),
 MTR_SEQ number constraint MENTORING_QA_FK references MENTORING(MTR_SEQ) on delete cascade
 );
+<<<<<<< HEAD
 create sequence MENTORING_QA_SEQ minvalue 0 start with 1 increment by 1 nocache;
+=======
+create sequence MENTORING_QA_SEQ minvalue 0 start with 0 increment by 1 nocache;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 insert into MENTORING_QA values(MENTORING_QA_SEQ.nextval, '¿ä°¡¼ö¾÷Áú¹®ÀÌ¿ä?', SYSDATE, 'b@naver.com', 1);
 
@@ -408,7 +564,11 @@ MTRRV_LIKECNT number,
 MTR_SEQ number constraint MENTORING_REVIEW_FK1 references MENTORING(MTR_SEQ) on delete cascade,
 MEM_EMAIL varchar2(100) constraint MENTORING_REVIEW_FK2 references MEMBER(MEM_EMAIL) on delete cascade
 );
+<<<<<<< HEAD
 create sequence MENTORING_REVIEW_SEQ minvalue 0 start with 1 increment by 1 nocache;
+=======
+create sequence MENTORING_REVIEW_SEQ minvalue 0 start with 0 increment by 1 nocache;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '¿ä°¡¼ö¾÷Â¯ÀÌ¿¡¿ä!', SYSDATE, 5, 0, 1, 'b@naver.com');
 
@@ -426,6 +586,22 @@ insert into MENTORING_REVIEW_LIKE values('b@naver.com',MENTORING_REVIEW_SEQ.curr
 update MENTORING_REVIEW set MTRRV_LIKECNT = MTRRV_LIKECNT+1 where MTRRV_SEQ = 1;
 select * from MENTORING_REVIEW_LIKE;
 
+<<<<<<< HEAD
+=======
+--¸àÅä¸µ_¸®ºä_ÆÄÀÏ--
+create table MENTORING_REVIEW_FILE(
+MTRRVF_SEQ number constraint MENTORING_REIVEW_FILE_PK primary key,
+MTRRVF_OFNAME varchar2(300),
+MTRRVF_FNAME varchar2(300),
+MTRRV_SEQ number constraint MENTORING_REVIEW_FILE_FK references MENTORING_REVIEW(MTRRV_SEQ) on delete cascade
+);
+create sequence MENTORING_REVIEW_FILE_SEQ minvalue 0 start with 0 increment by 1 nocache;
+
+insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.nextval, '¸àÅä¸µ¸®ºäÆÄÀÏÀÌ¸§','¸àÅä¸µ¸®ºäÆÄÀÏÀÌ¸§1', MENTORING_REVIEW_SEQ.currval);
+insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.nextval, '¸àÅä¸µ¸®ºäÆÄÀÏÀÌ¸§','¸àÅä¸µ¸®ºäÆÄÀÏÀÌ¸§2', MENTORING_REVIEW_SEQ.currval);
+
+select * from MENTORING_REVIEW_FILE;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 --Àå¹Ù±¸´Ï--
 create table CART(
@@ -435,7 +611,11 @@ MTR_SEQ number constraint CART_FK1 references MENTORING(MTR_SEQ) on delete casca
 MTRDI_SEQ number constraint CART_FK2 references MENTORING_DETAIL_INFO(MTRDI_SEQ) on delete cascade,
 MEM_EMAIL varchar2(100) constraint CART_FK3 references MEMBER(MEM_EMAIL) on delete cascade
 );
+<<<<<<< HEAD
 create sequence CART_SEQ minvalue 0 start with 1 increment by 1 nocache;
+=======
+create sequence CART_SEQ minvalue 0 start with 0 increment by 1 nocache;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 insert into CART values(CART_SEQ.nextval, SYSDATE, 1, 1, 'b@naver.com');
 insert into CART values(CART_SEQ.nextval, SYSDATE, 2, 4, 'b@naver.com');
@@ -458,7 +638,11 @@ MTR_SEQ number,
 MTRDI_SEQ number,
 MEM_EMAIL constraint PAYMENT_INFO_FK references MEMBER(MEM_EMAIL) on delete cascade
 );
+<<<<<<< HEAD
 create sequence PAYMENT_INFO_SEQ start with 1 minvalue 0 increment by 1 nocache;
+=======
+create sequence PAYMENT_INFO_SEQ start with 0 minvalue 0 increment by 1 nocache;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 
 create or replace trigger PAYMENT_TRI
@@ -490,7 +674,11 @@ MTRDI_SEQ number,
 MEM_EMAIL constraint REFUND_INFO_FK references MEMBER(MEM_EMAIL) on delete cascade,
 PI_SEQ constraint REFUND_INFO_FK2 references PAYMENT_INFO(PI_SEQ) on delete cascade
 );
+<<<<<<< HEAD
 create sequence REFUND_INFO_SEQ minvalue 0 start with 1 increment by 1 nocache;
+=======
+create sequence REFUND_INFO_SEQ minvalue 0 start with 0 increment by 1 nocache;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 
 create or replace trigger REFUND_TRI
@@ -517,7 +705,11 @@ NOTI_RDATE date,
 NOTI_READCNT number,
 MEM_EMAIL varchar2(100)
 );
+<<<<<<< HEAD
 create sequence NOTICE_SEQ start with 1 minvalue 0 increment by 1 nocache;
+=======
+create sequence NOTICE_SEQ start with 0 minvalue 0 increment by 1 nocache;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 insert into NOTICE values(NOTICE_SEQ.nextval, '°øÁö»çÇ×Á¦¸ñ', '°øÁö»çÇ×³»¿ë', SYSDATE, 0, 'admin');
 select * from NOTICE;
@@ -525,6 +717,7 @@ select * from NOTICE;
 
 --delete from MENTORING where MTR_SEQ = 1;
 
+<<<<<<< HEAD
 --select * from MENTORING_DETAIL_INFO where MTR_SEQ = 1 order by MTRDI_STIME desc;
 
 --select * from MENTORING_DETAIL_INFO where MTRDI_STIME > SYSDATE order by MTRDI_STIME desc;
@@ -533,6 +726,16 @@ select * from NOTICE;
 
 --select * from member;
 --select * from points;
+=======
+select * from MENTORING_DETAIL_INFO where MTR_SEQ = 1 order by MTRDI_STIME desc;
+
+select * from MENTORING_DETAIL_INFO where MTRDI_STIME > SYSDATE order by MTRDI_STIME desc;
+
+
+
+select * from member;
+select * from points;
+>>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 
 select tname from tab;
 --Å×ÀÌºí 18°³ È®ÀÎ

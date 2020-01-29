@@ -45,4 +45,16 @@
 	<update id="updateN" parameterType="String">
 		update MEMBER set mem_state= 2 where mem_email = #{mem_email}
 	</update>
+	<select id="mentorList" resultType="Mentor_List" parameterType="MemberPagingVo">
+	    <![CDATA[
+	    select * from (select ROWNUM rnum , aa.* from (select * from MENTOR_LIST order by MEM_EMAIL) aa)
+			 where rnum>#{startRow} and rnum<=#{endRow}
+	    ]]>
+ 	</select>
+ 	<select id="mentorCount" resultType="int">
+	    select count(MEM_EMAIL) from MENTOR_LIST
+	</select>
+	<update id="mentorApprove" parameterType="String">
+		update MENTOR_LIST set ml_apply = 0 where mem_email = #{mem_email}
+	</update>
 </mapper>

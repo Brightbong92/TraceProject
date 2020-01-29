@@ -17,9 +17,14 @@
 	   <typeAlias alias="MemberVo" type="tp.vo.MemberVo"/>
 	   <typeAlias alias="MemberInfo" type="tp.vo.MemberInfo"/>
 	   
+	   <typeAlias alias="MentorPagingVo" type="tp.vo.MentorPagingVo"/>
+	   <typeAlias alias="MentorListResult" type="tp.vo.MentorListResult"/>
+	   <typeAlias alias="Mentor_List" type="tp.domain.Mentor_List"/>
+	   
 	   <typeAlias alias="Notice" type="tp.domain.Notice"/>
 	   <typeAlias alias="NoticeVo" type="tp.vo.NoticeVo"/>
 	   <typeAlias alias="NoticeListResult" type="tp.vo.NoticeListResult"/>
+	   
    </typeAliases>
    
    <mappers>
@@ -31,7 +36,8 @@
 	<!-- 성지 -->   	   
    	   <mapper resource="tp/admin/mapper/AdminMapper.xml"/>
    	   <mapper resource="tp/notice/mapper/NoticeMapper.xml"/>
-   	   
+   	   <mapper resource="tp/mentor/mapper/MentorMapper.xml"/>
+   	   <mapper resource="tp/index/mapper/IndexMapper.xml"/>
    </mappers>
     
 </configuration>

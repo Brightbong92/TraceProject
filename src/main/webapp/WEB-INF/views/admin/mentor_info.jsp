@@ -300,23 +300,140 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Blank</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
+       <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">멘토정보</h1>
                 </div>
-                <!-- /.row -->
+                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.container-fluid -->
-        </div>
-        <!-- /#page-wrapper -->
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            	mentor information
+                        </div>
+                          
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="">
+							<select id="psId" name="ps" onchange="f(this)">
+								<c:choose>
+						           <c:when test="${mentorListResult.pageSize == 5}">
+								  	   <option value="5" selected>5</option>
+								       <option value="15">15</option>
+								       <option value="30">30</option>
+							       </c:when>
+							       <c:when test="${mentorListResult.pageSize == 15}">
+								  	   <option value="5">5</option>
+								       <option value="15" selected>15</option>
+								       <option value="30">30</option>
+							       </c:when>
+							       <c:when test="${mentorListResult.pageSize == 30}">
+								  	   <option value="5">5</option>
+								       <option value="15">15</option>
+								       <option value="30" selected>30</option>
+							       </c:when>
+						       </c:choose>
+						    </select>
+                            	개씩 보기
+                            	<script language="javascript">
+							       function f(select){
+							           var el = document.getElementById("psId");
+							           var ps = el.value;
+							           location.href="../admin/mentor_info.do?ps="+ps;
+							       }
+							    </script>
+                                <thead>
+                                    <tr>
+                                        <th>이름</th>
+                                        <th>이메일</th>
+                                        <th>휴대폰번호</th>
+                                        <th>멘토링카테고리</th>
+                                        <th>첨부파일</th>
+                                        <th>멘토신청</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<c:forEach items="${mentorListResult.mentor_list}" var="list">
+                                	
+                                    <tr>
+                                        <td>${list.ml_name}</td>
+                                        <td>${list.mem_email}</td>
+                                        <td>${list.ml_phone}</td>
+                                        
+                                        <c:if test="${list.mtrcg_no eq 0}"> 
+                                        <td>운동</td>
+                                        </c:if>
+                                        <c:if test="${list.mtrcg_no eq 1}"> 
+                                        <td>음악</td>
+                                        </c:if>
+                                        <c:if test="${list.mtrcg_no eq 2}"> 
+                                        <td>공예</td>
+                                        </c:if>
+                                        <c:if test="${list.mtrcg_no eq 3}"> 
+                                        <td>요리</td>
+                                        </c:if>
+                                        <c:if test="${list.mtrcg_no eq 4}"> 
+                                        <td>사진 & 영상</td>
+                                        </c:if>
+                                        <c:if test="${list.mtrcg_no eq 5}"> 
+                                        <td>뷰티</td>
+                                        </c:if>
+                                        <c:if test="${list.mtrcg_no eq 6}"> 
+                                        <td>음료</td>
+                                        </c:if>
+                                        <td><a href="#" style="cursor:pointer;" onClick="window.open('../mentor_business_images/${list.ml_fname}','_blank','width=1500, height=800, location=no, scrollbars=yes, status=no')">${list.ml_ofname}</a></td>
+                                        
+                                        <c:if test="${list.ml_apply eq 0}">
+                                        	<td>승인 완료</td>
+                                        </c:if>
+                                        <c:if test="${list.ml_apply eq 1}">
+                                        	<td><button onclick="javascript:location.href='../admin/mentor_approve.do?mem_email=${list.mem_email}'">승인하기</button></td>
+                                        </c:if>
+                                    </tr>
+                                    </c:forEach>
+                                </tbody>
+                               
+                            </table>
+                            	발자취 총 멘토 수 : ${mentorListResult.totalCount} 명
+                             <div class="board_paging" align="center">
+									<button  onclick="javascript:location.href='../admin/mentor_info.do?cp=1'">&#x000AB;</button>
+									<c:if test="${mentorListResult.currentPage ne 1}">
+									<button  onclick="javascript:location.href='../admin/mentor_info.do?cp=${mentorListResult.currentPage-1}'">&#x02039;</button>
+									</c:if>
+									<c:forEach begin="1" end="${mentorListResult.totalPageCount}" var="i">
+											<c:choose>
+												<c:when test="${i==mentorListResult.currentPage}">
+													<button onclick="javascript:location.href='../admin/mentor_info.do?cp=${i}'" class="on"><strong>${i}</strong></button>
+												</c:when>
+											<c:otherwise>
+												 <button onclick="javascript:location.href='../admin/mentor_info.do?cp=${i}'">${i}</button>
+											</c:otherwise>
+											</c:choose>
+									</c:forEach>
+									<c:if test="${mentorListResult.currentPage ne mentorListResult.totalPageCount}">
+									<button  onclick="javascript:location.href='../admin/mentor_info.do?cp=${mentorListResult.currentPage+1}'">&#x0203A;</button>
+									</c:if>
+									<button  onclick="javascript:location.href='../admin/mentor_info.do?cp=${mentorListResult.totalPageCount}'">&#x000BB;</button>
 
-    </div>
-    <!-- /#wrapper -->
+								</div>
+                            <!-- /.table-responsive -->
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+    
+		
+
+    
 
     <!-- jQuery -->
     <script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
