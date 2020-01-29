@@ -12,9 +12,9 @@
 
   <title>발자취 - 발견하라 자신의 취미를</title>
   
-  <!-- JQuery사용용도 -->
+  <!-- JQuery사용용도--> 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+  
   <!-- 회원가입 CheckByteLen용도 -->
   <script src="../js/trim.js"></script>
   <!-- Bootstrap core CSS -->
@@ -23,20 +23,13 @@
   <!-- Custom styles for this template -->
   <link href="../css/modern-business.css" rel="stylesheet">
   <!-- Paging CSS -->
-  <link href="../css/paging.css" rel="stylesheet">  
+  <link href="../css/paging.css" rel="stylesheet">
+  <!-- 평점 CSS -->
+  <link href="../css/star.css" rel="stylesheet">
 </head>
-<script type="text/javascript">
-		function find(e) {
-			var word = document.getElementById('searchBar').value;
-			if(event.keyCode == 13) {
-				location.href="../mentoring/searchList.do?word="+word+"&cp=1";
-			}
-		}
-</script>
+
 <body>
 
-	
-	
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -80,7 +73,7 @@
 	              <a class="dropdown-item" href="#">개인정보 수정</a>
 	              <a class="dropdown-item" href="#">수강중인멘토링</a>
 	              <c:if test="${loginUser.mem_auth > 0}">
-	              <a class="dropdown-item" href="">멘토링등록하기</a>
+	              <a class="dropdown-item" href="../mentoring/mentoringWriteForm.do">멘토링등록하기</a>
 	              </c:if>
 	              <a class="dropdown-item" href="../login/logout.do">로그아웃</a>
 	            </div>
@@ -105,4 +98,11 @@
       </div>
     </div>
   </nav>
-
+<script type="text/javascript">
+		function find(e) {
+			var word = document.getElementById('searchBar').value;
+			if(event.keyCode == 13) {
+				location.href="../mentoring/searchList.do?word="+word+"&cp=1";
+			}
+		}
+</script>

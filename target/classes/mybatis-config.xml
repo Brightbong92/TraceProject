@@ -5,10 +5,11 @@
 <configuration>
    <typeAliases>
 	   <typeAlias alias="Mentoring" type="tp.domain.Mentoring"/>
-	   <typeAlias alias="Mentoring_detail_info" type="tp.domain.Mentoring_Detail_Info"/>
+	   <typeAlias alias="Mentoring_Detail_Info" type="tp.domain.Mentoring_Detail_Info"/>
 	   <typeAlias alias="MentoringPagingVo" type="tp.vo.MentoringPagingVo"/>
 	   <typeAlias alias="Member" type="tp.domain.Member"/>
 	   <typeAlias alias="Email_Auth" type="tp.domain.Email_Auth"/>
+	   <typeAlias alias="MentoringViewPageVo" type="tp.vo.MentoringViewPageVo"/>
 	   
 	   <!-- 성지 -->
 	   <typeAlias alias="MemberPagingVo" type="tp.vo.MemberPagingVo"/>

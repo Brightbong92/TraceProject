@@ -1,15 +1,23 @@
 package tp.mentoring.service;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import tp.domain.Mentoring;
+import tp.domain.Mentoring_Detail_Info;
 import tp.mentoring.mapper.MentoringMapper;
 import tp.vo.MentoringListResult;
 import tp.vo.MentoringPagingVo;
+import tp.vo.MentoringViewPageVo;
 
 @Service
 @AllArgsConstructor
@@ -49,5 +57,92 @@ public class MentoringServiceImpl implements MentoringService {
 			List<Mentoring> list = mentoringMapper.selectMentoringListSearch(mentoringPagingVo);
 			return new MentoringListResult(cp, totalCount, ps, list, word);
 	}
+	
+	@Override
+	@Transactional
+	public void MentoringInsert(Mentoring m, String[] mtrdi_time) {
+		long mtr_seq = mentoringMapper.selectMentoringNextSeq();//멘토링 시퀀스 넥스트
+		Mentoring mentoring = new Mentoring(mtr_seq, m.getMtr_subject(), m.getMtr_content(), m.getMtr_price(), 
+				m.getMtr_area(), m.getMtr_addr(), m.getMtr_jumsu(), m.getMtr_profile(), 
+				m.getMtr_hashtag(), m.getMtrcg_no(), m.getMem_email());
+		mentoringMapper.insertMentoring(mentoring);//멘토링 테이블 인서트
+		String cal = "";String stime = "";String etime = ""; String maxpcntStr="";
+		for(int i = 0; i<=mtrdi_time.length-1; i++) {
+			String str = mtrdi_time[i];
+			str = str.trim();cal = str.substring(0, 10);stime = str.substring(11, 16);etime = str.substring(17,22);
+			maxpcntStr = str.substring(23);
+			int mtrdi_max_pcnt =  Integer.parseInt(maxpcntStr);
+			String mtrdi_stime = cal+" "+stime;//타임스탬프 형식으로 인서트위해
+			String mtrdi_etime = cal+" "+etime;//타임스탬프 형식으로
+			long mtrdi_seq = mentoringMapper.selectMentoringDetailInfoNextSeq();//멘토링 디테일 시퀀스 네스트
+			Mentoring_Detail_Info mentoring_detail_info = new Mentoring_Detail_Info(mtrdi_seq, mtrdi_stime, mtrdi_etime, mtrdi_max_pcnt, 0, mtr_seq);
+			mentoringMapper.insertMentoringDetailInfo(mentoring_detail_info);//멘토링 디테일 인포 인서트
+		}
+	}
+	
+	@Override
+	public String saveStore(MultipartFile f) {
+		//log.info("#service saveStore() f: " + f);
+		String ofname = f.getOriginalFilename();
+		int idx = ofname.lastIndexOf(".");
+		String ofheader = ofname.substring(0, idx); 
+		String ext = ofname.substring(idx);
+		
+		long fsize = f.getSize();
+		long ms = System.currentTimeMillis();	
+		String fname = ofheader + "_" + ms + ext;
+		StringBuilder sb = new StringBuilder();
+		sb.append(ofheader);
+		sb.append("_");
+		sb.append(ms);
+		sb.append(ext);
+		String saveFileName = sb.toString();
+		//log.info("ofname: " + ofname + ", ext: " + ext + ", fsize: " + fsize);
+		//log.info("ofname: " + ofname + ", fname: " + fname);
+		//log.info("ofname: " + ofname + ", fname: " + saveFileName);
+		
+		boolean flag = writeFile(f, saveFileName);
+		if(flag) {
+			log.info("파일출력성공");
+		}else {
+			log.info("파일출력실패");
+		}
+		
+		return fname;
+	}
 
+	@Override
+	public boolean writeFile(MultipartFile f, String saveFileName) {
+		//log.info("#service writeFile() f: " + f + ", saveFileName: " + saveFileName);
+		
+		File rDir = new File(Path.FILE_STORE);
+		if(!rDir.exists()) {
+			rDir.mkdirs();
+		}
+		
+		FileOutputStream fos = null;
+		try {
+			byte data[] = f.getBytes();
+			fos = new FileOutputStream(Path.FILE_STORE + saveFileName);
+			fos.write(data);
+			fos.flush();
+			return true;
+		}catch(IOException ie) {
+			return false;
+		}finally {
+			try {
+				if(fos != null) fos.close();
+			}catch(IOException ie) {
+			}
+		}
+	}
+	@Override
+	public MentoringViewPageVo selectMentoringDetailView(long mtr_seq) {
+		MentoringViewPageVo mvpvo = mentoringMapper.selectMentoringViewPage(mtr_seq);
+		List<Mentoring_Detail_Info> mtrdi_list = mentoringMapper.selectMentoringDetailInfo(mtr_seq);
+		List<Mentoring> relative_mtr_list = mentoringMapper.selectRelativeMentoring(mvpvo.getMtrcg_no());
+		mvpvo.setDetail_Info_List(mtrdi_list);
+		mvpvo.setRelative_mtr_list(relative_mtr_list);
+		return mvpvo;
+	}
 }

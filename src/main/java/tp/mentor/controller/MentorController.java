@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MentorController {
 	
 	@GetMapping("mentor_apply.do")
-	public String hobbyHome() {
+	public String mentorApply() {
 		return "mentor/mentor_apply";
+	}
+	
+	@GetMapping("popup.do")
+	public String mentorProfilePopup() {
+		return "mentor/mentor_profile_popup";
 	}
 }

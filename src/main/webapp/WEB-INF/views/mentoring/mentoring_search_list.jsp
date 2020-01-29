@@ -25,15 +25,71 @@
     <c:forEach items="${mentoringListResultSearch.mtr_list}" var="list">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
               <a href="#">${list.mtr_subject}</a>
             </h4>
 				<p class="card-text"><b>${list.mtr_hashtag}</b></p>
 				<p class="card-text">지역:<b>${list.mtr_area}</b></p>
-				<p class="card-text">금액:<b>${list.mtr_price}원</b></p>
-			    <p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>
+				<p class="card-text">금액:<b>${list.mtr_price}원</b></p>            
+					          <c:choose>
+					          <c:when test="${list.mtr_jumsu eq 0}">
+					            <div class="starRev">
+								  <span class="starR">별1</span>
+								  <span class="starR">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${list.mtr_jumsu eq 1}">
+						      	 <div class="starRev">
+								  <span class="starR on">별1</span>
+								  <span class="starR">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${list.mtr_jumsu eq 2}">
+						      	 <div class="starRev">
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${list.mtr_jumsu eq 3}">
+						      	 <div class="starRev">
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${list.mtr_jumsu eq 4}">
+						      	 <div class="starRev">
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR on">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${list.mtr_jumsu eq 5}">
+						      	 <div class="starRev">
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR on">별4</span>
+								  <span class="starR on">별5</span>
+								</div>
+						      </c:when>
+					          </c:choose>
+			    <!--<p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>-->
           </div>
         </div>
       </div>

@@ -81,7 +81,27 @@
  	</select>
  	<select id="selectMentoringSearchCount" resultType="int" parameterType="String">
  		<![CDATA[
- 		select count(MTR_SEQ) from Mentoring where MTR_SUBJECT like '%'||#{word}||'%'
+ 		select count(MTR_SEQ) from MENTORING where MTR_SUBJECT like '%'||#{word}||'%'
+ 		]]>
+ 	</select>
+ 	
+ 	<!-- 멘토링 테이블 -->
+ 	<select id="selectMentoringViewPage" resultType="MentoringViewPageVo" parameterType="long">
+ 		<![CDATA[
+ 		SELECT * FROM MENTORING WHERE MTR_SEQ like #{mtr_seq}
+ 		]]>
+ 	</select>
+ 	<!-- 멘토링_상세_정보 테이블 -->
+ 	<select id="selectMentoringDetailInfo" resultType="Mentoring_Detail_Info" parameterType="long">
+ 		<![CDATA[
+ 		select MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI') as mtrdi_stime, TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI') as mtrdi_etime, MTRDI_MAX_PCNT, MTRDI_NOW_PCNT, MTR_SEQ  from MENTORING_DETAIL_INFO where MTR_SEQ like #{mtr_seq}
+ 		]]>
+ 	</select>
+ 	<!-- 상세정보 관련된 멘토링가져오기 -->
+ 	<select id="selectRelativeMentoring" resultType="Mentoring" parameterType="long">
+ 		<![CDATA[
+ 		select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+ 		 from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like #{mtrcg_no} order by MTR_SEQ desc) aa) where rnum>0 and rnum<=4
  		]]>
  	</select>
  	
