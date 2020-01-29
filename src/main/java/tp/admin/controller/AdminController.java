@@ -18,6 +18,7 @@ import tp.domain.Member;
 import tp.domain.Notice;
 import tp.vo.MemberInfo;
 import tp.vo.MemberListResult;
+import tp.vo.MentorListResult;
 
 @Log4j
 @RequestMapping("admin/*")
@@ -42,7 +43,7 @@ public class AdminController {
 		//(1) cp 
 		int cp = 1;
 		if(cpStr == null) {
-			Object cpObj = session.getAttribute("cp");
+			Object cpObj = session.getAttribute("membercp");
 			if(cpObj != null) {
 				cp = (Integer)cpObj;
 			}
@@ -50,12 +51,12 @@ public class AdminController {
 			cpStr = cpStr.trim();
 			cp = Integer.parseInt(cpStr);
 		}
-		session.setAttribute("cp", cp);
+		session.setAttribute("membercp", cp);
 		
 		//(2) ps 
 		int ps = 10;
 		if(psStr == null) {
-			Object psObj = session.getAttribute("ps");
+			Object psObj = session.getAttribute("memberps");
 			if(psObj != null) {
 				ps = (Integer)psObj;
 			}
@@ -63,25 +64,23 @@ public class AdminController {
 			psStr = psStr.trim();
 			int psParam = Integer.parseInt(psStr);
 			
-			Object psObj = session.getAttribute("ps");
+			Object psObj = session.getAttribute("memberps");
 			if(psObj != null) {
 				int psSession = (Integer)psObj;
 				if(psSession != psParam) {
 					cp = 1;
-					session.setAttribute("cp", cp);
+					session.setAttribute("membercp", cp);
 				}
 			}else {
 				if(ps != psParam) {
 					cp = 1;
-					session.setAttribute("cp", cp);
+					session.setAttribute("membercp", cp);
 				}
 			}
 			
 			ps = psParam;
 		}
-		session.setAttribute("ps", ps);
-		
-		log.info("#cp: " + cp + " #ps: " + ps );
+		session.setAttribute("memberps", ps);
 		
 		MemberListResult memberListResult = service.getMemberListResult(cp,ps);
 		ModelAndView mv = new ModelAndView();
@@ -98,10 +97,7 @@ public class AdminController {
 		service.insertN(notice);
 		return new ModelAndView("redirect:../notice/list.do");
 	}
-	@GetMapping("mentor_info.do")
-	public String mentor_info() {
-		return "admin/mentor_info";
-	}
+	
 	@GetMapping("charts.do")
 	public String charts() {
 		return "admin/charts";
@@ -118,4 +114,66 @@ public class AdminController {
 	public void disabled(String mem_email) {
 		service.updateN(mem_email);
 	}
+	@GetMapping("mentor_info.do")
+	public ModelAndView mentor_info(HttpServletRequest request) {
+		String cpStr = request.getParameter("cp");
+		String psStr = request.getParameter("ps");
+		
+		
+		HttpSession session = request.getSession();
+		
+		//(1) cp 
+		int cp = 1;
+		if(cpStr == null) {
+			Object cpObj = session.getAttribute("mentorcp");
+			if(cpObj != null) {
+				cp = (Integer)cpObj;
+			}
+		}else {
+			cpStr = cpStr.trim();
+			cp = Integer.parseInt(cpStr);
+		}
+		session.setAttribute("mentorcp", cp);
+		
+		//(2) ps 
+		int ps = 5;
+		if(psStr == null) {
+			Object psObj = session.getAttribute("mentorps");
+			if(psObj != null) {
+				ps = (Integer)psObj;
+			}
+		}else {
+			psStr = psStr.trim();
+			int psParam = Integer.parseInt(psStr);
+			
+			Object psObj = session.getAttribute("mentorps");
+			if(psObj != null) {
+				int psSession = (Integer)psObj;
+				if(psSession != psParam) {
+					cp = 1;
+					session.setAttribute("mentorcp", cp);
+				}
+			}else {
+				if(ps != psParam) {
+					cp = 1;
+					session.setAttribute("mentorcp", cp);
+				}
+			}
+			
+			ps = psParam;
+		}
+		session.setAttribute("mentorps", ps);
+		
+		MentorListResult mentorListResult = service.getMentorListResult(cp,ps);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin/mentor_info");
+		mv.addObject("mentorListResult",mentorListResult);
+		return mv;
+	}
+	@GetMapping("mentor_approve.do")
+	public ModelAndView mentor_approve(String mem_email) {
+		service.mentorApprove(mem_email);
+		return new ModelAndView("redirect:mentor_info.do");
+	}
+	
 }

@@ -87,7 +87,7 @@
 <c:forEach items="${memberInfoResult.memberInfo}" var="member">
 	<c:if test="${member.mem_state ne 2}">
 		<c:if test="${member.mem_auth ne 2}">
-			<a href="../admin/disabled.do?mem_email=${member.mem_email}" onClick="window.close()" class="btn btn-info">비활성화 하기</a>
+			<a href="../admin/disabled.do?mem_email=${member.mem_email}" onClick="window.close(); opener.location.reload();" class="btn btn-info">비활성화 하기</a>
 		</c:if>
 	</c:if>
 </c:forEach>

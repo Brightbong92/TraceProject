@@ -40,7 +40,8 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/">발견하라</a>
+      <a class="navbar-brand" href="/"><img src="../images/logo.png" width="110" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</a>
       <input type="text" style="width:300px;" id="searchBar" placeholder="하고 싶은 멘토링을 검색해 보세요." onkeydown="find(this)"/><!-- 검색 -->
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

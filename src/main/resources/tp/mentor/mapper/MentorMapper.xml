@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tp.mentor.mapper.MentorMapper">
+ 	<insert id="mentor_apply" parameterType="hashmap">
+		insert into MENTOR_LIST values (#{mem_email},#{ml_name},#{ml_phone},#{ml_yourself},#{ml_ofname},#{ml_fname},#{mtrcg_no},1)
+		
+	</insert>
+ 	
+</mapper>

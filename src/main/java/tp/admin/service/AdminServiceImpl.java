@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import tp.admin.mapper.AdminMapper;
 import tp.domain.Member;
+import tp.domain.Mentor_List;
 import tp.domain.Notice;
 import tp.notice.mapper.NoticeMapper;
 import tp.vo.MemberListResult;
 import tp.vo.MemberPagingVo;
 import tp.vo.MemberVo;
+import tp.vo.MentorListResult;
+import tp.vo.MentorPagingVo;
 import tp.vo.MemberInfo;
 
 @Service
@@ -44,5 +47,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void updateN(String mem_email) {
 		adminMapper.updateN(mem_email);
+	}
+	@Override
+	public MentorListResult getMentorListResult(int cp, int ps) {
+		int totalCount = adminMapper.mentorCount();
+		MentorPagingVo mentorPagingVo = new MentorPagingVo(cp, ps);
+		List<Mentor_List> list = adminMapper.mentorList(mentorPagingVo);
+		return new MentorListResult(cp, totalCount, ps, list);
+	}
+	@Override
+	public void mentorApprove(String mem_email) {
+		adminMapper.mentorApprove(mem_email);
 	}
 }
