@@ -19,7 +19,7 @@
       <li class="breadcrumb-item active">Mentor</li>
     </ol>
 
-	<form action="../mentor/apply.do" method="post" enctype="multipart/form-data">
+	<form name = "f" action="../mentor/apply.do" method="post" enctype="multipart/form-data">
 		<input type='hidden' name='mem_email' value="${loginUser.mem_email}" />
 		<table class="table table-boardered">
 			<tr>
@@ -51,7 +51,7 @@
             </tr>
 		</table>
 		<div class="board_btn_wrap ac">
-		    <input type="submit" value="신청하기" />
+		    <input type="button" value="신청하기" onclick="send()"/>
 		    <input type="button" value="취소하기"  onclick='history.back(-1); return false;' />
 		</div>
 	</form>
@@ -59,4 +59,10 @@
   </div>
   <!-- /.container -->
 	<br/>
+	<script>
+	function send(){
+		f.submit();
+		alert("멘토신청이 완료되었습니다.");
+	}
+	</script>
 <%@include file="../footer.jsp"%>

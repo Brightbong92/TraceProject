@@ -24,7 +24,6 @@ public class MentorController {
 	private MentorService service;
 	
 	@GetMapping("mentor_apply.do")
-<<<<<<< HEAD
 	public String mentorApply() {
 		return "mentor/mentor_apply";
 	}
@@ -32,9 +31,6 @@ public class MentorController {
 	@GetMapping("popup.do")
 	public String mentorProfilePopup() {
 		return "mentor/mentor_profile_popup";
-=======
-	public String mentor_apply() {
-		return "mentor/mentor_apply";
 	}
 	@PostMapping("apply.do")
 	public String apply(Model model, @RequestParam String mem_email, @RequestParam String ml_name, @RequestParam String ml_phone,@RequestParam String ml_yourself,@RequestParam String mtrcg_no,@RequestParam MultipartFile ml_ofname) {
@@ -45,6 +41,5 @@ public class MentorController {
     		service.saveStore(mem_email,ml_name,ml_phone,ml_yourself,mtrcg_no,ml_ofname);
     	}
 		return "index/index";
->>>>>>> bb6e9aab5ea5be34cf6529447ecdcd63927b3f0b
 	}
 }

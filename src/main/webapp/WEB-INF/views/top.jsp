@@ -66,9 +66,29 @@
             <!-- 로그인했을 시 나오게끔 -->
 	          <c:if test="${!empty loginUser}">
 	          <li class="nav-item dropdown">
-	            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	              	${loginUser.mem_nick} 님
-	            </a>
+	          
+	          <c:choose>
+	          
+	          <c:when test="${loginUser.mem_auth == 0}">
+		          	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	              		${loginUser.mem_nick} 님
+	                </a>
+		          </c:when>
+		          
+	          <c:when test="${loginUser.mem_auth == 1}">
+		            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		              	${loginUser.mem_nick} 멘토님
+		            </a>
+		          </c:when>
+		          
+		          <c:otherwise>
+		            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		              	${loginUser.mem_nick} 님
+		            </a>
+		          </c:otherwise>
+    
+	          </c:choose>
+
 	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
 	              <a class="dropdown-item" href="#">마이페이지</a>
 	              <a class="dropdown-item" href="#">개인정보 수정</a>

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import tp.mentor.service.Path;
+import tp.mentor.service.MentorPath;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import tp.domain.Mentor_List;
@@ -58,13 +58,13 @@ public class MentorServiceImpl implements MentorService {
 	}
 	@Override
 	public boolean writeFile(MultipartFile f, String saveFileName) {
-	    File rDir = new File(Path.FILE_STORE);
+	    File rDir = new File(MentorPath.FILE_STORE);
 	    if(!rDir.exists()) rDir.mkdirs();
 	    
 	    FileOutputStream fos = null;
 		try {
 			byte data[] = f.getBytes();
-			fos = new FileOutputStream(Path.FILE_STORE + saveFileName);
+			fos = new FileOutputStream(MentorPath.FILE_STORE + saveFileName);
 			fos.write(data);
 			fos.flush();
 			

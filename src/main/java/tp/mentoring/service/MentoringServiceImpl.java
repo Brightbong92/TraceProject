@@ -115,7 +115,7 @@ public class MentoringServiceImpl implements MentoringService {
 	public boolean writeFile(MultipartFile f, String saveFileName) {
 		//log.info("#service writeFile() f: " + f + ", saveFileName: " + saveFileName);
 		
-		File rDir = new File(Path.FILE_STORE);
+		File rDir = new File(MentoringPath.FILE_STORE);
 		if(!rDir.exists()) {
 			rDir.mkdirs();
 		}
@@ -123,7 +123,7 @@ public class MentoringServiceImpl implements MentoringService {
 		FileOutputStream fos = null;
 		try {
 			byte data[] = f.getBytes();
-			fos = new FileOutputStream(Path.FILE_STORE + saveFileName);
+			fos = new FileOutputStream(MentoringPath.FILE_STORE + saveFileName);
 			fos.write(data);
 			fos.flush();
 			return true;
