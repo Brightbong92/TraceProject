@@ -122,7 +122,7 @@ public class LoginController {
 		String mem_nick = jObj.getAsJsonObject("properties").get("nickname").getAsString();
 		String mem_profile = jObj.getAsJsonObject("properties").get("profile_image").getAsString();
 		
-
+		//log.info("#mem_email: " + mem_email + "#mem_nick: " + mem_nick + "#mem_profile: " + mem_profile);
 		//select로직
 		boolean exist = service.getKakaoMemberExist(mem_email);
 		if(exist) {//존재 할시 true일 경우 - 로그인 시켜주기.
@@ -151,17 +151,17 @@ public class LoginController {
 					mem_gender = 2;//여자
 				}
 			}
-			Member member = new Member(mem_email, null, null, mem_age, mem_gender, null, null, 0, 0, 0);
-			
+			long ms = System.currentTimeMillis();
+			String mem_nickMs = mem_nick+ms;
+			Member member = new Member(mem_email, null, mem_nickMs, mem_age, mem_gender, "TraceDefaultProfile.jpg", null, 0, 0, 0);
 			jService.insertKakaoMemberS(member);
-			
 			Member m = service.getMemberInfo(mem_email);
 			m.setMem_nick(mem_nick);
 			m.setMem_profile(mem_profile);
 			session.setAttribute("loginUser", m);
 			//log.info("#mem_email: " + mem_email + "#mem_nick: " + mem_nick + "#mem_profile: " + mem_profile + "#mem_age: " + mem_age + "#mem_gender: " + mem_gender);
 			mv.setViewName("login/login_msgKakao");
-			return mv;	
+			return mv;
 		}
 
 	}

@@ -92,24 +92,24 @@
 <c:if test="${!empty listResult.totalPageCount}"> <!-- 토탈페이지가 비어있지않을경우 -->
 <!-- 페이징 -->    
 <div class="board_paging" align="center">
-<button  onclick="javascript:location.href='../qa/qalist.do?cp=1&mtr_seq=${listResult.mtr_seq}'">&#x000AB;</button>
+<button  onclick="javascript:location.href='../qa/qaList.do?cp=1&mtr_seq=${listResult.mtr_seq}'">&#x000AB;</button>
 <c:if test="${listResult.currentPage ne 1}">
-<button  onclick="javascript:location.href='../qa/qalist.do?cp=${listResult.currentPage-1}&mtr_seq=${listResult.mtr_seq}'">&#x02039;</button>
+<button  onclick="javascript:location.href='../qa/qaList.do?cp=${listResult.currentPage-1}&mtr_seq=${listResult.mtr_seq}'">&#x02039;</button>
 </c:if>
 <c:forEach begin="1" end="${listResult.totalPageCount}" var="i">
 	<c:choose>
 		<c:when test="${i==listResult.currentPage}">
-		<button onclick="javascript:location.href='../qa/qalist.do?cp=${i}&mtr_seq=${listResult.mtr_seq}'" class="on"><strong>${i}</strong></button>
+		<button onclick="javascript:location.href='../qa/qaList.do?cp=${i}&mtr_seq=${listResult.mtr_seq}'" class="on"><strong>${i}</strong></button>
 		</c:when>
 		<c:otherwise>
-		<button onclick="javascript:location.href='../qa/qalist.do?cp=${i}&mtr_seq=${listResult.mtr_seq}'">${i}</button>
+		<button onclick="javascript:location.href='../qa/qaList.do?cp=${i}&mtr_seq=${listResult.mtr_seq}'">${i}</button>
 		</c:otherwise>
 	</c:choose>
 	</c:forEach>
 	<c:if test="${listResult.currentPage ne listResult.totalPageCount}">
-		<button  onclick="javascript:location.href='../qa/qalist.do?cp=${listResult.currentPage+1}&mtr_seq=${listResult.mtr_seq}'">&#x0203A;</button>
+		<button  onclick="javascript:location.href='../qa/qaList.do?cp=${listResult.currentPage+1}&mtr_seq=${listResult.mtr_seq}'">&#x0203A;</button>
 	</c:if>
-		<button  onclick="javascript:location.href='../qa/qalist.do?cp=${listResult.totalPageCount}&mtr_seq=${listResult.mtr_seq}'">&#x000BB;</button>
+		<button  onclick="javascript:location.href='../qa/qaList.do?cp=${listResult.totalPageCount}&mtr_seq=${listResult.mtr_seq}'">&#x000BB;</button>
 	</div>
 </c:if>
 

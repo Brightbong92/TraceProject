@@ -5,8 +5,8 @@
 <mapper namespace="tp.join.mapper.JoinMapper">
    <insert id="insertKakaoMember" parameterType="Member"><!-- 카카오 가입 -->
    <![CDATA[
-   		insert into MEMBER(MEM_EMAIL, MEM_AGE, MEM_GENDER, MEM_RDATE, MEM_POINT, MEM_AUTH, MEM_STATE, MEM_GUBUN)
-   		values(#{mem_email}, #{mem_age},#{mem_gender},SYSDATE,0,0,0,1)
+   		insert into MEMBER(MEM_EMAIL, MEM_NICK ,MEM_AGE, MEM_GENDER, MEM_PROFILE ,MEM_RDATE, MEM_POINT, MEM_AUTH, MEM_STATE)
+   		values(#{mem_email}, #{mem_nick}, #{mem_age}, #{mem_gender}, #{mem_profile}, SYSDATE,0,0,0)
    	]]>
    </insert>
     
