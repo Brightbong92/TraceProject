@@ -169,7 +169,8 @@ public class LoginController {
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginUser");
-		return "index/index";
+		
+		return "login/logout_msg";
 	}
 	
 }

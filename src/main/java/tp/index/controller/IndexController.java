@@ -24,4 +24,5 @@ public class IndexController {
 		IndexListResult bestMentoring = service.bestMentoring();
 		return new ModelAndView("index/index","bestMentoring",bestMentoring);
 	}
+
 }
