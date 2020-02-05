@@ -24,4 +24,19 @@
 	<delete id="removeCode" parameterType="String">
 		delete from SMS_AUTH where ML_PHONE = #{ml_phone}
 	</delete>
+ 	
+ 	<!-- 멘토 프로필 보기 -->
+ 	<select id="selectMentor_List" resultType="Mentor_List" parameterType="String">
+ 		<![CDATA[
+ 		SELECT * FROM MENTOR_LIST WHERE MEM_EMAIL like #{mem_email}
+ 		]]>
+ 	</select>
+ 	
+ 	<!-- 멘토 프로필(프로필사진가져오기위해) 보기 -->
+ 	<select id="selectMentorMemberInfo" resultType="Member" parameterType="String">
+ 		<![CDATA[
+ 		SELECT * FROM MEMBER WHERE MEM_EMAIL LIKE #{mem_email}
+ 		]]>
+ 	</select>
+ 	
 </mapper>

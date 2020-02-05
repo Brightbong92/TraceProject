@@ -1,6 +1,7 @@
 package tp.domain;
 
 
+import java.sql.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ public class Mentoring {
 	private long mtr_jumsu;
 	private String mtr_profile;
 	private String mtr_hashtag;
+	private Date mtr_rdate;
 	private long mtrcg_no;
 	private String mem_email;
 }

@@ -26,9 +26,16 @@
   <link href="../css/paging.css" rel="stylesheet">
   <!-- 평점 CSS -->
   <link href="../css/star.css" rel="stylesheet">
+
   
   <!-- 버튼/카트 HOVER CSS -->
   <link href="../css/lazy.css" rel="stylesheet">
+
+
+  <!-- 검색 자동완성 -->
+  <script src="../auto/AutoComplete.js" type="text/javascript"></script>
+  <link href="../auto/AutoComplete.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -38,7 +45,15 @@
     <div class="container">
       <a class="navbar-brand" href="/"><img src="../images/logo.png" width="110" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
-      <input type="text" style="width:300px;" id="searchBar" placeholder="하고 싶은 멘토링을 검색해 보세요." onkeydown="find(this)"/><!-- 검색 -->
+	
+		<!-- 검색 -->
+	  <div class="autocomplete" style="width:300px;">
+      <input type="text" style="width:300px;" id="searchBar" placeholder="하고 싶은 멘토링을 검색해 보세요." onkeyup="find(this)"/><!-- 검색 -->
+      </div>
+ 	  <div id="searchOpt" style="color:red;"></div>
+      <input type="hidden" id="findFlag" value="Off">
+	  <!--  &nbsp;&nbsp;&nbsp;-->
+	  <!--  <button class="btn btn-primary" id="searchBtn" onclick="find()">검색</button>-->
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -125,8 +140,78 @@
 <script type="text/javascript">
 		function find(e) {
 			var word = document.getElementById('searchBar').value;
-			if(event.keyCode == 13) {
-				location.href="../mentoring/searchList.do?word="+word+"&cp=1";
+			if($("#searchBar").val() != "") {
+				if(event.keyCode == 13) {
+					//alert(word);
+					var w =  word.indexOf("#");
+					if(w == -1) {//일반검색시
+						//alert("#포함안됨" + word)
+						location.href="../mentoring/searchList.do?word="+word+"&cp=1";
+					}else {//#검색시
+						//alert("#포함됨" + word);
+						word = word.replace("#",".");
+						//alert(word);
+						location.href="../mentoring/searchList.do?word="+word+"&cp=1";
+					}
+					//location.href="../mentoring/searchList.do?word="+word+"&cp=1";
+				}
+			}else {
+				//alert("검색어를 입력해주세요.");
+				$("#searchBar").focus();
+				return false;
 			}
+			
 		}
+		$(document).ready(function(){
+			$("#searchBar").mouseover(function(){
+				$("#searchOpt").text("해시태그 & 제목 검색가능");
+			});
+			$("#searchBar").mouseleave(function(){
+				$("#searchOpt").text("");
+			});
+		});
+</script>
+<script>
+<%--
+	$(document).ready(function(){
+		$("#searchBar").on('keyup', function(){
+			if($("#searchBar").val() != ""){
+				if($("#searchBar").val().length >= 1) {
+					//setTimeout(function() {
+						$.ajax({
+							type: "POST",
+							contentType: "application/json",
+							url: "../mentoring/autoSearch.do?word="+$("#searchBar").val(),
+							success: function(data){
+								//var arr = JSON.stringify(data);
+								//alert(data.length);
+								var arr = [];
+								for(var i = 0; i<data.length; i++){
+									arr.push(data[i]);
+									//console.log(data[i]);
+								}
+									str = arr;
+									console.log("str: " + str);
+									//alert(str);
+								//autocomplete(document.getElementById("searchBar"), arr);
+							},
+							error: function(err) {
+								alert("실패");
+								console.log(err);
+							}
+						});
+					//}, 3000);
+					
+				}
+				
+			}
+			
+		});
+		
+	});
+--%>
+</script>
+<script>
+var str = ['요가','요리','여행','여가', '와인', '댄스', '필라테스', '디제잉', '가죽', '향수', '가죽공예', '술', '커피', '음료', '헬스', '#요가', '#굿', '#음악'];
+autocomplete(document.getElementById("searchBar"), str);
 </script>

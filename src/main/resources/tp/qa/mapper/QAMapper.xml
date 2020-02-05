@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tp.qa.mapper.QAMapper">
+
+	<select id="selectMentoringSubjectEmail" resultType="Mentoring" parameterType="long">
+	<![CDATA[
+		SELECT MTR_SUBJECT, MEM_EMAIL FROM MENTORING WHERE MTR_SEQ = #{mtr_seq}
+	]]>
+	</select>
+
+    <select id="selectQACount" resultType="int" parameterType="long">
+		<![CDATA[
+	    select count(*) from MENTORING_QA where MTR_SEQ = #{mtr_seq}
+	    ]]>
+	</select>
+	
+	<select id="selectMentoringQA" resultType="Mentoring_QA" parameterType="MentoringQAPagingVo">
+		<![CDATA[
+		select MTRQA_SEQ, MTRQA_CONTENT, MTRQA_RDATE, MEM_EMAIL, MTR_SEQ, MEM_NICK, MEM_PROFILE from 
+		(select ROWNUM rnum, aa.MTRQA_SEQ, aa.MTRQA_CONTENT, aa.MTRQA_RDATE, aa.MEM_EMAIL, aa.MTR_SEQ, aa.MEM_NICK, aa.MEM_PROFILE from
+		(select MTRQA_SEQ, MTRQA_CONTENT, MTRQA_RDATE, mq.MEM_EMAIL, MTR_SEQ, MEM_NICK, MEM_PROFILE from MENTORING_QA mq, MEMBER me where mq.MEM_EMAIL = me.MEM_EMAIL and MTR_SEQ = #{mtr_seq} order by MTRQA_SEQ desc) aa)
+		where rnum > #{startRow} and rnum <= #{endRow}
+		]]>
+	</select>
+
+	<select id="selectMentoringQAReply" resultType="Mentoring_QA_Reply" parameterType="long">
+		<![CDATA[
+		select MTRQARP_SEQ, MTRQARP_CONTENT, MTRQARP_RDATE, mqr.MEM_EMAIL, MTRQA_SEQ, MEM_NICK, MEM_PROFILE from 
+		MENTORING_QA_REPLY mqr, MEMBER me where mqr.MEM_EMAIL = me.MEM_EMAIL and MTRQA_SEQ = #{mtrqa_seq} order by MTRQA_SEQ desc
+		]]>
+	</select>
+	
+</mapper>

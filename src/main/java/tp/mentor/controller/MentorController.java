@@ -28,11 +28,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import tp.domain.Mentor_List;
 import tp.mentor.service.MentorService;
+import tp.vo.MentorProfileVo;
 
 
 @Log4j
@@ -48,8 +50,12 @@ public class MentorController {
 	}
 	
 	@GetMapping("popup.do")
-	public String mentorProfilePopup() {
-		return "mentor/mentor_profile_popup";
+	public ModelAndView mentorProfilePopup(String mem_email) {
+		MentorProfileVo mProfile = service.selectMentorProfile(mem_email);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mentor/mentor_profile_popup");
+		mv.addObject("mProfile", mProfile);
+		return mv;
 	}
 	@PostMapping("apply.do")
 	public String apply(Model model, String mem_email, String ml_name,String ml_phone,String ml_yourself, String mtrcg_no, MultipartFile ml_ofname) {

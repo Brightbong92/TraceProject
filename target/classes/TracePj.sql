@@ -12,9 +12,14 @@ delete from PAYMENT_INFO;
 delete from MENTORING_QA_REPLY;
 delete from MENTORING_QA;
 
+
+delete from MENTORING_REVIEW_REPLY;
 delete from MENTORING_REVIEW_FILE;
 delete from MENTORING_REVIEW_LIKE;
 delete from MENTORING_REVIEW;
+
+
+
 
 delete from MENTORING_DETAIL_INFO;
 delete from MENTORING;
@@ -23,7 +28,6 @@ delete from CART;
 
 delete from SMS_AUTH;
 
-delete from DISABLED;
 delete from POINTS;
 delete from MEMBER;
 
@@ -46,6 +50,8 @@ drop table CART;
 drop table MENTORING_QA_REPLY;
 drop table MENTORING_QA;
 
+
+drop table MENTORING_REVIEW_REPLY;
 drop table MENTORING_REVIEW_FILE;
 drop table MENTORING_REVIEW_LIKE;
 drop table MENTORING_REVIEW;
@@ -56,7 +62,6 @@ drop table MENTORING_DETAIL_INFO;
 drop table MENTORING;
 drop table MENTORING_CATEGORY;
 
-drop table DISABLED;
 drop table POINTS;
 drop table MEMBER;
 
@@ -68,8 +73,11 @@ drop sequence REFUND_INFO_SEQ;
 drop sequence MENTORING_QA_REPLY_SEQ;
 drop sequence MENTORING_QA_SEQ;
 
+
+
 drop sequence MENTORING_REVIEW_SEQ;
 drop sequence MENTORING_REVIEW_FILE_SEQ;
+drop sequence MENTORING_REVIEW_REPLY_SEQ;
 
 drop sequence MENTORING_DETAIL_INFO_SEQ;
 drop sequence MENTORING_SEQ;
@@ -162,12 +170,6 @@ select * from MEMBER;
 
 --select * from MEMBER where MEM_EMAIL = 'kk070@hanmail.net';
 
---탈퇴(비활성화)
-create table DISABLED(
-DIS_REASON number(1),
-DIS_IMPROVE varchar2(500),
-MEM_EMAIL varchar2(100) constraint DISABLED_FK references MEMBER(MEM_EMAIL) on delete cascade
-);
 --포인트--
 create table POINTS(
 PO_CONTENT varchar2(500),
@@ -358,7 +360,7 @@ commit;
 
 --select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 5 and MTR_SEQ not like 51 order by MTR_SEQ desc) aa) where rnum>0 and rnum<=4;
 --select * from mentoring where MTR_HASHTAG like '%#요가%';
-select * from mentoring;
+--select * from mentoring;
 
 --select MTR_SUBJECT from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTR_SUBJECT like '요%') aa) where rnum>0 and rnum<=10;
 
@@ -419,6 +421,7 @@ insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020
 insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-28 15:00','2020-01-28 17:00', 10, 0, 3);
 insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-03-24 20:00','2020-03-24 23:00', 10, 0, 3);
 
+
 select MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI') as mtrdi_stime, TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI') as mtrdi_etime, MTRDI_MAX_PCNT, MTRDI_NOW_PCNT, MTR_SEQ  from MENTORING_DETAIL_INFO;
 
 commit;
@@ -456,6 +459,11 @@ insert into MENTORING_QA values(MENTORING_QA_SEQ.nextval, '요가수업질문이요15', 
 
 
 select * from MENTORING_QA;
+
+	    select * from (select ROWNUM rnum , aa.* from (select * from Mentoring_QA where MTR_SEQ = 2 order by MTRQA_SEQ desc) aa)
+			 where rnum>0 and rnum<=3;
+
+
 /*
 	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
         from (select ROWNUM rnum , aa.* from (select * from Mentoring order by MTR_SEQ desc) aa)
@@ -521,11 +529,37 @@ MEM_EMAIL varchar2(100) constraint MENTORING_REVIEW_FK2 references MEMBER(MEM_EM
 );
 create sequence MENTORING_REVIEW_SEQ minvalue 0 start with 1 increment by 1 nocache;
 
-select MENTORING_REVIEW_SEQ.nextval from dual;
+--select MENTORING_REVIEW_SEQ.nextval from dual;
 
-insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.currval, '요가수업짱이에요!', SYSDATE, 5, 0, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요1', SYSDATE, 5, 2, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요2', SYSDATE, 4, 3, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요3', SYSDATE, 3, 3, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요4', SYSDATE, 2, 4, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요5', SYSDATE, 1, 2, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요6', SYSDATE, 1, 1, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요7', SYSDATE, 2, 3, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요8', SYSDATE, 3, 4, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요9', SYSDATE, 4, 5, 2, 'b@naver.com');
+
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요10', SYSDATE, 5, 2, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요11', SYSDATE, 0, 3, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요12', SYSDATE, 0, 2, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요13', SYSDATE, 2, 4, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요14', SYSDATE, 0, 5, 2, 'b@naver.com');
+insert into MENTORING_REVIEW values(MENTORING_REVIEW_SEQ.nextval, '요가수업후기요15', SYSDATE, 3, 6, 2, 'b@naver.com');
+
+commit;
 
 select * from MENTORING_REVIEW;
+
+
+
+select sum(mtrrv_jumsu) from MENTORING_REVIEW where MTR_SEQ = 2;
+select count(*) from MENTORING_REVIEW where MTR_SEQ = 2;
+
+
+
+
 
 --멘토링_리뷰_파일--
 create table MENTORING_REVIEW_FILE(
@@ -536,15 +570,27 @@ MTRRV_SEQ number constraint MENTORING_REVIEW_FILE_FK references MENTORING_REVIEW
 );
 create sequence MENTORING_REVIEW_FILE_SEQ minvalue 0 start with 1 increment by 1 nocache;
 
-select MENTORING_REVIEW_FILE_SEQ.nextval from dual;
+insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.nextval, '멘토링리뷰파일이름','멘토링리뷰파일이름1', 2);
+insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.nextval, '멘토링리뷰파일이름','멘토링리뷰파일이름2', 2);
 
-insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.currval, '멘토링리뷰파일이름','멘토링리뷰파일이름1', 1);
+insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.nextval, '멘토링리뷰파일이름','멘토링리뷰파일이름3', 3);
+insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.nextval, '멘토링리뷰파일이름','멘토링리뷰파일이름4', 3);
+insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.nextval, '멘토링리뷰파일이름','멘토링리뷰파일이름5', 3);
+insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.nextval, '멘토링리뷰파일이름','멘토링리뷰파일이름6', 3);
 
-select MENTORING_REVIEW_FILE_SEQ.nextval from dual;
+insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.nextval, '멘토링리뷰파일이름','멘토링리뷰파일이름7', 4);
+insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.nextval, '멘토링리뷰파일이름','멘토링리뷰파일이름8', 4);
+insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.nextval, '멘토링리뷰파일이름','멘토링리뷰파일이름9', 4);
 
-insert into MENTORING_REVIEW_FILE values(MENTORING_REVIEW_FILE_SEQ.currval, '멘토링리뷰파일이름','멘토링리뷰파일이름2', 1);
+commit;
 
 select * from MENTORING_REVIEW_FILE;
+
+select MTRRVF_SEQ, MTRRVF_OFNAME, MTRRVF_FNAME, MTRRV_SEQ from MENTORING_REVIEW_FILE where MTRRV_SEQ = 2 order by MTRRV_SEQ desc
+
+
+
+
 
 --멘토링_리뷰_좋아요--
 create table MENTORING_REVIEW_LIKE(
@@ -552,12 +598,47 @@ MEM_EMAIL constraint MENTORING_REVIEW_LIKE_FK1 references MEMBER(MEM_EMAIL) on d
 MTRRV_SEQ constraint MENTORING_REVIEW_LIKE_FK2 references MENTORING_REVIEW(MTRRV_SEQ) on delete cascade,
 constraint MENTORING_REVIEW_LIKE_PK primary key (MEM_EMAIL, MTRRV_SEQ)
 );
+
 insert into MENTORING_REVIEW_LIKE values('a@naver.com',MENTORING_REVIEW_SEQ.currval);
 update MENTORING_REVIEW set MTRRV_LIKECNT = MTRRV_LIKECNT+1 where MTRRV_SEQ = 1;
 insert into MENTORING_REVIEW_LIKE values('b@naver.com',MENTORING_REVIEW_SEQ.currval);
 update MENTORING_REVIEW set MTRRV_LIKECNT = MTRRV_LIKECNT+1 where MTRRV_SEQ = 1;
 select * from MENTORING_REVIEW_LIKE;
 
+
+create table MENTORING_REVIEW_REPLY(
+MTRRVRP_SEQ number constraint MENTORING_REVIEW_REPLY_PK primary key,
+MTRRVRP_CONTENT varchar2(1000),
+MTRRVRP_RDATE date,
+MEM_EMAIL varchar2(100) constraint MENTORING_REVIEW_REPLY_FK1 references MEMBER(MEM_EMAIL) on delete cascade,
+MTRRV_SEQ number constraint MENTORING_REVIEW_REPLY_FK2 references MENTORING_REVIEW(MTRRV_SEQ) on delete cascade
+);
+
+create sequence MENTORING_REVIEW_REPLY_SEQ start with 1 minvalue 0 increment by 1 nocache;
+
+insert into MENTORING_REVIEW_REPLY values(MENTORING_REVIEW_REPLY_SEQ.nextval, '요가수업후기댓글1', SYSDATE, 'admin', 1);
+insert into MENTORING_REVIEW_REPLY values(MENTORING_REVIEW_REPLY_SEQ.nextval, '요가수업후기댓글2', SYSDATE, 'admin', 2);
+insert into MENTORING_REVIEW_REPLY values(MENTORING_REVIEW_REPLY_SEQ.nextval, '요가수업후기댓글2-2', SYSDATE, 'admin', 2);
+
+insert into MENTORING_REVIEW_REPLY values(MENTORING_REVIEW_REPLY_SEQ.nextval, '요가수업후기댓글3', SYSDATE, 'admin', 3);
+insert into MENTORING_REVIEW_REPLY values(MENTORING_REVIEW_REPLY_SEQ.nextval, '요가수업후기댓글4', SYSDATE, 'admin', 4);
+insert into MENTORING_REVIEW_REPLY values(MENTORING_REVIEW_REPLY_SEQ.nextval, '요가수업후기댓글5', SYSDATE, 'admin', 5);
+insert into MENTORING_REVIEW_REPLY values(MENTORING_REVIEW_REPLY_SEQ.nextval, '요가수업후기댓글6', SYSDATE, 'admin', 6);
+insert into MENTORING_REVIEW_REPLY values(MENTORING_REVIEW_REPLY_SEQ.nextval, '요가수업후기댓글7', SYSDATE, 'admin', 7);
+insert into MENTORING_REVIEW_REPLY values(MENTORING_REVIEW_REPLY_SEQ.nextval, '요가수업후기댓글8', SYSDATE, 'admin', 8);
+insert into MENTORING_REVIEW_REPLY values(MENTORING_REVIEW_REPLY_SEQ.nextval, '요가수업후기댓글9', SYSDATE, 'admin', 9);
+insert into MENTORING_REVIEW_REPLY values(MENTORING_REVIEW_REPLY_SEQ.nextval, '요가수업후기댓글10', SYSDATE, 'admin', 10);
+
+commit;
+select * from MENTORING_REVIEW_REPLY;
+
+select MTRRV_SEQ, MTRRV_CONTENT, MTRRV_RDATE, MEM_EMAIL, MTR_SEQ, MEM_NICK, MEM_PROFILE from 
+(select ROWNUM rnum, aa.MTRRV_SEQ, aa.MTRRV_CONTENT, aa.MTRRV_RDATE, aa.MEM_EMAIL, aa.MTR_SEQ, aa.MEM_NICK, aa.MEM_PROFILE from
+(select MTRRV_SEQ, MTRRV_CONTENT, MTRRV_RDATE, mr.MEM_EMAIL, MTR_SEQ, MEM_NICK, MEM_PROFILE from MENTORING_REVIEW mr, MEMBER me where mr.MEM_EMAIL = me.MEM_EMAIL and MTR_SEQ = 2 order by MTRRV_SEQ desc) aa)
+where rnum > 0 and rnum <= 5;
+
+select MTRRVRP_SEQ, MTRRVRP_CONTENT, MTRRVRP_RDATE, mrr.MEM_EMAIL, MTRRV_SEQ, MEM_NICK, MEM_PROFILE from 
+MENTORING_REVIEW_REPLY mrr, MEMBER me where mrr.MEM_EMAIL = me.MEM_EMAIL and MTRRV_SEQ = 2 order by MTRRV_SEQ desc;
 
 --장바구니--
 create table CART(
@@ -571,7 +652,7 @@ create sequence CART_SEQ minvalue 0 start with 1 increment by 1 nocache;
 
 insert into CART values(CART_SEQ.nextval, SYSDATE, 1, 1, 'b@naver.com');
 insert into CART values(CART_SEQ.nextval, SYSDATE, 2, 4, 'b@naver.com');
-select * from CART;
+
 select * from CART where MEM_EMAIL = 'b@naver.com';
 
 --결제_정보--
@@ -591,7 +672,7 @@ MTRDI_SEQ number,
 MEM_EMAIL constraint PAYMENT_INFO_FK references MEMBER(MEM_EMAIL) on delete cascade
 );
 create sequence PAYMENT_INFO_SEQ start with 1 minvalue 0 increment by 1 nocache;
-select * from payment_info;
+
 
 create or replace trigger PAYMENT_TRI
 after
@@ -635,7 +716,7 @@ begin
 end;
 /
 
-insert into REFUND_INFO values(REFUND_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '재밋는디제잉', 10000, SYSDATE, '장현봉', '01021735831', 1, 1, 'a@naver.com', 2);
+insert into REFUND_INFO values(REFUND_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '재밋는디제잉', 10000, SYSDATE, '장현봉', '01021735831', 1, 1, 'a@naver.com', 1);
 --update PAYMENT_INFO set PI_STATE = 0 where PI_SEQ = 1;
 
 select * from REFUND_INFO;
@@ -662,12 +743,9 @@ select * from NOTICE;
 --select * from MENTORING_DETAIL_INFO where MTRDI_STIME > SYSDATE order by MTRDI_STIME desc;
 
 
+
 --select * from member;
 --select * from points;
 
 --select tname from tab;
 --테이블 18개 확인
-
-select * from points;
-select to_char(po_rdate, 'YYYY-MM-DD HH24:MM:SS') from POINTS where mem_email = 'a@naver.com' order by po_rdate asc;
-commit;

@@ -23,6 +23,17 @@ import tp.vo.MentoringViewPageVo;
 public class MentoringTests {
 	@Autowired
 	private MentoringMapper mentoringMapper;
+	
+	
+	@Test
+	public void autoSearchTest() {
+		String word = "요";
+		
+		//List<String> strList = mentoringMapper.selectAutoSearchSubject(word);
+		
+		//log.info("#strList: " + strList);
+	}
+	/*
 	@Test
 	public void testRList() {
 		long mtrcg_no = 0;

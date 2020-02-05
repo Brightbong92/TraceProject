@@ -2,7 +2,7 @@ package tp.mentoring.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,13 +12,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
+import jdk.nashorn.internal.parser.JSONParser;
 import lombok.extern.log4j.Log4j;
 import tp.domain.Mentoring;
 import tp.mentoring.service.MentoringService;
@@ -53,13 +60,16 @@ public class MentoringController {
 		session.setAttribute("cp", cp);
 		
 		//(2) ps 
-				int ps = 3;
-				session.setAttribute("ps", ps);
+		int ps = 3;
+		session.setAttribute("ps", ps);
+				
+
 		MentoringListResult mentoringListResultSearch = service.getMentoringListResultSearch(cp, ps, word);		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mentoring/mentoring_search_list");
 		mv.addObject("mentoringListResultSearch",mentoringListResultSearch);
 		return mv;
+	
 	}
 	@GetMapping("mentoring_list.do")
 	public ModelAndView mentoringList(String sort) {//리스트 & 정렬
@@ -132,22 +142,33 @@ public class MentoringController {
 	}
 	
 	@PostMapping("mentoringWrite.do")
-	public String mentoringWrite(Mentoring mentoring, MultipartFile mtr_profile_file, String[] mtrdi_time) {
-		if(mtr_profile_file != null) {//썸네일 등록 했을 시
+	public String mentoringWrite(Mentoring mentoring, MultipartFile mtr_profile_file, String[] mtrdi_time, String[] mtr_hashtagArray) {
+		if(!mtr_profile_file.getOriginalFilename().equals("")) {//썸네일 등록 했을 시
 			String mtr_profile = service.saveStore(mtr_profile_file);
+			
+			StringBuffer mtr_hashtagSb = new StringBuffer();
+			for(int i = 0; i<=mtr_hashtagArray.length-1; i++) {
+				String tmpStr = mtr_hashtagArray[i];
+				mtr_hashtagSb.append(tmpStr.trim());
+			}
+			String mtr_hashtag = mtr_hashtagSb.toString();
 			Mentoring m = new Mentoring(-1, mentoring.getMtr_subject(),
 					mentoring.getMtr_content(),mentoring.getMtr_price(),mentoring.getMtr_area(),mentoring.getMtr_addr(),
-					mentoring.getMtr_jumsu(),mtr_profile,mentoring.getMtr_hashtag(),mentoring.getMtrcg_no(),
-					mentoring.getMem_email()
-					);
+					mentoring.getMtr_jumsu(),mtr_profile,mtr_hashtag,null,mentoring.getMtrcg_no(),
+					mentoring.getMem_email());
 			service.MentoringInsert(m, mtrdi_time);
 		}else {//썸네일 등록 안했을 시
 			String mtr_profile = "defaultMentoringImage.png";
+			StringBuffer mtr_hashtagSb = new StringBuffer();
+			for(int i = 0; i<=mtr_hashtagArray.length-1; i++) {
+				String tmpStr = mtr_hashtagArray[i];
+				mtr_hashtagSb.append(tmpStr.trim());
+			}
+			String mtr_hashtag = mtr_hashtagSb.toString();
 			Mentoring m = new Mentoring(-1, mentoring.getMtr_subject(),
 					mentoring.getMtr_content(),mentoring.getMtr_price(),mentoring.getMtr_area(),mentoring.getMtr_addr(),
-					mentoring.getMtr_jumsu(),mtr_profile,mentoring.getMtr_hashtag(),mentoring.getMtrcg_no(),
-					mentoring.getMem_email()
-					);
+					mentoring.getMtr_jumsu(),mtr_profile,mtr_hashtag,null,mentoring.getMtrcg_no(),
+					mentoring.getMem_email());	
 			service.MentoringInsert(m, mtrdi_time);
 		}
 		return "mentoring/write_msg";
@@ -162,9 +183,23 @@ public class MentoringController {
 		return mv;	
 	}
 	
-	
-	
 	/*
+	@PostMapping("autoSearch.do")
+	public void autoSearch(String word, HttpServletResponse response) {
+		List<String> list = service.getSelectAutoSearchSubject(word);
+		ObjectMapper om = new ObjectMapper();
+		try {
+		String json = om.writeValueAsString(list);
+		response.setContentType("application/json;charset=utf-8");
+		PrintWriter pw = response.getWriter();
+		pw.write(json);
+		}catch(Exception e) {
+			log.info("e: " + e);
+		}
+	}
+	*/
+	
+	
 	@GetMapping("list1.do")
 	public String list1() {
 		return "mentoring/list1";
@@ -175,6 +210,6 @@ public class MentoringController {
 		return "mentoring/list4";
 		//return new ModelAndView("addr/list","list",list);
 	}
-	*/
+	
 	
 }

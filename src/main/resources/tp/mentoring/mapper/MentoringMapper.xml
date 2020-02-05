@@ -72,6 +72,8 @@
 			 where rnum>#{startRow} and rnum<=#{endRow}
 	    ]]>
  	</select>
+ 	
+ 	<!-- 멘토링 일반검색시 -->
  	<select id="selectMentoringListSearch" resultType="Mentoring" parameterType="MentoringPagingVo">
  		<![CDATA[
  		 select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
@@ -84,6 +86,21 @@
  		select count(MTR_SEQ) from MENTORING where MTR_SUBJECT like '%'||#{word}||'%'
  		]]>
  	</select>
+ 	
+ 	<select id="selectMentoringHashListSearch" resultType="Mentoring" parameterType="MentoringPagingVo">
+ 	 	<![CDATA[
+ 		 select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	     from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTR_HASHTAG like '%'||#{word}||'%' order by MTR_SEQ desc) aa)
+	     where rnum>#{startRow} and rnum<=#{endRow}
+ 		]]>
+ 	</select>
+ 	<select id="selectMentoringHashSearchCount" resultType="int" parameterType="String">
+ 	 	<![CDATA[
+ 		select count(MTR_SEQ) from MENTORING where MTR_HASHTAG like '%'||#{word}||'%'
+ 		]]>
+ 	</select>
+ 	
+ 	
  	
  	<!-- 멘토링 테이블 -->
  	<select id="selectMentoringViewPage" resultType="MentoringViewPageVo" parameterType="long">
@@ -98,11 +115,25 @@
  		]]>
  	</select>
  	<!-- 상세정보 관련된 멘토링가져오기 -->
- 	<select id="selectRelativeMentoring" resultType="Mentoring" parameterType="long">
+ 	<select id="selectRelativeMentoring" resultType="Mentoring" parameterType="hashmap">
  		<![CDATA[
  		select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
- 		 from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like #{mtrcg_no} order by MTR_SEQ desc) aa) where rnum>0 and rnum<=4
+ 		 from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like #{mtrcg_no} and MTR_SEQ not like #{mtr_seq} order by MTR_SEQ desc) aa) where rnum>0 and rnum<=4
  		]]>
  	</select>
+ 	<select id="selectAutoSearchSubject" resultType="String" parameterType="String">
+ 		<![CDATA[
+ 		SELECT MTR_SUBJECT FROM (SELECT ROWNUM rnum, aa.* FROM(SELECT * FROM MENTORING WHERE MTR_SUBJECT LIKE #{word}||'%') aa ) WHERE rnum > 0 and rnum <= 10
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="selectMentoringQAList" resultType="Mentoring_QA" parameterType="long">
+ 		<![CDATA[
+ 		select * from (select ROWNUM rnum , aa.* from (select * from Mentoring_QA where MTR_SEQ = #{mtr_seq} order by MTRQA_SEQ desc) aa)
+		where rnum>0 and rnum<=3
+ 		]]>
+ 	
+ 	</select>
+ 	
  	
 </mapper>

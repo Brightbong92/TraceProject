@@ -15,6 +15,21 @@
 <!-- 다음주소 우편번호 -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cfc6adb56776563ea749406a6c619d30&libraries=services"></script>
+
+<!-- 해시태그 -->
+<style>
+    .tag-item:hover {
+        background-color: #262626;
+        color: #fff;
+    }
+
+    .del-btn {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
+</style>
 </head>
 
 <body>
@@ -62,7 +77,19 @@
             
             <tr>
             	<th>해시태그</th>
-            	<td><input type="text" class="form-control" name="mtr_hashtag" id="mtr_hashtag" placeholder="ex)#요가,#필라테스,#해시태그 "/></td>
+            	<td>
+            	<input type="text" class="form-control" name="hashtag" id="hashtag" placeholder="ex)#요가" />
+            	<br/>
+            	<button type="button" class="btn btn-primary" id="tagPlus">태그추가</button>
+            	<button type="button" class="btn btn-primary" id="check">태그값확인</button>
+            	</td>
+            </tr>
+            
+            <tr>
+            	<th>태그추가되는곳</th>
+                <td id="tag-list">
+                
+                </td>
             </tr>
             
              <tr>
@@ -76,7 +103,7 @@
             </tr>
             
             <tr>
-            	<th>맵</th>
+            	<th>맵나오는곳</th>
             	<td><div id="map" style="width:900px;height:300px;margin-top:10px;display:none"></div></td>
             </tr>
             
@@ -85,7 +112,7 @@
             	<td>
             	<input type="text" class="form-control" id="mtr_addr" name="mtr_addr" placeholder="주소검색을 클릭해주세요" style="width:950px;">
             	<br/>
-            	<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"></td>
+            	<input type="button" class="btn btn-primary" onclick="sample5_execDaumPostcode()" value="주소 검색"></td>
             </tr>
             
             <!--  
@@ -113,7 +140,7 @@
 						<label for="maxpcnt"><Strong>최대인원</Strong></label> 
 						<input type="text" id="max_pcnt" name="pcnt" style="width:100px;" autocomplete="off" disabled>&nbsp;&nbsp;&nbsp;
 						
-						<button type="button" id="dataPlus">일정추가</button>
+						<button type="button" class="btn btn-primary"  id="dataPlus">일정추가</button>
 					</div>
             	</td>
             </tr>	
@@ -147,9 +174,10 @@
 		</table>
 		
 		<!-- hidden -->
-		<input type="hidden" id=mtrdi_time name="mtrdi_time" value="empty">
+		<input type="hidden" id="mtrdi_time" name="mtrdi_time" value="empty">
 		<input type="hidden" id="mem_email" name="mem_email" value="${loginUser.mem_email}">
-		
+		<input type="hidden" id="mtr_hashtagArray" name="mtr_hashtagArray" value="empty"><!-- 태그관련 배열 전송용 -->
+		<input type="hidden" id="mtr_hashtag" name="mtr_hashtag" value=""><!-- mtr_hashtag = null// @멘토링 이갖고있는변수때문에 -->
 	</form>
   </div>
   
@@ -162,7 +190,8 @@
 	   </div>
   </div>
   <!-- /.container -->
-  
+
+<!-- 섬머노트 -->
 <script>
     $(document).ready(function(){
       $("#summernote").summernote({
@@ -220,10 +249,88 @@
             }
         }).open();
     }
-</script>    
-   
-<script>     
-    <!--데이트 피커-->
+</script>   
+
+
+
+<script>
+<!--해시태그-->
+$(document).ready(function(){
+	
+
+	var tag = {};
+	var cnt = 0;
+	
+	$("#tagPlus").click(function(){
+		
+		var w = $("#hashtag").val().indexOf("#");
+		
+		if(w == -1) {
+			alert("올바른형식으로 추가해주세요.");
+			$("#hashtag").val("");
+			return false;
+		}
+		var tagValue = $("#hashtag").val();
+		
+		if(tagValue == "") {
+			alert("해시태그를 입력 후 추가 해주세요.");
+			return false;
+		 }
+		
+		var hashArr = marginTag();//해시태그 배열값으로 셋팅
+		
+		if(hashArr.length == 4) {
+			alert("해시태그는 4개까지 추가 가능해요.");
+			return false;
+		}
+		
+		 var result = Object.values(tag).filter(function (word) {
+	         return word === tagValue;
+	     })
+		 if(result.length == 0) {//중복이아닐경우
+			 $("#tag-list").append("<span class='tag-item'>"+tagValue+"<span class='del-btn' idx='"+cnt+"'>X</span></span>&nbsp;&nbsp;");
+			 addTag(tagValue);
+			 $("#hashtag").val("");
+		 }else {//중복일경우
+			 alert("태그값이 중복");
+			 $("#hashtag").val("");
+			 return false;
+		 }
+	
+	});
+	
+	function marginTag () {// 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
+	    return Object.values(tag).filter(function (word) {
+	        return word !== "";
+	    });
+	}
+	
+	
+	$(document).on("click", ".del-btn", function(e){//지우는부분
+		var index = $(this).attr("idx");
+		//tag[index] = "";
+		delete tag[index];
+		$(this).parent().remove();
+		
+	});
+	
+	
+	function addTag (value) {
+	    tag[cnt] = value; // 태그를 Object 안에 추가
+	    cnt++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
+	}
+	
+	
+	$("#check").click(function(){
+		var result = Object.values(tag);
+		alert("길이: " + result.length);
+		alert("배열값: " + result);
+	});
+
+
+
+<!--데이트피커 -->
+
     var time=null;
 	 $('input').attr('autocomplete','off');
 	 $("#datetimepicker").change(function(){
@@ -324,6 +431,11 @@
 			 $("#date_timepicker_end").focus();
 			 return false;
 		 }
+		 if($("#max_pcnt").val() == "") {
+		 	alert("최대인원을 입력해주세요.")
+		 	$("#max_pcnt").focus();
+		 	return false;
+	 	 }
 
 		 $('#list_table').append(
 				 $('<tr>').append(
@@ -332,7 +444,8 @@
 						 $("<td align='center'>").append($('#date_timepicker_end').val()),
 						 $("<td align='center'>").append($('#max_pcnt').val()),
 						 $("<td align='center'>").append(
-								 $("<a align='center'>").prop('href', '#').addClass('delete-link').append('삭제')
+								 //$("<a align='center'>").prop('href', '#').addClass('delete-link').append('삭제')
+								 $("<a align='center'>").addClass('delete-link').append('삭제')
 								 )
 						 )
 				 )
@@ -348,7 +461,7 @@
 		})
 		
 		
-		
+		<%--글쓰기 버튼 --%>
 		$("#writeGo").click(function(){
 			var dataArrayToSend = [];
 			str = "";
@@ -363,12 +476,14 @@
 					//alert("str: " + str);
 					dataArray.push(str);
 					str = "";
-					alert(dataArray);
+					//alert(dataArray);
 			});
 			
 			$("#mtrdi_time").val(dataArray);
 			 var len = $('#list_table >tbody tr').length;
 			var price = $("#mtr_price").val();
+			var hashArr = marginTag();//해시태그 배열값으로 셋팅
+			
 			
 			 if($("#mtr_subject").val() == "") {
 				 alert("제목을 입력하지 않았습니다.")
@@ -378,9 +493,9 @@
 		    	  alert("카테고리를 선택해주세요.");
 		    	  return false;
 		     }
-			 else if($("#mtr_hashtag").val() == "") {
-				 alert("해시태그를 입력해주세요.")
-				 document.writeForm.mtr_hashtag.focus();
+			 else if(hashArr.length == 0) {
+				 alert("해시태그를 입력해주세요.");
+				 document.writeForm.hashtag.focus();
 				 return false;
 			 }
 			 else if($("#mtr_price").val() == "") {
@@ -402,9 +517,10 @@
 				 $("#datetimepicker").focus();
 				 return false;
 			 }
+				$("#mtr_hashtagArray").val(hashArr);//해시태그 배열값으로 셋팅
 				writeForm.submit();
 		});
-	 
+});
 </script>
 
   <footer class="py-5 bg-dark">

@@ -1,6 +1,8 @@
 package tp.mentoring.service;
 
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import tp.domain.Mentoring;
@@ -16,5 +18,7 @@ public interface MentoringService {
 	
 	//멘토링 상세뷰 가져오기
 	MentoringViewPageVo selectMentoringDetailView(long mtr_seq);
+	
+	//자동검색List<String> getSelectAutoSearchSubject(String word);
 	
 }

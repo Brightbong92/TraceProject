@@ -67,6 +67,7 @@
 		<context:component-scan base-package="tp.index.mapper"/>
 		<mybatis-spring:scan base-package="tp.index.mapper" />
 		
+
 	<!-- 차트 관련 -->
 		<context:component-scan base-package="tp.adminCharts.service"/>
 		<context:component-scan base-package="tp.adminCharts.mapper"/>
@@ -76,7 +77,17 @@
 		<context:component-scan base-package="tp.mypage.service"/>
 		<context:component-scan base-package="tp.mypage.mapper"/>
 		<mybatis-spring:scan base-package="tp.mypage.mapper" />
+
+	<!-- 멘토링 QA관련 -->
+		<context:component-scan base-package="tp.qa.service"/>
+		<context:component-scan base-package="tp.qa.mapper"/>
+		<mybatis-spring:scan base-package="tp.qa.mapper" />
 	
+	<!-- 멘토링 리뷰관련 -->
+		<context:component-scan base-package="tp.review.service"/>
+		<context:component-scan base-package="tp.review.mapper"/>
+		<mybatis-spring:scan base-package="tp.review.mapper" />
+		
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>

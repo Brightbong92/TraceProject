@@ -14,14 +14,14 @@
       <li class="breadcrumb-item">
         <a href="/">Home</a>
       </li>
-      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=99">99전체</a></li>
-      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=0">0운동</a></li>
-      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=1">1음악</a></li>
-      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=2">2공예</a></li>
-      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=3">3요리</a></li>
-      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=4">4사진&영상</a></li>
-      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=5">5뷰티</a></li>
-      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=6">6음료</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=99">전체</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=0">운동</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=1">음악</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=2">공예</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=3">요리</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=4">사진&영상</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=5">뷰티</a></li>
+      <li class="breadcrumb-item active"><a href="../mentoring/mentoring_list.do?sort=6">음료</a></li>
     </ol>
     <!-- 전체 일 경우 -->
 		<c:if test="${!empty listResultAll}">
@@ -29,7 +29,7 @@
 		   	 <c:forEach items="${listResultAll.mtr_list}" var="list">
 					      <div class="col-lg-4 col-sm-6 portfolio-item">
 					        <div class="card h-100">
-					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
@@ -111,7 +111,7 @@
 			   	 	<c:forEach items="${listResultExercise.mtr_list}" var="list">
 					      <div class="col-lg-4 col-sm-6 portfolio-item">
 					        <div class="card h-100">
-					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
@@ -193,7 +193,7 @@
 			   	 	<c:forEach items="${listResultMusic.mtr_list}" var="list">
 					      <div class="col-lg-4 col-sm-6 portfolio-item">
 					        <div class="card h-100">
-					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
@@ -275,7 +275,7 @@
 			   	 	<c:forEach items="${listResultCraft.mtr_list}" var="list">
 					      <div class="col-lg-4 col-sm-6 portfolio-item">
 					        <div class="card h-100">
-					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
@@ -357,7 +357,7 @@
 			   	 	<c:forEach items="${listResultCooking.mtr_list}" var="list">
 					      <div class="col-lg-4 col-sm-6 portfolio-item">
 					        <div class="card h-100">
-					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
@@ -439,7 +439,7 @@
 			   	 	<c:forEach items="${listResultMedia.mtr_list}" var="list">
 					      <div class="col-lg-4 col-sm-6 portfolio-item">
 					        <div class="card h-100">
-					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
@@ -521,7 +521,7 @@
 			   	 	<c:forEach items="${listResultBeauty.mtr_list}" var="list">
 					      <div class="col-lg-4 col-sm-6 portfolio-item">
 					        <div class="card h-100">
-					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
@@ -604,7 +604,7 @@
 			   	 	<c:forEach items="${listResultBeverage.mtr_list}" var="list">
 					      <div class="col-lg-4 col-sm-6 portfolio-item">
 					        <div class="card h-100">
-					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
@@ -699,22 +699,22 @@
 				  //var mtr_list = JSON.stringify(data.mtr_list);
 				 	for(m of data.mtr_list){
 				 		if(m.mtr_jumsu == 0){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 									  "<div class='starRev'><span class='starR'>별1</span><span class='starR'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
 				 		}else if(m.mtr_jumsu == 1){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
 				 		}else if(m.mtr_jumsu == 2){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
 				 		}else if(m.mtr_jumsu == 3){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
 				 		}else if(m.mtr_jumsu == 4){
-				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR on'>별4</span><span class='starR'>별5</span></div>");
 				 		}else if(m.mtr_jumsu == 5){
-				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><b>"+m.mtr_hashtag+"</b></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR on'>별4</span><span class='starR on'>별5</span></div>");
 				 		}
 			  		}

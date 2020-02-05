@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import tp.domain.Mentoring;
 import tp.domain.Mentoring_Detail_Info;
+import tp.domain.Mentoring_QA;
 import tp.mentoring.mapper.MentoringMapper;
 import tp.vo.MentoringListResult;
 import tp.vo.MentoringPagingVo;
@@ -51,11 +53,21 @@ public class MentoringServiceImpl implements MentoringService {
 	}
 	@Override
 	public MentoringListResult getMentoringListResultSearch(int cp, int ps, String word) {
-			int totalCount = mentoringMapper.selectMentoringSearchCount(word);
-			MentoringPagingVo mentoringPagingVo = new MentoringPagingVo(word, cp, ps);
-			log.info("#cp: " + cp + "#ps: " + ps);
-			List<Mentoring> list = mentoringMapper.selectMentoringListSearch(mentoringPagingVo);
-			return new MentoringListResult(cp, totalCount, ps, list, word);
+			if(word.startsWith(".")) {//해시검색일시
+				word = word.substring(1);//.이후부터 시작
+				//log.info("#word: " + word);
+				int totalCount = mentoringMapper.selectMentoringHashSearchCount(word);
+				MentoringPagingVo mentoringPagingVo = new MentoringPagingVo(word, cp, ps);
+				List<Mentoring> list = mentoringMapper.selectMentoringHashListSearch(mentoringPagingVo);
+				return new MentoringListResult(cp, totalCount, ps, list, word);
+			}
+			else {//일반검색시
+				int totalCount = mentoringMapper.selectMentoringSearchCount(word);
+				MentoringPagingVo mentoringPagingVo = new MentoringPagingVo(word, cp, ps);
+				//log.info("#cp: " + cp + "#ps: " + ps);
+				List<Mentoring> list = mentoringMapper.selectMentoringListSearch(mentoringPagingVo);
+				return new MentoringListResult(cp, totalCount, ps, list, word);
+			}
 	}
 	
 	@Override
@@ -64,7 +76,7 @@ public class MentoringServiceImpl implements MentoringService {
 		long mtr_seq = mentoringMapper.selectMentoringNextSeq();//멘토링 시퀀스 넥스트
 		Mentoring mentoring = new Mentoring(mtr_seq, m.getMtr_subject(), m.getMtr_content(), m.getMtr_price(), 
 				m.getMtr_area(), m.getMtr_addr(), m.getMtr_jumsu(), m.getMtr_profile(), 
-				m.getMtr_hashtag(), m.getMtrcg_no(), m.getMem_email());
+				m.getMtr_hashtag(), null ,m.getMtrcg_no(), m.getMem_email());
 		mentoringMapper.insertMentoring(mentoring);//멘토링 테이블 인서트
 		String cal = "";String stime = "";String etime = ""; String maxpcntStr="";
 		for(int i = 0; i<=mtrdi_time.length-1; i++) {
@@ -138,11 +150,30 @@ public class MentoringServiceImpl implements MentoringService {
 	}
 	@Override
 	public MentoringViewPageVo selectMentoringDetailView(long mtr_seq) {
-		MentoringViewPageVo mvpvo = mentoringMapper.selectMentoringViewPage(mtr_seq);
+		MentoringViewPageVo mvpVo = mentoringMapper.selectMentoringViewPage(mtr_seq);
 		List<Mentoring_Detail_Info> mtrdi_list = mentoringMapper.selectMentoringDetailInfo(mtr_seq);
-		List<Mentoring> relative_mtr_list = mentoringMapper.selectRelativeMentoring(mvpvo.getMtrcg_no());
-		mvpvo.setDetail_Info_List(mtrdi_list);
-		mvpvo.setRelative_mtr_list(relative_mtr_list);
-		return mvpvo;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("mtrcg_no", mvpVo.getMtrcg_no());
+		map.put("mtr_seq", mtr_seq);
+		
+		
+		
+		//List<Mentoring_QA> mtr_qa_list = mentoringMapper.selectMentoringQAList(mtr_seq);
+		//mvpVo.setMtr_qa_list(mtr_qa_list);
+		
+		
+		
+		
+		List<Mentoring> relative_mtr_list = mentoringMapper.selectRelativeMentoring(map);
+		mvpVo.setDetail_Info_List(mtrdi_list);
+		mvpVo.setRelative_mtr_list(relative_mtr_list);
+		return mvpVo;
 	}
+	/*
+	@Override
+	public List<String> getSelectAutoSearchSubject(String word) {
+		List<String> autoList = mentoringMapper.selectAutoSearchSubject(word);
+		return autoList;
+	}
+	*/
 }

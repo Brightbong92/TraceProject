@@ -4,13 +4,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import tp.mentor.service.MentorPath;
+import tp.vo.MentorProfileVo;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import tp.domain.Member;
 import tp.domain.Mentor_List;
 import tp.domain.Sms_Auth;
 import tp.mentor.mapper.MentorMapper;
@@ -105,6 +108,14 @@ public class MentorServiceImpl implements MentorService {
 	@Override
 	public void removeCode(String receiver) {
 		mentorMapper.removeCode(receiver);
+	}
+	public MentorProfileVo selectMentorProfile(String mem_email) {
+		MentorProfileVo mProfile = new MentorProfileVo();
+		Mentor_List mentor_list_info = mentorMapper.selectMentor_List(mem_email);
+		Member mentor_member_info = mentorMapper.selectMentorMemberInfo(mem_email);
+		mProfile.setMentor_list_info(mentor_list_info);
+		mProfile.setMentor_member_info(mentor_member_info);
+		return mProfile;
 	}
 
 }

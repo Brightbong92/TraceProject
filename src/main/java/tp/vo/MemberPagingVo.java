@@ -22,4 +22,5 @@ public class MemberPagingVo {
 	public int getEndRow() {
 		return page * pageSize;
 	}
+
 }
