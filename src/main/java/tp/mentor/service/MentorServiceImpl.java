@@ -12,6 +12,7 @@ import tp.mentor.service.MentorPath;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import tp.domain.Mentor_List;
+import tp.domain.Sms_Auth;
 import tp.mentor.mapper.MentorMapper;
 
 @Log4j
@@ -77,6 +78,33 @@ public class MentorServiceImpl implements MentorService {
 			}catch(IOException ie) {}
 		}
 	}
-	
+	@Override
+	public boolean checkApply(String mem_email) {
+		String check = mentorMapper.checkApply(mem_email);
+		if(check==null) return true; //신청 안 한 일반회원일때
+		else if(check.equals("1")) return false;// 신청한 일반회원일때
+		else return false;
+	}
+	@Override
+	public void setCode(String ml_phone, int sms_uuid) {
+		HashMap<String, Object> code =  new HashMap<String, Object>();
+		code.put("ml_phone",ml_phone);
+		code.put("sms_uuid",sms_uuid);
+		String check = mentorMapper.checkCode(ml_phone);
+		if(check==null) {
+			mentorMapper.setCode(code);
+		}else {
+			mentorMapper.updateCode(code);
+		}
+	}
+	@Override
+	public String getCode(String receiver) {
+		String code = mentorMapper.getCode(receiver);
+		return code;
+	}
+	@Override
+	public void removeCode(String receiver) {
+		mentorMapper.removeCode(receiver);
+	}
 
 }

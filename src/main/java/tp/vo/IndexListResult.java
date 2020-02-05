@@ -12,6 +12,10 @@ import tp.domain.Mentoring;
 @AllArgsConstructor
 @NoArgsConstructor
 public class IndexListResult {
-	Mentoring bestMentoringInfo;
+	Mentoring bestMentoringInfo1;
+	Mentoring bestMentoringInfo2;
+	Mentoring bestMentoringInfo3;
+	Mentoring bestMentoringInfo4;
+	Mentoring bestMentoringInfo5;
 	Member bestMentoringMentor;
 }

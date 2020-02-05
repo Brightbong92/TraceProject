@@ -5,7 +5,23 @@
 <mapper namespace="tp.mentor.mapper.MentorMapper">
  	<insert id="mentor_apply" parameterType="hashmap">
 		insert into MENTOR_LIST values (#{mem_email},#{ml_name},#{ml_phone},#{ml_yourself},#{ml_ofname},#{ml_fname},#{mtrcg_no},1)
-		
 	</insert>
- 	
+	<select id="checkApply" parameterType="String" resultType="String">
+		select ML_APPLY from MENTOR_LIST where mem_email = #{mem_email}
+	</select>
+	<select id="checkCode" parameterType="String" resultType="String">
+		select ML_PHONE from MENTOR_LIST where ml_phone = #{ml_phone}
+	</select>
+ 	<insert id="setCode" parameterType="hashmap">
+		insert into SMS_AUTH values (#{ml_phone},#{sms_uuid})
+	</insert>
+	<select id="getCode" parameterType="String" resultType="String">
+		select SMS_UUID from SMS_AUTH where ML_PHONE = #{ml_phone}
+	</select>
+	<update id="updateCode" parameterType="hashmap">
+		update SMS_AUTH set sms_uuid=#{sms_uuid} where ml_phone = #{ml_phone}
+	</update>
+	<delete id="removeCode" parameterType="String">
+		delete from SMS_AUTH where ML_PHONE = #{ml_phone}
+	</delete>
 </mapper>

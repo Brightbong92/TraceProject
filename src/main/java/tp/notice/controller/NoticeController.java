@@ -94,6 +94,46 @@ public class NoticeController {
 		
 		return "notice/qna";
 	}
+	@GetMapping("qna2.do")
+	public String qna2() {
+		return "notice/qna2";
+	}
+	@GetMapping("qna3.do")
+	public String qna3() {
+		return "notice/qna3";
+	}
+	@GetMapping("qna4.do")
+	public String qna4() {
+		return "notice/qna4";
+	}
+	@GetMapping("qna5.do")
+	public String qna5() {
+		return "notice/qna5";
+	}
+	@GetMapping("qna6.do")
+	public String qna6() {
+		return "notice/qna6";
+	}
+	@GetMapping("qna7.do")
+	public String qna7() {
+		return "notice/qna7";
+	}
+	@GetMapping("qna8.do")
+	public String qna8() {
+		return "notice/qna8";
+	}
+	@GetMapping("qna9.do")
+	public String qna9() {
+		return "notice/qna9";
+	}
+	@GetMapping("qna10.do")
+	public String qna10() {
+		return "notice/qna10";
+	}
+	@GetMapping("qna11.do")
+	public String qna11() {
+		return "notice/qna11";
+	}
 	@GetMapping("search.do")
 	public ModelAndView search(HttpServletRequest request, String keyword) {
 		

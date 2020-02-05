@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tp.adminCharts.mapper.AdminChartsMapper">
+
+		<!--  회원가입 사람수  id값 = 일수 -->
+    <select id="chartCount1" resultType="int">
+      <![CDATA[
+   		select count(*) from MEMBER where MEM_RDATE < SYSDATE and MEM_RDATE > SYSDATE-1
+	]]>
+   </select>
+    <select id="chartCount2" resultType="int">
+    <![CDATA[
+   		select count(*) from MEMBER where MEM_RDATE < SYSDATE-1 and MEM_RDATE > SYSDATE-2
+	]]>
+	
+   </select>
+    <select id="chartCount3" resultType="int">
+    <![CDATA[
+   		select count(*) from MEMBER where MEM_RDATE < SYSDATE-2 and MEM_RDATE > SYSDATE-3
+	]]>
+   </select>
+    <select id="chartCount4" resultType="int">   
+    <![CDATA[
+   		select count(*) from MEMBER where MEM_RDATE < SYSDATE-3 and MEM_RDATE > SYSDATE-4
+	]]>
+   </select>
+    <select id="chartCount5" resultType="int">  <![CDATA[
+   		select count(*) from MEMBER where MEM_RDATE < SYSDATE-4 and MEM_RDATE > SYSDATE-5
+	]]>
+   </select>
+    <select id="chartCount6" resultType="int">
+    <![CDATA[
+   		select count(*) from MEMBER where MEM_RDATE < SYSDATE-5 and MEM_RDATE > SYSDATE-6
+	]]>
+	
+   </select>
+    <select id="chartCount7" resultType="int">
+    <![CDATA[
+   		select count(*) from MEMBER where MEM_RDATE < SYSDATE-6 and MEM_RDATE > SYSDATE-7
+	]]>
+	
+   </select>
+		<!-- 남녀 성비율 -->
+    <select id="womenCount" resultType="int">
+		select count(*) from MEMBER where MEM_GENDER=2
+   </select>
+ 
+    <select id="menCount" resultType="int">
+    	select count(*) from MEMBER where MEM_GENDER=1
+   </select>
+   
+   <!-- 카테고리 -->
+   <select id="sportMTRCG" resultType="int">
+    	select count(MEM_EMAIL) from MENTORING where MTRCG_NO = 0
+   </select>
+   
+   <select id="musicMTRCG" resultType="int">
+    	select count(MEM_EMAIL) from MENTORING where MTRCG_NO = 1
+   </select>
+   
+   <select id="craftsMTRCG" resultType="int">
+    	select count(MEM_EMAIL) from MENTORING where MTRCG_NO = 2
+   </select>
+   
+   <select id="cookMTRCG" resultType="int">
+    	select count(MEM_EMAIL) from MENTORING where MTRCG_NO = 3
+   </select>
+   
+   <select id="pictureMTRCG" resultType="int">
+    	select count(MEM_EMAIL) from MENTORING where MTRCG_NO = 4
+   </select>
+   
+   <select id="beautyMTRCG" resultType="int">
+    	select count(MEM_EMAIL) from MENTORING where MTRCG_NO = 5
+   </select>
+   
+   <select id="bevMTRCG" resultType="int">
+    	select count(MEM_EMAIL) from MENTORING where MTRCG_NO = 6
+   </select>
+   <!-- 차트 상단 표 나올 수치 총회원,총 맨토링, 총맨토 신청 수 -->
+   
+   <select id="memberCount" resultType="int">
+    	select count(*) from member
+   </select>
+   
+   <select id="mentoringCount" resultType="int">
+    	select count(*) from mentoring
+   </select>
+   
+   <select id="mentoCount" resultType="int">
+    	select count(*) from member where MEM_AUTH=1
+   </select>
+
+	<!-- 나이대별 멤버수 -->
+	
+	 <select id="memAge1519" resultType="int">
+    	select count(*) from member where mem_age='15-19'
+   </select>
+   <select id="memAge2029" resultType="int">
+    	select count(*) from member where mem_age='20-29'
+   </select>
+   <select id="memAge3039" resultType="int">
+    	select count(*) from member where mem_age='30-39'
+   </select>
+   <select id="memAge4049" resultType="int">
+    	select count(*) from member where mem_age='40-49'
+   </select>
+   <select id="memAge5059" resultType="int">
+    	select count(*) from member where mem_age='50-59'
+   </select>
+   <select id="memAge6069" resultType="int">
+    	select count(*) from member where mem_age='60-69'
+   </select>
+   <select id="memAge7079" resultType="int">
+    	select count(*) from member where mem_age='70-79'
+   </select>
+   <select id="memAge8089" resultType="int">
+    	select count(*) from member where mem_age='80-89'
+   </select>
+   <select id="memAge9099" resultType="int">
+    	select count(*) from member where mem_age='90-99'
+   </select>
+   
+   <!-- 탈퇴자 및 정지자 현황 -->
+   <select id="dis_reson1" resultType="int">
+    	select count(dis_reason) from disabled d, member m where d.mem_email = m.mem_email and m.mem_state = 2 and d.dis_reason=0
+   </select>
+   
+   <select id="dis_reson2" resultType="int">
+    	select count(dis_reason) from disabled d, member m where d.mem_email = m.mem_email and m.mem_state = 2 and d.dis_reason=1
+   </select>
+   
+   <select id="dis_reson3" resultType="int">
+    	select count(dis_reason) from disabled d, member m where d.mem_email = m.mem_email and m.mem_state = 2 and d.dis_reason=2
+   </select>
+   
+   <select id="dis_reson4" resultType="int">
+    	select count(dis_reason) from disabled d, member m where d.mem_email = m.mem_email and m.mem_state = 2 and d.dis_reason=3
+   </select>
+   
+   <select id="dis_reson5" resultType="int">
+    	select count(dis_reason) from disabled d, member m where d.mem_email = m.mem_email and m.mem_state = 2 and d.dis_reason=4
+   </select>
+   
+   <select id="dis_reson6" resultType="int">
+    	select count(dis_reason) from disabled d, member m where d.mem_email = m.mem_email and m.mem_state = 2 and d.dis_reason=5
+   </select>
+   
+   
+	
+</mapper>

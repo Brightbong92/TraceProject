@@ -26,6 +26,7 @@
 	<resources mapping="/time/**" location="/resources/time/" />
 	<resources mapping="/mentor_business_images/**" location="/resources/mentor_business_images/" />
 	<resources mapping="/index_images/**" location="/resources/index_images/" />
+	<resources mapping="/mypage/**" location="/resources/mypage/" />
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -55,4 +56,5 @@
 	<context:component-scan base-package="tp.join.controller" />
 	<context:component-scan base-package="tp.login.controller" />
 	<context:component-scan base-package="tp.admin.controller" />
+	<context:component-scan base-package="tp.mypage.controller" />
 </beans:beans>

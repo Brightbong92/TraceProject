@@ -1,4 +1,4 @@
-package tp.index.service;
+ package tp.index.service;
 
 import java.util.List;
 
@@ -17,10 +17,15 @@ public class IndexServiceImpl implements IndexService {
 	
 	@Override
 	public IndexListResult bestMentoring() {
-		Mentoring bestMentoringInfo = indexMapper.bestMentoringInfo();
+		Mentoring bestMentoringInfo1 = indexMapper.bestMentoringInfo1();
+		Mentoring bestMentoringInfo2 = indexMapper.bestMentoringInfo2();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+		Mentoring bestMentoringInfo3 = indexMapper.bestMentoringInfo3();
+		Mentoring bestMentoringInfo4 = indexMapper.bestMentoringInfo4();
+		Mentoring bestMentoringInfo5 = indexMapper.bestMentoringInfo5();
+		
 		Member bestMentoringMentor = indexMapper.bestMentoringMentor();
 		
-		return new IndexListResult(bestMentoringInfo,bestMentoringMentor);
+		return new IndexListResult(bestMentoringInfo1,bestMentoringInfo5,bestMentoringInfo2,bestMentoringInfo3,bestMentoringInfo4,bestMentoringMentor);
 	}
 
 }

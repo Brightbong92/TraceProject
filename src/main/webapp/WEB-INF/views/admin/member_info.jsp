@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" import="tp.vo.MemberListResult"%>
 
 <!DOCTYPE html>
 <html lang="kor">
@@ -266,15 +266,17 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-
+            
+			
+			
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <input type="text" class="form-control" id="search_input1" placeholder="회원 검색">
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
+                                <button type="submit" class="btn btn-default" id="search_button1">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
@@ -282,18 +284,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="../admin/dashboard.do"><i class="fa fa-dashboard fa-fw"></i> 대시보드</a>
+                            <a href="../admin/search.do?cp=1&keyword="><i class="fa fa-table fa-fw"></i> 회원정보</a>
+                        </li>
+                        <li>
+                            <a href="../admin/mentor_info.do"><i class="fa fa-sitemap fa-fw"></i> 멘토정보</a>
                         </li>
                         <li>
                             <a href="../admin/charts.do"><i class="fa fa-bar-chart-o fa-fw"></i> 차트</a>
-                            
-                        </li>
-                        <li>
-                            <a href="../admin/member_info.do"><i class="fa fa-table fa-fw"></i> 회원정보</a>
-                        </li>
-                        <li>
-                            <a href="../admin/mentor_info.do"><i class="fa fa-sitemap fa-fw"></i> 멘토신청정보</a>
-                            
                         </li>
                         <li>
                             <a href="../admin/notice_form.do"><i class="fa fa-edit fa-fw"></i> 공지사항 작성</a>
@@ -307,7 +304,7 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
+		
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -326,7 +323,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="">
-							<select id="psId" name="ps" onchange="f(this)">
+							<select id="psId" name="ps" onchange="f(this)" style="float:left">
 								<c:choose>
 						           <c:when test="${memberListResult.pageSize == 10}">
 								  	   <option value="10" selected>10</option>
@@ -350,9 +347,21 @@
 							       function f(select){
 							           var el = document.getElementById("psId");
 							           var ps = el.value;
-							           location.href="../admin/member_info.do?ps="+ps;
+							           location.href="../admin/search.do?ps="+ps+"&keyword=";
 							       }
 							    </script>
+							    
+							    <div class="input-group custom-search-form" style="width:220px; float:right">
+	                                <input type="text" class="form-control" id="search_input2" placeholder="회원 검색">
+	                                <span class="input-group-btn">
+	                                <button type="submit" class="btn btn-default" id="search_button2" ">
+	                                    <i class="fa fa-search"></i>
+	                                </button>
+	                            </span>
+	                            </div>
+	                            
+	                            <tr/>
+	                            
                                 <thead>
                                     <tr>
                                         <th>닉네임</th>
@@ -396,29 +405,30 @@
                                     
                                     </c:forEach>
                                 </tbody>
-                               
                             </table>
+<%
+		MemberListResult ml = (MemberListResult)request.getAttribute("memberListResult");
+%>                       
                             	발자취 총 회원 수 : ${memberListResult.totalCount} 명
                              <div class="board_paging" align="center">
-									<button  onclick="javascript:location.href='../admin/member_info.do?cp=1'">&#x000AB;</button>
+									<button  onclick="javascript:location.href='../admin/search.do?cp=1&keyword=<%=ml.getKeyword()%>'">&#x000AB;</button>
 									<c:if test="${memberListResult.currentPage ne 1}">
-									<button  onclick="javascript:location.href='../admin/member_info.do?cp=${memberListResult.currentPage-1}'">&#x02039;</button>
+									<button  onclick="javascript:location.href='../admin/search.do?cp=${memberListResult.currentPage-1}&keyword=<%=ml.getKeyword()%>'">&#x02039;</button>
 									</c:if>
 									<c:forEach begin="1" end="${memberListResult.totalPageCount}" var="i">
 											<c:choose>
 												<c:when test="${i==memberListResult.currentPage}">
-													<button onclick="javascript:location.href='../admin/member_info.do?cp=${i}'" class="on"><strong>${i}</strong></button>
+													<button onclick="javascript:location.href='../admin/search.do?cp=${i}&keyword=<%=ml.getKeyword()%>'" class="on"><strong>${i}</strong></button>
 												</c:when>
 											<c:otherwise>
-												 <button onclick="javascript:location.href='../admin/member_info.do?cp=${i}'">${i}</button>
+												 <button onclick="javascript:location.href='../admin/search.do?cp=${i}&keyword=<%=ml.getKeyword()%>'">${i}</button>
 											</c:otherwise>
 											</c:choose>
 									</c:forEach>
 									<c:if test="${memberListResult.currentPage ne memberListResult.totalPageCount}">
-									<button  onclick="javascript:location.href='../admin/member_info.do?cp=${memberListResult.currentPage+1}'">&#x0203A;</button>
+									<button  onclick="javascript:location.href='../admin/search.do?cp=${memberListResult.currentPage+1}&keyword=<%=ml.getKeyword()%>'">&#x0203A;</button>
 									</c:if>
-									<button  onclick="javascript:location.href='../admin/member_info.do?cp=${memberListResult.totalPageCount}'">&#x000BB;</button>
-
+									<button  onclick="javascript:location.href='../admin/search.do?cp=${memberListResult.totalPageCount}&keyword=<%=ml.getKeyword()%>'">&#x000BB;</button>
 								</div>
                             <!-- /.table-responsive -->
                             
@@ -612,7 +622,31 @@
         });
     });
     </script>
-
+	<script>
+	$(document).ready(function() {
+		$('#search_button1').click(function(){
+			var keyword = $('#search_input1').val();
+			location.href="../admin/search.do?cp=1&keyword="+keyword;
+		});
+		$('#search_input1').keypress(function(event){
+		     if ( event.which == 13 ) {
+		         $('#search_button1').click();
+		         return false;
+		     }
+		});
+		
+		$('#search_button2').click(function(){
+			var keyword = $('#search_input2').val();
+			location.href="../admin/search.do?cp=1&keyword="+keyword;
+		});
+		$('#search_input2').keypress(function(event){
+		     if ( event.which == 13 ) {
+		         $('#search_button2').click();
+		         return false;
+		     }
+		});
+	});
+</script>
 </body>
 
 </html>

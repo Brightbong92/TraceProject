@@ -22,41 +22,61 @@ import tp.vo.MemberInfo;
 @AllArgsConstructor
 public class AdminServiceImpl implements AdminService {
 	private AdminMapper adminMapper;
-	   private NoticeMapper noticeMapper;
-	   
-	   @Override
-	   public MemberListResult getMemberListResult(int cp, int ps) {
-	      int totalCount = adminMapper.memberCount();
-	      MemberPagingVo memberPagingVo = new MemberPagingVo(cp, ps);
-	      List<Member> list = adminMapper.memberList(memberPagingVo);
-	      List<MemberVo> vip_list = adminMapper.vipMemberList();
-	      List<MemberVo> review_list = adminMapper.reviewMemberList();
-	      List<MemberVo> point_list = adminMapper.pointMemberList();
-	      List<MemberVo> new_list = adminMapper.newMemberList();
-	      return new MemberListResult(cp, totalCount, ps, list, vip_list, review_list, point_list, new_list);
-	   }
-	   @Override
-	   public void insertN(Notice notice) {
-	      noticeMapper.insertN(notice);
-	   }
-	   @Override
-	   public MemberInfo getMemberInfo(String mem_email) {
-	      List<Member> memberInfo = adminMapper.memberInfo(mem_email);
-	      return new MemberInfo(memberInfo);
-	   }
-	   @Override
-	   public void updateN(String mem_email) {
-	      adminMapper.updateN(mem_email);
-	   }
-	   @Override
-	   public MentorListResult getMentorListResult(int cp, int ps) {
-	      int totalCount = adminMapper.mentorCount();
-	      MentorPagingVo mentorPagingVo = new MentorPagingVo(cp, ps);
-	      List<Mentor_List> list = adminMapper.mentorList(mentorPagingVo);
-	      return new MentorListResult(cp, totalCount, ps, list);
-	   }
-	   @Override
-	   public void mentorApprove(String mem_email) {
-	      adminMapper.mentorApprove(mem_email);
-	   }
+   private NoticeMapper noticeMapper;
+   
+   @Override
+   public MemberListResult getMemberListResult(int cp, int ps) {
+      int totalCount = adminMapper.memberCount();
+      MemberPagingVo memberPagingVo = new MemberPagingVo(cp, ps);
+      List<Member> list = adminMapper.memberList(memberPagingVo);
+      List<MemberVo> vip_list = adminMapper.vipMemberList();
+      List<MemberVo> review_list = adminMapper.reviewMemberList();
+      List<MemberVo> point_list = adminMapper.pointMemberList();
+      List<MemberVo> new_list = adminMapper.newMemberList();
+      return new MemberListResult(cp, totalCount, ps, list, vip_list, review_list, point_list, new_list);
+   }
+   
+   @Override
+   public MemberListResult getMemberListResultSearch(int cp, int ps, String keyword) {
+	  int totalCount = adminMapper.memberSearchCount(keyword);
+      MemberPagingVo memberPagingVo = new MemberPagingVo(keyword, cp, ps);
+      List<Member> list = adminMapper.memberSearchList(memberPagingVo);
+      List<MemberVo> vip_list = adminMapper.vipMemberList();
+      List<MemberVo> review_list = adminMapper.reviewMemberList();
+      List<MemberVo> point_list = adminMapper.pointMemberList();
+      List<MemberVo> new_list = adminMapper.newMemberList();
+      return new MemberListResult(cp, totalCount, ps, list, vip_list, review_list, point_list, new_list,keyword);
+   }
+   @Override
+   public void insertN(Notice notice) {
+      noticeMapper.insertN(notice);
+   }
+   @Override
+   public MemberInfo getMemberInfo(String mem_email) {
+      List<Member> memberInfo = adminMapper.memberInfo(mem_email);
+      return new MemberInfo(memberInfo);
+   }
+   @Override
+   public void updateState(String mem_email) {
+      adminMapper.updateState(mem_email);
+   }
+   @Override
+   public MentorListResult getMentorListResult(int cp, int ps) {
+      int totalCount = adminMapper.mentorCount();
+      MentorPagingVo mentorPagingVo = new MentorPagingVo(cp, ps);
+      List<Mentor_List> list = adminMapper.mentorList(mentorPagingVo);
+      return new MentorListResult(cp, totalCount, ps, list);
+   }
+   @Override
+   public void mentorApproved(String mem_email) {
+      adminMapper.mentorApproved(mem_email);
+   }
+   @Override
+   public void mentorDisapproved(String mem_email) {
+      adminMapper.mentorDisapproved(mem_email);
+   }
+   @Override
+   public void updateAuth(String mem_email) {
+      adminMapper.updateAuth(mem_email);
+   }
 }

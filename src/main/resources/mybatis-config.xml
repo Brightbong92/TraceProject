@@ -25,6 +25,9 @@
 	   <typeAlias alias="NoticeVo" type="tp.vo.NoticeVo"/>
 	   <typeAlias alias="NoticeListResult" type="tp.vo.NoticeListResult"/>
 	   
+	   <typeAlias alias="Disabled" type="tp.domain.Disabled"/>
+	   <typeAlias alias="Points" type="tp.domain.Points"/>
+	   <typeAlias alias="PointInfo" type="tp.vo.PointInfo"/>
    </typeAliases>
    
    <mappers>
@@ -38,6 +41,8 @@
    	   <mapper resource="tp/notice/mapper/NoticeMapper.xml"/>
    	   <mapper resource="tp/mentor/mapper/MentorMapper.xml"/>
    	   <mapper resource="tp/index/mapper/IndexMapper.xml"/>
+   	   <mapper resource="tp/admin/mapper/AdminChartsMapper.xml"/>
+   	   <mapper resource="tp/mypage/mapper/MypageMapper.xml"/>
    </mappers>
     
 </configuration>

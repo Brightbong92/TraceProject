@@ -314,7 +314,14 @@
     <version>1.4</version>
 	</dependency>
 	
-	
+	<!-- 문자인증 -->
+	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient --> 
+	<dependency> 
+		<groupId>org.apache.httpcomponents</groupId> 
+		<artifactId>httpclient</artifactId> 
+		<version>4.5.3</version> 
+	</dependency>
+
 			
 	<!-- 트랜잭션 
 	<dependency>

@@ -26,12 +26,15 @@
   <link href="../css/paging.css" rel="stylesheet">
   <!-- 평점 CSS -->
   <link href="../css/star.css" rel="stylesheet">
+  
+  <!-- 버튼/카트 HOVER CSS -->
+  <link href="../css/lazy.css" rel="stylesheet">
 </head>
 
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#142065 !important" >  <!-- 머리색 -->
     <div class="container">
       <a class="navbar-brand" href="/"><img src="../images/logo.png" width="110" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
@@ -90,7 +93,7 @@
 	          </c:choose>
 
 	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-	              <a class="dropdown-item" href="#">마이페이지</a>
+	              <a class="dropdown-item" href="../mypage/myInfo.do">마이페이지</a>
 	              <a class="dropdown-item" href="#">개인정보 수정</a>
 	              <a class="dropdown-item" href="#">수강중인멘토링</a>
 	              <c:if test="${loginUser.mem_auth > 0}">
@@ -109,7 +112,7 @@
           <!-- 관리자로그인 했을시 나오게끔 -->
          <c:if test="${loginUser.mem_email eq 'admin'}">
 	          <li class="nav-item">
-	            <a class="nav-link" href="../admin/dashboard.do" >
+	            <a class="nav-link" href="../admin/search.do?cp=1&keyword=" >
 	              	관리자 페이지
 	            </a>
 					
