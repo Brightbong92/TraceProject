@@ -25,10 +25,10 @@
     <c:forEach items="${mentoringListResultSearch.mtr_list}" var="list">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">${list.mtr_subject}</a>
+              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}">${list.mtr_subject}</a>
             </h4>
 				<p class="card-text"><b>${list.mtr_hashtag}</b></p>
 				<p class="card-text">지역:<b>${list.mtr_area}</b></p>

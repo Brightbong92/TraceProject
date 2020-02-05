@@ -10,6 +10,16 @@
 	   <typeAlias alias="Member" type="tp.domain.Member"/>
 	   <typeAlias alias="Email_Auth" type="tp.domain.Email_Auth"/>
 	   <typeAlias alias="MentoringViewPageVo" type="tp.vo.MentoringViewPageVo"/>
+	   <!-- 멘토링 qa -->
+	   <typeAlias alias="Mentoring_QA" type="tp.domain.Mentoring_QA"/>
+	   <typeAlias alias="Mentoring_QA_Reply" type="tp.domain.Mentoring_QA_Reply"/>
+	   <typeAlias alias="MentoringQAPagingVo" type="tp.vo.MentoringQAPagingVo"/>
+	   <!-- 멘토링리뷰 -->
+	   <typeAlias alias="Mentoring_Review" type="tp.domain.Mentoring_Review"/>
+	   <typeAlias alias="MentoringReviewPagingVo" type="tp.vo.MentoringReviewPagingVo"/>
+	   <typeAlias alias="Mentoring_Review_File" type="tp.domain.Mentoring_Review_File"/>
+	   <typeAlias alias="Mentoring_Review_Like" type="tp.domain.Mentoring_Review_Like"/>
+	   <typeAlias alias="Mentoring_Review_Reply" type="tp.domain.Mentoring_Review_Reply"/>
 	   
 	   <!-- 성지 -->
 	   <typeAlias alias="MemberPagingVo" type="tp.vo.MemberPagingVo"/>
@@ -32,7 +42,8 @@
    	   <mapper resource="tp/mentoring/mapper/MentoringMapper.xml"/>
    	   <mapper resource="tp/login/mapper/LoginMapper.xml"/>
    	   <mapper resource="tp/join/mapper/JoinMapper.xml"/>
-   	   
+   	   <mapper resource="tp/qa/mapper/QAMapper.xml"/>
+   	   <mapper resource="tp/review/mapper/ReviewMapper.xml"/>
 	<!-- 성지 -->   	   
    	   <mapper resource="tp/admin/mapper/AdminMapper.xml"/>
    	   <mapper resource="tp/notice/mapper/NoticeMapper.xml"/>

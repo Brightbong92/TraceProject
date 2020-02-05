@@ -5,7 +5,21 @@
 <mapper namespace="tp.mentor.mapper.MentorMapper">
  	<insert id="mentor_apply" parameterType="hashmap">
 		insert into MENTOR_LIST values (#{mem_email},#{ml_name},#{ml_phone},#{ml_yourself},#{ml_ofname},#{ml_fname},#{mtrcg_no},1)
-		
 	</insert>
+ 	
+ 	
+ 	<!-- 멘토 프로필 보기 -->
+ 	<select id="selectMentor_List" resultType="Mentor_List" parameterType="String">
+ 		<![CDATA[
+ 		SELECT * FROM MENTOR_LIST WHERE MEM_EMAIL like #{mem_email}
+ 		]]>
+ 	</select>
+ 	
+ 	<!-- 멘토 프로필(프로필사진가져오기위해) 보기 -->
+ 	<select id="selectMentorMemberInfo" resultType="Member" parameterType="String">
+ 		<![CDATA[
+ 		SELECT * FROM MEMBER WHERE MEM_EMAIL LIKE #{mem_email}
+ 		]]>
+ 	</select>
  	
 </mapper>

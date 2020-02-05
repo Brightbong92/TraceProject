@@ -1,113 +1,61 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="kr">
+
 <head>
-<!-- Bootstrap Core CSS -->
-    <link href="../resources/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="../resources/admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <!-- DataTables CSS -->
-    <link href="../resources/admin/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+  <title>멘토 프로필 페이지</title>
 
-    <!-- DataTables Responsive CSS -->
-    <link href="../resources/admin/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="../resources/admin/dist/css/sb-admin-2.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="../css/modern-business.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="../resources/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<title>회원 상세정보</title>
 </head>
-<body onresize="parent.resizeTo(800,300)" onload="parent.resizeTo(800,300)">
-<center>
-<tr/><tr/><tr/>
-<table  width="100%" class="table table-striped table-bordered table-hover" id="">
-<thead>
-<tr>
-		<th>이메일</th>
-		<th>닉네임</th>
-		<th>나이대</th>
-		<th>성별</th>
-		<th>포인트</th>
-		<th>계정권한</th>
-		<th>계정상태</th>
-		<th>가입일</th>
-		</tr>
-</thead>
-<tbody>
-	<c:forEach items="${memberInfoResult.memberInfo}" var="member">
-		<tr class="odd gradeX">
-		<td>${member.mem_email}</td>
-		
-		<td>${member.mem_nick}</td>
-		
-		<td>${member.mem_age}대</td>
-		
-		<c:if test="${member.mem_gender eq 1}">
-		<td>남성</td>
-		</c:if>
-		<c:if test="${member.mem_gender eq 2}">
-		<td>여성</td>
-		</c:if>
-		
-		<td>${member.mem_point}</td>
-		
-		<c:if test="${member.mem_auth eq 0}">
-		<td>일반회원</td>
-		</c:if>
-		<c:if test="${member.mem_auth eq 1}">
-		<td>멘토</td>
-		</c:if>
-		<c:if test="${member.mem_auth eq 2}">
-		<td>관리자</td>
-		</c:if>
-		
-		<c:if test="${member.mem_state eq 0}">
-		<td>활성화</td>
-		</c:if>
-		<c:if test="${member.mem_state eq 1}">
-		<td>활성화 & 신고</td>
-		</c:if>
-		<c:if test="${member.mem_state eq 2}">
-		<td>비활성화</td>
-		</c:if>
-		<c:if test="${member.mem_state eq 3}">
-		<td>이메일 인증 전</td>
-		</c:if>
-		
-		<td>${member.mem_rdate}</td>
-		</tr>
-	</c:forEach>
-</tbody>
-</table>
-<c:forEach items="${memberInfoResult.memberInfo}" var="member">
-	<c:if test="${member.mem_state ne 2}">
-		<c:if test="${member.mem_auth ne 2}">
-			<a href="../admin/disabled.do?mem_email=${member.mem_email}" onClick="window.close()" class="btn btn-info">비활성화 하기</a>
-		</c:if>
-	</c:if>
-</c:forEach>
-</center>
 
-<!-- jQuery -->
-    <script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
+<body>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../resources/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../resources/admin/vendor/metisMenu/metisMenu.min.js"></script>
+  <!-- Page Content -->
+  <div class="container">
 
-    <!-- DataTables JavaScript -->
-    <script src="../resources/admin/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../resources/admin/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="../resources/admin/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">${mProfile.mentor_member_info.mem_nick}
+      <small>멘토님 정보입니다</small>
+    </h1>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="../resources/admin/dist/js/sb-admin-2.js"></script>
+    <!-- Blog Post -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <a href="#">
+              <img class="img-fluid rounded" src="../resources/profileImage/${mProfile.mentor_member_info.mem_profile}" alt="">
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <h2 class="card-title">자기소개</h2>
+            <p class="card-text">${mProfile.mentor_list_info.ml_yourself}</p>
+            <a href="#" class="btn btn-primary">채팅하기 </a><!-- &rarr; -->
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        	가입일: ${mProfile.mentor_member_info.mem_rdate}
+      </div>
+    </div>
+
+    
+</div>
+  <!-- /.container -->
+  
 </body>
+
 </html>
