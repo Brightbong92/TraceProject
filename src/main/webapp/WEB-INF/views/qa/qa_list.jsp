@@ -37,7 +37,8 @@
     
     
     
-    <div class="card mb-4">
+    <!--  <div class="card mb-4">-->
+    <div>
       <div class="card-body">
         <div class="row">
           <img class="d-flex mr-3 rounded-circle" src="../resources/profileImage/${qa_list.mem_profile}" alt="" width="50px" height=50px>
@@ -47,6 +48,7 @@
             <p class="card-text" style="margin-left:50px;">${qa_list.mtrqa_content}</p>
         </div>
       </div>
+      <hr>
       
       
      <c:forEach items="${listResult.mtr_qa_reply_list}" var="qa_reply_list">
@@ -61,6 +63,7 @@
 	 </c:if>
     	 </c:forEach>
     </c:forEach>
+    <hr>
     
        <c:if test="${listResult.mem_email eq loginUser.mem_email}">
         <!-- 답변자 =답변달기 Form -->
