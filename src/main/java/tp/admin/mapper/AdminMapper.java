@@ -2,7 +2,7 @@ package tp.admin.mapper;
 
 import java.util.List;
 
-
+import tp.domain.Disabled;
 import tp.domain.Member;
 import tp.domain.Mentor_List;
 import tp.vo.MemberPagingVo;
@@ -20,6 +20,7 @@ public interface AdminMapper {
    List<MemberVo> newMemberList();
    
    List<Member> memberInfo(String mem_email);
+   List<Disabled> disInfo(String mem_email);
    void updateState(String mem_email);
    void updateAuth(String mem_email);
    

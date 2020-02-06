@@ -193,7 +193,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../admin/dashboard.do">관리자 페이지</a>
+                <a class="navbar-brand" href="../admin/search.do?cp=1&keyword=">관리자 페이지</a>
             </div>
             <!-- /.navbar-header -->
 

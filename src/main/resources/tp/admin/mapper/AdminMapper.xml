@@ -72,4 +72,7 @@
 	<update id="updateAuth" parameterType="String">
 		update MEMBER set mem_auth= 0 where mem_email = #{mem_email}
 	</update>
+	<select id="disInfo" resultType="Disabled" parameterType="String">
+		select dis_improve from DISABLED where mem_email = #{mem_email}
+	</select>
 </mapper>

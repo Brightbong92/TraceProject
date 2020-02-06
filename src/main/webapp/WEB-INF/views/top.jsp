@@ -41,7 +41,7 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#142065 !important" >  <!-- 머리색 -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important" >  <!-- 머리색 -->
     <div class="container">
       <a class="navbar-brand" href="/"><img src="../images/logo.png" width="110" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
@@ -58,18 +58,18 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto" >
           <li class="nav-item">
-            <a class="nav-link" href="../notice/list.do">공지사항</a>
+            <a class="nav-link" href="../notice/list.do" style="color:black;">공지사항</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../mentor/mentor_apply.do">멘토신청</a>
+            <a class="nav-link" href="../mentor/mentor_apply.do" style="color:black;">멘토신청</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../hobbytest/hobby_test.do">취미테스트</a>
+            <a class="nav-link" href="../hobbytest/hobby_test.do" style="color:black;">취미테스트</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black;">
               	멘토링수업
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
@@ -88,27 +88,27 @@
 	          <c:choose>
 	          
 	          <c:when test="${loginUser.mem_auth == 0}">
-		          	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black;">
 	              		${loginUser.mem_nick} 님
 	                </a>
 		          </c:when>
 		          
 	          <c:when test="${loginUser.mem_auth == 1}">
-		            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black;">
 		              	${loginUser.mem_nick} 멘토님
 		            </a>
 		          </c:when>
 		          
 		          <c:otherwise>
-		            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black;">
 		              	${loginUser.mem_nick} 님
 		            </a>
 		          </c:otherwise>
     
 	          </c:choose>
 
-	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-	              <a class="dropdown-item" href="../mypage/myInfo.do">마이페이지</a>
+	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog" >
+	              <a class="dropdown-item" href="../mypage/myInfo.do" >마이페이지</a>
 	              <a class="dropdown-item" href="#">개인정보 수정</a>
 	              <a class="dropdown-item" href="#">수강중인멘토링</a>
 	              <c:if test="${loginUser.mem_auth > 0}">
@@ -121,13 +121,13 @@
            <!-- 로그인안했을 시 나오게끔 -->
 	      <c:if test="${empty loginUser}">
 		          <li class="nav-item">
-		            <a class="nav-link" href="../login/login.do">로그인</a>
+		            <a class="nav-link" href="../login/login.do" style="color:black;">로그인</a>
 		          </li>
           </c:if>
           <!-- 관리자로그인 했을시 나오게끔 -->
          <c:if test="${loginUser.mem_email eq 'admin'}">
 	          <li class="nav-item">
-	            <a class="nav-link" href="../admin/search.do?cp=1&keyword=" >
+	            <a class="nav-link" href="../admin/search.do?cp=1&keyword=" style="color:black;" >
 	              	관리자 페이지
 	            </a>
 					

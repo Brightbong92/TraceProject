@@ -85,7 +85,7 @@ public class MypageController {
 		session.removeAttribute("loginUser");
 		return "index/index";
 	}
-	@PostMapping("changeprofile.do")
+	@PostMapping("changeProfile.do")
 	public String loadImg(String mem_email, MultipartFile mem_profile,String fname, HttpServletRequest request) {
 		String ofname = mem_profile.getOriginalFilename();
 		log.info("#ofname : " + ofname);

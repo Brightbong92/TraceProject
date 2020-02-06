@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import tp.admin.mapper.AdminMapper;
+import tp.domain.Disabled;
 import tp.domain.Member;
 import tp.domain.Mentor_List;
 import tp.domain.Notice;
@@ -54,7 +55,8 @@ public class AdminServiceImpl implements AdminService {
    @Override
    public MemberInfo getMemberInfo(String mem_email) {
       List<Member> memberInfo = adminMapper.memberInfo(mem_email);
-      return new MemberInfo(memberInfo);
+      List<Disabled> disInfo = adminMapper.disInfo(mem_email);
+      return new MemberInfo(memberInfo, disInfo);
    }
    @Override
    public void updateState(String mem_email) {

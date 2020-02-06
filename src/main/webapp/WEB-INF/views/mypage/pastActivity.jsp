@@ -48,7 +48,7 @@ function setImg() {
 			<span class="profile-name cut-txt" align="center">${loginUser.mem_nick} 님</span>
 			<br/>
 			<label class="btn btn-primary btn-file" style="margin-top:20px;">프로필 사진 편집
-			<form id="form" name="changeProfile" action="../mypage/changeprofile.do" method="post" enctype="multipart/form-data">
+			<form id="form" name="changeProfile" action="../mypage/changeProfile.do" method="post" enctype="multipart/form-data">
        		 <input type='hidden' id="email" name='mem_email' value="${loginUser.mem_email}" />
        		 <input type="file" style="display: none;" name="mem_profile" onchange="setImg()" >
        		 </form>
@@ -71,7 +71,7 @@ function setImg() {
       <div class="col-lg-3 mb-4 bora">
         <div class="list-group bora1" style="font-size:16px;" >
           <a href="../mypage/myInfo.do" class="aaa" style="color:gray;">내 정보 관리</a>
-          <a href="../mypage/myActivity.do" class="aaa" style="color:white;">나의 활동 내역</a>
+          <a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">나의 활동 내역</a>
           <a href="../mypage/myPoint.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">포인트</a>
           <a href="../mypage/myPayment.do" class="aaa" style="color:gray;">구매 &환불 내역 </a>
           <a href="#" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
