@@ -2,6 +2,13 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <jsp:include page="../top.jsp" />
 
+<style>
+table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  align: center;
+}
+</style>
 <body>
 <!-- 클립보드 api -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
@@ -32,27 +39,58 @@
         <img class="img-fluid" src="../resources/mentoring_list_images/${listResult.mtr_profile}" alt="">
       </div>
 
-      <div class="col-md-4">
+
+
+     <!--   <div class="col-md-4">-->
+     <div class="col-md-4">
 
       <!-- 멘토링 옵션들 -->
-        <h3 class="my-3">멘토링 타임</h3>
+        <!-- <h3 class="my-3">멘토링 타임</h3>-->
                 <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">멘토링 옵션들</h5>
+        <!-- <div class="card my-4">-->
+        <%-- 
+        <div>
+          <h5 class="card-header">옵션</h5>
           <div class="card-body">
 	        <c:forEach items="${listResult.detail_Info_List}" var="timelist">
 	        	<span>시작시간: ${timelist.mtrdi_stime}</span><br/>
 	        	<span>종료시간: ${timelist.mtrdi_etime}</span><br/>
 	        	<span>최대인원: ${timelist.mtrdi_max_pcnt}</span>&nbsp;
-	        	<span>현재인원: ${timelist.mtrdi_now_pcnt}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	        	<button>옵션선택</button><br/><br/>
+	        	<span>현재인원: ${timelist.mtrdi_now_pcnt}</span><br/>
+	        	<!-- <button type="button" mtrdiseq="${timelist.mtrdi_seq}" onclick="selectOption(this)">옵션선택</button><br/><br/>-->
+	        	<button type="button" class="btn btn-primary" mtrdi_seq="${timelist.mtrdi_seq}" onclick="goPaymentForm(this)">결제하기</button>
+				<button type="button" class="btn btn-primary" mtrdi_seq="${timelist.mtrdi_seq}" onclick="goCart(this)">장바구니</button><br/><br/>
 	        </c:forEach>
           </div>
         </div>
-
-        <h3 class="my-3">결제 / 장바구니</h3>
-			<button>결제하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
-			<button>장바구니</button>
+		--%>
+		
+	    <div>
+          <h5 class="card-header">옵션</h5>
+          <table>
+          <tbody>
+          <th>시간</th>
+          <th>인원</th>
+          <th>선택</th>
+          
+	        <c:forEach items="${listResult.detail_Info_List}" var="timelist">
+	        	<tr>
+	        	<td style="width:200px;"><span>${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
+	        	<td style="width:50px;"><span>${timelist.mtrdi_max_pcnt}</span>/<span>${timelist.mtrdi_now_pcnt}</span></td>
+	        	<td><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" onclick="selectOption(this)"></td>
+	        	</tr>
+	        </c:forEach>
+	        </tbody>
+          </table>
+        </div>	
+		
+		
+		
+        <!--  <h3 class="my-3">결제 / 장바구니</h3>-->
+			<button type="button" class="btn btn-primary" onclick="goPaymentForm()">결제하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn btn-primary" onclick="goCart()">장바구니</button>
+		
+			
         </div>
         
     </div>
@@ -136,12 +174,38 @@
   
 
 <script>
+	optionList = [];
+	
 	function goQABoard(){
 		location.href="../qa/qaList.do?mtr_seq=${listResult.mtr_seq}&cp=1";
 	}
 	function goReviewBoard() {
 		location.href="../review/reviewList.do?mtr_seq=${listResult.mtr_seq}&cp=1";
 	}
+	function selectOption(obj){
+		var flag = $(obj).is(":checked");
+		if(flag == true) {
+			optionList.push($(obj).attr("mtrdi_seq"));
+			//alert("체크 시 배열: " + optionList);
+		}else {
+			var index = optionList.indexOf($(obj).attr("mtrdi_seq"));
+			if(index > -1) {
+				optionList.splice(index, 1);
+			}
+			//alert("체크해제 시 배열 : " + optionList);
+		}
+	}
+	function goPaymentForm(){
+		
+	}
+	function goCart(){
+		if(optionList.length == 0) {
+			alert("선택하신 상품이 없습니다.");
+		}else {
+			//alert("선택값 있음");
+		}
+	}	
+	
 </script>
 
 
