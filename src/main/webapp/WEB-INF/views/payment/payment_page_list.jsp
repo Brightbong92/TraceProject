@@ -74,7 +74,7 @@
 				<c:if test="${loginUser.mem_point ne 0}">
 				<input type="text" id="pointText" placeholder="포인트사용"/>
 				<button type="button" style="float:right;" onclick="pointUse();">사용하기</button>
-				
+				<button type="button" id="pointCheck">포인트누적체크</button>
 				</c:if>
 			</div>
 		<hr>
@@ -102,6 +102,12 @@ $(document).ready(function(){
 	usedPoint = $("#usedPointTot").val();
 	
 	
+	
+	$("#pointCheck").on('click', function(){
+		alert("누적포인트: "+ usedPoint);
+		
+	});
+	
 	$("#pi_phone").on('keyup',function() {
 		if($("#pi_phone").val().length > 11) {
 			alert("길이가 너무 길어요.");
@@ -124,27 +130,35 @@ $(document).ready(function(){
 });
 	function pointUse(){//포인트사용
 		if($("#pointText").val() != "") {
+			
+			
 			//할인부분
 			var use_point = $("#pointText").val();//사용할 포인트
 			var origin_point = $("#mem_point").text();//가지고있는 포인트
-			var left_point = parseInt(origin_point) - parseInt(use_point);//포인트계산
-			$("#mem_point").text(left_point);//남은 포인트
-			$("#pointText").val("");//텍스트 초기화
 			
-			//포인트사용 누적부분
-			usedPoint = parseInt(usedPoint) + parseInt(use_point);//사용되는 포인트계산
-			$("#usedPointTot").val(usedPoint);//누적된 사용포인트
-			//alert("사용된 포인트누계: " + $("#usedPointTot").val());
-			
-			//결제금액부분
-			var origin_pi_price = $("#pi_price").text();
-			var sale_pi_price = parseInt(origin_pi_price) - parseInt(use_point);
-			if(sale_pi_price < 0) {
-				alert("결제금액이 -는 될 수 없습니다.");
-				$("#mem_point").text($("#mem_point").attr("point"));
-			}else {
-				$("#pi_price").text(sale_pi_price);
+			if(parseInt(use_point) < parseInt(origin_point)){//사용포인트 < 가지고있는포인트
+				var left_point = parseInt(origin_point) - parseInt(use_point);//포인트계산
+				$("#mem_point").text(left_point);//남은 포인트
+				$("#pointText").val("");//텍스트 초기화
+
+
+				//결제금액부분
+				var origin_pi_price = $("#pi_price").text();
+				var sale_pi_price = parseInt(origin_pi_price) - parseInt(use_point);
+				if(sale_pi_price <= 0) {
+					alert("결제금액이 '-' or 0원이 될 수 없습니다.");
+					$("#mem_point").text($("#mem_point").attr("point"));
+				}else {
+					//포인트사용 누적부분
+					usedPoint = parseInt(usedPoint) + parseInt(use_point);//사용되는 포인트계산
+					$("#usedPointTot").val(usedPoint);//누적된 사용포인트
+					//alert("사용된 포인트누계: " + $("#usedPointTot").val());
+					$("#pi_price").text(sale_pi_price);
+				}
 			}
+				
+			
+			
 		}else {
 			alert("포인트를 입력 후 누르세요.");
 			return false;
