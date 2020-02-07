@@ -78,6 +78,7 @@
               <a class="dropdown-item" href="../mentoring/mentoring_list.do?sort=99">멘토링리스트</a>
               <a class="dropdown-item" href="../mentoring/list4.do">정렬방식 4</a>
               <a class="dropdown-item" href="../mentoring/list5.do">정렬방식 5</a>
+              <a class="dorpdown-item" href="../payment/purchaseOk.do">결제완료창테스트</a>
             </div>
           </li>
           

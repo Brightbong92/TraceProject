@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../top.jsp" %>
-<body>
 
   <!-- Page Content -->
   <div class="container">
@@ -118,7 +117,7 @@
 
   </div>
   <!-- /.container -->
-  </body>
+
 <script>
 	function goQAWriteForm(){
 		location.href="../qa/qaWriteForm.do?mtr_seq=${listResult.mtr_seq}";

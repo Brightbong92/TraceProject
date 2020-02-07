@@ -30,9 +30,6 @@
         margin-left: 8px;
     }
 </style>
-</head>
-
-<body>
   <!-- Page Content -->
   <div class="container">
 
@@ -94,7 +91,7 @@
             
              <tr>
             	<th>금액</th>
-            	<td><input type="text" class="form-control" name="mtr_price" id="mtr_price" placeholder="숫자만 입력가능"/></td>
+            	<td><input type="text" class="form-control" name="mtr_price" id="mtr_price" placeholder="숫자만 입력가능" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/></td>
             </tr>
             
             <tr>

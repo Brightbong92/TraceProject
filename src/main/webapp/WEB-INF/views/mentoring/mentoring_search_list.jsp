@@ -2,8 +2,6 @@
 <%@ page contentType="text/html; charset=utf-8" import="tp.vo.MentoringListResult"%>
 <jsp:include page="../top.jsp" />
 
-<body>
-
 
   <!-- Page Content -->
   <div class="container">
@@ -30,7 +28,7 @@
             <h4 class="card-title">
               <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}">${list.mtr_subject}</a>
             </h4>
-				<p class="card-text"><span class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
+				<p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
 				<p class="card-text">지역:<b>${list.mtr_area}</b></p>
 				<p class="card-text">금액:<b>${list.mtr_price}원</b></p>            
 					          <c:choose>

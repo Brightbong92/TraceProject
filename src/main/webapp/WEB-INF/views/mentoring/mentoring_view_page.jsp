@@ -9,7 +9,7 @@ table {
   align: center;
 }
 </style>
-<body>
+
 <!-- 클립보드 api -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
 
@@ -76,7 +76,7 @@ table {
 	        <c:forEach items="${listResult.detail_Info_List}" var="timelist">
 	        	<tr>
 	        	<td style="width:200px;"><span>${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
-	        	<td style="width:50px;"><span>${timelist.mtrdi_max_pcnt}</span>/<span>${timelist.mtrdi_now_pcnt}</span></td>
+	        	<td style="width:50px;"><span>${timelist.mtrdi_now_pcnt}</span>/<span>${timelist.mtrdi_max_pcnt}</span></td>
 	        	<td><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" onclick="selectOption(this)"></td>
 	        	</tr>
 	        </c:forEach>
@@ -119,13 +119,6 @@ table {
      <div>
      	${listResult.mtr_content}
      </div>
-    
-    
-    
-    
-    
-    
-    
     
     
     <!-- 멘토링 장소 -->
@@ -197,10 +190,22 @@ table {
 	}
 	function goPaymentForm(){
 		
+		if("${loginUser.mem_email}" == "") {
+			alert("로그인 후 이용가능합니다.");
+			return false;
+		}
+		
+		
+		if(optionList.length == 0) {
+			alert("선택하신 상품이 없습니다.");
+			return false;
+		}else {
+			location.href="../payment/paymentList.do?mtr_seq=${listResult.mtr_seq}&mtrdi_seqArr="+optionList+"&mem_email=${loginUser.mem_email}";
+		}
 	}
 	function goCart(){
 		if(optionList.length == 0) {
-			alert("선택하신 상품이 없습니다.");
+			//alert("선택하신 상품이 없습니다.");
 		}else {
 			//alert("선택값 있음");
 				location.href="../cart/setCart.do?optionList=" + optionList+"&mtr_seq=${listResult.mtr_seq}&mem_email=${loginUser.mem_email}";
