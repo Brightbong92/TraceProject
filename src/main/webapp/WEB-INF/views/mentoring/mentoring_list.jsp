@@ -34,7 +34,7 @@
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
 					            </h4>
-					            <p class="card-text"><span class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
+					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
 					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
 					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
 					            
@@ -116,7 +116,7 @@
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
 					            </h4>
-					            <p class="card-text"><span class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
+					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
 					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
 					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
 					            
@@ -198,7 +198,7 @@
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
 					            </h4>
-					            <p class="card-text"><span class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
+					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
 					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
 					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
 					            
@@ -280,7 +280,7 @@
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
 					            </h4>
-					            <p class="card-text"><span class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
+					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
 					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
 					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
 					            
@@ -362,7 +362,7 @@
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
 					            </h4>
-					            <p class="card-text"><span class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
+					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
 					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
 					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
 					            
@@ -444,7 +444,7 @@
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
 					            </h4>
-					            <p class="card-text"><span class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
+					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
 					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
 					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
 					            
@@ -526,7 +526,7 @@
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
 					            </h4>
-					            <p class="card-text"><span class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
+					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
 					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
 					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
 					            
@@ -609,7 +609,7 @@
 					            <h4 class="card-title">
 					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
 					            </h4>
-					            <p class="card-text"><span class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
+					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
 					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
 					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
 					            
@@ -699,22 +699,22 @@
 				  //var mtr_list = JSON.stringify(data.mtr_list);
 				 	for(m of data.mtr_list){
 				 		if(m.mtr_jumsu == 0){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 									  "<div class='starRev'><span class='starR'>별1</span><span class='starR'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
 				 		}else if(m.mtr_jumsu == 1){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
 				 		}else if(m.mtr_jumsu == 2){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
 				 		}else if(m.mtr_jumsu == 3){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
 				 		}else if(m.mtr_jumsu == 4){
-				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR on'>별4</span><span class='starR'>별5</span></div>");
 				 		}else if(m.mtr_jumsu == 5){
-				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
+				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
 							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR on'>별4</span><span class='starR on'>별5</span></div>");
 				 		}
 			  		}

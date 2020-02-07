@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tp.payment.mapper.PaymentMapper">
+	<select id="selectMentoring" resultType="Mentoring" parameterType="long">
+		<![CDATA[
+		SELECT * FROM MENTORING WHERE MTR_SEQ = #{mtr_seq}
+		]]>
+	</select>
+	
+	<select id="selectMentoringDetailInfo" resultType="Mentoring_Detail_Info" parameterType="long">
+		<![CDATA[
+		SELECT * FROM MENTORING_DETAIL_INFO WHERE MTRDI_SEQ = #{mtrdi_seq}
+		]]>
+	</select>
+	
+	<select id="selectMember" resultType="Member" parameterType="String">
+		<![CDATA[
+		SELECT * FROM MEMBER WHERE MEM_EMAIL = #{mem_email}
+		]]>
+	</select>
+	
+	<select id="selectPaymentInfo" resultType="Payment_Info" parameterType="long">
+		<![CDATA[
+		SELECT * FROM PAYMENT_INFO WHERE PI_SEQ = #{pi_seq}
+		]]>
+	</select>
+	
+</mapper>

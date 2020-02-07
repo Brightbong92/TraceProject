@@ -88,10 +88,20 @@
 		<context:component-scan base-package="tp.review.mapper"/>
 		<mybatis-spring:scan base-package="tp.review.mapper" />
 		
+	<!-- 결제 관련 -->	
+		<context:component-scan base-package="tp.payment.service"/>
+		<context:component-scan base-package="tp.payment.mapper" />
+		<mybatis-spring:scan base-package="tp.payment.mapper" />
+		
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
+
+	
+	
+	
 	<!-- Gmail -->
   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="smtp.gmail.com" />

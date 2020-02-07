@@ -8,6 +8,7 @@ delete from NOTICE;
 delete from EMAIL_AUTH;
 delete from MENTOR_LIST;
 delete from REFUND_INFO;
+delete from PAYMENT_DETAIL_INFO;
 delete from PAYMENT_INFO;
 delete from MENTORING_QA_REPLY;
 delete from MENTORING_QA;
@@ -17,6 +18,9 @@ delete from MENTORING_REVIEW_REPLY;
 delete from MENTORING_REVIEW_FILE;
 delete from MENTORING_REVIEW_LIKE;
 delete from MENTORING_REVIEW;
+
+
+
 
 delete from MENTORING_DETAIL_INFO;
 delete from MENTORING;
@@ -33,7 +37,10 @@ delete from MEMBER;
 
 --drop trigger문--
 drop trigger PAYMENT_TRI;
-drop trigger REFUND_TRI;
+
+drop trigger REFUND_TRI1;
+drop trigger REFUND_TRI2;
+
 drop trigger MENTOR_TRI1;
 drop trigger MENTOR_TRI2;
 
@@ -43,6 +50,7 @@ drop table EMAIL_AUTH;
 drop table MENTOR_LIST;
 
 drop table REFUND_INFO;
+drop table PAYMENT_DETAIL_INFO;
 drop table PAYMENT_INFO;
 drop table CART;
 
@@ -101,64 +109,64 @@ MEM_STATE number(1)
 );
 
 SET DEFINE OFF
-insert into MEMBER values('admin', '$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm', '관리자', '30~39', 1, '관리자사진.jpg', SYSDATE, 9999, 2, 0); 
---insert into MEMBER values('kk070@hanmail.net','','임성지','20',1,'TraceDefaultProfile.jpg',SYSDATE,0,1,1);
-insert into MEMBER values('a@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','임성지','20~29',1,'TraceDefaultProfile.jpg',SYSDATE,0,1,0);
+insert into MEMBER values('admin', '$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm', '관리자', '30', 2, '관리자사진.jpg', SYSDATE, 9999, 2, 1); 
+--insert into MEMBER values('kk070@hanmail.net','','임성지','20',1,'프로필사진.jpg',SYSDATE,0,1,1);
+insert into MEMBER values('a@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','임성지','20',1,'프로필사진.jpg',SYSDATE,0,1,1);
 
-insert into MEMBER values('b@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','장현봉','20~29',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('c@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김성태','20~29',1,'TraceDefaultProfile.jpg',SYSDATE,0,1,0);
-insert into MEMBER values('d@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','손영빈','30~39',1,'TraceDefaultProfile.jpg',SYSDATE,0,1,0);
-insert into MEMBER values('e@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김보라','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,1,0);
-insert into MEMBER values('f@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','모건일','20~29',1,'TraceDefaultProfile.jpg',SYSDATE,0,1,0);
-insert into MEMBER values('g@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','공병찬','20~29',1,'TraceDefaultProfile.jpg',SYSDATE,0,1,0);
-insert into MEMBER values('h@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','송승훈','20~29',1,'TraceDefaultProfile.jpg',SYSDATE,0,1,0);
-insert into MEMBER values('i@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','윤별','20~29',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('j@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','안정은','20~29',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('k@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김소담','20~29',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
+insert into MEMBER values('b@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','장현봉','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('c@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김성태','20',1,'프로필사진.jpg',SYSDATE,0,1,1);
+insert into MEMBER values('d@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','손영빈','20',1,'프로필사진.jpg',SYSDATE,0,1,1);
+insert into MEMBER values('e@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김보라','20',1,'프로필사진.jpg',SYSDATE,0,1,1);
+insert into MEMBER values('f@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','모건일','20',1,'프로필사진.jpg',SYSDATE,0,1,1);
+insert into MEMBER values('g@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','공병찬','20',1,'프로필사진.jpg',SYSDATE,0,1,1);
+insert into MEMBER values('h@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','송승훈','20',1,'프로필사진.jpg',SYSDATE,0,1,1);
+insert into MEMBER values('i@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','윤별','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('j@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','안정은','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('k@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김소담','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
 
-insert into MEMBER values('l@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','강현호','15~19',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('m@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','강지환','30~39',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('n@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','강수민','40~49',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('o@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','강옥순','40~49',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('p@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','고현주','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('q@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','고지은','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('r@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','구현덕','50~59',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('s@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김미애','50~59',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('t@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박정은','50~59',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('u@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박은정','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
+insert into MEMBER values('l@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','강현호','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('m@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','강지환','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('n@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','강수민','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('o@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','강옥순','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('p@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','고현주','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('q@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','고지은','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('r@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','구현덕','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('s@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김미애','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('t@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박정은','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('u@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박은정','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
 
-insert into MEMBER values('v@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박미희','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('w@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박현주','40~49',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('x@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김민성','30~39',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('y@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김민수','40~49',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('z@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김민지','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('a1@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김민정','40~49',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('a2@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김지혜','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('a3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김소은','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('a4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박준형','60~69',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('a5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박종균','50~59',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
+insert into MEMBER values('v@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박미희','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('w@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박현주','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('x@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김민성','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('y@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김민수','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('z@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김민지','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('a1@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김민정','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('a2@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김지혜','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('a3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김소은','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('a4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박준형','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('a5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박종균','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
 
-insert into MEMBER values('a6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박홍도','50~59',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('a7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박홍기','20~29',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('a8@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박근회','50~59',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('a9@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박가연','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('b1@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박지연','40~49',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('b2@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박지은','20~29',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('b3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김종찬','20~29',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('b4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','한조온','15~19',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('b5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','장이수','60~69',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('b6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박상주','40~49',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
+insert into MEMBER values('a6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박홍도','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('a7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박홍기','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('a8@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박근회','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('a9@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박가연','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('b1@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박지연','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('b2@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박지은','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('b3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김종찬','20',1,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('b4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','한조온','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('b5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','장이수','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('b6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박상주','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
 
-insert into MEMBER values('b7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김영섭','40~49',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('b8@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김수지','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('b9@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','최문선','60~69',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('c1@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','임하영','15~19',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('c2@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지애','40~49',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('c3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','손수정','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('c4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','손수지','15~19',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('c5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','문지은','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('c6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','문지영','40~49',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-insert into MEMBER values('c7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김형섭','70~79',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
+insert into MEMBER values('b7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김영섭','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('b8@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김수지','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('b9@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','최문선','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('c1@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','임하영','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('c2@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지애','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('c3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','손수정','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('c4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','손수지','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('c5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','문지은','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('c6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','문지영','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
+insert into MEMBER values('c7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김형섭','20',2,'프로필사진.jpg',SYSDATE,0,0,1);
 
 
 --insert into MEMBER(MEM_EMAIL, MEM_AGE, MEM_GENDER, MEM_RDATE, MEM_POINT, MEM_AUTH, MEM_STATE) values('disken@naver.com','20-29',2,SYSDATE,0,0,1);
@@ -167,7 +175,9 @@ commit;
 
 
 
-select * from MEMBER;
+--select * from MEMBER;
+
+update MEMBER set mem_point = 300000 where mem_email = 'b@naver.com';
 
 --delete from MEMBER where MEM_EMAIL = 'kk070@hanmail.net';
 
@@ -434,8 +444,7 @@ insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020
 insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-28 15:00','2020-01-28 17:00', 10, 0, 3);
 insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-03-24 20:00','2020-03-24 23:00', 10, 0, 3);
 
---insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '재밋는디제잉이다잉', 10000, SYSDATE, '장현봉', '01021735831', 1, 3, 7, 'a@naver.com');
---select * from MENTORING_DETAIL_INFO;
+
 select MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI') as mtrdi_stime, TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI') as mtrdi_etime, MTRDI_MAX_PCNT, MTRDI_NOW_PCNT, MTR_SEQ  from MENTORING_DETAIL_INFO;
 
 commit;
@@ -693,10 +702,17 @@ PI_NAME varchar2(50),
 PI_PHONE varchar2(11),
 PI_STATE number,
 MTR_SEQ number,
-MTRDI_SEQ number,
 MEM_EMAIL constraint PAYMENT_INFO_FK references MEMBER(MEM_EMAIL) on delete cascade
 );
 create sequence PAYMENT_INFO_SEQ start with 1 minvalue 0 increment by 1 nocache;
+
+
+--결제세부정보--
+create table PAYMENT_DETAIL_INFO(
+MTRDI_SEQ number,
+PI_SEQ number constraint PAYMENT_DETAIL_INFO_FK references PAYMENT_INFO(PI_SEQ) on delete cascade
+);
+
 
 
 create or replace trigger PAYMENT_TRI
@@ -708,9 +724,23 @@ begin
 end;
 /
 
-insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '재밋는디제잉', 10000, SYSDATE, '장현봉', '01021735831', 1, 1, 1, 'a@naver.com');
+insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '자세교정밸런스요가', 25000, SYSDATE, '장현봉', '01021735831', 1, 2, 'b@naver.com');
+insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '하루종일스키', 25000, SYSDATE, '장현봉', '01021735831', 1, 3, 'b@naver.com');
+
+
+select * from mentoring where mtr_seq = 3;
+
+insert into PAYMENT_DETAIL_INFO values(2, 2);
+insert into PAYMENT_DETAIL_INFO values(3, 2);
+
+insert into PAYMENT_DETAIL_INFO values(7, 3);
+
+
 
 select * from payment_info;
+select * from payment_detail_info;
+
+
 
 --환불_정보--
 create table REFUND_INFO(
@@ -724,14 +754,13 @@ RI_RDATE date,
 RI_NAME varchar2(50),
 RI_PHONE varchar2(11),
 MTR_SEQ number,
-MTRDI_SEQ number,
 MEM_EMAIL constraint REFUND_INFO_FK references MEMBER(MEM_EMAIL) on delete cascade,
 PI_SEQ constraint REFUND_INFO_FK2 references PAYMENT_INFO(PI_SEQ) on delete cascade
 );
 create sequence REFUND_INFO_SEQ minvalue 0 start with 1 increment by 1 nocache;
 
 
-create or replace trigger REFUND_TRI
+create or replace trigger REFUND_TRI1
 after
     insert on REFUND_INFO for each row
 begin
@@ -741,11 +770,26 @@ begin
 end;
 /
 
-insert into REFUND_INFO values(REFUND_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '재밋는디제잉', 10000, SYSDATE, '장현봉', '01021735831', 2, 2, 'a@naver.com', 2);
+
+create or replace trigger REFUND_TRI2
+after
+    update of PI_STATE on PAYMENT_INFO for each row
+begin
+    IF (:NEW.PI_STATE = 0) THEN
+    delete from PAYMENT_DETAIL_INFO where PI_SEQ = :NEW.PI_SEQ;
+    end if;
+end;
+/
+
+
+insert into REFUND_INFO values(REFUND_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '자세교정밸런스요가', 25000, SYSDATE, '장현봉', '01021735831', 2, 'a@naver.com', 2);
+
+
 --update PAYMENT_INFO set PI_STATE = 0 where PI_SEQ = 1;
 
 select * from REFUND_INFO;
 --select * from PAYMENT_INFO;
+select * from PAYMENT_DETAIL_INFO;
 --공지사항--
 create table NOTICE(
 NOTI_SEQ number constraint NOTICE_PK primary key,
@@ -758,7 +802,7 @@ MEM_EMAIL varchar2(100)
 create sequence NOTICE_SEQ start with 1 minvalue 0 increment by 1 nocache;
 
 insert into NOTICE values(NOTICE_SEQ.nextval, '공지사항제목', '공지사항내용', SYSDATE, 0, 'admin');
-select * from NOTICE;
+--select * from NOTICE;
 
 
 --delete from MENTORING where MTR_SEQ = 1;
@@ -774,6 +818,3 @@ select * from NOTICE;
 
 --select tname from tab;
 --테이블 18개 확인
-
-select pi.MTR_SEQ, mtr.MTR_SUBJECT, mdi.MTRDI_STIME, mdi.MTRDI_MAX_PCNT, mdi.MTRDI_NOW_PCNT, pi.PI_RDATE  from MENTORING mtr, MENTORING_DETAIL_INFO mdi, PAYMENT_INFO pi where pi.MEM_EMAIL= 'a@naver.com' and mdi.MTRDI_STIME > SYSDATE and pi.MTR_SEQ = mtr.MTR_SEQ;
-
