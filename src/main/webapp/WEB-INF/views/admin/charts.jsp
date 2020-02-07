@@ -76,9 +76,16 @@
       ]); 
 
       // Set chart options
-      var options = {'title':'멤버 나이별 현황표',
-                     'width':390,
-                     'height':200};
+        var options = {
+              width: '100%',
+              height: '100%',
+              chartArea: {         
+                  left: "3%",
+                  top: "3%",
+                  height: "100%",
+                  width: "100%"
+              }
+      };
       
       var data1 = new google.visualization.DataTable();
       data1.addColumn('string', '멘토링');
@@ -116,9 +123,16 @@
 
 
       // Set chart options
-      var options1 = {'title':'카테고리 별 인원 분포도',
-                     'width':500,
-                     'height':200};
+       var options1 = {
+              width: '100%',
+              height: '100%',
+              chartArea: {         
+                  left: "3%",
+                  top: "3%",
+                  height: "100%",
+                  width: "100%"
+              }
+      };
       
      
       // Instantiate and draw our chart, passing in some options.
@@ -469,7 +483,7 @@
                         </div>
                        
                             <div class="panel-footer">
-                                <span class="pull-left">총회원 </span>
+                                <span class="pull-left"><strong>총회원 </strong></span>
                                 
                                 <div class="clearfix"></div>
                             </div>
@@ -491,7 +505,7 @@
                         </div>
                       
                             <div class="panel-footer">
-                                <span class="pull-left">총멘토링 </span>
+                                <span class="pull-left"><strong>총멘토링</strong> </span>
                                 
                                 <div class="clearfix"></div>
                             </div>
@@ -513,7 +527,7 @@
                         </div>
                     
                             <div class="panel-footer">
-                                <span class="pull-left">총멘토 수</span>
+                                <span class="pull-left"><strong>총멘토 수</strong></span>
                                 
                                 <div class="clearfix"></div>
                             </div>
@@ -535,7 +549,7 @@
                         </div>
                    
                             <div class="panel-footer">
-                                <span class="pull-left">후기수</span>
+                                <span class="pull-left"><strong>후기수</strong></span>
                                 
                                 <div class="clearfix"></div>
                             </div>
@@ -554,7 +568,7 @@
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            	멘토링 별 회원수
+                            	<strong>멘토링 별 회원수</strong>
                             
                         </div>
                         <!-- /.panel-heading -->
@@ -575,11 +589,13 @@
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            	신규회원 증가량
+
+                            	<strong>멤버 나이대별 현황</strong>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                         <div id="chart_div3"></div>
+                  
+                         <div id="chart_div"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -591,7 +607,7 @@
                     <div class="panel panel-default">
                     <div class="panel-heading">
                     	
-                    	탈퇴자 현황
+                    	<strong>탈퇴자 현황</strong>
                         </div>
                         <!-- /.panel-heading -->
                       <div class="panel-body">
@@ -607,11 +623,11 @@
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            	멤버 나이대별 현황
+                            	<strong>신규회원 증가량</strong>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="chart_div"></div>
+                                   <div id="chart_div3"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -620,7 +636,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            	최근 1주일 회원증가량 
+                            	<strong>최근 1주일 회원증가량</strong> 
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
