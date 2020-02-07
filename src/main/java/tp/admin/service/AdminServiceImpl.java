@@ -61,6 +61,7 @@ public class AdminServiceImpl implements AdminService {
    @Override
    public void updateState(String mem_email) {
       adminMapper.updateState(mem_email);
+      adminMapper.insertDisabled(mem_email);
    }
    @Override
    public MentorListResult getMentorListResult(int cp, int ps) {

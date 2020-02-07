@@ -172,5 +172,12 @@ public class LoginController {
 		
 		return "login/logout_msg";
 	}
+	@RequestMapping("disabled_mem.do")
+	public String disabled_mem(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("loginUser");
+		
+		return "login/disabled_msg";
+	}
 	
 }

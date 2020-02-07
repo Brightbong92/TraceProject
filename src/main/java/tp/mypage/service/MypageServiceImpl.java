@@ -17,6 +17,8 @@ import tp.domain.Member;
 import tp.domain.Points;
 import tp.mentor.service.MentorPath;
 import tp.mypage.mapper.MypageMapper;
+import tp.vo.ActivityListResult;
+import tp.vo.ActivityVo;
 import tp.vo.PointInfo;
 
 @Service
@@ -45,7 +47,8 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public PointInfo getPoint(String mem_email) {
 		List<Points> pointInfo = mypageMapper.getPoint(mem_email);
-		return new PointInfo(pointInfo);
+		long mem_point = mypageMapper.getMem_point(mem_email);
+		return new PointInfo(pointInfo, mem_point);
 	}
 	@Override
 	public Member saveImg(String mem_email, MultipartFile f) {
@@ -98,5 +101,10 @@ public class MypageServiceImpl implements MypageService {
 				fos.close();
 			}catch(IOException ie) {}
 		}
+	}
+	@Override
+	public ActivityListResult getActivity(String mem_email) {
+		List<ActivityVo> activityVo = mypageMapper.getActivity(mem_email);
+		return new ActivityListResult(activityVo);
 	}
 }

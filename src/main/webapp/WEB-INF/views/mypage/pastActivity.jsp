@@ -1,6 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <jsp:include page="../top.jsp" />
+
+<script>
+	if(${empty sessionScope.loginUser}){
+		alert("로그인 후 서비스 이용 가능합니다");
+		location.href="../login/login.do";
+	}
+</script>
 <head>
     <style>
         .btn-profile{
@@ -74,7 +81,7 @@ function setImg() {
           <a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">나의 활동 내역</a>
           <a href="../mypage/myPoint.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">포인트</a>
           <a href="../mypage/myPayment.do" class="aaa" style="color:gray;">구매 &환불 내역 </a>
-          <a href="#" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
+          <a href="../cart/cart.do?mem_email=${loginUser.mem_email}" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
         </div>
       </div>
       <br/>

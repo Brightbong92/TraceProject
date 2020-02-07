@@ -8,6 +8,8 @@ if(${requestScope.result} == <%=LoginSet.NO_ID%>){
 }else if(${result} == <%=LoginSet.NO_PWD%> ){
 	   alert("잘못된 비밀번호 입니다 ");
 	   location.href="./login.do";
+}else if(${loginUser.mem_state} == 2 ){
+	   location.href="./disabled_mem.do";
 }else{
 	   alert("환영합니다 ${sessionScope.loginUser.mem_nick} 님");
 	   location.href="../";

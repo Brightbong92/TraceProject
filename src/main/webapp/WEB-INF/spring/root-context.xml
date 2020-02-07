@@ -88,6 +88,11 @@
 		<context:component-scan base-package="tp.review.mapper"/>
 		<mybatis-spring:scan base-package="tp.review.mapper" />
 		
+	<!-- 장바구니 관련 -->
+		<context:component-scan base-package="tp.cart.service"/>
+		<context:component-scan base-package="tp.cart.mapper"/>
+		<mybatis-spring:scan base-package="tp.cart.mapper" />
+		
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>

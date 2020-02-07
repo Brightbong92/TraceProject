@@ -37,7 +37,12 @@
 	   
 	   <typeAlias alias="Disabled" type="tp.domain.Disabled"/>
 	   <typeAlias alias="Points" type="tp.domain.Points"/>
+	   <typeAlias alias="ActivityVo" type="tp.vo.ActivityVo"/>
+	   <typeAlias alias="ActivityListResult" type="tp.vo.ActivityListResult"/>
 	   <typeAlias alias="PointInfo" type="tp.vo.PointInfo"/>
+	   
+	   <typeAlias alias="CartListResult" type="tp.vo.CartListResult"/>
+	   <typeAlias alias="CartInfo" type="tp.vo.CartInfo"/>
    </typeAliases>
    
    <mappers>
@@ -54,6 +59,7 @@
    	   <mapper resource="tp/index/mapper/IndexMapper.xml"/>
    	   <mapper resource="tp/admin/mapper/AdminChartsMapper.xml"/>
    	   <mapper resource="tp/mypage/mapper/MypageMapper.xml"/>
+   	   <mapper resource="tp/cart/mapper/CartMapper.xml"/>
    </mappers>
     
 </configuration>

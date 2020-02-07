@@ -1,5 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
+<script>
+	if(${empty sessionScope.loginUser}){
+		alert("로그인 후 서비스 이용 가능합니다");
+		location.href="../login/login.do";
+	}
+</script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,15 +64,15 @@
       data.addColumn('string', '성별');
       data.addColumn('number', '사람수');
       data.addRows([
-      	['15-19세', ${memAge1519}],
-          ['20-29세', ${memAge2029}],
-          ['30-39세', ${memAge3039}],
-          ['40-49세', ${memAge4049}],
-          ['50-59세', ${memAge5059}],
-          ['60-69세', ${memAge6069}],
-          ['70-79세', ${memAge7079}],
-          ['80-89세', ${memAge8089}],
-          ['90-99세', ${memAge9099}],
+      	['15~19세', ${memAge1519}],
+          ['20~29세', ${memAge2029}],
+          ['30~39세', ${memAge3039}],
+          ['40~49세', ${memAge4049}],
+          ['50~59세', ${memAge5059}],
+          ['60~69세', ${memAge6069}],
+          ['70~79세', ${memAge7079}],
+          ['80~89세', ${memAge8089}],
+          ['90~99세', ${memAge9099}],
       ]); 
 
       // Set chart options

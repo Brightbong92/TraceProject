@@ -23,6 +23,8 @@ import tp.domain.Member;
 import tp.domain.Points;
 import tp.mypage.service.MypagePath;
 import tp.mypage.service.MypageService;
+import tp.vo.ActivityListResult;
+import tp.vo.ActivityVo;
 import tp.vo.PointInfo;
 
 @RequestMapping("mypage/*")
@@ -37,8 +39,12 @@ public class MypageController {
 		return "mypage/myInfo";
 	}
 	@GetMapping("myActivity.do")
-	public String myActivity() {
-		return "mypage/myActivity";
+	public ModelAndView myActivity(String mem_email) {
+		ActivityListResult activityListResult = service.getActivity(mem_email);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mypage/myActivity");
+		mv.addObject("activityListResult", activityListResult);
+		return mv;
 	}
 	@GetMapping("pastActivity.do")
 	public String pastActivity() {
@@ -83,7 +89,7 @@ public class MypageController {
 		service.insertDisabled(disabled);
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginUser");
-		return "index/index";
+		return "mypage/disabled_msg";
 	}
 	@PostMapping("changeProfile.do")
 	public String loadImg(String mem_email, MultipartFile mem_profile,String fname, HttpServletRequest request) {

@@ -75,4 +75,7 @@
 	<select id="disInfo" resultType="Disabled" parameterType="String">
 		select dis_improve from DISABLED where mem_email = #{mem_email}
 	</select>
+	<update id="insertDisabled" parameterType="String">
+		insert into DISABLED(DIS_IMPROVE, MEM_EMAIL) values('관리자에 의한 비활성화 회원입니다.', #{mem_email}) 
+	</update>
 </mapper>

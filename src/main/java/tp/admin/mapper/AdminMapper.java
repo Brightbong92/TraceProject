@@ -24,6 +24,8 @@ public interface AdminMapper {
    void updateState(String mem_email);
    void updateAuth(String mem_email);
    
+   void insertDisabled(String mem_email);
+   
    int mentorCount();
    List<Mentor_List> mentorList(MentorPagingVo mentorpaingVo);
    void mentorApproved(String mem_email);

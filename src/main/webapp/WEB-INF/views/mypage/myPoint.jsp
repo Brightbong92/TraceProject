@@ -1,6 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8" import="tp.vo.PointInfo, tp.domain.Points ,java.util.*"%>
 <jsp:include page="../top.jsp" />
+<script>
+	if(${empty sessionScope.loginUser}){
+		alert("로그인 후 서비스 이용 가능합니다");
+		location.href="../login/login.do";
+	}
+</script>
 <head>
     <style>
         .btn-profile{
@@ -75,16 +81,18 @@ function setImg() {
           <a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">나의 활동 내역</a>
           <a href="../mypage/myPoint.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">포인트</a>
           <a href="../mypage/myPayment.do" class="aaa" style="color:gray;">구매 &환불 내역 </a>
-          <a href="#" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
+          <a href="../cart/cart.do?mem_email=${loginUser.mem_email}" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
         </div>
       </div>
       <c:if test="${empty pointInfoResult.pointInfo}">
+      		<p style="width:180px; color:gray;"><strong>보유 포인트 : ${pointInfoResult.getMem_point()} p </strong></p>
+      		<br/>
      		<p style="text-align:center; width:100%; color:gray;">포인트 내역이 없습니다.</p>
      	</c:if>
      	<c:if test="${!empty pointInfoResult.pointInfo}">
       <table class="table table-boardered">
       	<thead>
-      		<p style="width:180px; color:gray;"><strong>포인트 적립  & 사용 </strong></p>
+      		<p style="width:180px; color:gray;"><strong>보유 포인트 : ${pointInfoResult.getMem_point()} p </strong></p>
       		<td> 번호 </td>
       		<td> 적립 / 사용 내역 </td>
       		<td> 포인트 </td>

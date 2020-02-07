@@ -65,6 +65,6 @@
 
 	<context:component-scan base-package="tp.qa.controller" />
 	<context:component-scan base-package="tp.review.controller" />	
-
+	<context:component-scan base-package="tp.cart.controller" />	
 
 </beans:beans>

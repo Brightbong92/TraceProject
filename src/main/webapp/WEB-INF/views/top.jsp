@@ -109,8 +109,9 @@
 
 	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog" >
 	              <a class="dropdown-item" href="../mypage/myInfo.do" >마이페이지</a>
-	              <a class="dropdown-item" href="#">개인정보 수정</a>
-	              <a class="dropdown-item" href="#">수강중인멘토링</a>
+	              <a class="dropdown-item" href="../mypage/myInfo.do">회원정보 수정</a>
+	              <a class="dropdown-item" href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}">나의 활동내역</a>
+	              <a class="dropdown-item" href="../cart/cart.do?mem_email=${loginUser.mem_email}">장바구니</a>
 	              <c:if test="${loginUser.mem_auth > 0}">
 	              <a class="dropdown-item" href="../mentoring/mentoringWriteForm.do">멘토링등록하기</a>
 	              </c:if>

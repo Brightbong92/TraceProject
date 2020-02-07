@@ -96,31 +96,31 @@
 	<!-- 나이대별 멤버수 -->
 	
 	 <select id="memAge1519" resultType="int">
-    	select count(*) from member where mem_age='15-19'
+    	select count(*) from member where mem_age='15~19'
    </select>
    <select id="memAge2029" resultType="int">
-    	select count(*) from member where mem_age='20-29'
+    	select count(*) from member where mem_age='20~29'
    </select>
    <select id="memAge3039" resultType="int">
-    	select count(*) from member where mem_age='30-39'
+    	select count(*) from member where mem_age='30~39'
    </select>
    <select id="memAge4049" resultType="int">
-    	select count(*) from member where mem_age='40-49'
+    	select count(*) from member where mem_age='40~49'
    </select>
    <select id="memAge5059" resultType="int">
-    	select count(*) from member where mem_age='50-59'
+    	select count(*) from member where mem_age='50~59'
    </select>
    <select id="memAge6069" resultType="int">
-    	select count(*) from member where mem_age='60-69'
+    	select count(*) from member where mem_age='60~69'
    </select>
    <select id="memAge7079" resultType="int">
-    	select count(*) from member where mem_age='70-79'
+    	select count(*) from member where mem_age='70~79'
    </select>
    <select id="memAge8089" resultType="int">
-    	select count(*) from member where mem_age='80-89'
+    	select count(*) from member where mem_age='80~89'
    </select>
    <select id="memAge9099" resultType="int">
-    	select count(*) from member where mem_age='90-99'
+    	select count(*) from member where mem_age='90~99'
    </select>
    
    <!-- 탈퇴자 및 정지자 현황 -->

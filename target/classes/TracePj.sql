@@ -8,6 +8,7 @@ delete from NOTICE;
 delete from EMAIL_AUTH;
 delete from MENTOR_LIST;
 delete from REFUND_INFO;
+delete from PAYMENT_DETAIL_INFO;
 delete from PAYMENT_INFO;
 delete from MENTORING_QA_REPLY;
 delete from MENTORING_QA;
@@ -17,6 +18,9 @@ delete from MENTORING_REVIEW_REPLY;
 delete from MENTORING_REVIEW_FILE;
 delete from MENTORING_REVIEW_LIKE;
 delete from MENTORING_REVIEW;
+
+
+
 
 delete from MENTORING_DETAIL_INFO;
 delete from MENTORING;
@@ -33,7 +37,10 @@ delete from MEMBER;
 
 --drop trigger문--
 drop trigger PAYMENT_TRI;
-drop trigger REFUND_TRI;
+
+drop trigger REFUND_TRI1;
+drop trigger REFUND_TRI2;
+
 drop trigger MENTOR_TRI1;
 drop trigger MENTOR_TRI2;
 
@@ -43,6 +50,7 @@ drop table EMAIL_AUTH;
 drop table MENTOR_LIST;
 
 drop table REFUND_INFO;
+drop table PAYMENT_DETAIL_INFO;
 drop table PAYMENT_INFO;
 drop table CART;
 
@@ -167,7 +175,9 @@ commit;
 
 
 
-select * from MEMBER;
+--select * from MEMBER;
+
+update MEMBER set mem_point = 300000 where mem_email = 'b@naver.com';
 
 --delete from MEMBER where MEM_EMAIL = 'kk070@hanmail.net';
 
@@ -284,11 +294,11 @@ create sequence MENTORING_SEQ minvalue 0 start with 1 increment by 1 nocache;
 
 /*<insert id="insertBoard" parameterType="com.my.spring.domain.BoardVO">
 
-	<selectKey keyProperty="seq" order="BEFORE" resultType="int">
-		SELECT BOARD_SEQ.NEXTVAL FROM DUAL
-	</selectKey>
-	INSERT INTO BOARD (seq, writer, title, content)
-				VALUES (#{seq}, #{writer}, #{title}, #{content})
+   <selectKey keyProperty="seq" order="BEFORE" resultType="int">
+      SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+   </selectKey>
+   INSERT INTO BOARD (seq, writer, title, content)
+            VALUES (#{seq}, #{writer}, #{title}, #{content})
 </insert>*/
 
 
@@ -385,14 +395,14 @@ select * from MENTORING order by MTR_SEQ desc;
 
 select * from MENTORING where MTR_SUBJECT like '%공예%';
 
-	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+       select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
         from (select ROWNUM rnum , aa.* from (select * from Mentoring order by MTR_SEQ desc) aa)
-			 where rnum>0 and rnum<=6;
+          where rnum>0 and rnum<=6;
              
              
-        	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+               select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
         from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 0 order by MTR_SEQ desc) aa)
-			 where rnum>0 and rnum<=6;     
+          where rnum>0 and rnum<=6;     
   */           
              
 
@@ -434,8 +444,7 @@ insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020
 insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-28 15:00','2020-01-28 17:00', 10, 0, 3);
 insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-03-24 20:00','2020-03-24 23:00', 10, 0, 3);
 
---insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '재밋는디제잉이다잉', 10000, SYSDATE, '장현봉', '01021735831', 1, 3, 7, 'a@naver.com');
---select * from MENTORING_DETAIL_INFO;
+
 select MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI') as mtrdi_stime, TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI') as mtrdi_etime, MTRDI_MAX_PCNT, MTRDI_NOW_PCNT, MTR_SEQ  from MENTORING_DETAIL_INFO;
 
 commit;
@@ -474,14 +483,14 @@ insert into MENTORING_QA values(MENTORING_QA_SEQ.nextval, '요가수업질문이요15', 
 
 select * from MENTORING_QA;
 
-	    select * from (select ROWNUM rnum , aa.* from (select * from Mentoring_QA where MTR_SEQ = 2 order by MTRQA_SEQ desc) aa)
-			 where rnum>0 and rnum<=3;
+       select * from (select ROWNUM rnum , aa.* from (select * from Mentoring_QA where MTR_SEQ = 2 order by MTRQA_SEQ desc) aa)
+          where rnum>0 and rnum<=3;
 
 
 /*
-	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+       select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
         from (select ROWNUM rnum , aa.* from (select * from Mentoring order by MTR_SEQ desc) aa)
-			 where rnum>0 and rnum<=6;
+          where rnum>0 and rnum<=6;
 */
 
 --select MTRQA_SEQ, MTRQA_CONTENT, MTRQA_RDATE, mq.MEM_EMAIL, MTR_SEQ, MEM_NICK, MEM_PROFILE from MENTORING_QA mq, MEMBER me where mq.MEM_EMAIL = me.MEM_EMAIL and MTR_SEQ = 2;
@@ -693,10 +702,17 @@ PI_NAME varchar2(50),
 PI_PHONE varchar2(11),
 PI_STATE number,
 MTR_SEQ number,
-MTRDI_SEQ number,
 MEM_EMAIL constraint PAYMENT_INFO_FK references MEMBER(MEM_EMAIL) on delete cascade
 );
 create sequence PAYMENT_INFO_SEQ start with 1 minvalue 0 increment by 1 nocache;
+
+
+--결제세부정보--
+create table PAYMENT_DETAIL_INFO(
+MTRDI_SEQ number,
+PI_SEQ number constraint PAYMENT_DETAIL_INFO_FK references PAYMENT_INFO(PI_SEQ) on delete cascade
+);
+
 
 
 create or replace trigger PAYMENT_TRI
@@ -708,9 +724,23 @@ begin
 end;
 /
 
-insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '재밋는디제잉', 10000, SYSDATE, '장현봉', '01021735831', 1, 1, 1, 'a@naver.com');
+insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '자세교정밸런스요가', 25000, SYSDATE, '장현봉', '01021735831', 1, 2, 'b@naver.com');
+insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '하루종일스키', 25000, SYSDATE, '장현봉', '01021735831', 1, 3, 'b@naver.com');
+
+
+select * from mentoring where mtr_seq = 3;
+
+insert into PAYMENT_DETAIL_INFO values(2, 2);
+insert into PAYMENT_DETAIL_INFO values(3, 2);
+
+insert into PAYMENT_DETAIL_INFO values(7, 3);
+
+
 
 select * from payment_info;
+select * from payment_detail_info;
+
+select * from POINTS;
 
 --환불_정보--
 create table REFUND_INFO(
@@ -724,14 +754,13 @@ RI_RDATE date,
 RI_NAME varchar2(50),
 RI_PHONE varchar2(11),
 MTR_SEQ number,
-MTRDI_SEQ number,
 MEM_EMAIL constraint REFUND_INFO_FK references MEMBER(MEM_EMAIL) on delete cascade,
 PI_SEQ constraint REFUND_INFO_FK2 references PAYMENT_INFO(PI_SEQ) on delete cascade
 );
 create sequence REFUND_INFO_SEQ minvalue 0 start with 1 increment by 1 nocache;
 
 
-create or replace trigger REFUND_TRI
+create or replace trigger REFUND_TRI1
 after
     insert on REFUND_INFO for each row
 begin
@@ -741,11 +770,26 @@ begin
 end;
 /
 
-insert into REFUND_INFO values(REFUND_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '재밋는디제잉', 10000, SYSDATE, '장현봉', '01021735831', 2, 2, 'a@naver.com', 2);
+
+create or replace trigger REFUND_TRI2
+after
+    update of PI_STATE on PAYMENT_INFO for each row
+begin
+    IF (:NEW.PI_STATE = 0) THEN
+    delete from PAYMENT_DETAIL_INFO where PI_SEQ = :NEW.PI_SEQ;
+    end if;
+end;
+/
+
+
+insert into REFUND_INFO values(REFUND_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '자세교정밸런스요가', 25000, SYSDATE, '장현봉', '01021735831', 2, 'b@naver.com', 2);
+
+
 --update PAYMENT_INFO set PI_STATE = 0 where PI_SEQ = 1;
 
 select * from REFUND_INFO;
 --select * from PAYMENT_INFO;
+select * from PAYMENT_DETAIL_INFO;
 --공지사항--
 create table NOTICE(
 NOTI_SEQ number constraint NOTICE_PK primary key,
@@ -758,7 +802,7 @@ MEM_EMAIL varchar2(100)
 create sequence NOTICE_SEQ start with 1 minvalue 0 increment by 1 nocache;
 
 insert into NOTICE values(NOTICE_SEQ.nextval, '공지사항제목', '공지사항내용', SYSDATE, 0, 'admin');
-select * from NOTICE;
+--select * from NOTICE;
 
 
 --delete from MENTORING where MTR_SEQ = 1;
@@ -775,5 +819,5 @@ select * from NOTICE;
 --select tname from tab;
 --테이블 18개 확인
 
-select pi.MTR_SEQ, mtr.MTR_SUBJECT, mdi.MTRDI_STIME, mdi.MTRDI_MAX_PCNT, mdi.MTRDI_NOW_PCNT, pi.PI_RDATE  from MENTORING mtr, MENTORING_DETAIL_INFO mdi, PAYMENT_INFO pi where pi.MEM_EMAIL= 'a@naver.com' and mdi.MTRDI_STIME > SYSDATE and pi.MTR_SEQ = mtr.MTR_SEQ;
-
+--멘토링시퀀스, 멘토링명, 신청자수, 최대인원, 시작시간, 결제날짜
+select MTR_SEQ, MTR_SUBJECT, MTRDI_MAX_PCNT, MTRDI_NOW_PCNT, MTRDI_STIME, 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tp.cart.mapper.CartMapper">
+	<select id="getCart" resultType="CartInfo" parameterType="String">
+		select c.MTR_SEQ, MTR_PROFILE, MTR_SUBJECT, MTR_HASHTAG,MTR_PRICE, mdi.MTRDI_SEQ, MTRDI_STIME, MTRDI_ETIME, MEM_POINT, CT_SEQ 
+			from MENTORING mtr, MENTORING_DETAIL_INFO mdi, CART c, MEMBER m 
+			where c.MEM_EMAIL = #{mem_email} and m.MEM_EMAIL = #{mem_email} and c.MTR_SEQ = mtr.MTR_SEQ and c.MTRDI_SEQ = mdi.MTRDI_SEQ
+			order by ct_seq
+	</select>
+	
+	<insert id="setCart" parameterType="Map">
+		insert into CART values(CART_SEQ.nextval, SYSDATE, #{mtr_seq}, #{mtrdi_seq}, #{mem_email} )
+	</insert>
+	
+	<delete id="deleteCart" parameterType="Map">
+		delete from CART where mem_email=#{mem_email} and ct_seq=#{ct_seq}
+	</delete>
+</mapper>

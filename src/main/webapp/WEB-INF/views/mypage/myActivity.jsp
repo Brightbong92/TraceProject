@@ -1,6 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <jsp:include page="../top.jsp" />
+<script>
+	if(${empty sessionScope.loginUser}){
+		alert("로그인 후 서비스 이용 가능합니다");
+		location.href="../login/login.do";
+	}
+</script>
 <head>
     <style>
         .btn-profile{
@@ -74,7 +80,7 @@ function setImg() {
           <a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">나의 활동 내역</a>
           <a href="../mypage/myPoint.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">포인트</a>
           <a href="../mypage/myPayment.do" class="aaa" style="color:gray;">구매 &환불 내역 </a>
-          <a href="#" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
+          <a href="../cart/cart.do?mem_email=${loginUser.mem_email}" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
         </div>
       </div>
       <br/>
@@ -84,27 +90,33 @@ function setImg() {
           	<a href="../mypage/pastActivity.do" class="bbb" style="color:gray;">지난 멘토링 </a>
       	</div>
       </div>
-      
-      <table class="table table-boardered" align="center">
-      	<tr>
-      		<td><strong>번호 </strong></td>
-      		<td style="width:280px;"><strong>멘토링 명</strong></td>
-      		<td><strong>신청자 수</strong></td>
-      		<td><strong>시작시간</strong></td>
-      		<td><strong>결제날짜</strong></td>
-      		<td><strong>멘토링정보</strong></td>
-      		<td><strong>환불</strong></td>
-     	</tr>
-     	<tr>
-     		<td>2</td>
-     		<td>서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑서핑</td>
-     		<td>1/5</td>
-     		<td>20/02/04 14:00</td>
-     		<td>20/02/01 17:35</td>
-     		<td><button style="color:white; background:#f0a05b; font-size:1em; border-radius:0.5em; padding:5px 20px;">상세보기</button></td>
-     		<td><button style="color:white; background:#eb4034; font-size:1em; border-radius:0.5em; padding:5px 20px;">환불하기</button></td>
-     	</tr>
-     	</table>
+      <c:if test="${empty activityListResult}">
+      	비었다.
+      </c:if>
+      <c:if test="${!empty activityListResult}">
+	      <table class="table table-boardered" align="center">
+	      	<tr>
+	      		<td><strong>번호 </strong></td>
+	      		<td style="width:280px;"><strong>멘토링 명</strong></td>
+	      		<td><strong>신청자 수</strong></td>
+	      		<td><strong>시작시간</strong></td>
+	      		<td><strong>결제날짜</strong></td>
+	      		<td><strong>멘토링정보</strong></td>
+	      		<td><strong>환불</strong></td>
+	     	</tr>
+	     	<c:forEach items="${activityListResult.activityVo}" var="act" varStatus="status">
+		     	<tr>
+		     		<td>${status.count}</td>
+		     		<td>${act.mtr_subject}</td>
+		     		<td>${act.mtrdi_now_pcnt}/${act.mtrdi_max_pcnt}</td>
+		     		<td>${act.mtrdi_stime}</td>
+		     		<td>${act.pi_rdate}</td>
+		     		<td><button style="color:white; background:#f0a05b; font-size:1em; border-radius:0.5em; padding:5px 20px;">상세보기</button></td>
+		     		<td><button style="color:white; background:#eb4034; font-size:1em; border-radius:0.5em; padding:5px 20px;">환불하기</button></td>
+		     	</tr>
+	     	</c:forEach>
+	     	</table>
+     	</c:if>
       <!-- Content Column -->
       <div class="col-lg-9 mb-4 bora0">
         

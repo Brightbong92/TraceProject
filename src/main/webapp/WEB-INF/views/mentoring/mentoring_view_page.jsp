@@ -203,6 +203,8 @@ table {
 			alert("선택하신 상품이 없습니다.");
 		}else {
 			//alert("선택값 있음");
+				location.href="../cart/setCart.do?optionList=" + optionList+"&mtr_seq=${listResult.mtr_seq}&mem_email=${loginUser.mem_email}";
+			//
 		}
 	}	
 	

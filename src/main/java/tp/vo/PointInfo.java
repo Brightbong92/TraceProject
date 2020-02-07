@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tp.domain.Member;
 import tp.domain.Points;
 
 @Data
@@ -12,5 +13,5 @@ import tp.domain.Points;
 @NoArgsConstructor
 public class PointInfo {
 	private List<Points> pointInfo;
-	
+	private long mem_point;
 }

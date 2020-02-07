@@ -26,5 +26,15 @@
    		select * from MEMBER where MEM_EMAIL= #{mem_email}
    	</select>
    	
+   	<select id="getMem_point" resultType="long" parameterType="String">
+   		select MEM_POINT from MEMBER where MEM_EMAIL= #{mem_email}
+   	</select>
+   	
+   	<select id="getActivity" resultType="ActivityVo" parameterType="String">
+   		select mtr.MTR_SEQ, mtr.MTR_SUBJECT, mdi.MTRDI_MAX_PCNT, mdi.MTRDI_NOW_PCNT, mdi.MTRDI_STIME, pi.PI_RDATE 
+		from MENTORING mtr, MENTORING_DETAIL_INFO mdi, PAYMENT_INFO pi, PAYMENT_DETAIL_INFO pdi
+		where mtr.MTR_SEQ = pi.MTR_SEQ and mdi.MTRDI_SEQ = pdi.MTRDI_SEQ 
+		and pi.PI_SEQ = pdi.PI_SEQ and pi.PI_STATE = 1 and mdi.MTRDI_STIME > SYSDATE and pi.MEM_EMAIL = #{mem_email}
+   	</select>
    	
 </mapper>

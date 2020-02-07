@@ -1,5 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
+<script>
+	if(${empty sessionScope.loginUser}){
+		alert("로그인 후 서비스 이용 가능합니다");
+		location.href="../login/login.do";
+	}
+</script>
 <!DOCTYPE html>
 <html lang="kor">
 

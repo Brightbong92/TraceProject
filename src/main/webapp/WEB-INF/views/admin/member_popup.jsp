@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,7 +91,7 @@
 	<table width="100%" class="table table-striped table-bordered table-hover" id="">
 		<thead>
 		<tr>
-			<td> 개선 사항 건의: ${dis.dis_improve}</td>
+			<td> 특이사항: ${dis.dis_improve}</td>
 		</tr>
 		</thead>
 	</table>
