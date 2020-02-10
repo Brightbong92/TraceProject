@@ -246,6 +246,7 @@
             <artifactId>logback-core</artifactId>
             <version>1.2.3</version>
         </dependency>
+			
 
 	<!-- Bcrypt암호화 -->
 	<dependency>

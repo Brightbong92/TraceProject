@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <jsp:include page="../top.jsp" />
+
 <script>
 	if(${empty sessionScope.loginUser}){
 		alert("로그인 후 서비스 이용 가능합니다");
@@ -86,48 +87,94 @@ function setImg() {
       <br/>
       <div class="col-lg-3 mb-4 bora" style="margin-top:-15px;">
       	<div class="list-group bora1" style="font-size:13px;" >
-          	<a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}"class=bbb style="color:red;">신청한 멘토링</a>
+          	<a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class=bbb style="color:gray;">신청한 멘토링</a>
           	<a href="../mypage/pastActivity.do?mem_email=${loginUser.mem_email}" class="bbb" style="color:gray;">지난 멘토링 </a>
           	<c:if test="${loginUser.mem_auth ==1}">
-          		<a href="../mypage/openedActivity.do?mem_email=${loginUser.mem_email}" class="bbb" style="color:gray;">개설한 멘토링(멘토전용) </a>
+          		<a href="../mypage/openedActivity.do?mem_email=${loginUser.mem_email}" class="bbb" style="color:red;">개설한 멘토링(멘토전용) </a>
           	</c:if>
       	</div>
+      	
       </div>
-      <c:if test="${empty activityListResult.activityVo}">
-      	<p style="text-align:center; width:100%; color:gray;">신청한 멘토링이 없습니다.</p>
+      <c:if test="${empty openedActivityListResult}">
+     	 <p style="text-align:center; width:100%; color:gray;">멘토링 이력이 없습니다.</p>
       </c:if>
-      <c:if test="${!empty activityListResult.activityVo}">
-	      <table class="table table-boardered">
+      <c:if test="${!empty openedActivityListResult}">
+	       <table class="table table-boardered">
 	      	<tr>
-	      		<td><strong>번호 </strong></td>
-	      		<td style="width:280px;"><strong>멘토링 명</strong></td>
-	      		<td><strong>신청자 수</strong></td>
-	      		<td><strong>시작시간</strong></td>
-	      		<td><strong>결제날짜</strong></td>
-	      		<%-- 
-	      		<td><strong>멘토링정보</strong></td>
-	      		<td><strong>환불</strong></td>
-	      		--%>
+	      		<td><strong> 번호</strong></td>
+	      		<td style="width:280px;"><strong> 멘토링 명</strong></td>
+	      		<td><strong> 평균평점 </strong></td>
+	      		<td><strong> 등록날짜</strong> </td>
+	      		<td><strong> 상세보기</strong> </td>
 	     	</tr>
-	     	<c:forEach items="${activityListResult.activityVo}" var="act" varStatus="status">
+	     	<c:forEach items="${openedActivityListResult}" var="act" varStatus="status">
 		     	<tr>
 		     		<td>${status.count}</td>
 		     		<td>${act.mtr_subject}</td>
-		     		<td>${act.mtrdi_now_pcnt}/${act.mtrdi_max_pcnt}</td>
-		     		<td>${act.mtrdi_stime}</td>
-		     		<td>${act.pi_rdate}</td>
-<<<<<<< HEAD
-		     		<td><button onclick="location.href='../mentoring/mentoringDetail.do?mtr_seq=${act.mtr_seq}'" style="color:white; background:#f0a05b; font-size:1em; border-radius:0.5em; padding:5px 20px;">상세보기</button></td>
-=======
-		     		<%-- 
-		     		<td><button style="color:white; background:#f0a05b; font-size:1em; border-radius:0.5em; padding:5px 20px;">상세보기</button></td>
->>>>>>> 1b2853fcfd5cd5837b0bfd1e8921f81ec4102acf
-		     		<td><button style="color:white; background:#eb4034; font-size:1em; border-radius:0.5em; padding:5px 20px;">환불하기</button></td>
-		     		--%>
+		     		<td>
+		     		<c:choose>
+			          <c:when test="${act.mtr_jumsu eq 0}">
+			            <div class="starRev">
+						  <span class="starR">별1</span>
+						  <span class="starR">별2</span>
+						  <span class="starR">별3</span>
+						  <span class="starR">별4</span>
+						  <span class="starR">별5</span>
+						</div>
+				      </c:when>
+				      <c:when test="${act.mtr_jumsu eq 1}">
+				      	 <div class="starRev">
+						  <span class="starR on">별1</span>
+						  <span class="starR">별2</span>
+						  <span class="starR">별3</span>
+						  <span class="starR">별4</span>
+						  <span class="starR">별5</span>
+						</div>
+				      </c:when>
+				      <c:when test="${act.mtr_jumsu eq 2}">
+				      	 <div class="starRev">
+						  <span class="starR on">별1</span>
+						  <span class="starR on">별2</span>
+						  <span class="starR">별3</span>
+						  <span class="starR">별4</span>
+						  <span class="starR">별5</span>
+						</div>
+				      </c:when>
+				      <c:when test="${act.mtr_jumsu eq 3}">
+				      	 <div class="starRev">
+						  <span class="starR on">별1</span>
+						  <span class="starR on">별2</span>
+						  <span class="starR on">별3</span>
+						  <span class="starR">별4</span>
+						  <span class="starR">별5</span>
+						</div>
+				      </c:when>
+				      <c:when test="${act.mtr_jumsu eq 4}">
+				      	 <div class="starRev">
+						  <span class="starR on">별1</span>
+						  <span class="starR on">별2</span>
+						  <span class="starR on">별3</span>
+						  <span class="starR on">별4</span>
+						  <span class="starR">별5</span>
+						</div>
+				      </c:when>
+				      <c:when test="${act.mtr_jumsu eq 5}">
+				      	 <div class="starRev">
+						  <span class="starR on">별1</span>
+						  <span class="starR on">별2</span>
+						  <span class="starR on">별3</span>
+						  <span class="starR on">별4</span>
+						  <span class="starR on">별5</span>
+						</div>
+				      </c:when>
+			          </c:choose></td>
+		     		<!--td>${act.getMtr_jumsu()}</td-->
+		     		<td>${act.mtr_rdate}</td>
+		     		<td><button onclick="location.href='../mentoring/mentoringDetail.do?mtr_seq=${act.mtr_seq}'" style="color:white; background:#4535d4; font-size:1em; border-radius:0.5em; padding:5px 20px;">상세보기</button></td>
 		     	</tr>
 	     	</c:forEach>
 	     	</table>
-     	</c:if>
+     </c:if>
       <!-- Content Column -->
       <div class="col-lg-9 mb-4 bora0">
         

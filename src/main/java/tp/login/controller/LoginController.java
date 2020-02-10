@@ -81,9 +81,17 @@ public class LoginController {
 				HttpSession session = request.getSession();
 				Member m = service.getMemberInfo(mem_email);
 				session.setAttribute("loginUser", m);
-				request.setAttribute("result", result);
-				mv.setViewName("login/login_msg");
-		        return mv;
+
+				if(m.getMem_state() ==2) {
+					session.removeAttribute("loginUser");
+					mv.setViewName("login/disabled_msg");
+					return mv;
+				}else {
+					request.setAttribute("result", result);
+					mv.setViewName("login/login_msg");
+	
+			        return mv;
+				}
 			}
 
 		}else {
@@ -171,13 +179,6 @@ public class LoginController {
 		session.removeAttribute("loginUser");
 		
 		return "login/logout_msg";
-	}
-	@RequestMapping("disabled_mem.do")
-	public String disabled_mem(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.removeAttribute("loginUser");
-		
-		return "login/disabled_msg";
 	}
 	
 }

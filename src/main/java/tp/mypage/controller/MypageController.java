@@ -31,6 +31,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import tp.domain.Disabled;
 import tp.domain.Member;
+import tp.domain.Mentoring;
 import tp.domain.Payment_Info;
 import tp.domain.Points;
 import tp.domain.Refund_Info;
@@ -63,8 +64,24 @@ public class MypageController {
 		return mv;
 	}
 	@GetMapping("pastActivity.do")
-	public String pastActivity() {
-		return "mypage/pastActivity";
+	public ModelAndView pastActivity(String mem_email) {
+		ActivityListResult pastActivityListResult = service.getPastActivity(mem_email);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mypage/pastActivity");
+		mv.addObject("pastActivityListResult", pastActivityListResult);
+		return mv;
+	}
+	@GetMapping("openedActivity.do")
+	public ModelAndView openedActivity(String mem_email) {
+		List<Mentoring> openedActivityListResult = service.getOpenedActivity(mem_email);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mypage/openedActivity");
+		mv.addObject("openedActivityListResult", openedActivityListResult);
+		return mv;
+	}
+	@GetMapping("myPayment.do")
+	public String myPayment(String mem_email) {
+		return "mypage/myPayment";
 	}
 	@GetMapping("myPaymentInfo.do")
 	public String myPaymentInfo(String mem_email, Model model) {
@@ -89,9 +106,8 @@ public class MypageController {
 		return mv;
 	}
 	@GetMapping("refund.do")
-	public void refund(String pi_muid) {
-		
-
+	public String refund(String mem_email) {
+		return "mypage/refund";
 	}
 	
 	

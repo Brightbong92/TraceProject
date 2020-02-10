@@ -6,6 +6,7 @@ import java.util.Map;
 
 import tp.domain.Disabled;
 import tp.domain.Member;
+import tp.domain.Mentoring;
 import tp.domain.Payment_Info;
 import tp.domain.Points;
 import tp.domain.Refund_Info;
@@ -20,6 +21,8 @@ public interface MypageMapper {
 	Member selectMember(String mem_email);
 	long getMem_point(String mem_email);
 	List<ActivityVo> getActivity(String mem_email);
+	List<ActivityVo> getPastActivity(String mem_email);
+	List<Mentoring> getOpenedActivity(String mem_email);
 	List<Payment_Info> selectMyPaymentInfo(String mem_email);
 	List<Refund_Info> selectMyRefundInfo(String mem_email);
 	String selectMyPageNickCheck(Map<String, Object> map);

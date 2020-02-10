@@ -46,9 +46,11 @@
 							<img src="../resources/mentoring_list_images/${list.mtr_profile}" alt="img" width="100px" height="100px">&nbsp;&nbsp;&nbsp;
 							<span class="badge badge-warning mb-2" style="font-size:1.0em;">${list.mtr_hashtag}</span>
 							<span>${list.mtr_subject}</span>
+							<input type="hidden" name=mtr_seq value="${list.mtr_seq}">
 							<span><button type="button" onclick="location.href='../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}'"style="font-size:15px;float:right;margin-top:37px;">상세보기</button></span>
 						</div>
 						<div >
+							<input type="hidden" name=mtrdi_seq value="${list.mtrdi_seq}">
 							<span style="margin-left:50px;">(${list.mtrdi_stime}~${list.mtrdi_etime})</span>
 							<span><button type="button" style="font-size:15px;float:right;" onclick="location.href='../cart/deleteCart.do?mem_email=${loginUser.mem_email}&ct_seq=${list.ct_seq}'">삭제</button></span>  
 							<span style="float:right;">${list.mtr_price}원</span>

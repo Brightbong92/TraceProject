@@ -42,8 +42,8 @@
 
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important" >  <!-- 머리색 -->
-    <div class="container">
-      <a class="navbar-brand" href="/"><img src="../images/logo.png" width="110" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="container" style="max-width:80% !important;">
+      <a class="navbar-brand" href="/"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
 	
 		<!-- 검색 -->

@@ -15,5 +15,6 @@ public class ActivityVo {
 	private int mtrdi_max_pcnt;
 	private int mtrdi_now_pcnt;
 	private String mtrdi_stime;
+	private String mtrdi_etime;
 	private Date pi_rdate;
 }
