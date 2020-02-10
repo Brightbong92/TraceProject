@@ -77,7 +77,7 @@ table {
 	        	<tr>
 	        	<td style="width:200px;"><span>${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
 	        	<td style="width:50px;"><span>${timelist.mtrdi_now_pcnt}</span>/<span>${timelist.mtrdi_max_pcnt}</span></td>
-	        	<td><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" onclick="selectOption(this)"></td>
+	        	<td><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" style="width:20px;height:20px;" onclick="selectOption(this)"></td>
 	        	</tr>
 	        </c:forEach>
 	        </tbody>

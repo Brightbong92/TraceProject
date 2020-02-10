@@ -79,7 +79,7 @@ function setImg() {
           <a href="../mypage/myInfo.do" class="aaa" style="color:white;">내 정보 관리</a>
           <a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">나의 활동 내역</a>
           <a href="../mypage/myPoint.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">포인트</a>
-          <a href="../mypage/myPayment.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">구매 &환불 내역 </a>
+          <a href="../mypage/myPaymentInfo.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">구매 &환불 내역 </a>
           <a href="../cart/cart.do?mem_email=${loginUser.mem_email}" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
         </div>
       </div>
@@ -101,26 +101,148 @@ function setImg() {
         </tr>
         <tr> 
         	<th style="width:200px;color:gray;">닉네임 </th>
-        	<td><input value="${loginUser.mem_nick}" /><td>
+        	<td><input id="mem_nick" value="${loginUser.mem_nick}" /><td>
+        	<td><span id="msgNick"></span></td>
+        	<td><input type="hidden" id="nick_duplicate" value="unChecked"></td>
         </tr>
         <tr> 
         	<th style="width:200px;color:gray;">비밀번호 </th>
-        	<td><input type="password"/><td>
+        	<td><input type="password" id="mem_pwd"/><td>
+        	<td><span id="msgPwd"></span></td>
         </tr>
         <tr> 
         	<th style="width:200px;color:gray;">비밀번호확인 </th>
-        	<td><input type="password"/><td>
+        	<td><input type="password" id="mem_pwdCheck"/><td>     
+            <td><span id="msgPwdCheck"></span></td>
+            <td><input type="hidden" id="mem_pwd_check_equal" value="unChecked"></td>
         </tr>
        
         
       </table>
-       <button class="submit" style="color: white; background:gray; font-size:1em; border-radius:0.5em; padding:5px 20px;" align="center">수정하기</button>
+       <button type="button" onclick="send()"class="submit" style="color: white; background:gray; font-size:1em; border-radius:0.5em; padding:5px 20px;" align="center">수정하기</button>
       </form>
     </div>
     <!-- /.row -->
-
   </div>
   <!-- /.container -->
+  
+  <script>
+  $(document).ready(function(){
+	  
+	  $("#mem_nick").on('keyup', function(){
+		  var n = $("#mem_nick").val().length;
+		  if(n == 0) {
+			  $("#msgNick").text("");
+		  }else if(n >= 11) {
+			  $("#msgNick").css("color","red");
+			  $("#msgNick").text("닉네임은 1~10글자 까지가능(한글,영어,특수문자가능)");
+			  $("#nick_duplicate").val("unChecked");
+		  }else { 
+			  $.ajax({
+				  url: "../mypage/nickCheck.do?mem_nick="+$('#mem_nick').val(),
+		  			success: function(data) {
+		  				if(data == "possible"){
+		  					$("#msgNick").css("color","#12e8e3");
+		  					$("#msgNick").text("사용가능한 닉네임");
+		  					$("#nick_duplicate").val("checked");
+		  				}
+		  				if(data == "impossible"){
+		  					$("#msgNick").css("color","red");
+		  					$("#msgNick").text("중복된 닉네임");
+		  					$("#nick_duplicate").val("unChecked");
+		  				}
+		  			  }
+			 	 });
+		   	   }
+ 			});
+	
+	  $("#mem_pwd").keyup(function(){
+		  var n = $("#mem_pwd").val().length;
+		  if(n == 0) {
+			  $("#msgPwd").text("");
+		  }else if(n >= 16) {
+			  $("#msgPwd").css("color","red");
+			  $("#msgPwd").text("비밀번호는 1~15글자 까지가능");
+		  }else {
+			  $("#msgPwd").text("");
+		  }
+		  var pwd = $("#mem_pwd").val();
+		  var pwdC = $("#mem_pwdCheck").val();
+		  var n2 = $("#mem_pwdCheck").val().length;
+		  if(n2 != 0) {
+			  if(pwd == pwdC) {
+				  $("#msgPwdCheck").css("color","#12e8e3");
+				  $("#msgPwdCheck").text("비밀번호가 일치합니다.") 
+			  }else if(pwd != pwdC) {
+				  $("#msgPwdCheck").css("color","red");
+				  $("#msgPwdCheck").text("비밀번호가 일치하지 않습니다.")
+			  }
+		  }
+		  
+	  });
+	  
+	  $("#mem_pwdCheck").keyup(function(){
+		  var pwd = $("#mem_pwd").val();
+		  var pwdC = $("#mem_pwdCheck").val();
+		  var n = $("#mem_pwdCheck").val().length;
+		  if(n == 0) {
+			  $("#msgPwdCheck").text("");
+		  }else if(pwd == pwdC) {
+			  $("#msgPwdCheck").css("color","#12e8e3");
+			  $("#msgPwdCheck").text("비밀번호가 일치합니다.")
+		  }else if(pwd != pwdC) {
+			  $("#msgPwdCheck").css("color","red");
+			  $("#msgPwdCheck").text("비밀번호가 일치하지 않습니다.")
+		  }
+	  });
+ });
+  </script>
+ <script>
+ function send() {
+	 if($("#mem_nick").val() == "") {
+		 alert("닉네임을 입력하지 않았습니다.")
+		 $("#mem_nick").focus();
+	 }else if($("#mem_pwd").val() == "") {
+         alert("비밀번호를 입력하지 않았습니다.")
+         $("#mem_pwd").focus();
+         return false;
+     }else if($("#mem_pwdCheck").val() == "") {
+         alert("비밀번호확인을 입력하지 않았습니다.")
+         $("#mem_pwdCheck").focus();
+         return false;
+     }else if($("#mem_pwdCheck").val() != $("#mem_pwd").val()){
+    	 alert("비밀번호가 같지 않습니다.");
+    	 $("#mem_pwdCheck").focus();
+    	 return false;
+     }else if($("#nick_duplicate").val() != "checked") {
+	   	  alert("닉네임 중복체크를 해주세요.");
+		  $("#mem_nick").focus();
+	      return false; 
+     }else {
+    	 var data  = {mem_nick : $("#mem_nick").val(), 
+                	  mem_pwd  : $("#mem_pwd").val()
+                	 };
+    	 
+    	 $.ajax({
+    		 url: "../mypage/myInfoEdit.do",
+    		 type: "POST",
+    		 data: JSON.stringify(data),
+    		 contentType: "application/json",
+    		 success: function(data){
+    			 if(data == "modifyOk"){
+    				alert("정보가 수정되었습니다.");
+    			 }
+    		 },error: function(err) {
+    			 alert("정보수정 실패");
+    		 }
+    		 
+    		 
+    	 });
+     }
+	 
+     }
+ 
+ </script>
 
 
 <%@include file="../footer.jsp"%>

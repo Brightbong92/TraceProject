@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.log4j.Log4j;
+import tp.domain.Cart;
 import tp.domain.Member;
 import tp.domain.Mentoring;
 import tp.domain.Mentoring_Detail_Info;
@@ -29,6 +32,10 @@ import tp.domain.Payment_Detail_Info;
 import tp.domain.Payment_Info;
 import tp.domain.Points;
 import tp.review.service.MentoringReviewPath;
+import tp.vo.CartInfo;
+import tp.vo.CartOrderListVo;
+import tp.vo.CartPaymentCompletePageVo;
+import tp.vo.CartPurchaseVo;
 import tp.vo.MentoringQAPagingVo;
 import tp.vo.MentoringQAVo;
 import tp.vo.MentoringReviewPagingVo;
@@ -43,7 +50,68 @@ public class PaymentTests {
 	@Autowired
 	private PaymentMapper pMapper;
 	
-	
+	/*
+	@Test
+	public void getCartPaymentCompletePageList() {
+		long[] ctseqList = {2, 3};
+		int usedPointTot = 20000;
+		int pi_price = 30000;
+		String memail = "b@naver.com";
+		CartPurchaseVo cartPurchaseVo = new CartPurchaseVo("pi_muid=fourP1581146115823", "자세교정밸런스요가 외 1건","장현봉","01012341234",
+				ctseqList,usedPointTot, pi_price, memail);
+		long usedPoint = -1*cartPurchaseVo.getUsedPointTot();
+		if(usedPoint != 0) {
+			pMapper.updateMemberUsedPointCart(cartPurchaseVo);
+			Points points = new Points("결제", usedPoint, null, cartPurchaseVo.getMem_email());
+			pMapper.insertPointsUsedPoint(points);
+		}
+		long pi_seq = pMapper.selectPaymentInfoSeq();
+		Payment_Info payment_info = new Payment_Info(pi_seq, "이니시스", "카드", cartPurchaseVo.getPi_muid(), cartPurchaseVo.getPi_product(), 
+				cartPurchaseVo.getPi_price(), null, cartPurchaseVo.getPi_name(), cartPurchaseVo.getPi_phone(),
+				1, -1, cartPurchaseVo.getMem_email());
+		pMapper.insertPaymentInfo(payment_info);
+		
+		long[] ct_seqList = cartPurchaseVo.getCt_seq();
+		for(long ct_seq : ct_seqList) {
+			Cart cart = pMapper.selectCartInfo(ct_seq);
+			long mtr_seq = cart.getMtr_seq(); long mtrdi_seq = cart.getMtrdi_seq();
+			Payment_Detail_Info payment_detail_info = new Payment_Detail_Info(mtr_seq, mtrdi_seq, pi_seq);
+			pMapper.insertPaymentDetailInfo(payment_detail_info);
+			pMapper.updateMentoringDetailInfoNowPeopleCount(mtrdi_seq);
+		}
+		
+		//결제이후 로직
+		Payment_Info payment_info2 = pMapper.selectPaymentInfo(pi_seq);
+		List<CartOrderListVo> cart_order_list = new ArrayList<CartOrderListVo>();
+		for(long ct_seq : ct_seqList) {
+			CartOrderListVo vo = pMapper.selectCartOrderListVo(ct_seq);
+			cart_order_list.add(vo);
+		}
+		for(long ct_seq : ct_seqList) {//장바구니에서 결제 한 리스트제거
+			pMapper.deleteCartInfo(ct_seq);
+		}
+		
+		CartPaymentCompletePageVo listResult = new CartPaymentCompletePageVo(payment_info2, cart_order_list);
+		log.info("#listResult: " + listResult);
+	}
+	*/
+	/*
+	@Test
+	public void cartPayementList() {
+		long[] cartList = {2};
+		List<CartInfo> cartInfoList = new ArrayList<CartInfo>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		for(int i=0; i<cartList.length; i++) {
+		map.put("mem_email", "b@naver.com"); map.put("ct_seq", cartList[i]);
+		CartInfo ctInfo= pMapper.selectCartPaymentInfo(map);
+		cartInfoList.add(ctInfo);
+		map.clear();
+		}
+		
+		log.info("#cartInfoList: " + cartInfoList);
+	}
+	*/
+	/*
 	@Test
 	public void purchasInfo() {
 		long[] mtrdi_seq = {3, 4};
@@ -74,9 +142,8 @@ public class PaymentTests {
 			}
 			PaymentCompletePageVo listResult = new PaymentCompletePageVo(payment_info2, mtr_list, mtrdi_list);
 			log.info("#PaymentCompletePageVo: " + listResult);
-			
 	}
-	
+	*/
 	
 	/*
 	@Test

@@ -248,7 +248,6 @@
         </dependency>
 			
 
-
 	<!-- Bcrypt암호화 -->
 	<dependency>
 	  <groupId>org.mindrot</groupId>
@@ -339,6 +338,7 @@
 			 -->
 			
 	</dependencies>
+	
     <build>
         <plugins>
             <plugin>

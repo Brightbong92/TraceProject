@@ -36,10 +36,12 @@
     	</c:if>
     	<c:if test="${!empty cartListResult.cartInfo}">
     	<b>장바구니 정보</b>
-    		<form name="form">
+    	<hr>
+    	<b>전체선택</b><input type="checkbox" name="chkAll" style="width:20px;height:20px;float:left;"/>
+    		<form name="f" method="post" action="/payment/cartListPaymentList.do">			
     		<c:forEach items="${cartListResult.cartInfo}" var="list">
-					<hr style="color:black;">
-						<input type="checkbox" name="chkbox" value="${list.mtr_price}" onclick="SumPrice(this.form)" style="width:20px;height:20px; float:left; margin-top:50px;">
+					<hr>
+						<input type="checkbox" name="chkbox" ct_seq="${list.ct_seq}" mtr_seq="${list.mtr_seq}" mtrdi_seq="${list.mtrdi_seq}" mtr_price="${list.mtr_price }" value="${list.mtr_price}" onclick="SumPrice(this.form)" style="width:20px;height:20px; float:left; margin-top:50px;">
 						<div style="margin-left:50px;">
 							<img src="../resources/mentoring_list_images/${list.mtr_profile}" alt="img" width="100px" height="100px">&nbsp;&nbsp;&nbsp;
 							<span class="badge badge-warning mb-2" style="font-size:1.0em;">${list.mtr_hashtag}</span>
@@ -59,56 +61,16 @@
 				<b>합계</b>
 				<hr>
 					<div>
-						<span id="totPrice">0</span>원<button id="check_module" type="button" style="float:right;">결제하기</button>
+						<span id="totPrice">0</span>원<button id="purchase" type="button" style="float:right;">결제하기</button>
 					</div>
+					<input type="hidden" id="sumPaymentPrice" name="sumPaymentPrice" value=""/>
+					<input type="hidden" id="cartList" name="cartList" value=""/>
 			</form>
 		</c:if>
     </div><!-- /.jumbotron -->
 
   </div><!-- /.container -->
-  
-  <%-- <button id="check_module" type="button">아임 서포트 결제 모듈 테스트 해보기</button>--%>
-<script>
-		$("#check_module").click(function() {
-			var IMP = window.IMP;
-			IMP.init('imp34994796');
-			IMP.request_pay({
-				pg: 'inicis',
-				
-				pay_method: 'card',
-				
-				merchant_uid: 'fourP' + new Date().getTime(),
-				
-				name: '4P팀결제테스트',
-				
-				amount: 1000,
-				
-				buyer_email: 'wkdgusqhd080@naver.com',
-				buyer_name: '쟝현봉',
-				buyer_tel: '010-2173-5831',
-				//buyer_addr: '서울특별시 서대문구 홍제동',
-				buyer_postcode: '123-456',
-				paid_at: new Date().getTime(),
-				//m_redirect_url: 'https://www.yourdomain.com/payments/complete'
-				
-				
-			}, function (rsp) {
-				console.log(rsp);
-				if (rsp.success) {
-				var msg = '결제가 완료되었습니다.';
-				msg += '고유ID : ' + rsp.imp_uid;
-				msg += '상점 거래ID : ' + rsp.merchant_uid;
-				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
-				} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-				}
-				alert(msg);
-				});
-			
-		});
-	</script>
+
 	<script>
 		function SumPrice(frm){
 			var sum = 0;
@@ -122,10 +84,107 @@
 				for(var i=0; i < count; i++ ){
 			       if( frm.chkbox[i].checked == true ){
 				    sum += parseInt(frm.chkbox[i].value);
+				    
 			       }
 		   		}
 			}
 		   $("#totPrice").text(sum);
 		}
+		
 	</script>
+
+	
+<script>
+
+cartList = [];
+
+$(document).ready(function(){
+	
+	$("#purchase").on('click', function(){
+		var sumPaymentPrice = $("#totPrice").text();
+		if(sumPaymentPrice != 0 & cartList.length != 0) {//alert("결제로직");
+			//alert("합계: " + sumPaymentPrice);
+			$("#sumPaymentPrice").val(sumPaymentPrice);
+			//alert("구매 할 목록: " + cartList);
+			$("#cartList").val(cartList);
+			f.submit();
+		}else {
+			alert("결제 목록을 선택해주세요.");
+			return false;
+		}
+	});
+	
+	$("[name=chkAll]").click(function(){
+		allCheckFunc(this);
+		totalPriceCal(this);
+		totalProductCal(this);
+	});
+	
+	function allCheckFunc(obj) {
+		$("[name=chkbox]").prop("checked", $(obj).prop("checked") );
+	}
+	function totalProductCal(obj){
+		console.clear();
+		if($('input:checkbox[name=chkbox]:checked').length != 0){//전체선택
+			$('input:checkbox[name=chkbox]').each(function() {
+					if($(this).prop("checked")){
+					    var ct_seq = $(this).attr("ct_seq");
+					    cartList.push(ct_seq);
+					}
+				});
+		}else {//전체해제
+			var l = cartList.length;
+			cartList.splice(0, l);
+		}	
+	}
+	function totalPriceCal(obj){
+		console.clear();
+		var totPrice = 0;
+		if($('input:checkbox[name=chkbox]:checked').length != 0){
+			$('input:checkbox[name=chkbox]').each(function(){
+				if($(this).prop("checked")){
+					totPrice = parseInt(totPrice) + parseInt($(this).attr("mtr_price"));
+				}
+			});
+			$("#totPrice").text(totPrice);
+		}else {
+			$("#totPrice").text("0");
+		}
+	}
+	
+	$("[name=chkbox]").each(function(){
+		$(this).click(function(){
+			oneCheckFunc(this);
+		});
+	});
+	
+	function oneCheckFunc(obj){
+		var allObj = $("[name=chkAll]");
+		var objName = $(obj).attr("name");
+		var ct_seq = $(obj).attr("ct_seq");
+			if($(obj).prop("checked")) {
+				checkBoxLength = $("[name="+ objName +"]").length;
+				checkedLength = $("[name="+ objName +"]:checked").length;
+				if( checkBoxLength == checkedLength ) {//alert("각각 체크하다가 전부다 체크 될시");
+					cartList.push(ct_seq);
+					allObj.prop("checked", true);
+				}else {//alert("각각 체크 될 시");
+					cartList.push(ct_seq);
+					allObj.prop("checked", false);
+				}
+			}
+			else{//alert("체크해제 될 시");
+				allObj.prop("checked", false);
+				var index = cartList.indexOf(ct_seq);
+				if(index > -1) {
+					cartList.splice(index, 1);
+				}
+			}	
+	}
+	
+});
+
+</script>
+	
+	
 <%@include file="../footer.jsp" %>

@@ -79,7 +79,7 @@ function setImg() {
           <a href="../mypage/myInfo.do" class="aaa" style="color:gray;">내 정보 관리</a>
           <a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">나의 활동 내역</a>
           <a href="../mypage/myPoint.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">포인트</a>
-          <a href="../mypage/myPayment.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">구매 &환불 내역 </a>
+          <a href="../mypage/myPaymentInfo.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">구매 &환불 내역 </a>
           <a href="../cart/cart.do?mem_email=${loginUser.mem_email}" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
         </div>
       </div>
@@ -104,8 +104,10 @@ function setImg() {
 	      		<td><strong>신청자 수</strong></td>
 	      		<td><strong>시작시간</strong></td>
 	      		<td><strong>결제날짜</strong></td>
+	      		<%-- 
 	      		<td><strong>멘토링정보</strong></td>
 	      		<td><strong>환불</strong></td>
+	      		--%>
 	     	</tr>
 	     	<c:forEach items="${activityListResult.activityVo}" var="act" varStatus="status">
 		     	<tr>
@@ -114,8 +116,14 @@ function setImg() {
 		     		<td>${act.mtrdi_now_pcnt}/${act.mtrdi_max_pcnt}</td>
 		     		<td>${act.mtrdi_stime}</td>
 		     		<td>${act.pi_rdate}</td>
+<<<<<<< HEAD
 		     		<td><button onclick="location.href='../mentoring/mentoringDetail.do?mtr_seq=${act.mtr_seq}'" style="color:white; background:#f0a05b; font-size:1em; border-radius:0.5em; padding:5px 20px;">상세보기</button></td>
+=======
+		     		<%-- 
+		     		<td><button style="color:white; background:#f0a05b; font-size:1em; border-radius:0.5em; padding:5px 20px;">상세보기</button></td>
+>>>>>>> 1b2853fcfd5cd5837b0bfd1e8921f81ec4102acf
 		     		<td><button style="color:white; background:#eb4034; font-size:1em; border-radius:0.5em; padding:5px 20px;">환불하기</button></td>
+		     		--%>
 		     	</tr>
 	     	</c:forEach>
 	     	</table>

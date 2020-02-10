@@ -174,7 +174,6 @@ insert into MEMBER values('c7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8t
 commit;
 
 
-
 select * from MEMBER;
 
 --insert into MEMBER(MEM_EMAIL, MEM_AGE, MEM_GENDER, MEM_RDATE, MEM_POINT, MEM_AUTH, MEM_STATE) values('disken@naver.com','20-29',2,SYSDATE,0,0,1);
@@ -302,11 +301,11 @@ create sequence MENTORING_SEQ minvalue 0 start with 1 increment by 1 nocache;
 
 /*<insert id="insertBoard" parameterType="com.my.spring.domain.BoardVO">
 
-   <selectKey keyProperty="seq" order="BEFORE" resultType="int">
-      SELECT BOARD_SEQ.NEXTVAL FROM DUAL
-   </selectKey>
-   INSERT INTO BOARD (seq, writer, title, content)
-            VALUES (#{seq}, #{writer}, #{title}, #{content})
+	<selectKey keyProperty="seq" order="BEFORE" resultType="int">
+		SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
+	INSERT INTO BOARD (seq, writer, title, content)
+				VALUES (#{seq}, #{writer}, #{title}, #{content})
 </insert>*/
 
 
@@ -403,14 +402,14 @@ select * from MENTORING order by MTR_SEQ desc;
 
 select * from MENTORING where MTR_SUBJECT like '%공예%';
 
-       select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
         from (select ROWNUM rnum , aa.* from (select * from Mentoring order by MTR_SEQ desc) aa)
-          where rnum>0 and rnum<=6;
+			 where rnum>0 and rnum<=6;
              
              
-               select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+        	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
         from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like 0 order by MTR_SEQ desc) aa)
-          where rnum>0 and rnum<=6;     
+			 where rnum>0 and rnum<=6;     
   */           
              
 
@@ -444,13 +443,13 @@ select MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI'), TO_CHAR(MTRDI_ETIM
 select MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI'), TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI'), MTRDI_MAX_PCNT, MTRDI_NOW_PCNT, MTRDI_STATE, MTR_SEQ  from MENTORING_DETAIL_INFO;
 */
 
-insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-18 16:00', '2020-01-18 18:00', 4, 0, 2);
-insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-20 18:00', '2020-01-20 20:00', 4, 0, 2);
-insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-24 20:00', '2020-01-24 22:00', 4, 0, 2);
+insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-03-18 16:00', '2020-03-18 18:00', 4, 0, 2);
+insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-03-20 18:00', '2020-03-20 20:00', 4, 0, 2);
+insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-03-24 20:00', '2020-03-24 22:00', 4, 0, 2);
 
-insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-20 10:00','2020-01-20 13:00', 10, 0, 3);
-insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-01-28 15:00','2020-01-28 17:00', 10, 0, 3);
+insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-03-20 10:00','2020-03-20 13:00', 10, 0, 3);
 insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-03-24 20:00','2020-03-24 23:00', 10, 0, 3);
+insert into MENTORING_DETAIL_INFO values(MENTORING_DETAIL_INFO_SEQ.nextval,'2020-03-28 15:00','2020-03-28 17:00', 10, 0, 3);
 
 
 select MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI') as mtrdi_stime, TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI') as mtrdi_etime, MTRDI_MAX_PCNT, MTRDI_NOW_PCNT, MTR_SEQ  from MENTORING_DETAIL_INFO;
@@ -491,14 +490,14 @@ insert into MENTORING_QA values(MENTORING_QA_SEQ.nextval, '요가수업질문이요15', 
 
 select * from MENTORING_QA;
 
-       select * from (select ROWNUM rnum , aa.* from (select * from Mentoring_QA where MTR_SEQ = 2 order by MTRQA_SEQ desc) aa)
-          where rnum>0 and rnum<=3;
+	    select * from (select ROWNUM rnum , aa.* from (select * from Mentoring_QA where MTR_SEQ = 2 order by MTRQA_SEQ desc) aa)
+			 where rnum>0 and rnum<=3;
 
 
 /*
-       select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
+	    select MTR_SEQ, MTR_SUBJECT, MTR_CONTENT, MTR_PRICE, MTR_AREA, MTR_ADDR, MTR_JUMSU, MTR_PROFILE, MTR_HASHTAG, MTRCG_NO, MEM_EMAIL
         from (select ROWNUM rnum , aa.* from (select * from Mentoring order by MTR_SEQ desc) aa)
-          where rnum>0 and rnum<=6;
+			 where rnum>0 and rnum<=6;
 */
 
 --select MTRQA_SEQ, MTRQA_CONTENT, MTRQA_RDATE, mq.MEM_EMAIL, MTR_SEQ, MEM_NICK, MEM_PROFILE from MENTORING_QA mq, MEMBER me where mq.MEM_EMAIL = me.MEM_EMAIL and MTR_SEQ = 2;
@@ -695,7 +694,24 @@ create sequence CART_SEQ minvalue 0 start with 1 increment by 1 nocache;
 insert into CART values(CART_SEQ.nextval, SYSDATE, 2, 2, 'b@naver.com');
 insert into CART values(CART_SEQ.nextval, SYSDATE, 2, 4, 'b@naver.com');
 
-select * from CART where MEM_EMAIL = 'b@naver.com';
+insert into CART values(CART_SEQ.nextval, SYSDATE, 2, 2, 'c@naver.com');
+insert into CART values(CART_SEQ.nextval, SYSDATE, 3, 5, 'c@naver.com');
+commit;
+
+--select * from CART where MEM_EMAIL = 'b@naver.com' order by ct_seq;
+--select * from payment_info where mem_email ='b@naver.com';
+--select * from payment_detail_info;
+--select * from points;
+
+/*
+SELECT c.MTR_SEQ, MTR_PROFILE, MTR_SUBJECT, MTR_HASHTAG,MTR_PRICE, mdi.MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI') as MTRDI_STIME, TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI') as MTRDI_ETIME, CT_SEQ from MENTORING mtr, MENTORING_DETAIL_INFO mdi, CART c, MEMBER m 
+			where c.MEM_EMAIL = 'b@naver.com' and m.MEM_EMAIL = 'b@naver.com' and c.MTR_SEQ = mtr.MTR_SEQ and c.MTRDI_SEQ = mdi.MTRDI_SEQ and c.CT_SEQ = 2
+			order by ct_seq;
+
+select mtr.MTR_PROFILE, mtr.MTR_SUBJECT, mtr.MTR_HASHTAG, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI') as MTRDI_STIME, TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI') as MTRDI_ETIME, mtrdi.MTR_SEQ, mtrdi.MTRDI_SEQ from MENTORING mtr, MENTORING_DETAIL_INFO mtrdi, CART c
+where c.MTR_SEQ = mtr.MTR_SEQ and c.MTRDI_SEQ = mtrdi.MTRDI_SEQ and c.CT_SEQ = 2 order by ct_seq;
+*/
+
 
 --결제_정보--
 create table PAYMENT_INFO (
@@ -733,21 +749,24 @@ end;
 --select * from member where mem_email = 'b@naver.com';
 
 
-insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '자세교정밸런스요가', 25000, SYSDATE, '장현봉', '01021735831', 1, 'b@naver.com');
-insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '하루종일스키', 25000, SYSDATE, '장현봉', '01021735831', 1, 'b@naver.com');
+insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '자세교정밸런스요가', 25000, '2020-02-01', '장현봉', '01021735831', 1, 'b@naver.com');
+insert into PAYMENT_INFO values(PAYMENT_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '하루종일스키', 20000, '2020-02-05', '장현봉', '01021735831', 1, 'b@naver.com');
 
 
 insert into PAYMENT_DETAIL_INFO values(2, 2, 2);
 insert into PAYMENT_DETAIL_INFO values(2, 3, 2);
 insert into PAYMENT_DETAIL_INFO values(3, 7, 3);
-
+commit;
 
 select * from member where mem_email ='b@naver.com';
-
 select * from payment_info;
 select * from payment_detail_info;
-
 select * from points where mem_email = 'b@naver.com';
+
+select mtr.MTR_SEQ, mtr.MTR_SUBJECT, mdi.MTRDI_MAX_PCNT, mdi.MTRDI_NOW_PCNT, mdi.MTRDI_STIME, mdi.MTRDI_ETIME, pi.PI_RDATE 
+      from MENTORING mtr, MENTORING_DETAIL_INFO mdi, PAYMENT_INFO pi, PAYMENT_DETAIL_INFO pdi
+      where mtr.MTR_SEQ = pdi.MTR_SEQ and mdi.MTRDI_SEQ = pdi.MTRDI_SEQ 
+      and pi.PI_SEQ = pdi.PI_SEQ and pi.PI_STATE = 1 and mdi.MTRDI_STIME > SYSDATE and pi.MEM_EMAIL = 'b@naver.com' order by mdi.MTRDI_STIME desc;
 
 
 --환불_정보--
@@ -761,7 +780,7 @@ RI_PRICE number,
 RI_RDATE date,
 RI_NAME varchar2(50),
 RI_PHONE varchar2(11),
-MTR_SEQ number,
+RI_REASON varchar2(1000),
 MEM_EMAIL constraint REFUND_INFO_FK references MEMBER(MEM_EMAIL) on delete cascade,
 PI_SEQ constraint REFUND_INFO_FK2 references PAYMENT_INFO(PI_SEQ) on delete cascade
 );
@@ -790,14 +809,17 @@ end;
 /
 
 
-insert into REFUND_INFO values(REFUND_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '자세교정밸런스요가', 25000, SYSDATE, '장현봉', '01021735831', 2, 'b@naver.com', 2);
+insert into REFUND_INFO values(REFUND_INFO_SEQ.nextval, '이니시스', '카드', 'marchant_uid', '자세교정밸런스요가', 25000, SYSDATE, '장현봉', '01021735831', '변심으로인한 환불요청', 'b@naver.com', 2);
+
+
+select RI_SEQ, RI_PG, RI_METHOD, RI_MUID, RI_PRODUCT, RI_PRICE, RI_RDATE, RI_NAME, RI_PHONE, RI_REASON, ri.MEM_EMAIL, ri.PI_SEQ FROM PAYMENT_INFO pi, REFUND_INFO ri WHERE ri.MEM_EMAIL = 'b@naver.com' and pi.PI_SEQ = ri.PI_SEQ and pi.PI_STATE = 0;
 
 
 --update PAYMENT_INFO set PI_STATE = 0 where PI_SEQ = 1;
 
---select * from REFUND_INFO;
---select * from PAYMENT_INFO;
---select * from PAYMENT_DETAIL_INFO;
+select * from REFUND_INFO;
+select * from PAYMENT_INFO;
+select * from PAYMENT_DETAIL_INFO;
 --공지사항--
 create table NOTICE(
 NOTI_SEQ number constraint NOTICE_PK primary key,
@@ -826,10 +848,5 @@ insert into NOTICE values(NOTICE_SEQ.nextval, '공지사항제목', '공지사항내용', SY
 
 --select tname from tab;
 --테이블 18개 확인
- 		select mtr.MTR_SEQ, mtr.MTR_SUBJECT, mdi.MTRDI_ETIME, pi.PI_RDATE 
-		from MENTORING mtr, MENTORING_DETAIL_INFO mdi, PAYMENT_INFO pi, PAYMENT_DETAIL_INFO pdi
-		where mtr.MTR_SEQ = pdi.MTR_SEQ and mdi.MTRDI_SEQ = pdi.MTRDI_SEQ  and pi.PI_SEQ = pdi.PI_SEQ and pi.PI_STATE = 1 and mdi.MTRDI_STIME < SYSDATE and pi.MEM_EMAIL = 'b@naver.com';
-select * from MENTORING_DETAIL_INFO where MTRDI_STIME < SYSDATE;
-select * from PAYMENT_INFO pi, PAYMENT_DATAIL_INFO pdi, MENTORING_DETAIL_INFO mdi where pi.PI_SEQ = pdi.PI_SEQ;
 
-commit;
+

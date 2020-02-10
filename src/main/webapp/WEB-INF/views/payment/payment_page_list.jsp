@@ -74,7 +74,6 @@
 				<c:if test="${loginUser.mem_point ne 0}">
 				<input type="text" id="pointText" placeholder="포인트사용"/>
 				<button type="button" style="float:right;" onclick="pointUse();">사용하기</button>
-				<button type="button" id="pointCheck">포인트누적체크</button>
 				</c:if>
 			</div>
 		<hr>
@@ -100,13 +99,6 @@
 $(document).ready(function(){
 	
 	usedPoint = $("#usedPointTot").val();
-	
-	
-	
-	$("#pointCheck").on('click', function(){
-		alert("누적포인트: "+ usedPoint);
-		
-	});
 	
 	$("#pi_phone").on('keyup',function() {
 		if($("#pi_phone").val().length > 11) {
@@ -183,20 +175,18 @@ $(document).ready(function(){
 				buyer_email: '${loginUser.mem_email}',
 				buyer_name: $("#pi_name").val(),
 				buyer_tel: $("#pi_phone").val(),
-				//buyer_addr: '서울특별시 서대문구 홍제동',
-				buyer_postcode: '010-2173-5831',
 				paid_at: new Date().getTime(),
-				//m_redirect_url: '../payment/paymentComplete.do'
 			}, function (rsp) {
-					//console.log(rsp);
+						console.clear();
+						alert(rsp);
 						if (rsp.success) {
 						$("#pi_muid").val(rsp.merchant_uid);
 						$("#pi_priceResult").val($("#pi_price").text());
 						$("#usedPointTot").val(usedPoint);
 						$("#imp_uid").val(rsp.imp_uid);
 						$("#apply_num").val(rsp.apply_num);
-						alert("결제가 완료되었습니다.");
 						f.submit();
+						alert("결제가 완료되었습니다.");
 						} else {
 						var msg = '결제에 실패하였습니다.';
 						msg += '에러내용 : ' + rsp.error_msg;

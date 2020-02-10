@@ -26,5 +26,20 @@
 		SELECT * FROM PAYMENT_INFO WHERE PI_SEQ = #{pi_seq}
 		]]>
 	</select>
+	<select id="selectCartPaymentInfo" resultType="CartInfo" parameterType="map">
+		<![CDATA[
+		SELECT c.MTR_SEQ, MTR_PROFILE, MTR_SUBJECT, MTR_HASHTAG,MTR_PRICE, mdi.MTRDI_SEQ, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI') as MTRDI_STIME, TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI') as MTRDI_ETIME, 
+		CT_SEQ from MENTORING mtr, MENTORING_DETAIL_INFO mdi, CART c, MEMBER m 
+		where c.MEM_EMAIL = #{mem_email} and m.MEM_EMAIL = #{mem_email} and c.MTR_SEQ = mtr.MTR_SEQ and c.MTRDI_SEQ = mdi.MTRDI_SEQ and c.CT_SEQ = #{ct_seq}
+		order by ct_seq
+		]]>
+	</select>
+	<select id="selectCartOrderListVo" resultType="CartOrderListVo" parameterType="long">
+		<![CDATA[
+		select mtr.MTR_PROFILE, mtr.MTR_SUBJECT, mtr.MTR_HASHTAG, mtr.MTR_PRICE, TO_CHAR(MTRDI_STIME, 'YYYY-MM-DD HH24:MI') as MTRDI_STIME, 
+		TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI') as MTRDI_ETIME, mtrdi.MTR_SEQ, mtrdi.MTRDI_SEQ from MENTORING mtr, MENTORING_DETAIL_INFO mtrdi,
+		CART c where c.MTR_SEQ = mtr.MTR_SEQ and c.MTRDI_SEQ = mtrdi.MTRDI_SEQ and c.CT_SEQ = #{ct_seq} order by ct_seq
+		]]>
+	</select>
 	
 </mapper>

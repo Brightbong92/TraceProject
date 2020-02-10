@@ -5,7 +5,7 @@
 if(${requestScope.result} == <%=LoginSet.NO_ID%>){
 	   alert("없는 아이디 입니다 ");
 	   location.href="./login.do";
-}else if(${result} == <%=LoginSet.NO_PWD%> ){
+}else if(${requestScope.result} == <%=LoginSet.NO_PWD%> ){
 	   alert("잘못된 비밀번호 입니다 ");
 	   location.href="./login.do";
 }else{

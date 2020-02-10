@@ -25,7 +25,10 @@
 	   <typeAlias alias="Payment_Info" type="tp.domain.Payment_Info"/>
 	   <typeAlias alias="Payment_Detail_Info" type="tp.domain.Payment_Detail_Info"/>
 	   <typeAlias alias="PurchaseVo" type="tp.vo.PurchaseVo"/>
-
+	   <typeAlias alias="Cart" type="tp.domain.Cart"/>
+	   <typeAlias alias="CartOrderListVo" type="tp.vo.CartOrderListVo"/>
+	   <typeAlias alias="Refund_Info" type="tp.domain.Refund_Info"/>
+		
 
 	   <!-- 성지 -->
 	   <typeAlias alias="MemberPagingVo" type="tp.vo.MemberPagingVo"/>
