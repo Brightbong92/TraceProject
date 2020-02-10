@@ -80,34 +80,43 @@ function setImg() {
           <a href="../mypage/myInfo.do" class="aaa" style="color:gray;">내 정보 관리</a>
           <a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">나의 활동 내역</a>
           <a href="../mypage/myPoint.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">포인트</a>
-          <a href="../mypage/myPayment.do" class="aaa" style="color:gray;">구매 &환불 내역 </a>
+          <a href="../mypage/myPayment.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">구매 &환불 내역 </a>
           <a href="../cart/cart.do?mem_email=${loginUser.mem_email}" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
         </div>
       </div>
       <br/>
       <div class="col-lg-3 mb-4 bora" style="margin-top:-15px;">
       	<div class="list-group bora1" style="font-size:13px;" >
-          	<a href="../mypage/myActivity.do" class=bbb style="color:gray;">신청한 멘토링</a>
-          	<a href="../mypage/pastActivity.do" class="bbb" style="color:red;">지난 멘토링 </a>
+          	<a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class=bbb style="color:gray;">신청한 멘토링</a>
+          	<a href="../mypage/pastActivity.do?mem_email=${loginUser.mem_email}" class="bbb" style="color:red;">지난 멘토링 </a>
+          	<c:if test="${loginUser.mem_auth ==1}">
+          		<a href="../mypage/openedActivity.do?mem_email=${loginUser.mem_email}" class="bbb" style="color:gray;">개설한 멘토링(멘토전용) </a>
+          	</c:if>
       	</div>
       </div>
-       <table class="table table-boardered">
-      	<tr>
-      		<td><strong> 번호</strong></td>
-      		<td><strong> 멘토링 명</strong></td>
-      		<td><strong> 종료시간 </strong></td>
-      		<td><strong> 결제날짜</strong> </td>
-      		<td><strong> 후기</strong> </td>
-     	</tr>
-     	<tr>
-     		<td>2</td>
-     		<td>서핑</td>
-     		<td>20/02/04 17:00</td>
-     		<td>20/02/01 17:35</td>
-     		<td><button style="color:white; background:#3b67f7; font-size:1em; border-radius:0.5em; padding:5px 20px;">후기 작성하기</button></td>
-     	</tr>
-     	</table>
-     
+      <c:if test="${empty pastActivityListResult.activityVo}">
+     	 <p style="text-align:center; width:100%; color:gray;">멘토링 이력이 없습니다.</p>
+      </c:if>
+      <c:if test="${!empty pastActivityListResult.activityVo}">
+	       <table class="table table-boardered">
+	      	<tr>
+	      		<td><strong> 번호</strong></td>
+	      		<td style="width:280px;"><strong> 멘토링 명</strong></td>
+	      		<td><strong> 종료시간 </strong></td>
+	      		<td><strong> 결제날짜</strong> </td>
+	      		<td><strong> 후기</strong> </td>
+	     	</tr>
+	     	<c:forEach items="${pastActivityListResult.activityVo}" var="act" varStatus="status">
+		     	<tr>
+		     		<td>${status.count}</td>
+		     		<td>${act.mtr_subject}</td>
+		     		<td>${act.mtrdi_etime}</td>
+		     		<td>${act.pi_rdate}</td>
+		     		<td><button onclick="location.href='../review/reviewList.do?mtr_seq=${act.mtr_seq}&cp=1'" style="color:white; background:#3b67f7; font-size:1em; border-radius:0.5em; padding:5px 20px;">후기 작성하기</button></td>
+		     	</tr>
+	     	</c:forEach>
+	     	</table>
+     </c:if>
       <!-- Content Column -->
       <div class="col-lg-9 mb-4 bora0">
         

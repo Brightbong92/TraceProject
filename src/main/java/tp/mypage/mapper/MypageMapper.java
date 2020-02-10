@@ -5,6 +5,7 @@ import java.util.List;
 
 import tp.domain.Disabled;
 import tp.domain.Member;
+import tp.domain.Mentoring;
 import tp.domain.Points;
 import tp.vo.ActivityVo;
 
@@ -17,4 +18,6 @@ public interface MypageMapper {
 	Member selectMember(String mem_email);
 	long getMem_point(String mem_email);
 	List<ActivityVo> getActivity(String mem_email);
+	List<ActivityVo> getPastActivity(String mem_email);
+	List<Mentoring> getOpenedActivity(String mem_email);
 }

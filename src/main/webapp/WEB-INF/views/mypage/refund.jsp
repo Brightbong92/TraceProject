@@ -1,37 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <jsp:include page="../top.jsp" />
-<head>
-    <style>
-        .btn-profile{
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-profile input[type=file] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            min-width: 100%;
-            min-height: 100%;
-            font-size: 100px;
-            text-align: right;
-            filter: alpha(opacity=0);
-            opacity: 0;
-            outline: none;
-            background: white;
-            cursor: inherit;
-            display: block;
-        }
-    </style>
-	
-</head>
-<body>
-	<script>
-
-function setImg() {
-    form.submit();
-    alert("프로필이 변경되었습니다.");
-}
+<script>
+	if(${empty sessionScope.loginUser}){
+		alert("로그인 후 서비스 이용 가능합니다");
+		location.href="../login/login.do";
+	}
 </script>
 
   <!-- Page Content -->
@@ -74,18 +48,40 @@ function setImg() {
           <a href="../mypage/myInfo.do" class="aaa" style="color:gray;">내 정보 관리</a>
           <a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">나의 활동 내역</a>
           <a href="../mypage/myPoint.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">포인트</a>
-          <a href="../mypage/myPayment.do" class="aaa" style="color:white;">구매 &환불 내역 </a>
-          <a href="#" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
+          <a href="../mypage/myPayment.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">구매 &환불 내역 </a>
+          <a href="../cart/cart.do?mem_email=${loginUser.mem_email}" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
         </div>
       </div>
       <br/>
       <div class="col-lg-3 mb-4 bora" style="margin-top:-15px;">
       	<div class="list-group bora1" style="font-size:13px;" >
-          	<a href="../mypage/myPayment.do" class=bbb style="color:gray;">구매 내역</a>
-          	<a href="../mypage/refund.do" class="bbb" style="color:red;">환불 내역 </a>
+          	<a href="../mypage/myPayment.do?mem_email=${loginUser.mem_email}" class=bbb style="color:gray;">구매 내역</a>
+          	<a href="../mypage/refund.do?mem_email=${loginUser.mem_email}" class="bbb" style="color:red;">환불 내역 </a>
       	</div>
       </div>
-     
+     <table class="table table-boardered">
+      	<tr>
+      		<td> 번호 </td>
+      		<td> 멘토링 명</td>
+      		<td> 가격 </td>
+      		<td> 결제날짜 </td>
+      		<td> 환불날짜 </td>
+     	</tr>
+     	<tr>
+     		<td>2</td>
+     		<td>서핑</td>
+     		<td>20000원</td>
+     		<td>20/02/01 17:35</td>
+     		<td>20/02/02 11:50</td>
+     	</tr>
+     	<tr>
+     		<td>1</td>
+     		<td>귀걸이공예</td>
+     		<td>20000원</td>
+     		<td>20/02/03 15:13</td>
+     		<td></td>
+     	</tr>
+     	</table>
       
     </div>
     <!-- /.row -->

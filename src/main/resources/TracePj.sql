@@ -826,6 +826,10 @@ insert into NOTICE values(NOTICE_SEQ.nextval, '공지사항제목', '공지사항내용', SY
 
 --select tname from tab;
 --테이블 18개 확인
+ 		select mtr.MTR_SEQ, mtr.MTR_SUBJECT, mdi.MTRDI_ETIME, pi.PI_RDATE 
+		from MENTORING mtr, MENTORING_DETAIL_INFO mdi, PAYMENT_INFO pi, PAYMENT_DETAIL_INFO pdi
+		where mtr.MTR_SEQ = pdi.MTR_SEQ and mdi.MTRDI_SEQ = pdi.MTRDI_SEQ  and pi.PI_SEQ = pdi.PI_SEQ and pi.PI_STATE = 1 and mdi.MTRDI_STIME < SYSDATE and pi.MEM_EMAIL = 'b@naver.com';
+select * from MENTORING_DETAIL_INFO where MTRDI_STIME < SYSDATE;
+select * from PAYMENT_INFO pi, PAYMENT_DATAIL_INFO pdi, MENTORING_DETAIL_INFO mdi where pi.PI_SEQ = pdi.PI_SEQ;
 
-
-
+commit;

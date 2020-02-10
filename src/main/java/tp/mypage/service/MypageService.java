@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tp.domain.Disabled;
 import tp.domain.Member;
+import tp.domain.Mentoring;
 import tp.vo.ActivityListResult;
 import tp.vo.ActivityVo;
 import tp.vo.PointInfo;
@@ -18,4 +19,6 @@ public interface MypageService {
 	Member saveImg(String mem_email, MultipartFile f);
 	boolean writeFile(MultipartFile f, String saveFileName);
 	ActivityListResult getActivity(String mem_email);
+	ActivityListResult getPastActivity(String mem_email);
+	List<Mentoring> getOpenedActivity(String mem_email);
 }

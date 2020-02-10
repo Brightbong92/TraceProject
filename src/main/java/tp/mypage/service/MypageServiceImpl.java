@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import tp.domain.Disabled;
 import tp.domain.Member;
+import tp.domain.Mentoring;
 import tp.domain.Points;
 import tp.mentor.service.MentorPath;
 import tp.mypage.mapper.MypageMapper;
@@ -107,4 +108,15 @@ public class MypageServiceImpl implements MypageService {
 		List<ActivityVo> activityVo = mypageMapper.getActivity(mem_email);
 		return new ActivityListResult(activityVo);
 	}
+	@Override
+	public ActivityListResult getPastActivity(String mem_email) {
+		List<ActivityVo> activityVo = mypageMapper.getPastActivity(mem_email);
+		return new ActivityListResult(activityVo);
+	}
+	@Override
+	public List<Mentoring> getOpenedActivity(String mem_email) {
+		List<Mentoring> openedActivity = mypageMapper.getOpenedActivity(mem_email);
+		return openedActivity;
+	}
+	
 }
