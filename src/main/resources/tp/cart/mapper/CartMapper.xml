@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tp.cart.mapper.CartMapper">
 	<select id="getCart" resultType="CartInfo" parameterType="String">
-		select c.MTR_SEQ, MTR_PROFILE, MTR_SUBJECT, MTR_HASHTAG,MTR_PRICE, mdi.MTRDI_SEQ, MTRDI_STIME, MTRDI_ETIME, MEM_POINT, CT_SEQ 
+		select c.MTR_SEQ, MTR_PROFILE, MTR_SUBJECT, MTR_HASHTAG,MTR_PRICE, mdi.MTRDI_SEQ, TO_CHAR(MTRDI_STIME,'YYYY-MM-DD HH24:MI') as MTRDI_STIME, TO_CHAR(MTRDI_ETIME, 'YYYY-MM-DD HH24:MI') as MTRDI_ETIME, MEM_POINT, CT_SEQ 
 			from MENTORING mtr, MENTORING_DETAIL_INFO mdi, CART c, MEMBER m 
 			where c.MEM_EMAIL = #{mem_email} and m.MEM_EMAIL = #{mem_email} and c.MTR_SEQ = mtr.MTR_SEQ and c.MTRDI_SEQ = mdi.MTRDI_SEQ
 			order by ct_seq

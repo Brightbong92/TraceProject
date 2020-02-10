@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import tp.domain.Disabled;
 import tp.domain.Member;
+import tp.domain.Payment_Info;
 import tp.domain.Points;
+import tp.domain.Refund_Info;
 import tp.mentor.service.MentorPath;
 import tp.mypage.mapper.MypageMapper;
 import tp.vo.ActivityListResult;
@@ -106,5 +109,33 @@ public class MypageServiceImpl implements MypageService {
 	public ActivityListResult getActivity(String mem_email) {
 		List<ActivityVo> activityVo = mypageMapper.getActivity(mem_email);
 		return new ActivityListResult(activityVo);
+	}
+
+	@Override
+	public List<Payment_Info> getMyPaymentInfo(String mem_email) {
+		List<Payment_Info> pi_list = mypageMapper.selectMyPaymentInfo(mem_email);
+		return pi_list;
+	}
+
+	@Override
+	public List<Refund_Info> getMyRefundInfo(String mem_email) {
+		List<Refund_Info> ri_list = mypageMapper.selectMyRefundInfo(mem_email);
+		return ri_list;
+	}
+
+	@Override
+	public boolean getMyPageNickCheck(String mem_nick, String mem_email) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_nick", mem_nick);
+		map.put("mem_email", mem_email);
+		String checkNick =  mypageMapper.selectMyPageNickCheck(map);
+		if(checkNick != null) return true;//닉네임 안바꿀경우
+		return false;
+	}
+
+	@Override
+	public void updateMyPageInfoS(Member member) {
+		mypageMapper.updateMyPageInfo(member);
+		
 	}
 }

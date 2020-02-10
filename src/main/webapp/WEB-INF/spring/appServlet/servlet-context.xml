@@ -68,5 +68,6 @@
 	<context:component-scan base-package="tp.cart.controller" />	
 	
 	<context:component-scan base-package="tp.payment.controller" />
+	<context:component-scan base-package="tp.refund.controller" />
 
 </beans:beans>

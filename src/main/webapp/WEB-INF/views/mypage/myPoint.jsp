@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8" import="tp.vo.PointInfo, tp.domain.Points ,java.util.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <jsp:include page="../top.jsp" />
 <script>
 	if(${empty sessionScope.loginUser}){
@@ -80,7 +82,7 @@ function setImg() {
           <a href="../mypage/myInfo.do" class="aaa" style="color:gray;">내 정보 관리</a>
           <a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">나의 활동 내역</a>
           <a href="../mypage/myPoint.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">포인트</a>
-          <a href="../mypage/myPayment.do" class="aaa" style="color:gray;">구매 &환불 내역 </a>
+          <a href="../mypage/myPaymentInfo.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">구매 &환불 내역 </a>
           <a href="../cart/cart.do?mem_email=${loginUser.mem_email}" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
         </div>
       </div>
@@ -96,7 +98,7 @@ function setImg() {
       		<td> 번호 </td>
       		<td> 적립 / 사용 내역 </td>
       		<td> 포인트 </td>
-      		<td> 총 포인트 </td>
+      		<td> 총 포인트  사용</td>
       		<td> 날짜 </td>
      	</thead>
      	
@@ -114,7 +116,7 @@ function setImg() {
 		     		</c:if>
 		     		<c:set var= "total" value="${total + point.po_saving}"/>
 		      		<td> ${total}p </td>
-		      		<td> ${point.po_rdate} </td>
+		      		<td><fmt:formatDate value="${point.po_rdate}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 		     	</tr>
 	     	</c:forEach>
      	</tbody>

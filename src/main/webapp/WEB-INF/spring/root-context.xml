@@ -98,6 +98,10 @@
 		<context:component-scan base-package="tp.payment.mapper" />
 		<mybatis-spring:scan base-package="tp.payment.mapper" />
 		
+		<context:component-scan base-package="tp.refund.service"/>
+		<context:component-scan base-package="tp.refund.mapper" />
+		<mybatis-spring:scan base-package="tp.refund.mapper" />
+		
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>

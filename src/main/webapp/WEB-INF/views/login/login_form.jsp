@@ -65,7 +65,10 @@
 								<div id="naverIdLogin"></div>
                             </fieldset>
                             <br/>
-                            <div align="center"><a class="btn btn-primary" href="../join/join.do">회원가입</a></div>
+                            <div align='center'>
+                            <a class="btn btn-primary" href="../">돌아가기</a>
+                            <a class="btn btn-primary" href="../join/join.do">회원가입</a>
+                            </div>
                         </form>
 						
                     </div>

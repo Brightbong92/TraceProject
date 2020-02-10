@@ -60,7 +60,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" >
           <li class="nav-item">
-            <a class="nav-link" href="../notice/list.do" style="color:black;">공지사항</a>
+              <a class="nav-link" href="../mentoring/mentoring_list.do?sort=99" style="color:black;">멘토링</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../mentor/mentor_apply.do" style="color:black;">멘토신청</a>
@@ -68,18 +68,8 @@
           <li class="nav-item">
             <a class="nav-link" href="../hobbytest/hobby_test.do" style="color:black;">취미테스트</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black;">
-              	멘토링수업
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="../mentoring/list1.do">정렬방식 1</a>
-              <!--  <a class="dropdown-item" href="../mentoring/list2.do">검색</a>-->
-              <a class="dropdown-item" href="../mentoring/mentoring_list.do?sort=99">멘토링리스트</a>
-              <a class="dropdown-item" href="../mentoring/list4.do">정렬방식 4</a>
-              <a class="dropdown-item" href="../mentoring/list5.do">정렬방식 5</a>
-              <a class="dorpdown-item" href="../payment/purchaseOk.do">결제완료창테스트</a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="../notice/list.do" style="color:black;">공지사항</a>
           </li>
           
             <!-- 로그인했을 시 나오게끔 -->
