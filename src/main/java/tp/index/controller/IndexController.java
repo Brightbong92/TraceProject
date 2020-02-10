@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.extern.log4j.Log4j;
 import tp.domain.Mentoring;
 import tp.index.service.IndexService;
 import tp.vo.IndexListResult;
+import tp.vo.MemberListResult;
 
-
+@Log4j
 @Controller
 public class IndexController {
 	@Autowired
@@ -24,5 +26,4 @@ public class IndexController {
 		IndexListResult bestMentoring = service.bestMentoring();
 		return new ModelAndView("index/index","bestMentoring",bestMentoring);
 	}
-
 }

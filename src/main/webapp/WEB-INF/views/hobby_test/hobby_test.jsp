@@ -28,6 +28,11 @@
             display: block;
         }
     </style>
+    <script>
+    	function start(){
+    		
+    	}
+    </script>
 	<script>
 		var width = 0;
 		var cnt = 1;
@@ -94,10 +99,10 @@
     </ol>
 	<p style="margin-top:80px;font-size:23px;" align="center"><strong> 취미분석 테스트 </strong> </p>
 	<br/>
-	<p align="center">두 이미지중 마음에 드는 한가지를 선택하세요.</p>
+	<p align="center" id="comment">두 이미지중 마음에 드는 한가지를 선택하세요.</p>
 	<br/>
-	<button class="btn" id="btn" type="button" onclick="pbFunc(-1)" style="margin-left:90px;"><img class="btn-img" id="img1" src="../resources/hobbyTest/1-1.jpg" style="width:370px; height:370px;"></button>
-	<button class="btn" id="btn" type="button" onclick="pbFunc(1)" style="margin-left:210px;"><img class="btn-img" id="img2" src="../resources/hobbyTest/1-2.jpg" style="width:370px; height:370px;"></button>
+	<button class="btn" id="btn" type="button" onclick="pbFunc(0)" style="margin-left:90px;display:none" ><img class="btn-img" id="img1" src="../resources/hobbyTest/1-1.jpg" style="width:370px; height:370px;"></button>
+	<button class="btn" id="btn" type="button" onclick="pbFunc(1)" style="margin-left:210px;display:none"><img class="btn-img" id="img2" src="../resources/hobbyTest/1-2.jpg" style="width:370px; height:370px;"></button>
 	
 	<br/><br/><br/><br/><br/>
 	<div class="progress">
@@ -107,7 +112,7 @@
 	  </div>
 	</div>
 	<div align="center" style="margin-top:10px;">
-	<button type="button" class="button" id="start" style="margin-bottom:50px;color:white; background:#3b67f7; font-size:1em; border-radius:0.5em; padding:5px 20px;">StartNow</button>
+	<button type="button" class="button" id="start" onClick="start()" style="margin-bottom:50px;color:white; background:#3b67f7; font-size:1em; border-radius:0.5em; padding:5px 20px;">StartNow</button>
   	<button onClick="window.location.reload()" style="margin-bottom:50px;color:white; background:pink; font-size:1em; border-radius:0.5em; padding:5px 20px;">Restart</button>
   	
   	</div>

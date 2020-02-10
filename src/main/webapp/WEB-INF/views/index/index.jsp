@@ -1,3 +1,5 @@
+<%@page import="org.springframework.ui.Model"%>
+<%@page import="tp.index.service.IndexServiceImpl"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <jsp:include page="../top.jsp" />
@@ -51,23 +53,7 @@
 
   <!-- Page Content -->
   <div class="container">
-<div class="flexslider carousel">
-  <ul class="slides">
-    <li>
-      <img src="../resources/mentoring_list_images/${bestMentoring.bestMentoringInfo1.mtr_profile}" />
-    </li>
-    <li>
-      <img src="../resources/mentoring_list_images/${bestMentoring.bestMentoringInfo1.mtr_profile}" />
-    </li>
-    <li>
-      <img src="../resources/mentoring_list_images/${bestMentoring.bestMentoringInfo1.mtr_profile}" />
-    </li>
-    <li>
-      <img src="../resources/mentoring_list_images/${bestMentoring.bestMentoringInfo1.mtr_profile}" />
-    </li>
-    <!-- items mirrored twice, total of 12 -->
-  </ul>
-</div>
+
 	<br/>
     <!-- Portfolio Section -->
     <div class="alert alert-info" role="alert">
@@ -75,110 +61,262 @@
 </div>
 
     <div class="row">
+    <c:forEach items="${bestMentoring.topMentoring}" var="mtr_top">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="../resources/mentoring_list_images/${bestMentoring.bestMentoringInfo1.mtr_profile}" alt=""></a>
+          <a href="#"><img class="card-img-top" src="../resources/mentoring_list_images/${mtr_top.mtr_profile}" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <p><Heading1>${bestMentoring.bestMentoringInfo1.mtr_subject}</p> </h4>
-              <span class="badge badge-warning mb-2">${bestMentoring.bestMentoringInfo1.mtr_hashtag} </span>
-            <p class="card-text">${bestMentoring.bestMentoringInfo1.mtr_content} </p> <br/>
-          	<span class="card-text">${bestMentoring.bestMentoringInfo1.mtr_area}</span> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-          	<span class="card-text">${bestMentoring.bestMentoringInfo1.mtr_price}원</span>
+              <p><Heading1>${mtr_top.mtr_subject}</p> </h4>
+              <span class="badge badge-warning mb-2">${mtr_top.mtr_hashtag} </span><br/>
+             
+          	<span class="card-text"><span class="badge badge-primary">지역  :</span>&emsp;${mtr_top.mtr_area}</span> <br/><br/>
+          	<span class="card-text"><span class="badge badge-primary">가격  :</span>&emsp;${mtr_top.mtr_price}원</span> <br/><br/>
+          	<c:choose>
+          	
+					          <c:when test="${mtr_top.mtr_jumsu eq 0}">
+					            <div class="starRev">
+					            <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR">별1</span>
+								  <span class="starR">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${mtr_top.mtr_jumsu eq 1}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점  :</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${mtr_top.mtr_jumsu eq 2}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${mtr_top.mtr_jumsu eq 3}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${mtr_top.mtr_jumsu eq 4}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR on">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${mtr_top.mtr_jumsu eq 5}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR on">별4</span>
+								  <span class="starR on">별5</span>
+								</div>
+						      </c:when>
+					          </c:choose>
+					          </div>
+					          <a href="#" class = "btn btn-outline-primary">멘토링 참여하기</a>
           </div>
-          <a href="#" class = "btn btn-outline-primary">멘토링 참여하기</a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="../resources/mentoring_list_images/${bestMentoring.bestMentoringInfo2.mtr_profile}" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <p>${bestMentoring.bestMentoringInfo2.mtr_subject}</p></h4>
-            <span class="badge badge-warning mb-2">${bestMentoring.bestMentoringInfo2.mtr_hashtag} </span>
-            <p class="card-text">${bestMentoring.bestMentoringInfo2.mtr_content}</p><br/>
-          	<span class="card-text">${bestMentoring.bestMentoringInfo2.mtr_area}</span> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-          	<span class="card-text">${bestMentoring.bestMentoringInfo2.mtr_price}원</span><br/>
           </div>
-          	<a href="#" class = "btn btn-outline-primary">멘토링 참여하기</a>
+          </c:forEach>
         </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="../resources/mentoring_list_images/${bestMentoring.bestMentoringInfo3.mtr_profile}"" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <p>${bestMentoring.bestMentoringInfo3.mtr_subject}</p></h4>
-            <span class="badge badge-warning mb-2">${bestMentoring.bestMentoringInfo3.mtr_hashtag} </span>
-            <p class="card-text">${bestMentoring.bestMentoringInfo3.mtr_content}</p><br/>
-          	<span class="card-text">${bestMentoring.bestMentoringInfo3.mtr_area}</span> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-          	<span class="card-text">${bestMentoring.bestMentoringInfo3.mtr_price}원</span>
-          </div>
-          <a href="#" class = "btn btn-outline-primary">멘토링 참여하기</a>
-        </div>
-      </div>
+        
+        
       
-     </div>
       
-     <h2>NEW 따끈따끈 새로 나온 취미</h2>
+      <div class="alert alert-success" role="alert">
+		  <strong>NEW 따끈따끈 새로 나온 취미</strong>
+		</div>
      <div class="row">
+     <c:forEach items="${bestMentoring.latestArticle}" var="latestArticle">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        
+          <a href="#"><img class="card-img-top" src="../resources/mentoring_list_images/${latestArticle.mtr_profile}" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">멘토링명</a>
+              <p>${latestArticle.mtr_subject}</p>
             </h4>
-            <p class="card-text">멘토링 소개 멘토링 소개 멘토링 소개 멘토링 소개 멘토링 소개 멘토링 소개 멘토링 소개 멘토링 소개 </p> <br/>
-          	<span class="card-text">지역명</span> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-          	<span class="card-text">20000원</span>
+            <span class="badge badge-warning mb-2">${latestArticle.mtr_hashtag} </span><br/>
+          	<span class="card-text"><span class="badge badge-primary">지역  :</span>&emsp;${latestArticle.mtr_area}</span> <br/><br/>
+          	<span class="card-text"><span class="badge badge-primary">가격  :</span>&emsp;${latestArticle.mtr_price}원</span> <br/><br/>
+          	<c:choose>
+          	
+					          <c:when test="${latestArticle.mtr_jumsu eq 0}">
+					            <div class="starRev">
+					            <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR">별1</span>
+								  <span class="starR">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${latestArticle.mtr_jumsu eq 1}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점  :</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${latestArticle.mtr_jumsu eq 2}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${latestArticle.mtr_jumsu eq 3}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${latestArticle.mtr_jumsu eq 4}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR on">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${latestArticle.mtr_jumsu eq 5}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR on">별4</span>
+								  <span class="starR on">별5</span>
+								</div>
+						      </c:when>
+					          </c:choose>
           </div>
-        </div>
+           <a href="#" class="btn btn-secondary">멘토링 참여하기</a>
+           </div>
+           </div>
+          </c:forEach>
+         
       </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Five</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Six</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+      
     <!-- /.row -->
 
     <!-- Features Section -->
     <div class="row">
+     <c:forEach items="${bestMentoring.topMentoring}" var="mtr_top" end="0">
       <div class="col-lg-6">
-        <h2>이달의 멘토링</h2>
-        <p>이번 달 가장 인기있는 멘토링을 소개합니다 :</p>
+        <div class="alert alert-danger" role="alert">
+		  <strong>이달의 멘토링</strong> /이번 달 가장 인기있는 멘토링을 소개합니다 
+		</div>
         <ul>
           <li style="font-size:20px;">
-            <strong>멘토링 : ${bestMentoring.bestMentoringInfo1.mtr_subject}</strong>
+            <strong>멘토링 : ${mtr_top.mtr_subject}</strong>
           </li>
-          <li>멘토 닉네임 : ${bestMentoring.bestMentoringMentor.mem_nick}</li>
-          <li>지역 : ${bestMentoring.bestMentoringInfo1.mtr_area}</li>
-          <li>평점 : ${bestMentoring.bestMentoringInfo1.mtr_jumsu}</li>
-          <li>${bestMentoring.bestMentoringInfo1.mtr_hashtag}</li>
+          <li><span class="badge badge-primary">지역  : ${mtr_top.mtr_area}</span></li>
+          <li><span class="badge badge-warning mb-2">${mtr_top.mtr_hashtag} </span></li>
+          <li><c:choose>
+          	
+					          <c:when test="${mtr_top.mtr_jumsu eq 0}">
+					            <div class="starRev">
+					            <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR">별1</span>
+								  <span class="starR">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${mtr_top.mtr_jumsu eq 1}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점  :</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${mtr_top.mtr_jumsu eq 2}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${mtr_top.mtr_jumsu eq 3}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${mtr_top.mtr_jumsu eq 4}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR on">별4</span>
+								  <span class="starR">별5</span>
+								</div>
+						      </c:when>
+						      <c:when test="${mtr_top.mtr_jumsu eq 5}">
+						      	 <div class="starRev">
+						      	 <span class="badge badge-primary">평점:</span>&emsp;
+								  <span class="starR on">별1</span>
+								  <span class="starR on">별2</span>
+								  <span class="starR on">별3</span>
+								  <span class="starR on">별4</span>
+								  <span class="starR on">별5</span>
+								</div>
+						      </c:when>
+					          </c:choose></li>
         </ul>
-        <p>${bestMentoring.bestMentoringInfo1.mtr_content}</p>
+        <p>${mtr_top.mtr_content}</p>
       </div>
       <div class="col-lg-6">
-        <a href="#"><img class="img-flud" style="width:500px; height:400px;"src="../resources/mentoring_list_images/${bestMentoring.bestMentoringInfo1.mtr_profile}" alt=""></a>
+        <a href="#"><img class="img-flud" style="width:500px; height:400px;"src="../resources/mentoring_list_images/${mtr_top.mtr_profile}" alt=""></a>
       </div>
+      </c:forEach>
     </div>
     <!-- /.row -->
 
@@ -186,7 +324,11 @@
 
     <!-- Call to Action Section -->
     <div class="row mb-4" style="text-align:center" align="center">
-		<div class="hf-thumb-tit" style="font-size:25px; text-align:center; width:100%"><strong>취향이 통하는 사람들의 모임 발자취에 멘토로 참여하세요</strong></div>
+		<div class="hf-thumb-tit" style="font-size:25px; text-align:center; width:100%">
+		<div class="alert alert-warning" role="alert">
+		  <strong>취향이 통하는 사람들의 모임 발자취에 멘토로 참여하세요</strong>
+		</div>
+		</div>
 							<br/>
 							<p style="text-align:center; width:100%">
 							<br/>
@@ -195,11 +337,11 @@
 
 							눈을 맞추고, 우리안의 이야기에 온전히 집중하는 시간. 이런 순간들을, 우리는 얼마나 기다려 왔던가요? <br/><br/>
 
-							문토에서는 이런 일들이 실제로 가능합니다. 그리고 그 중심에는 문토의 리더가 있습니다. <br/><br/>
+							발자취에서는 이런 일들이 실제로 가능합니다. 그리고 그 중심에는 발자취의 멘토가 있습니다. <br/><br/>
 
 
 
-							문토의 리더는 우리가 좋아하는 것들에 더욱 가까이 다가가기 위해 필요한 경험의 지도를 그리는 사람입니다. <br/><br/>
+							발자취의 멘토는 우리가 좋아하는 것들에 더욱 가까이 다가가기 위해 필요한 경험의 지도를 그리는 사람입니다. <br/><br/>
 
 							내가 가진 것들을 일방적으로 전달하기 보다는 함께 보고 느끼고 즐기며 우리 각자가 자신만의 답을 찾을 수 있도록 돕습니다.<br/> <br/>
 
@@ -231,6 +373,7 @@
 	
 	<br/>
   </div>
+</div>
 </div>
   <!-- /.container -->
 <%@include file="../footer.jsp"%>
