@@ -116,9 +116,7 @@ function setImg() {
 		     		<td>${act.mtrdi_now_pcnt}/${act.mtrdi_max_pcnt}</td>
 		     		<td>${act.mtrdi_stime}</td>
 		     		<td>${act.pi_rdate}</td>
-<<<<<<< HEAD
 		     		<td><button onclick="location.href='../mentoring/mentoringDetail.do?mtr_seq=${act.mtr_seq}'" style="color:white; background:#f0a05b; font-size:1em; border-radius:0.5em; padding:5px 20px;">상세보기</button></td>
-=======
 		     		<%-- 
 		     		<td><button style="color:white; background:#f0a05b; font-size:1em; border-radius:0.5em; padding:5px 20px;">상세보기</button></td>
 >>>>>>> 1b2853fcfd5cd5837b0bfd1e8921f81ec4102acf

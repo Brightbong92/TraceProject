@@ -48,7 +48,7 @@
 	
 		<!-- 검색 -->
 	  <div class="autocomplete" style="width:300px;">
-      <input type="text" style="width:300px;" id="searchBar" placeholder="하고 싶은 멘토링을 검색해 보세요." onkeyup="find(this)"/><!-- 검색 -->
+      <input type="text" style="width:600px;" id="searchBar" placeholder="하고 싶은 멘토링을 검색해 보세요." onkeyup="find(this)"/><!-- 검색 -->
       </div>
  	  <div id="searchOpt" style="color:red;"></div>
       <input type="hidden" id="findFlag" value="Off">
@@ -204,6 +204,6 @@
 --%>
 </script>
 <script>
-var str = ['요가','요리','여행','여가', '와인', '댄스', '필라테스', '디제잉', '가죽', '향수', '가죽공예', '술', '커피', '음료', '헬스', '#요가', '#굿', '#음악'];
+var str = ['요가','요리','여행','여가', '와인', '댄스', '필라테스', '디제잉', '가죽', '향수', '가죽공예', '술', '커피', '음료', '헬스', '보드', '주짓수', '말', '승마', '스쿼시', '펜싱', '아카펠라', '스윙댄스', '스윙', '자수', '베이킹', '바텐더', '유튜브', '피아노', '방송댄스', '케이스', '키링', '초콜렛', '건강', '발레', '#발레', '#키링', '#베이킹', '#빵', '#유튜브', '#방송댄스', '#댄스', '#사진', '사진', '공예', '#공예', '스키', '#스키', '인스타그램', '#인스타그램'];
 autocomplete(document.getElementById("searchBar"), str);
 </script>

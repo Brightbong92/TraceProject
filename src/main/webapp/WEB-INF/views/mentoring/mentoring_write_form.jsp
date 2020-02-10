@@ -22,28 +22,40 @@
         background-color: #262626;
         color: #fff;
     }
-
     .del-btn {
         font-size: 12px;
         font-weight: bold;
         cursor: pointer;
         margin-left: 8px;
     }
+    
+    #list_table th{
+    	border:1px solid purple;
+    	background-color:#F2F2F2;
+    	font-weight: bold;
+    }
+    #list_table td{
+    	border:1px solid purple;
+    	font-weight: bold;
+    	
+    }
+    
 </style>
   <!-- Page Content -->
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">멘토링 글쓰기
-      <small>Subheading</small>
+      <small>당신의 능력을 발휘해보세요</small>
     </h1>
-
+	<%-- 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="/">Home</a>
       </li>
       <li class="breadcrumb-item active">멘토링 글쓰기 폼</li>
     </ol>
+    --%>
     <!-- 글쓰기 Form -->
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
@@ -144,7 +156,7 @@
 
 		</table>
 		 <!--동적테이블 날짜 -->
-		<table border="1" id="list_table">
+		<table border="1" bordercolor="purple" id="list_table">
 			<colgroup>
 				<!-- column 의 설정을 할수 있다. -->
 				<col style="width:300px;">
@@ -433,7 +445,14 @@ $(document).ready(function(){
 		 	$("#max_pcnt").focus();
 		 	return false;
 	 	 }
-
+		
+		 if($("#max_pcnt").val() == 0) {
+			 alert("최대인원은 최소 1명이상입니다.");
+			 $("#max_pcnt").val("");
+			 $("#max_pcnt").focus();
+			 return false;
+		 }
+		 
 		 $('#list_table').append(
 				 $('<tr>').append(
 						 $("<td align='center'>").append($('#datetimepicker').val()),

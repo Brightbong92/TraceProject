@@ -17,17 +17,18 @@ table {
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">${listResult.mtr_subject} : 
-      <small>상품페이지</small>
+    <h1 class="mt-4 mb-3">${listResult.mtr_subject} 
+      <%-- <small>상품페이지</small>--%>
     </h1>
 
+<%-- 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="javascript:history.back()">이전</a>
       </li>
       <li class="breadcrumb-item active">Portfolio Item</li>
     </ol>
-
+--%>
 
 
 
@@ -87,9 +88,12 @@ table {
 		
 		
         <!--  <h3 class="my-3">결제 / 장바구니</h3>-->
+        <br/>
+        <br/>
+        <div align='center'>
 			<button type="button" class="btn btn-primary" onclick="goPaymentForm()">결제하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
 			<button type="button" class="btn btn-primary" onclick="goCart()">장바구니</button>
-		
+		</div>
 			
         </div>
         
@@ -100,11 +104,11 @@ table {
     <!-- 멘토링 제목 -->
     <h2 style="color:blue;"><b>${listResult.mtr_subject}</b></h2>
     <!-- 멘토링해시태그 -->
-    <div>해시태그:${listResult.mtr_hashtag}</div>
+    <div class="badge badge-warning mb-2">해시태그:${listResult.mtr_hashtag}</div>
     <!-- 멘토링 지역 -->
-    <div>지역:${listResult.mtr_area}</div> 
+    <div class="badge badge-primary">지역:${listResult.mtr_area}</div> 
     <!-- 멘토링 금액 -->
-    <div>금액:${listResult.mtr_price}원</div>
+    <div class="badge badge-primary">금액:${listResult.mtr_price}원</div>
     
     
     <!-- 멘토 프로필 -->
