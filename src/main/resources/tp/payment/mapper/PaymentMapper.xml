@@ -42,4 +42,11 @@
 		]]>
 	</select>
 	
+	<!-- 결제후 장바구니갯수갱신 -->
+	<select id="selectCartCount" resultType="long" parameterType="String">
+		<![CDATA[
+		SELECT COUNT(*) FROM CART WHERE MEM_EMAIL = #{mem_email}
+		]]>
+	</select>
+	
 </mapper>

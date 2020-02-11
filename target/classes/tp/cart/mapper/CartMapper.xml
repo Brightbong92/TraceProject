@@ -17,4 +17,12 @@
 	<delete id="deleteCart" parameterType="Map">
 		delete from CART where mem_email=#{mem_email} and ct_seq=#{ct_seq}
 	</delete>
+	
+	<!-- 장바구니개수갱신 -->
+	<select id="selectCartCount" parameterType="String" resultType="long">
+		<![CDATA[
+		SELECT COUNT(*) FROM CART WHERE MEM_EMAIL = #{mem_email}
+		]]>
+			
+	</select>
 </mapper>

@@ -43,6 +43,10 @@ public class MentoringController {
 	public ModelAndView serachList(HttpServletRequest request, String word) {
 		String cpStr = request.getParameter("cp");
 		//String psStr = request.getParameter("ps");
+		log.info("#word: " + word);
+		if(word == null) {
+			word = "";
+		}
 		word = word.trim();
 		
 		HttpSession session = request.getSession();

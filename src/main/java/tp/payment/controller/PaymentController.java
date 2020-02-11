@@ -37,12 +37,13 @@ public class PaymentController {
 	}
 	
 	@PostMapping("purchaseInfo.do")
-	public ModelAndView purchaseInfo(PurchaseVo purchaseVo) {
+	public ModelAndView purchaseInfo(PurchaseVo purchaseVo, HttpSession session) {
 		PaymentCompletePageVo listResult = pService.getPaymentCompletePageList(purchaseVo);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("payment/payment_complete_page");
 		mv.addObject("listResult", listResult);
 		mv.addObject("usedPointTot", purchaseVo.getUsedPointTot());
+		session.setAttribute("cartCount", pService.getCartCount(purchaseVo.getMem_email()));
 		return mv;
 	}
 	
@@ -58,12 +59,13 @@ public class PaymentController {
 		return mv;
 	}
 	@PostMapping("cartPurchaseInfo.do")
-	public ModelAndView CartListPaymentComplete(CartPurchaseVo cartPurchaseVo) {
+	public ModelAndView CartListPaymentComplete(CartPurchaseVo cartPurchaseVo, HttpSession session) {
 		CartPaymentCompletePageVo listResult = pService.getCartPaymentCompletePageList(cartPurchaseVo);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("payment/cart_payment_complete_page");
 		mv.addObject("listResult", listResult);
 		mv.addObject("cartPurchaseVo", cartPurchaseVo);
+		session.setAttribute("cartCount", pService.getCartCount(cartPurchaseVo.getMem_email()));
 		return mv;
 	}
 	

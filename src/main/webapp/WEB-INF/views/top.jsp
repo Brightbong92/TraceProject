@@ -37,7 +37,29 @@
   <link href="../auto/AutoComplete.css" rel="stylesheet">
 
 </head>
+<style>
+.nav-counter {
+ position:relative;
+ height: 20px;
+ padding: 0 6px;
+ font-weight: normal;
+ font-size: small;
+ color: white;
+ text-align: center;
+ text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+ background: #e23442;
+ border: 1px solid #911f28;
+ border-radius: 11px;
+ background-image: -webkit-linear-gradient(top, #e8616c, #dd202f);
+ background-image: -moz-linear-gradient(top, #e8616c, #dd202f);
+ background-image: -o-linear-gradient(top, #e8616c, #dd202f);
+ background-image: linear-gradient(to bottom, #e8616c, #dd202f);
+ -webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
+ box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
 
+}
+
+</style>
 <body>
 
   <!-- Navigation -->
@@ -109,21 +131,26 @@
 	              <a class="dropdown-item" href="../login/logout.do">로그아웃</a>
 	            </div>
 	          </li>
+	          
+	         <!-- 관리자로그인 했을시 나오게끔 -->
+	         <c:if test="${loginUser.mem_email eq 'admin'}">
+		          <li class="nav-item">
+		            <a class="nav-link" href="../admin/search.do?cp=1&keyword=" style="color:black;" >
+		              	관리자 페이지
+		            </a>
+		          </li>
+	          </c:if>
+	          <!--  <img src="../images/cartImg.jpg" width="30px" height="30px"/>-->
+	          <img src="../images/cartImg2.png" width="22px" height="22px" onclick="location.href='../cart/cart.do?mem_email=${loginUser.mem_email}'" style="margin-top:7px"/>
+		          <c:if test="${cartCount ne 0}">
+		          	<span class="nav-counter">${cartCount}</span>
+		          </c:if>
 	          </c:if>
            <!-- 로그인안했을 시 나오게끔 -->
 	      <c:if test="${empty loginUser}">
 		          <li class="nav-item">
 		            <a class="nav-link" href="../login/login.do" style="color:black;">로그인</a>
 		          </li>
-          </c:if>
-          <!-- 관리자로그인 했을시 나오게끔 -->
-         <c:if test="${loginUser.mem_email eq 'admin'}">
-	          <li class="nav-item">
-	            <a class="nav-link" href="../admin/search.do?cp=1&keyword=" style="color:black;" >
-	              	관리자 페이지
-	            </a>
-					
-	          </li>
           </c:if>
         </ul>
       </div>
@@ -136,17 +163,27 @@
 				if(event.keyCode == 13) {
 					//alert(word);
 					var w =  word.indexOf("#");
-					if(w == -1) {//일반검색시
-						//alert("#포함안됨" + word)
-						location.href="../mentoring/searchList.do?word="+word+"&cp=1";
-					}else {//#검색시
-						//alert("#포함됨" + word);
-						word = word.replace("#",".");
-						//alert(word);
-						location.href="../mentoring/searchList.do?word="+word+"&cp=1";
+					var gugsae = word.indexOf("^");
+					var rSlash = word.indexOf("\\");
+					
+					if(gugsae != -1 || rSlash != -1){
+						alert("검색에 형식에 어긋나는 문자가 있습니다.");
+						$("#searchBar").val("");
+						$("#searchBar").focus();
+						return false;
+					}
+						if(w == -1) {//일반검색시
+							//alert("#포함안됨" + word)
+							location.href="../mentoring/searchList.do?word="+word+"&cp=1";
+						}else {//#검색시
+							//alert("#포함됨" + word);
+							word = word.replace("#",".");
+							//alert(word);
+							location.href="../mentoring/searchList.do?word="+word+"&cp=1";
+						}
 					}
 					//location.href="../mentoring/searchList.do?word="+word+"&cp=1";
-				}
+				
 			}else {
 				//alert("검색어를 입력해주세요.");
 				$("#searchBar").focus();
@@ -204,6 +241,6 @@
 --%>
 </script>
 <script>
-var str = ['요가','요리','여행','여가', '와인', '댄스', '필라테스', '디제잉', '가죽', '향수', '가죽공예', '술', '커피', '음료', '헬스', '보드', '주짓수', '말', '승마', '스쿼시', '펜싱', '아카펠라', '스윙댄스', '스윙', '자수', '베이킹', '바텐더', '유튜브', '피아노', '방송댄스', '케이스', '키링', '초콜렛', '건강', '발레', '#발레', '#키링', '#베이킹', '#빵', '#유튜브', '#방송댄스', '#댄스', '#사진', '사진', '공예', '#공예', '스키', '#스키', '인스타그램', '#인스타그램'];
+var str = ['요가','요리','여행','여가', '와인', '댄스', '필라테스', '디제잉', '가죽', '향수', '가죽공예', '술', '커피', '음료', '헬스', '보드', '주짓수', '말', '승마', '스쿼시', '펜싱', '아카펠라', '스윙댄스', '스윙', '자수', '베이킹', '바텐더', '유튜브', '피아노', '방송댄스', '케이스', '키링', '초콜렛', '건강', '발레', '#발레', '#키링', '#베이킹', '#빵', '#유튜브', '#방송댄스', '#댄스', '#사진', '사진', '공예', '#공예', '스키', '#스키', '인스타그램', '#인스타그램','눈썹','프랑스자수','자수','반지', '손수건','마카롱','테니스','네일','아트'];
 autocomplete(document.getElementById("searchBar"), str);
 </script>

@@ -44,10 +44,12 @@
   <!-- Page Content -->
   <div class="container">
 
+<%-- 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">멘토링 글쓰기
       <small>당신의 능력을 발휘해보세요</small>
     </h1>
+--%>
 	<%-- 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
@@ -194,8 +196,8 @@
    <br/>
    <br/>
 	  <div align="center">
-	   <input type="button" id="writeGo" value="신청하기" />
-	   <input type="reset" value="취소하기" onclick="test()"/>
+	   <input type="button" class="btn btn-primary" id="writeGo" value="신청하기" />
+	   <input type="reset" class="btn btn-primary" value="취소하기"/>
 	   </div>
 	   <br/><br/>
   </div>

@@ -9,17 +9,37 @@ table {
   align: center;
 }
 </style>
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%; /* Could be more or less, depending on screen size */                          
+        }
+ 
+</style>
 
 <!-- 클립보드 api -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
 
   <!-- Page Content -->
   <div class="container">
-
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">${listResult.mtr_subject} 
-      <%-- <small>상품페이지</small>--%>
-    </h1>
 
 <%-- 
     <ol class="breadcrumb">
@@ -34,10 +54,73 @@ table {
 
     <!-- Portfolio Item Row -->
     <div class="row">
-
+    
       <div class="col-md-8"><!-- md -->
         <!--  <img class="img-fluid" src="http://placehold.it/750x500" alt="">-->
-        <img class="img-fluid" src="../resources/mentoring_list_images/${listResult.mtr_profile}" alt="">
+        <img class="img-fluid" src="../resources/mentoring_list_images/${listResult.mtr_profile}" alt="" height="" width="500">
+        <br/>
+        <!-- 멘토링 제목 -->
+        <div><h1>${listResult.mtr_subject}</h1></div>
+        <!-- 멘토링 금액 -->
+	    <div style="font-size:2.0em" class="badge badge-primary">금액: ${listResult.mtr_price}원</div><br/><br/>
+	    <!-- 멘토링해시태그 -->
+	    <div style="font-size:2.0em" class="badge badge-warning mb-2">${listResult.mtr_hashtag}</div>
+	    <c:choose>
+	           <c:when test="${listResult.mtr_jumsu eq 0}">
+	            <div class="starRev">
+				  <span style="height:20px;" class="starK">별1</span>
+				  <span style="height:20px;"class="starK">별2</span>
+				  <span style="height:20px;"class="starK">별3</span>
+				  <span style="height:20px;"class="starK">별4</span>
+				  <span style="height:20px;"class="starK">별5</span>
+	           </div>
+	           </c:when>
+	           <c:when test="${listResult.mtr_jumsu eq 1}">
+	            <div class="starRev">
+				  <span style="height:20px;"class="starK on">별1</span>
+				  <span style="height:20px;"class="starK">별2</span>
+				  <span style="height:20px;"class="starK">별3</span>
+				  <span style="height:20px;"class="starK">별4</span>
+				  <span style="height:20px;"class="starK">별5</span>
+	           </div>
+	           </c:when>
+	           <c:when test="${listResult.mtr_jumsu eq 2}">
+	            <div class="starRev">
+				  <span style="height:20px;"class="starK on">별1</span>
+				  <span style="height:20px;"class="starK on">별2</span>
+				  <span style="height:20px;"class="starK">별3</span>
+				  <span style="height:20px;"class="starK">별4</span>
+				  <span style="height:20px;"class="starK">별5</span>
+	           </div>
+	           </c:when>
+	           <c:when test="${listResult.mtr_jumsu eq 3}">
+	            <div class="starRev">
+				  <span style="height:20px;"class="starK on">별1</span>
+				  <span style="height:20px;"class="starK on">별2</span>
+				  <span style="height:20px;"class="starK on">별3</span>
+				  <span style="height:20px;"class="starK">별4</span>
+				  <span style="height:20px;"class="starK">별5</span>
+	           </div>
+	           </c:when>
+	           <c:when test="${listResult.mtr_jumsu eq 4}">
+	            <div class="starRev">
+				  <span style="height:20px;"class="starK on">별1</span>
+				  <span style="height:20px;"class="starK on">별2</span>
+				  <span style="height:20px;"class="starK on">별3</span>
+				  <span style="height:20px;"class="starK on">별4</span>
+				  <span style="height:20px;"class="starK">별5</span>
+	           </div>
+	           </c:when>
+	          <c:when test="${listResult.mtr_jumsu eq 5}">
+	            <div class="starRev">
+				  <span style="height:20px;"class="starK on">별1</span>
+				  <span style="height:20px;"class="starK on">별2</span>
+				  <span style="height:20px;"class="starK on">별3</span>
+				  <span style="height:20px;"class="starK on">별4</span>
+				  <span style="height:20px;"class="starK on">별5</span>
+	           </div>
+	           </c:when>
+	          </c:choose>
       </div>
 
 
@@ -49,36 +132,20 @@ table {
         <!-- <h3 class="my-3">멘토링 타임</h3>-->
                 <!-- Side Widget -->
         <!-- <div class="card my-4">-->
-        <%-- 
-        <div>
-          <h5 class="card-header">옵션</h5>
-          <div class="card-body">
-	        <c:forEach items="${listResult.detail_Info_List}" var="timelist">
-	        	<span>시작시간: ${timelist.mtrdi_stime}</span><br/>
-	        	<span>종료시간: ${timelist.mtrdi_etime}</span><br/>
-	        	<span>최대인원: ${timelist.mtrdi_max_pcnt}</span>&nbsp;
-	        	<span>현재인원: ${timelist.mtrdi_now_pcnt}</span><br/>
-	        	<!-- <button type="button" mtrdiseq="${timelist.mtrdi_seq}" onclick="selectOption(this)">옵션선택</button><br/><br/>-->
-	        	<button type="button" class="btn btn-primary" mtrdi_seq="${timelist.mtrdi_seq}" onclick="goPaymentForm(this)">결제하기</button>
-				<button type="button" class="btn btn-primary" mtrdi_seq="${timelist.mtrdi_seq}" onclick="goCart(this)">장바구니</button><br/><br/>
-	        </c:forEach>
-          </div>
-        </div>
-		--%>
 		
 	    <div>
           <h5 class="card-header">옵션</h5>
           <table>
-          <tbody>
-          <th>시간</th>
-          <th>인원</th>
-          <th>선택</th>
+          <tbody align='center'>
+          <th align='center'>시간</th>
+          <th align='center'>인원</th>
+          <th align='center'>선택</th>
           
 	        <c:forEach items="${listResult.detail_Info_List}" var="timelist">
-	        	<tr>
-	        	<td style="width:200px;"><span>${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
-	        	<td style="width:50px;"><span>${timelist.mtrdi_now_pcnt}</span>/<span>${timelist.mtrdi_max_pcnt}</span></td>
-	        	<td><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" style="width:20px;height:20px;" onclick="selectOption(this)"></td>
+	        	<tr align='center'>
+	        	<td align='center' style="width:200px;"><span>${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
+	        	<td align='center' style="width:50px;"><span>${timelist.mtrdi_now_pcnt}</span>/<span>${timelist.mtrdi_max_pcnt}</span></td>
+	        	<td align='center'><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" style="width:20px;height:20px;" onclick="selectOption(this)"></td>
 	        	</tr>
 	        </c:forEach>
 	        </tbody>
@@ -91,8 +158,8 @@ table {
         <br/>
         <br/>
         <div align='center'>
-			<button type="button" class="btn btn-primary" onclick="goPaymentForm()">결제하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
-			<button type="button" class="btn btn-primary" onclick="goCart()">장바구니</button>
+			<button style="height:40pt; width:300pt;font-size: 25px;"type="button" class="btn btn-primary" onclick="goPaymentForm()">결제하기</button><br/><br/>
+			<button style="height:40pt; width:300pt;font-size: 25px;"type="button" class="btn btn-primary" onclick="goCart()">장바구니</button>
 		</div>
 			
         </div>
@@ -100,15 +167,11 @@ table {
     </div>
     <!-- /.row -->
     
-    
-    <!-- 멘토링 제목 -->
-    <h2 style="color:blue;"><b>${listResult.mtr_subject}</b></h2>
-    <!-- 멘토링해시태그 -->
-    <div class="badge badge-warning mb-2">해시태그:${listResult.mtr_hashtag}</div>
+    <%-- 
     <!-- 멘토링 지역 -->
-    <div class="badge badge-primary">지역:${listResult.mtr_area}</div> 
-    <!-- 멘토링 금액 -->
-    <div class="badge badge-primary">금액:${listResult.mtr_price}원</div>
+    <div style="font-size:2.0em" class="badge badge-primary">${listResult.mtr_area}</div> 
+    --%>
+    	      
     
     
     <!-- 멘토 프로필 -->
@@ -116,8 +179,7 @@ table {
     <button class="btn btn-primary" 
     onclick="window.open('../mentor/popup.do?mem_email=${listResult.mem_email}','멘토정보',
     'width=700px,height=800px,left=100px,top=100px');">프로필보기</button>
-    
-    
+   
      <!-- 멘토링 내용-->
      <h3 class="my-4"><b>내용</b></h3>
      <div>
@@ -134,14 +196,12 @@ table {
     
     
     <!-- 멘토링 질문 게시판-->
-    <h3 class="my-4"><b>멘토링 질문</b></h3>
-    <button class="btn btn-primary" onclick="goQABoard()">질문보러가기</button>
-    
-    
+    <h3 class="my-4"><b>멘토링 문의</b></h3>
+    <button class="btn btn-primary" onclick="goQABoard()">문의하기</button>
     
     <!-- 멘토링 후기 게시판 -->
     <h3 class="my-4"><b>멘토링 후기</b></h3>
-    <button class="btn btn-primary" onclick="goReviewBoard()">XX개의 후기보러가기</button>
+    <button class="btn btn-primary" onclick="goReviewBoard()">후기보러가기</button>
     
     
     
@@ -160,13 +220,32 @@ table {
           <img class="img-fluid" src="../resources/mentoring_list_images/${relative_list.mtr_profile}" alt="">
 	   		<b>${relative_list.mtr_subject}</b>
         </a>
-        	<b style="color:green;">${relative_list.mtr_hashtag}</b>
+        	<div style="font-size:1.0em" class="badge badge-warning mb-2">${relative_list.mtr_hashtag}</div>
       </div>
     </c:forEach>
 	</c:if>
 
 
     </div><!-- /.row -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+ 
+      <!-- Modal content -->
+      <div class="modal-content">
+                <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">알림</span></b></span></p>
+                <p style="text-align: center; line-height: 1.5;"><br />장바구니에 상품이 담겼습니다.</p>
+                <p><br /></p>
+           		<div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
+                <span class="pop_bt" style="font-size: 13pt;">계속 쇼핑하기</span>
+            	</div>
+            	<br/>
+            	<div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="goMyCartlist()">
+                <span class="pop_bt" style="font-size: 13pt;">장바구니 보러가기</span>
+      </div>
+ 
+    </div>
+        <!--End Modal-->
+    
   </div><!-- /.container -->
   
 
@@ -198,8 +277,7 @@ table {
 			alert("로그인 후 이용가능합니다.");
 			return false;
 		}
-		
-		
+
 		if(optionList.length == 0) {
 			alert("선택하신 상품이 없습니다.");
 			return false;
@@ -208,14 +286,36 @@ table {
 		}
 	}
 	function goCart(){
+		
+		if("${loginUser.mem_email}" == "") {
+			alert("로그인 후 이용가능합니다.");
+			return false;
+		}
+		
 		if(optionList.length == 0) {
-			//alert("선택하신 상품이 없습니다.");
+			alert("선택하신 상품이 없습니다.");
 		}else {
+			$.ajax({
+				url: "../cart/setCart.do?optionList=" + optionList+"&mtr_seq=${listResult.mtr_seq}&mem_email=${loginUser.mem_email}",
+				success: function(data){
+					console.clear();
+					console.log("성공");
+				},error: function(data){
+					console.clear();
+					console.log("에러");
+				}
+			});
+			$('#myModal').show();
 			//alert("선택값 있음");
-				location.href="../cart/setCart.do?optionList=" + optionList+"&mtr_seq=${listResult.mtr_seq}&mem_email=${loginUser.mem_email}";
-			//
+			//location.href="../cart/setCart.do?optionList=" + optionList+"&mtr_seq=${listResult.mtr_seq}&mem_email=${loginUser.mem_email}";
 		}
 	}	
+    function close_pop(flag) {
+        $('#myModal').hide();
+   };
+   function goMyCartlist(){
+	   location.href="../cart/cart.do?mem_email=${loginUser.mem_email}";
+   }
 	
 </script>
 
@@ -265,13 +365,14 @@ geocoder.addressSearch('${listResult.mtr_addr}', function(result, status) {
             map: map,
             position: coords
         });
-
+		/*
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">강의장!!</div>'
+            content: '<div style="width:150px;text-align:center;padding:6px 0;"></div>'
         });
+        
         infowindow.open(map, marker);
-
+		*/
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
         map.setCenter(coords);
     } 

@@ -19,4 +19,11 @@
    ]]>
    </select>
    
+   <!-- 유저 장바구니 -->
+   <select id="selectCartCount" parameterType="String" resultType="long">
+   	<![CDATA[
+   		SELECT COUNT(*) FROM CART WHERE MEM_EMAIL = #{mem_email}
+   	]]>
+   </select>
+   
 </mapper>

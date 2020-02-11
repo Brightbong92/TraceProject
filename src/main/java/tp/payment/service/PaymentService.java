@@ -17,4 +17,5 @@ public interface PaymentService {
 	PaymentCompletePageVo getPaymentCompletePageList(PurchaseVo purchaseVo);
 	CartPaymentListResult getCartPaymentList(long[] cartList, String mem_email, long sumPaymentPrice);
 	CartPaymentCompletePageVo getCartPaymentCompletePageList(CartPurchaseVo cartPurchaseVo);
+	long getCartCount(String mem_email);
 }
