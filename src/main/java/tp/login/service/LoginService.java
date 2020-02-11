@@ -11,4 +11,5 @@ public interface LoginService {
 	public void logout(HttpSession session);   //로그아웃
 	public boolean getKakaoMemberExist(String mem_email);
 	public int emailAuthCheck(String mem_email);
+	public long getMemberCartCount(String mem_email);
 }

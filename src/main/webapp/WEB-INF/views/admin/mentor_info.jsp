@@ -1,5 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
+<script>
+	if(${empty sessionScope.loginUser}){
+		alert("로그인 후 서비스 이용 가능합니다");
+		location.href="../login/login.do";
+	}
+</script>
 <!DOCTYPE html>
 <html lang="kor">
 
@@ -45,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../admin/dashboard.do">관리자 페이지</a>
+                <a class="navbar-brand" href="../admin/search.do?cp=1&keyword=">관리자 페이지</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -264,9 +270,9 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <input type="text" class="form-control" id="search_input1" placeholder="회원 검색">
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
+                                <button type="submit" class="btn btn-default" id="search_button1">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
@@ -274,18 +280,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="../admin/dashboard.do"><i class="fa fa-dashboard fa-fw"></i> 대시보드</a>
+                            <a href="../admin/search.do?cp=1&keyword="><i class="fa fa-table fa-fw"></i> 회원정보</a>
+                        </li>
+                        <li>
+                            <a href="../admin/mentor_info.do"><i class="fa fa-sitemap fa-fw"></i> 멘토정보</a>
                         </li>
                         <li>
                             <a href="../admin/charts.do"><i class="fa fa-bar-chart-o fa-fw"></i> 차트</a>
-                            
-                        </li>
-                        <li>
-                            <a href="../admin/member_info.do"><i class="fa fa-table fa-fw"></i> 회원정보</a>
-                        </li>
-                        <li>
-                            <a href="../admin/mentor_info.do"><i class="fa fa-sitemap fa-fw"></i> 멘토신청정보</a>
-                            
                         </li>
                         <li>
                             <a href="../admin/notice_form.do"><i class="fa fa-edit fa-fw"></i> 공지사항 작성</a>
@@ -390,7 +391,8 @@
                                         	<td>승인 완료</td>
                                         </c:if>
                                         <c:if test="${list.ml_apply eq 1}">
-                                        	<td><button onclick="javascript:location.href='../admin/mentor_approve.do?mem_email=${list.mem_email}'">승인하기</button></td>
+                                        	<td><button onclick="javascript:location.href='../admin/mentor_approved.do?mem_email=${list.mem_email}'" class="btn btn-success">멘토 승인</button>
+                                        	<button onclick="javascript:location.href='../admin/mentor_disapproved.do?mem_email=${list.mem_email}'" class="btn btn-danger">멘토 거부</button></td>
                                         </c:if>
                                     </tr>
                                     </c:forEach>
@@ -446,7 +448,22 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../resources/admin/dist/js/sb-admin-2.js"></script>
-
+	
+	<script>
+	$(document).ready(function() {
+		$('#search_button1').click(function(){
+			var keyword = $('#search_input1').val();
+			location.href="../admin/search.do?keyword="+keyword;
+		});
+		$('#search_input1').keypress(function(event){
+		     if ( event.which == 13 ) {
+		         $('#search_button1').click();
+		         return false;
+		     }
+		});
+		
+	});
+</script>
 </body>
 
 </html>

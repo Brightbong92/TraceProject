@@ -60,5 +60,10 @@ public class LoginServiceImpl implements LoginService{
 			return LoginSet.OK_EMAIL_AUTH;
 		}
 	}
+	@Override
+	public long getMemberCartCount(String mem_email) {
+		long cartCount = loginMapper.selectCartCount(mem_email);
+		return cartCount;
+	}
 	
 }

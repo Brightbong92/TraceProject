@@ -21,8 +21,16 @@
 	<resources mapping="vendor/**" location="/resources/vendor/" />
 	<resources mapping="/arrow/**" location="/resources/arrow/" />
 	<resources mapping="/admin/**" location="/resources/admin/" />
+	<resources mapping="/summernote/**" location="/resources/summernote/dist" />
+	<resources mapping="/time/**" location="/resources/time/" />
 	<resources mapping="/mentor_business_images/**" location="/resources/mentor_business_images/" />
 	<resources mapping="/index_images/**" location="/resources/index_images/" />
+
+	<resources mapping="/mypage/**" location="/resources/mypage/" />
+
+	<resources mapping="/qa/**" location="/resources/qa/" />
+	<resources mapping="/auto/**" location="/resources/auto/" />
+	
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -34,7 +42,7 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8" />
 		<beans:property name="maxUploadSize" value="10485760" />
-		<beans:property name="maxUploadSizePerFile" value="2097152"/>
+		<beans:property name="maxUploadSizePerFile" value="9097152"/>
 		<beans:property name="maxInMemorySize" value="10485756"/>
 	</beans:bean>
 <!--
@@ -52,4 +60,14 @@
 	<context:component-scan base-package="tp.join.controller" />
 	<context:component-scan base-package="tp.login.controller" />
 	<context:component-scan base-package="tp.admin.controller" />
+
+	<context:component-scan base-package="tp.mypage.controller" />
+
+	<context:component-scan base-package="tp.qa.controller" />
+	<context:component-scan base-package="tp.review.controller" />	
+	<context:component-scan base-package="tp.cart.controller" />	
+	
+	<context:component-scan base-package="tp.payment.controller" />
+	<context:component-scan base-package="tp.refund.controller" />
+
 </beans:beans>

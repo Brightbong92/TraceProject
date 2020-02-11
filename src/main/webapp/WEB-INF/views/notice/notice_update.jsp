@@ -5,6 +5,12 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
 	<link href="../css/board.css" rel="stylesheet" type="text/css" />
+	
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.css" rel="stylesheet">
+  	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.js"></script>
 	<style>
 		#board_area{
 			margin: 0 10% 0 10%;
@@ -37,6 +43,11 @@
 		}
 	</style>
 	<title>공지사항</title>
+	<style>
+    .editor-container {
+	  margin: 0 auto;
+ 	}
+    </style>
 </head>
 <script type="text/javascript">
 	function search(e){
@@ -54,7 +65,7 @@
 		<div class="form-inline">
 			<div id="div1_1">
 				<button type="button" onclick="location.href='../notice/list.do?cp=1'"  class="btn btn-link" >공지사항</button>
-				<button type="button" onclick="location.href='../notice/qna.do'"  class="btn btn-link">자주 묻는 질문</button>
+				<button type="button" onclick="location.href='../notice/qna.do'"  class="btn btn-link" style="color:gray;">자주 묻는 질문</button>
 			</div>
 
 			<div id="div1_2"  >
@@ -77,11 +88,13 @@
                     <div class="form-group">
                     	&nbsp;
                         <label>공지내용</label>
-                        <textarea class="form-control" rows="3" name="noti_content" style="width:1100px; height:300px;">${notice.noti_content}</textarea>
-                    </div>
+                        <div class="editor-container">
+					       <textarea class="form-control" id="summernote" name="noti_content" required ></textarea>
+				       </div>                    
+				    </div>
                     <div id="div2_3" class="col" > 
-                    <button type="submit" class="btn btn-light">수정</button>
-                    <button type="reset" class="btn btn-light">취소</button>
+                    <button type="submit" class="btn btn-light" id="btn-world">Submit</button>
+                    <button type="reset" class="btn btn-light" onclick="history.back(-1);">Cancel</button>
                 	</div>
                 </form>
             </div>
@@ -91,7 +104,40 @@
     </div>
     <br/>
     
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script> 
+	  $('#summernote').summernote({
+	      tabsize: 2,
+	      height: 300,
+	      width : 1100,
+	      lang: 'ko-KR'
+	  });
+	  
+	  $('#summernote').on('summernote.keyup', function(){
+		  if($(this).val().length > 300){
+			  alert("글자수 제한 300자를 넘었습니다.");
+              $(this).val($(this).val().substring(0, 300));
+              var btn = document.getElementById('btn-world');
+              btn.disabled = "disabled";
+		  }else if($(this).val().length <= 300){
+			  $(this).val($(this).val().substring(0, 300));
+              var btn = document.getElementById('btn-world');
+			  btn.disabled = false;
+		  }
+	  });
+	  
+	  $('#btn-world').on('click', function(e) {
+		  if($('#summernote').summernote('isEmpty')) {
+		    alert('제목, 내용을 적어주세요');
+		    e.preventDefault();
+		  }
+		  else{
+			  return true; 
+		  }
+	  });
+	  
+	  </script>
+    
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  -->
 	<script src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/paging.js"></script>
 

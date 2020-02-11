@@ -54,11 +54,17 @@ public class LoginController {
 		return "login/login_form";
 	}
 	
+	private long getCartCount(String mem_email) {
+		long cartCount = service.getMemberCartCount(mem_email);
+		return cartCount;
+	}
+	
 	@GetMapping("loginAfterAuth.do")//이메일 인증 후 로그인
 	public ModelAndView loginAfterAuth(String mem_email, HttpSession session) {
 		Member m = service.getMemberInfo(mem_email);
 		ModelAndView mv = new ModelAndView();
-		session.setAttribute("loginUser", m);
+		session.setAttribute("loginUser", m);	
+		session.setAttribute("cartCount", getCartCount(mem_email));
 		mv.setViewName("index/index");
         return mv;
 	}
@@ -81,9 +87,17 @@ public class LoginController {
 				HttpSession session = request.getSession();
 				Member m = service.getMemberInfo(mem_email);
 				session.setAttribute("loginUser", m);
-				request.setAttribute("result", result);
-				mv.setViewName("login/login_msg");
-		        return mv;
+				session.setAttribute("cartCount", getCartCount(mem_email));
+				if(m.getMem_state() ==2) {
+					session.removeAttribute("loginUser");
+					mv.setViewName("login/disabled_msg");
+					return mv;
+				}else {
+					request.setAttribute("result", result);
+					mv.setViewName("login/login_msg");
+	
+			        return mv;
+				}
 			}
 
 		}else {
@@ -97,7 +111,7 @@ public class LoginController {
 		return "login/naverLoginCallback";
 	}
 	@PostMapping("naverLoginCheck.do")
-	public ModelAndView naverLoginCheck(Member member, HttpSession session) {
+	public ModelAndView naverLoginCheck(Member member, HttpSession session) {//네아로는 디비저장 안함
 		//log.info("#member: " + member);
 		//String mem_email = info[0];String mem_nick = info[1];String mem_profile = info[2];String mem_age = info[3];String mem_gender = info[4];
 		//log.info("#mem_email: " + mem_email + "#mem_nick: " + mem_nick + "#mem_profile: " + mem_profile +
@@ -122,7 +136,7 @@ public class LoginController {
 		String mem_nick = jObj.getAsJsonObject("properties").get("nickname").getAsString();
 		String mem_profile = jObj.getAsJsonObject("properties").get("profile_image").getAsString();
 		
-
+		//log.info("#mem_email: " + mem_email + "#mem_nick: " + mem_nick + "#mem_profile: " + mem_profile);
 		//select로직
 		boolean exist = service.getKakaoMemberExist(mem_email);
 		if(exist) {//존재 할시 true일 경우 - 로그인 시켜주기.
@@ -131,6 +145,7 @@ public class LoginController {
 			m.setMem_nick(mem_nick);
 			m.setMem_profile(mem_profile);
 			session.setAttribute("loginUser", m);
+			session.setAttribute("cartCount", getCartCount(mem_email));
 			mv.setViewName("login/login_msgKakao");
 	        return mv;
 		}else {//존재 안할 경우 - 회원가입 후 로그인 시켜주기
@@ -151,17 +166,18 @@ public class LoginController {
 					mem_gender = 2;//여자
 				}
 			}
-			Member member = new Member(mem_email, null, null, mem_age, mem_gender, null, null, 0, 0, 0);
-			
+			long ms = System.currentTimeMillis();
+			String mem_nickMs = mem_nick+ms;
+			Member member = new Member(mem_email, null, mem_nickMs, mem_age, mem_gender, "TraceDefaultProfile.jpg", null, 0, 0, 0);
 			jService.insertKakaoMemberS(member);
-			
 			Member m = service.getMemberInfo(mem_email);
 			m.setMem_nick(mem_nick);
 			m.setMem_profile(mem_profile);
 			session.setAttribute("loginUser", m);
+			session.setAttribute("cartCount", getCartCount(mem_email));
 			//log.info("#mem_email: " + mem_email + "#mem_nick: " + mem_nick + "#mem_profile: " + mem_profile + "#mem_age: " + mem_age + "#mem_gender: " + mem_gender);
 			mv.setViewName("login/login_msgKakao");
-			return mv;	
+			return mv;
 		}
 
 	}
@@ -169,7 +185,8 @@ public class LoginController {
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginUser");
-		return "index/index";
+		session.removeAttribute("cartCount");
+		return "login/logout_msg";
 	}
 	
 }

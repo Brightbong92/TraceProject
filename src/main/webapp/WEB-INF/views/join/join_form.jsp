@@ -71,15 +71,15 @@
             <label>연령대:</label>
           	<select id="selectBox" onchange="categoryChange(this)">
 			  <option id = "0" value="0">연령대를 선택해주세요</option>
-			  <option id = "15" value="15-19">15-19</option>
-			  <option id = "20" value="20-29">20-29</option>
-			  <option id = "30" value="30-39">30-39</option>
-			  <option id = "40" value="40-49">40-49</option>
-			  <option id = "50" value="50-59">50-59</option>
-			  <option id = "60" value="60-69">60-69</option>
-			  <option id = "70" value="70-79">70-79</option>
-			  <option id = "80" value="80-89">80-89</option>
-			  <option id = "90" value="90-99">90-99</option>
+			  <option id = "15" value="15~19">15-19</option>
+			  <option id = "20" value="20~29">20-29</option>
+			  <option id = "30" value="30~39">30-39</option>
+			  <option id = "40" value="40~49">40-49</option>
+			  <option id = "50" value="50~59">50-59</option>
+			  <option id = "60" value="60~69">60-69</option>
+			  <option id = "70" value="70~79">70-79</option>
+			  <option id = "80" value="80~89">80-89</option>
+			  <option id = "90" value="90~99">90-99</option>
 			</select>
           	</div>
           	<div>*발자취는 만 14세 이상 회원만 이용 가능합니다.</div>

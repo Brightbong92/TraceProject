@@ -4,14 +4,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import tp.mentor.service.Path;
+import tp.mentor.service.MentorPath;
+import tp.vo.MentorProfileVo;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import tp.domain.Member;
 import tp.domain.Mentor_List;
+import tp.domain.Sms_Auth;
 import tp.mentor.mapper.MentorMapper;
 
 @Log4j
@@ -58,13 +62,13 @@ public class MentorServiceImpl implements MentorService {
 	}
 	@Override
 	public boolean writeFile(MultipartFile f, String saveFileName) {
-	    File rDir = new File(Path.FILE_STORE);
+	    File rDir = new File(MentorPath.FILE_STORE);
 	    if(!rDir.exists()) rDir.mkdirs();
 	    
 	    FileOutputStream fos = null;
 		try {
 			byte data[] = f.getBytes();
-			fos = new FileOutputStream(Path.FILE_STORE + saveFileName);
+			fos = new FileOutputStream(MentorPath.FILE_STORE + saveFileName);
 			fos.write(data);
 			fos.flush();
 			
@@ -77,6 +81,41 @@ public class MentorServiceImpl implements MentorService {
 			}catch(IOException ie) {}
 		}
 	}
-	
+	@Override
+	public boolean checkApply(String mem_email) {
+		String check = mentorMapper.checkApply(mem_email);
+		if(check==null) return true; //신청 안 한 일반회원일때
+		else if(check.equals("1")) return false;// 신청한 일반회원일때
+		else return false;
+	}
+	@Override
+	public void setCode(String ml_phone, int sms_uuid) {
+		HashMap<String, Object> code =  new HashMap<String, Object>();
+		code.put("ml_phone",ml_phone);
+		code.put("sms_uuid",sms_uuid);
+		String check = mentorMapper.checkCode(ml_phone);
+		if(check==null) {
+			mentorMapper.setCode(code);
+		}else {
+			mentorMapper.updateCode(code);
+		}
+	}
+	@Override
+	public String getCode(String receiver) {
+		String code = mentorMapper.getCode(receiver);
+		return code;
+	}
+	@Override
+	public void removeCode(String receiver) {
+		mentorMapper.removeCode(receiver);
+	}
+	public MentorProfileVo selectMentorProfile(String mem_email) {
+		MentorProfileVo mProfile = new MentorProfileVo();
+		Mentor_List mentor_list_info = mentorMapper.selectMentor_List(mem_email);
+		Member mentor_member_info = mentorMapper.selectMentorMemberInfo(mem_email);
+		mProfile.setMentor_list_info(mentor_list_info);
+		mProfile.setMentor_member_info(mentor_member_info);
+		return mProfile;
+	}
 
 }

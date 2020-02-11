@@ -247,25 +247,6 @@
             <version>1.2.3</version>
         </dependency>
 			
-	<!-- 스프링 시큐리티적용 구간 -->
-       <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>5.0.6.RELEASE</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>5.0.6.RELEASE</version>
-        </dependency>
-            <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${org.springframework-version}</version>
-        </dependency>
 
 	<!-- Bcrypt암호화 -->
 	<dependency>
@@ -314,7 +295,14 @@
     <version>1.4</version>
 	</dependency>
 	
-	
+	<!-- 문자인증 -->
+	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient --> 
+	<dependency> 
+		<groupId>org.apache.httpcomponents</groupId> 
+		<artifactId>httpclient</artifactId> 
+		<version>4.5.3</version> 
+	</dependency>
+
 			
 	<!-- 트랜잭션 
 	<dependency>
@@ -350,6 +338,7 @@
 			 -->
 			
 	</dependencies>
+	
     <build>
         <plugins>
             <plugin>

@@ -10,9 +10,12 @@ import tp.vo.MentorListResult;
 
 public interface AdminService {
 	MemberListResult getMemberListResult(int cp, int ps);
+	MemberListResult getMemberListResultSearch(int cp, int ps, String keyword);
 	void insertN(Notice notice);
 	MemberInfo getMemberInfo(String mem_email);
-	void updateN(String mem_email);
+	void updateState(String mem_email);
 	MentorListResult getMentorListResult(int cp, int ps);
-	void mentorApprove(String mem_email);
+	void mentorApproved(String mem_email);
+	void mentorDisapproved(String mem_email);
+	void updateAuth(String mem_email);
 }

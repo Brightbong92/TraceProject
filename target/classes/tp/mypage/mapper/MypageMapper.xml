@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tp.mypage.mapper.MypageMapper">
+    <select id="checkPwd" resultType="String" parameterType="String">
+   		select mem_pwd from MEMBER where MEM_EMAIL= #{mem_email}
+   	</select>
+ 	<update id="updateState" parameterType="String">
+ 		update MEMBER set mem_state=2 where mem_email = #{mem_email}
+ 	</update>
+   
+   	<insert id="insertDisabled" parameterType="Disabled">
+   		insert into DISABLED values(#{dis_reason}, #{dis_improve}, #{mem_email}) 
+   	</insert>
+   	
+   	<select id="getPoint" resultType="Points" parameterType="String">
+   		select * from POINTS where MEM_EMAIL = #{mem_email} order by PO_RDATE asc
+   	</select>
+   	
+   	<update id="updateProfile" parameterType="hashmap">
+   		update MEMBER set mem_profile=#{mem_profile} where mem_email = #{mem_email}
+   	</update>
+   	
+   	<select id="selectMember" resultType="Member" parameterType="String">
+   		select * from MEMBER where MEM_EMAIL= #{mem_email}
+   	</select>
+   	
+   	<select id="getMem_point" resultType="long" parameterType="String">
+   		select MEM_POINT from MEMBER where MEM_EMAIL= #{mem_email}
+   	</select>
+   	
+   	<select id="getActivity" resultType="ActivityVo" parameterType="String">
+
+   		<![CDATA[
+   		select mtr.MTR_SEQ, mtr.MTR_SUBJECT, mdi.MTRDI_MAX_PCNT, mdi.MTRDI_NOW_PCNT, mdi.MTRDI_STIME, mdi.MTRDI_ETIME, pi.PI_RDATE 
+		from MENTORING mtr, MENTORING_DETAIL_INFO mdi, PAYMENT_INFO pi, PAYMENT_DETAIL_INFO pdi
+		where mtr.MTR_SEQ = pdi.MTR_SEQ and mdi.MTRDI_SEQ = pdi.MTRDI_SEQ 
+		and pi.PI_SEQ = pdi.PI_SEQ and pi.PI_STATE = 1 and mdi.MTRDI_STIME > SYSDATE and pi.MEM_EMAIL = #{mem_email}
+ 		]]>  
+   	</select>
+   	
+   	<select id="getPastActivity" resultType="ActivityVo" parameterType="String">
+   		<![CDATA[
+   		select mtr.MTR_SEQ, mtr.MTR_SUBJECT, mdi.MTRDI_ETIME, pi.PI_RDATE 
+		from MENTORING mtr, MENTORING_DETAIL_INFO mdi, PAYMENT_INFO pi, PAYMENT_DETAIL_INFO pdi
+		where mtr.MTR_SEQ = pdi.MTR_SEQ and mdi.MTRDI_SEQ = pdi.MTRDI_SEQ 
+		and pi.PI_SEQ = pdi.PI_SEQ and pi.PI_STATE = 1 and mdi.MTRDI_STIME <= SYSDATE and pi.MEM_EMAIL = #{mem_email}
+   		]]>
+   	</select>
+   	
+   	<select id="getOpenedActivity" resultType="Mentoring" parameterType="String">
+   		select MTR_SEQ, MTR_SUBJECT, MTR_JUMSU, MTR_RDATE from MENTORING where MEM_EMAIL= #{mem_email}
+	</select>
+   	
+   	<select id="selectMyPaymentInfo" resultType="Payment_Info" parameterType="String">
+   	 <![CDATA[
+   		 SELECT * FROM PAYMENT_INFO WHERE MEM_EMAIL = #{mem_email} AND PI_STATE = 1 order by PI_SEQ desc
+   	 ]]>
+   	</select>
+   	<select id="selectMyRefundInfo" resultType="Refund_Info" parameterType="String">
+   	<![CDATA[
+	   	select RI_SEQ, RI_PG, RI_METHOD, RI_MUID, RI_PRODUCT, RI_PRICE, RI_RDATE, RI_NAME, RI_PHONE, RI_REASON, ri.MEM_EMAIL, 
+	   	ri.PI_SEQ FROM PAYMENT_INFO pi, REFUND_INFO ri WHERE ri.MEM_EMAIL = #{mem_email} and 
+	   	pi.PI_SEQ = ri.PI_SEQ and pi.PI_STATE = 0 order by RI_SEQ desc
+   	]]>
+   	</select>
+      <!-- mem_nick 중복체크 -->
+   <select id="selectMyPageNickCheck" resultType="String" parameterType="hashmap">
+   <![CDATA[
+   		select MEM_NICK from MEMBER where MEM_NICK like #{mem_nick} and MEM_EMAIL = #{mem_email}
+   	]]>
+   </select>
+   <update id="updateMyPageInfo" parameterType="Member">
+	   UPDATE MEMBER SET MEM_NICK = #{mem_nick}, MEM_PWD = #{mem_pwd} WHERE MEM_EMAIL = #{mem_email}
+   </update>
+   	
+</mapper>

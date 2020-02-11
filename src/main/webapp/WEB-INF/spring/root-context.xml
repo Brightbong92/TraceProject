@@ -66,11 +66,51 @@
 		<context:component-scan base-package="tp.index.service"/>
 		<context:component-scan base-package="tp.index.mapper"/>
 		<mybatis-spring:scan base-package="tp.index.mapper" />
+		
+
+	<!-- 차트 관련 -->
+		<context:component-scan base-package="tp.adminCharts.service"/>
+		<context:component-scan base-package="tp.adminCharts.mapper"/>
+		<mybatis-spring:scan base-package="tp.adminCharts.mapper" />
 	
+	<!-- 마이페이지 관련 -->
+		<context:component-scan base-package="tp.mypage.service"/>
+		<context:component-scan base-package="tp.mypage.mapper"/>
+		<mybatis-spring:scan base-package="tp.mypage.mapper" />
+
+	<!-- 멘토링 QA관련 -->
+		<context:component-scan base-package="tp.qa.service"/>
+		<context:component-scan base-package="tp.qa.mapper"/>
+		<mybatis-spring:scan base-package="tp.qa.mapper" />
+	
+	<!-- 멘토링 리뷰관련 -->
+		<context:component-scan base-package="tp.review.service"/>
+		<context:component-scan base-package="tp.review.mapper"/>
+		<mybatis-spring:scan base-package="tp.review.mapper" />
+
+	<!-- 장바구니 관련 -->
+		<context:component-scan base-package="tp.cart.service"/>
+		<context:component-scan base-package="tp.cart.mapper"/>
+		<mybatis-spring:scan base-package="tp.cart.mapper" />
+
+	<!-- 결제 관련 -->	
+		<context:component-scan base-package="tp.payment.service"/>
+		<context:component-scan base-package="tp.payment.mapper" />
+		<mybatis-spring:scan base-package="tp.payment.mapper" />
+		
+		<context:component-scan base-package="tp.refund.service"/>
+		<context:component-scan base-package="tp.refund.mapper" />
+		<mybatis-spring:scan base-package="tp.refund.mapper" />
+		
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
+
+	
+	
+	
 	<!-- Gmail -->
   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="smtp.gmail.com" />

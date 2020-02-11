@@ -82,6 +82,8 @@
 		$("#auth_btn").click(function(){
 			if($("#input_uuid").val().length == 0) {
 				alert("인증번호를 입력해주세요.");
+			}else if($("#input_uuid").val().length > 10) {
+				alert("인증번호는 10글자미만입니다.");
 			}else {
 				$.ajax({
 					url:"../join/checkUuid.do?mem_email=${email_auth.mem_email}&email_uuid="+$("#input_uuid").val(),

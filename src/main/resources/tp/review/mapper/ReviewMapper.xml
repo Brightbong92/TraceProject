@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tp.review.mapper.ReviewMapper">
+
+	<select id="selectMentoringSubjectEmail" resultType="Mentoring" parameterType="long">
+	<![CDATA[
+		SELECT MTR_SUBJECT, MEM_EMAIL FROM MENTORING WHERE MTR_SEQ = #{mtr_seq}
+	]]>
+	</select>
+
+	<select id="selectMentoringReviewCount" resultType="long" parameterType="long">
+	<![CDATA[
+	select count(*) from MENTORING_REVIEW where MTR_SEQ = #{mtr_seq}
+	]]>
+	</select>
+	
+	<select id="selectMentoringReview" resultType="Mentoring_Review" parameterType="MentoringReviewPagingVo">
+	<![CDATA[
+	select MTRRV_SEQ, MTRRV_CONTENT, MTRRV_RDATE, MTRRV_JUMSU, MTRRV_LIKECNT, MEM_EMAIL, MTR_SEQ, MEM_NICK, MEM_PROFILE from 
+	(select ROWNUM rnum, aa.MTRRV_SEQ, aa.MTRRV_CONTENT, aa.MTRRV_RDATE, aa.MTRRV_JUMSU, aa.MTRRV_LIKECNT ,aa.MEM_EMAIL, aa.MTR_SEQ, aa.MEM_NICK, aa.MEM_PROFILE from
+	(select MTRRV_SEQ, MTRRV_CONTENT, MTRRV_RDATE, MTRRV_JUMSU, MTRRV_LIKECNT ,mr.MEM_EMAIL, MTR_SEQ, MEM_NICK, MEM_PROFILE from MENTORING_REVIEW mr, MEMBER me where mr.MEM_EMAIL = me.MEM_EMAIL and MTR_SEQ = #{mtr_seq} order by MTRRV_SEQ desc) aa)
+	where rnum > #{startRow} and rnum <= #{endRow}
+	]]>
+	</select>
+	
+	<select id="selectMentoringReviewReply" resultType="Mentoring_Review_Reply" parameterType="long">
+	<![CDATA[
+	select MTRRVRP_SEQ, MTRRVRP_CONTENT, MTRRVRP_RDATE, mrr.MEM_EMAIL, MTRRV_SEQ, MEM_NICK, MEM_PROFILE from 
+	MENTORING_REVIEW_REPLY mrr, MEMBER me where mrr.MEM_EMAIL = me.MEM_EMAIL and MTRRV_SEQ = #{mtrrv_seq} order by MTRRV_SEQ desc
+	]]>
+	</select>
+	
+	<select id="selectMentoringReviewFile" resultType="Mentoring_Review_File" parameterType="long">
+	<![CDATA[
+	select MTRRVF_SEQ, MTRRVF_OFNAME, MTRRVF_FNAME, MTRRV_SEQ from MENTORING_REVIEW_FILE where MTRRV_SEQ = #{mtrrv_seq} order by MTRRV_SEQ desc
+	]]>
+	</select>
+	
+	
+	
+	
+</mapper>

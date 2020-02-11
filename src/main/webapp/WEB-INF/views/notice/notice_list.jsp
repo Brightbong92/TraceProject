@@ -57,7 +57,7 @@
 		<div class="form-inline">
 			<div id="div1_1">
 				<button type="button" onclick="location.href='../notice/list.do?cp=1'"  class="btn btn-link" >공지사항</button>
-				<button type="button" onclick="location.href='../notice/qna.do'"  class="btn btn-link">자주 묻는 질문</button>
+				<button type="button" onclick="location.href='../notice/qna.do'"  class="btn btn-link" style="color:gray;">자주 묻는 질문</button>
 			</div>
 
 			<div id="div1_2"  >

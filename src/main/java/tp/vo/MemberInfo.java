@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tp.domain.Disabled;
 import tp.domain.Member;
 
 @Data
@@ -12,4 +13,5 @@ import tp.domain.Member;
 @NoArgsConstructor
 public class MemberInfo {
 	private List<Member> memberInfo;
+	private List<Disabled> disInfo;
 }

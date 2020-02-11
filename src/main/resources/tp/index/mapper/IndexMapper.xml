@@ -3,16 +3,28 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tp.index.mapper.IndexMapper">
-    <select id="bestMentoringInfo" resultType="Mentoring">
+     <select id="bestMentoringTop" resultType="Mentoring">
 	    <![CDATA[
 	    select * from (select ROWNUM rnum , aa.* from (select * from MENTORING where MTR_JUMSU = (select max(MTR_JUMSU) from MENTORING ) ) aa)
-			 where rnum>0 and rnum<=1
+			 where rnum>0 and rnum<=3 order by rnum
 	    ]]> 	
+	    </select>
+	    
+	
+	
+	<select id="latestArticle" resultType="Mentoring">
+	<![CDATA[
+	 select * from mentoring where mtr_seq <= (select max(mtr_seq) from mentoring ) and mtr_Seq >=(select max(mtr_Seq)-2 from mentoring)
+ 	 ]]> 
 	</select>
+	    
 	<select id="bestMentoringMentor" resultType="Member">
 	    <![CDATA[
 	    select MEM_NICK from (select ROWNUM rnum , aa.*, bb.MEM_NICK from (select * from MENTORING where MTR_JUMSU = (select max(MTR_JUMSU) from MENTORING ) ) aa, MEMBER bb where aa.MEM_EMAIL = bb.MEM_EMAIL)
 			 where rnum>0 and rnum<=1
 	    ]]> 	
 	</select>
+	
+	
+	
 </mapper>

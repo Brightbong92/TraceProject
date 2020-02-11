@@ -9,8 +9,17 @@
 			 where rnum>#{startRow} and rnum<=#{endRow}
 	    ]]>
  	</select>
+ 	<select id="memberSearchList" resultType="Member" parameterType="MemberPagingVo">
+	    <![CDATA[
+	    select * from (select ROWNUM rnum , aa.* from (select * from MEMBER where MEM_NICK like '%'||#{keyword}||'%' order by MEM_AUTH desc, MEM_STATE, MEM_EMAIL ) aa)
+			 where rnum>#{startRow} and rnum<=#{endRow}
+	    ]]>
+ 	</select>
 	<select id="memberCount" resultType="int">
 	    select count(MEM_EMAIL) from MEMBER
+	</select>
+	<select id="memberSearchCount" resultType="int" parameterType="String">
+	    select count(MEM_EMAIL) from MEMBER where MEM_NICK like '%'||#{keyword}||'%'
 	</select>
 	<select id="vipMemberList" resultType="MemberVo">
 		<![CDATA[
@@ -42,7 +51,7 @@
 	<select id="memberInfo" resultType="Member" parameterType="String">
 		select * from MEMBER where mem_email=#{mem_email} 
 	</select>
-	<update id="updateN" parameterType="String">
+	<update id="updateState" parameterType="String">
 		update MEMBER set mem_state= 2 where mem_email = #{mem_email}
 	</update>
 	<select id="mentorList" resultType="Mentor_List" parameterType="MemberPagingVo">
@@ -54,7 +63,19 @@
  	<select id="mentorCount" resultType="int">
 	    select count(MEM_EMAIL) from MENTOR_LIST
 	</select>
-	<update id="mentorApprove" parameterType="String">
+	<update id="mentorApproved" parameterType="String">
 		update MENTOR_LIST set ml_apply = 0 where mem_email = #{mem_email}
+	</update>
+	<delete id="mentorDisapproved" parameterType="String">
+		delete from MENTOR_LIST where mem_email = #{mem_email}
+	</delete>
+	<update id="updateAuth" parameterType="String">
+		update MEMBER set mem_auth= 0 where mem_email = #{mem_email}
+	</update>
+	<select id="disInfo" resultType="Disabled" parameterType="String">
+		select dis_improve from DISABLED where mem_email = #{mem_email}
+	</select>
+	<update id="insertDisabled" parameterType="String">
+		insert into DISABLED(DIS_IMPROVE, MEM_EMAIL) values('관리자에 의한 비활성화 회원입니다.', #{mem_email}) 
 	</update>
 </mapper>

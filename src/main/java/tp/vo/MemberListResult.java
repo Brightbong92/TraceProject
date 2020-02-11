@@ -21,6 +21,7 @@ public class MemberListResult {
 	private List<MemberVo> review_list;
 	private List<MemberVo> point_list;
 	private List<MemberVo> new_list;
+	private String keyword;
 	
 	public MemberListResult(int currentPage, int totalCount, int pageSize, List<Member> member_list,
 				List<MemberVo> vip_list,List<MemberVo> review_list,List<MemberVo> point_list,List<MemberVo> new_list) {
@@ -35,7 +36,19 @@ public class MemberListResult {
 		this.new_list = new_list;
 		
 	}
-	
+	public MemberListResult(int currentPage, int totalCount, int pageSize, List<Member> member_list,
+			List<MemberVo> vip_list,List<MemberVo> review_list,List<MemberVo> point_list,List<MemberVo> new_list, String keyword) {
+	this.currentPage = currentPage;
+	this.totalCount = totalCount;
+	this.pageSize = pageSize;
+	this.totalPageCount = calTotalPageCount();
+	this.member_list = member_list;
+	this.vip_list = vip_list;
+	this.review_list = review_list;
+	this.point_list = point_list;
+	this.new_list = new_list;
+	this.keyword = keyword;
+}
 	
 	public int calTotalPageCount() {
 		int tpc = totalCount / pageSize;
