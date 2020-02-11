@@ -10,6 +10,9 @@
 	}
 </script>
 <style>
+a {
+	text-decoration:none;
+}
 
 
 </style>
@@ -18,25 +21,29 @@
   <!-- Page Content -->
   <div class="container">
 
+
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">장바구니
-      <small>선택페이지</small>
+      <%-- <small>선택페이지</small>--%>
     </h1>
 
+<%-- 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="/">Home</a>
       </li>
       <li class="breadcrumb-item active">cart</li>
     </ol>
-
+--%>
     <div class="jumbotron">
     	<c:if test="${empty cartListResult.cartInfo}">
     		장바구니에 담긴 상품이 없습니다.
     	</c:if>
     	<c:if test="${!empty cartListResult.cartInfo}">
-    	<b>장바구니 정보</b>
+    	<b style="font-size:25pt;">나의 장바구니 정보</b>
     	<hr>
+    	<b>총개수: </b><span id="totCartCount" style="font-size:30pt;">${cartListResult.cartInfo.size()}</span>개
+		<hr>
     	<b>전체선택</b><input type="checkbox" name="chkAll" style="width:20px;height:20px;float:left;"/>
     		<form name="f" method="post" action="/payment/cartListPaymentList.do">			
     		<c:forEach items="${cartListResult.cartInfo}" var="list">
@@ -45,24 +52,26 @@
 						<div style="margin-left:50px;">
 							<img src="../resources/mentoring_list_images/${list.mtr_profile}" alt="img" width="100px" height="100px">&nbsp;&nbsp;&nbsp;
 							<span class="badge badge-warning mb-2" style="font-size:1.0em;">${list.mtr_hashtag}</span>
-							<span>${list.mtr_subject}</span>
+							<a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}">${list.mtr_subject}</a>
 							<input type="hidden" name=mtr_seq value="${list.mtr_seq}">
-							<span><button type="button" onclick="location.href='../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}'"style="font-size:15px;float:right;margin-top:37px;">상세보기</button></span>
+							<%--
+							<span><button type="button" class="btn btn-primary" onclick="location.href='../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}'" style="font-size:15px;float:right;margin-top:37px;">상세보기</button></span>
+							--%>
+							
 						</div>
 						<div >
 							<input type="hidden" name=mtrdi_seq value="${list.mtrdi_seq}">
 							<span style="margin-left:50px;">(${list.mtrdi_stime}~${list.mtrdi_etime})</span>
-							<span><button type="button" style="font-size:15px;float:right;" onclick="location.href='../cart/deleteCart.do?mem_email=${loginUser.mem_email}&ct_seq=${list.ct_seq}'">삭제</button></span>  
+							<span><button type="button" class="btn btn-primary" style="float:right;" onclick="location.href='../cart/deleteCart.do?mem_email=${loginUser.mem_email}&ct_seq=${list.ct_seq}'">삭제</button></span>  
 							<span style="float:right;">${list.mtr_price}원</span>
 							<br/>
 						</div>
-					<hr>
 			</c:forEach>
-				<b>합계</b>
-				<hr>
-					<div>
-						<span id="totPrice">0</span>원<button id="purchase" type="button" style="float:right;">결제하기</button>
-					</div>
+			<hr>
+			<b>선택: </b><span id="selectCartCount" style="font-size:30pt;">0</span>개
+			<hr>
+			<b>합계: </b><span id="totPrice" style="font-size:30pt;">0</span>원<button class="btn btn-primary" id="purchase" type="button" style="float:right;">결제하기</button>
+			<hr>
 					<input type="hidden" id="sumPaymentPrice" name="sumPaymentPrice" value=""/>
 					<input type="hidden" id="cartList" name="cartList" value=""/>
 			</form>
@@ -132,9 +141,11 @@ $(document).ready(function(){
 					    cartList.push(ct_seq);
 					}
 				});
+			$("#selectCartCount").text(cartList.length);
 		}else {//전체해제
 			var l = cartList.length;
 			cartList.splice(0, l);
+			$("#selectCartCount").text(cartList.length);
 		}	
 	}
 	function totalPriceCal(obj){
@@ -168,9 +179,11 @@ $(document).ready(function(){
 				if( checkBoxLength == checkedLength ) {//alert("각각 체크하다가 전부다 체크 될시");
 					cartList.push(ct_seq);
 					allObj.prop("checked", true);
+					$("#selectCartCount").text(cartList.length);
 				}else {//alert("각각 체크 될 시");
 					cartList.push(ct_seq);
 					allObj.prop("checked", false);
+					$("#selectCartCount").text(cartList.length);
 				}
 			}
 			else{//alert("체크해제 될 시");
@@ -178,6 +191,7 @@ $(document).ready(function(){
 				var index = cartList.indexOf(ct_seq);
 				if(index > -1) {
 					cartList.splice(index, 1);
+					$("#selectCartCount").text(cartList.length);
 				}
 			}	
 	}

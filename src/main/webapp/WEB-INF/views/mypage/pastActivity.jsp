@@ -112,7 +112,7 @@ function setImg() {
 		     		<td>${act.mtr_subject}</td>
 		     		<td>${act.mtrdi_etime}</td>
 		     		<td>${act.pi_rdate}</td>
-		     		<td><button onclick="location.href='../review/reviewList.do?mtr_seq=${act.mtr_seq}&cp=1'" style="color:white; background:#3b67f7; font-size:1em; border-radius:0.5em; padding:5px 20px;">후기 작성하기</button></td>
+		     		<td><button onclick="location.href='../review/reviewWriteForm.do?mtr_seq=${act.mtr_seq}'" style="color:white; background:#3b67f7; font-size:1em; border-radius:0.5em; padding:5px 20px;">후기 작성하기</button></td>
 		     	</tr>
 	     	</c:forEach>
 	     	</table>

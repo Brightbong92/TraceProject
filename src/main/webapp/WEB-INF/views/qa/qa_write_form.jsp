@@ -8,16 +8,17 @@
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">${mtr_subject}
-      <small>: 질문</small>
+     <%--  <small>: 질문</small>--%>
     </h1>
 
+<%-- 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="#">Home</a>
       </li>
       <li class="breadcrumb-item active">Contact</li>
     </ol>
-
+--%>
     <!-- Contact Form -->
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <form name="sentMessage" id="qaForm" action="/qa/qaRegister.do" method="post">

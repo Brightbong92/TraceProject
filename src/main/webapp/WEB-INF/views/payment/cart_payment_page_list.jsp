@@ -29,19 +29,19 @@
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">결제
-      <small>결제페이지</small>
+     <%--  <small>결제페이지</small>--%>
     </h1>
-
+<%-- 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="#">Home</a>
       </li>
       <li class="breadcrumb-item active"></li>
     </ol>
-
+--%>
     <div class="jumbotron">
     <form name="f" method="post" action="../payment/cartPurchaseInfo.do">
-    	<b>결제자정보</b>
+    	<b style="font-size:25pt;">결제자정보</b>
     	<hr>
     		<div>
     			<b>이름: </b> <input type="text" id="pi_name" name="pi_name" placeholder="구매자이름"/>
@@ -50,7 +50,7 @@
     			<b>번호: </b> <input type="text" id="pi_phone" name="pi_phone" placeholder="휴대폰번호 -제외" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
     		</div>
     	<hr>
-    	<b>주문정보</b>
+    	<b style="font-size:25pt;">주문정보</b>
 		<hr>
 
 		<c:forEach items="${listResult.cartPaymentInfoList}" var="list">
@@ -63,28 +63,25 @@
 				<span>옵션: <b>${list.mtrdi_stime}~${list.mtrdi_etime}</b></span><span style="float:right;">${list.mtr_price}원</span><br/>
 				<input type="hidden" name="ct_seq" value="${list.ct_seq}">
 			</div>
-			<hr>
 		</c:forEach>
-
-
+		
 		<hr>
-		<hr>
-		<b>할인</b>
-		<hr>
-			<div>
-				<span>나의 포인트: </span><span id="mem_point" point="${listResult.mem_point}">${listResult.mem_point}</span>P&nbsp;&nbsp;&nbsp;
+		<b>나의 포인트:&nbsp;</b>
+		<%--<hr>--%>
+			<span>
+				<span> </span><span id="mem_point" style="font-size:30pt;" point="${listResult.mem_point}">${listResult.mem_point}</span>P&nbsp;&nbsp;&nbsp;
 				<c:if test="${loginUser.mem_point ne 0}">
 				<input type="text" id="pointText" placeholder="포인트사용"/>
-				<button type="button" style="float:right;" onclick="pointUse();">사용하기</button>
+				<button class="btn btn-primary" type="button" style="float:right;" onclick="pointUse();">사용하기</button>
 				</c:if>
-			</div>
+			</span>
 		<hr>
-		<b>결제금액</b>
-		<hr>
-			<div>
-				<span id="pi_price">${listResult.sumPaymentPrice}</span>원
-				<button id="check_module" type="button" style="float:right;">결제하기</button>
-			</div>
+		<b>결제금액:&nbsp;</b>
+		<%-- <hr>--%>
+			<span>
+				<span id="pi_price" style="font-size:30pt;">${listResult.sumPaymentPrice}</span>원
+				<button class="btn btn-primary" id="check_module" type="button" style="float:right;">결제하기</button>
+			</span>
 			
 			<input type="hidden" id="usedPointTot" name="usedPointTot" value="0"/>
 			<input type="hidden" id="pi_priceResult" name="pi_price" value=""/>
@@ -128,7 +125,7 @@ $(document).ready(function(){
 			var use_point = $("#pointText").val();//사용할 포인트
 			var origin_point = $("#mem_point").text();//가지고있는 포인트
 			
-			if(parseInt(use_point) < parseInt(origin_point)){//사용포인트 < 가지고있는포인트
+			if(parseInt(use_point) <= parseInt(origin_point)){//사용포인트 <= 가지고있는포인트
 				var left_point = parseInt(origin_point) - parseInt(use_point);//포인트계산
 				$("#mem_point").text(left_point);//남은 포인트
 				$("#pointText").val("");//텍스트 초기화

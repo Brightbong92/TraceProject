@@ -8,15 +8,16 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">${listResult.mtr_subject}
-      <small>: 
-        <a href="#">질문게시판</a>
+    <h1 class="mt-4 mb-3">${listResult.mtr_subject} : 문의
+      <small></small>
         <c:if test="${!empty loginUser}">
-        <button class="btn btn-primary" onclick="goQAWriteForm()">질문하기</button>
+        <div style="float:right;">
+        <button class="btn btn-primary" onclick="goQAWriteForm()">문의하기</button>
+        </div>
         </c:if>
-      </small>
+  
     </h1>
-
+<%-- 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.html">Home</a>
@@ -27,7 +28,7 @@
       </li>
       <li class="breadcrumb-item active">질문게시판</li>
     </ol>
-
+--%>
     <!-- Blog Post -->
     
     <c:if test="${!empty listResult.mtr_qa_list}">

@@ -7,8 +7,8 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">멘토링 : 
-      <small>현재 진행중인 멘토링</small>
+    <h1 class="mt-4 mb-3">멘토링
+      <%-- <small>현재 진행중인 멘토링</small>--%>
     </h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
@@ -32,15 +32,16 @@
 					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
-					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
+					              <p><b>${list.mtr_subject}</b></p>
 					            </h4>
 					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
-					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
-					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">지역:</span><b>${list.mtr_area}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">금액:</span><b>${list.mtr_price}</b></p>
 					            
 					          <c:choose>
 					          <c:when test="${list.mtr_jumsu eq 0}">
 					            <div class="starRev">
+					            <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -50,6 +51,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 1}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -59,6 +61,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 2}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR">별3</span>
@@ -68,6 +71,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 3}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -77,6 +81,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 4}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -86,6 +91,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 5}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -97,6 +103,7 @@
 					           <!--   <p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>-->
 					      		<input type="hidden" id="hidden_id" value="${listResultAll.category_no}">
 					          </div>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}" class = "btn btn-outline-primary">멘토링 참여하기</a>
 					        </div>
 					      </div>
 			</c:forEach>
@@ -114,15 +121,16 @@
 					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
-					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
+					              <p><b>${list.mtr_subject}</b></p>
 					            </h4>
 					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
-					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
-					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">지역:</span><b>${list.mtr_area}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">금액:</span><b>${list.mtr_price}</b></p>
 					            
 					          <c:choose>
 					          <c:when test="${list.mtr_jumsu eq 0}">
 					            <div class="starRev">
+					            <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -132,6 +140,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 1}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -141,6 +150,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 2}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR">별3</span>
@@ -150,6 +160,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 3}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -159,6 +170,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 4}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -168,6 +180,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 5}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -179,8 +192,11 @@
 					           <!--   <p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>-->
 					      		<input type="hidden" id="hidden_id" value="${listResultExercise.category_no}">
 					          </div>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}" class = "btn btn-outline-primary">멘토링 참여하기</a>
 					        </div>
+					        
 					      </div>
+					      
 			   	 	</c:forEach>
 			</div><!--/ .row -->
 			<c:if test="${empty listResultExercise.mtr_list}">
@@ -196,15 +212,16 @@
 					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
-					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
+					              <p><b>${list.mtr_subject}</b></p>
 					            </h4>
 					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
-					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
-					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">지역:</span><b>${list.mtr_area}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">금액:</span><b>${list.mtr_price}</b></p>
 					            
 					          <c:choose>
 					          <c:when test="${list.mtr_jumsu eq 0}">
 					            <div class="starRev">
+					            <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -214,6 +231,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 1}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -223,6 +241,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 2}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR">별3</span>
@@ -232,6 +251,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 3}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -241,6 +261,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 4}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -250,6 +271,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 5}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -261,6 +283,7 @@
 					           <!--   <p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>-->
 					      		<input type="hidden" id="hidden_id" value="${listResultMusic.category_no}">
 					          </div>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}" class = "btn btn-outline-primary">멘토링 참여하기</a>
 					        </div>
 					      </div>
 			   	 	</c:forEach>
@@ -278,15 +301,16 @@
 					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
-					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
+					              <p><b>${list.mtr_subject}</b></p>
 					            </h4>
 					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
-					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
-					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">지역:</span><b>${list.mtr_area}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">금액:</span><b>${list.mtr_price}</b></p>
 					            
 					          <c:choose>
 					          <c:when test="${list.mtr_jumsu eq 0}">
 					            <div class="starRev">
+					            <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -296,6 +320,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 1}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -305,6 +330,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 2}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR">별3</span>
@@ -314,6 +340,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 3}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -323,6 +350,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 4}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -332,6 +360,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 5}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -343,6 +372,7 @@
 					           <!--   <p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>-->
 					      		<input type="hidden" id="hidden_id" value="${listResultCraft.category_no}">
 					          </div>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}" class = "btn btn-outline-primary">멘토링 참여하기</a>
 					        </div>
 					      </div>
 			   	 	</c:forEach>
@@ -360,15 +390,16 @@
 					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
-					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
+					              <p><b>${list.mtr_subject}</b></p>
 					            </h4>
 					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
-					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
-					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">지역:</span><b>${list.mtr_area}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">금액:</span><b>${list.mtr_price}</b></p>
 					            
 					          <c:choose>
 					          <c:when test="${list.mtr_jumsu eq 0}">
 					            <div class="starRev">
+					            <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -378,6 +409,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 1}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -387,6 +419,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 2}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR">별3</span>
@@ -396,6 +429,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 3}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -405,6 +439,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 4}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -414,6 +449,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 5}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -425,6 +461,7 @@
 					           <!--   <p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>-->
 					      		<input type="hidden" id="hidden_id" value="${listResultCooking.category_no}">
 					          </div>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}" class = "btn btn-outline-primary">멘토링 참여하기</a>
 					        </div>
 					      </div>
 			   	 	</c:forEach>
@@ -442,15 +479,16 @@
 					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
-					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
+					              <p><b>${list.mtr_subject}</b></p>
 					            </h4>
 					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
-					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
-					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">지역:</span><b>${list.mtr_area}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">금액:</span><b>${list.mtr_price}</b></p>
 					            
 					          <c:choose>
 					          <c:when test="${list.mtr_jumsu eq 0}">
 					            <div class="starRev">
+					            <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -460,6 +498,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 1}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -469,6 +508,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 2}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR">별3</span>
@@ -478,6 +518,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 3}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -487,6 +528,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 4}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -496,6 +538,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 5}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -507,6 +550,7 @@
 					           <!--   <p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>-->
 					      		<input type="hidden" id="hidden_id" value="${listResultMedia.category_no}">
 					          </div>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}" class = "btn btn-outline-primary">멘토링 참여하기</a>
 					        </div>
 					      </div>
 			   	 	</c:forEach>
@@ -524,15 +568,16 @@
 					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
-					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
+					              <p><b>${list.mtr_subject}</b></p>
 					            </h4>
 					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
-					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
-					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">지역:</span><b>${list.mtr_area}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">금액:</span><b>${list.mtr_price}</b></p>
 					            
 					          <c:choose>
 					          <c:when test="${list.mtr_jumsu eq 0}">
 					            <div class="starRev">
+					            <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -542,6 +587,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 1}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -551,6 +597,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 2}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR">별3</span>
@@ -560,6 +607,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 3}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -569,6 +617,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 4}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -578,6 +627,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 5}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -589,6 +639,7 @@
 					           <!--   <p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>-->
 					      		<input type="hidden" id="hidden_id" value="${listResultBeauty.category_no}">
 					          </div>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}" class = "btn btn-outline-primary">멘토링 참여하기</a>
 					        </div>
 					      </div>
 			   	 	</c:forEach>
@@ -607,15 +658,16 @@
 					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
 					          <div class="card-body">
 					            <h4 class="card-title">
-					              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><b>${list.mtr_subject}</b></a>
+					              <p><b>${list.mtr_subject}</b></p>
 					            </h4>
 					            <p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
-					            <p class="card-text">지역:<b>${list.mtr_area}</b></p>
-					            <p class="card-text">금액:<b>${list.mtr_price}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">지역:</span><b>${list.mtr_area}</b></p>
+					            <p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">금액:</span><b>${list.mtr_price}</b></p>
 					            
 					          <c:choose>
 					          <c:when test="${list.mtr_jumsu eq 0}">
 					            <div class="starRev">
+					            <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -625,6 +677,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 1}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -634,6 +687,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 2}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR">별3</span>
@@ -643,6 +697,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 3}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -652,6 +707,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 4}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -661,6 +717,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 5}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -672,6 +729,7 @@
 					           <!--   <p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>-->
 					      		<input type="hidden" id="hidden_id" value="${listResultBeverage.category_no}">
 					          </div>
+					          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}" class = "btn btn-outline-primary">멘토링 참여하기</a>
 					        </div>
 					      </div>
 			   	 	</c:forEach>
@@ -699,23 +757,23 @@
 				  //var mtr_list = JSON.stringify(data.mtr_list);
 				 	for(m of data.mtr_list){
 				 		if(m.mtr_jumsu == 0){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
-									  "<div class='starRev'><span class='starR'>별1</span><span class='starR'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><b>"+m.mtr_subject+"</b></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>지역:</span><b>"+m.mtr_area+"</b></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>금액:</span><b>"+m.mtr_price+"</b></p>"+
+									  "<div class='starRev'><span class='badge badge-primary' style='font-size:1.0em;'>평점:</span>&emsp;<span class='starR'>별1</span><span class='starR'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div></div><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'class ='btn btn-outline-primary'>멘토링 참여하기</a>");
 				 		}else if(m.mtr_jumsu == 1){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
-							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><b>"+m.mtr_subject+"</b></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>지역:</span><b>"+m.mtr_area+"</b></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>금액:</span><b>"+m.mtr_price+"</b></p>"+
+							  "<div class='starRev'><span class='badge badge-primary' style='font-size:1.0em;'>평점:</span>&emsp;<span class='starR on'>별1</span><span class='starR'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div></div><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'class = 'btn btn-outline-primary'>멘토링 참여하기</a>");
 				 		}else if(m.mtr_jumsu == 2){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
-							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><b>"+m.mtr_subject+"</b></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>지역:</span><b>"+m.mtr_area+"</b></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>금액:</span><b>"+m.mtr_price+"</b></p>"+
+							  "<div class='starRev'><span class='badge badge-primary' style='font-size:1.0em;'>평점:</span>&emsp;<span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div></div><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'class = 'btn btn-outline-primary'>멘토링 참여하기</a>");
 				 		}else if(m.mtr_jumsu == 3){
-				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
-							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div>");
+				 			 $(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><b>"+m.mtr_subject+"</b></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>지역:</span><b>"+m.mtr_area+"</b></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>금액:</span><b>"+m.mtr_price+"</b></p>"+
+							  "<div class='starRev'><span class='badge badge-primary' style='font-size:1.0em;'>평점:</span>&emsp;<span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR'>별4</span><span class='starR'>별5</span></div></div><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'class = 'btn btn-outline-primary'>멘토링 참여하기</a>");
 				 		}else if(m.mtr_jumsu == 4){
-				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
-							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR on'>별4</span><span class='starR'>별5</span></div>");
+				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><b>"+m.mtr_subject+"</b></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>지역:</span><b>"+m.mtr_area+"</b></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>금액:</span><b>"+m.mtr_price+"</b></p>"+
+							  "<div class='starRev'><span class='badge badge-primary' style='font-size:1.0em;'>평점:</span>&emsp;<span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR on'>별4</span><span class='starR'>별5</span></div></div><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'class = 'btn btn-outline-primary'>멘토링 참여하기</a>");
 				 		}else if(m.mtr_jumsu == 5){
-				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><b>"+m.mtr_subject+"</b></a></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'>지역:<b>"+m.mtr_area+"</b></p><p class='card-text'>금액:<b>"+m.mtr_price+"</b></p>"+
-							  "<div class='starRev'><span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR on'>별4</span><span class='starR on'>별5</span></div>");
+				 			$(".row").append("<div class='col-lg-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' width='700' height='300' alt=''></a><div class='card-body'><h4 class='card-title'><b>"+m.mtr_subject+"</b></h4><p class='card-text'><span style='font-size:1.0em' class='badge badge-warning mb-2'><b>"+m.mtr_hashtag+"</b></span></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>지역:</span><b>"+m.mtr_area+"</b></p><p class='card-text'><span class='badge badge-primary' style='font-size:1.0em;'>금액:</span><b>"+m.mtr_price+"</b></p>"+
+							  "<div class='starRev'><span class='badge badge-primary' style='font-size:1.0em;'>평점:</span>&emsp;<span class='starR on'>별1</span><span class='starR on'>별2</span><span class='starR on'>별3</span><span class='starR on'>별4</span><span class='starR on'>별5</span></div></div><a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'class = 'btn btn-outline-primary'>멘토링 참여하기</a>");
 				 		}
 			  		}
 			  },
@@ -727,32 +785,7 @@
     });
   </script>
     
-	
-    <!-- Pagination 
-    <ul class="pagination justify-content-center">
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Previous</span>
-        </a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">1</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">2</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">3</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-    </ul>
-	-->
+
 	
   </div>  <!-- /.container -->
 <%@include file="../footer.jsp"%>

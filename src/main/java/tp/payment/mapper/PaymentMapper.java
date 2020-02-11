@@ -71,4 +71,5 @@ public interface PaymentMapper {
 	void deleteCartInfo(long ct_seq);
 	
 	
+	long selectCartCount(String mem_email);
 }

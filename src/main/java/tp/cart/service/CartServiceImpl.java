@@ -37,4 +37,10 @@ public class CartServiceImpl implements CartSerivce {
 		map.put("ct_seq", ct_seq);
 		cartMapper.deleteCart(map);
 	}
+
+	@Override
+	public long getCartCount(String mem_email) {
+		long cartCount = cartMapper.selectCartCount(mem_email);
+		return cartCount;
+	}
 }

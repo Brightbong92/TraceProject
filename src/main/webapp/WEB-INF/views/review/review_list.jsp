@@ -9,14 +9,10 @@
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">${listResult.mtr_subject}
-      <small>: 
-        <a href="#">리뷰게시판</a>
-        <c:if test="${!empty loginUser}">
-        <button class="btn btn-primary" onclick="goReviewWriteForm()">리뷰하기</button>
-        </c:if>
-      </small>
+      <small></small>
     </h1>
 
+<%-- 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="#">Home</a>
@@ -27,7 +23,7 @@
       </li>
       <li class="breadcrumb-item active">후기게시판</li>
     </ol>
-
+--%>
     <!-- Blog Post -->
     
     

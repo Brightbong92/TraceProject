@@ -7,17 +7,18 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">멘토링 리스트 :
-      <small>검색한 멘토링</small>
+    <h1 class="mt-4 mb-3">멘토링 리스트
+     <%--  <small>검색한 멘토링</small>--%>
     </h1>
 
+<%-- 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="/">Home</a>
       </li>
       <li class="breadcrumb-item active">Portfolio 2</li>
     </ol>
-
+--%>
 	<c:if test="${!empty mentoringListResultSearch}">
     <div class="row">
     <c:forEach items="${mentoringListResultSearch.mtr_list}" var="list">
@@ -26,14 +27,15 @@
           <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" width="700" height="300" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}">${list.mtr_subject}</a>
+              <p>${list.mtr_subject}</p>
             </h4>
 				<p class="card-text"><span style="font-size:1.0em" class="badge badge-warning mb-2"><b>${list.mtr_hashtag}</b></span></p>
-				<p class="card-text">지역:<b>${list.mtr_area}</b></p>
-				<p class="card-text">금액:<b>${list.mtr_price}원</b></p>            
+				<p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">지역:</span><b>${list.mtr_area}</b></p>
+				<p class="card-text"><span class="badge badge-primary" style="font-size:1.0em;">금액:</span><b>${list.mtr_price}원</b></p>            
 					          <c:choose>
 					          <c:when test="${list.mtr_jumsu eq 0}">
 					            <div class="starRev">
+					            <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -43,6 +45,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 1}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR">별2</span>
 								  <span class="starR">별3</span>
@@ -52,6 +55,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 2}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR">별3</span>
@@ -61,6 +65,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 3}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -70,6 +75,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 4}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -79,6 +85,7 @@
 						      </c:when>
 						      <c:when test="${list.mtr_jumsu eq 5}">
 						      	 <div class="starRev">
+						      	 <span class="badge badge-primary" style="font-size:1.0em;">평점:</span>&emsp;
 								  <span class="starR on">별1</span>
 								  <span class="starR on">별2</span>
 								  <span class="starR on">별3</span>
@@ -89,6 +96,7 @@
 					          </c:choose>
 			    <!--<p class="card-text">평점:<b>${list.mtr_jumsu}</b></p>-->
           </div>
+           <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}" class = "btn btn-outline-primary">멘토링 참여하기</a>
         </div>
       </div>
     </c:forEach>

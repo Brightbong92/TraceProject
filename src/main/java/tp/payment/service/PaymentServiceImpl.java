@@ -149,5 +149,11 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		return new CartPaymentCompletePageVo(payment_info2, cart_order_list);
 	}
+
+	@Override
+	public long getCartCount(String mem_email) {
+		long cartCount = pMapper.selectCartCount(mem_email);
+		return cartCount;
+	}
 	
 }
