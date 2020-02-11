@@ -30,7 +30,10 @@
     </style>
     <script>
     	function start(){
-    		
+    		document.getElementById("btn1").style.display = "inline-block";
+    		document.getElementById("btn2").style.display = "inline-block";
+    		document.getElementById("comment1").style.display = "none";
+    		document.getElementById("comment2").style.display = "block";
     	}
     </script>
 	<script>
@@ -72,17 +75,35 @@
 					img1.src="../resources/hobbyTest/10-1.jpg";
 					img2.src="../resources/hobbyTest/10-2.jpg";
 				}else if(cnt ==10){
-					alert("총점 :"+point);
+					//alert("총점 :"+point);
+					test();
+					setTimeout(function(){
+						if(point >= 0 && point <4){
+							//alert("소극적");
+							location.href="../hobbytest/testResult1.do";
+						}else if(point >= 4 && point <8){
+							//alert("보통");
+							location.href="../hobbytest/testResult2.do";
+						}else if(point >= 8){
+							//alert("활동적");
+							location.href="../hobbytest/testResult3.do";
+						}
+					},3000);
+					
 				}
 			
 				cnt++;
 			}
 		}
-	</script>
-	
+		</script>
+		<script>
+			function test(){
+				document.getElementById("load").style.display = "block";
+			}
+		</script>
 </head>
 <body>
-
+	
   <!-- Page Content -->
   <div class="container">
 
@@ -99,10 +120,18 @@
     </ol>
 	<p style="margin-top:80px;font-size:23px;" align="center"><strong> 취미분석 테스트 </strong> </p>
 	<br/>
-	<p align="center" id="comment">두 이미지중 마음에 드는 한가지를 선택하세요.</p>
+	<pre id="comment1" style="font-size:20px;" > 
+		당신의 취미는 무엇입니까?
+		취미 분석을 통해 나를 보다 깊게 알아보세요.
+		총 검사 시간은 1분 내외 입니다.
+		
+		-총 10문항-
+		
+	</pre>
+	<pre align="center" id="comment2" style="display:none;font-size:20px">두 이미지중 마음에 드는 한가지를 선택하세요.</pre>
 	<br/>
-	<button class="btn" id="btn" type="button" onclick="pbFunc(0)" style="margin-left:90px;display:none" ><img class="btn-img" id="img1" src="../resources/hobbyTest/1-1.jpg" style="width:370px; height:370px;"></button>
-	<button class="btn" id="btn" type="button" onclick="pbFunc(1)" style="margin-left:210px;display:none"><img class="btn-img" id="img2" src="../resources/hobbyTest/1-2.jpg" style="width:370px; height:370px;"></button>
+	<button class="btn" id="btn1" type="button" onclick="pbFunc(0)" style="margin-left:90px;display:none" ><img class="btn-img" id="img1" src="../resources/hobbyTest/1-1.jpg" style="width:370px; height:370px;"></button>
+	<button class="btn" id="btn2" type="button" onclick="pbFunc(1)" style="margin-left:210px;display:none"><img class="btn-img" id="img2" src="../resources/hobbyTest/1-2.jpg" style="width:370px; height:370px;"></button>
 	
 	<br/><br/><br/><br/><br/>
 	<div class="progress">
@@ -118,5 +147,48 @@
   	</div>
   </div>
   <!-- /.container -->
+  
+  <style type="text/css">
 
-<%@include file="../footer.jsp"%>
+		#load {
+		 width: 100%;
+		 height: 100%;
+		 top: 0;
+		 left: 0;
+		 position: fixed;
+		 display: none;
+		 opacity: 0.8;
+		 background: white;
+		 z-index: 99;
+		 text-align: center;
+		}
+		
+		 
+		
+		#load > img {
+		 position: absolute;
+		 top: 40%;
+		 left: 30%;
+		 z-index: 100;
+		}
+		
+		</style>
+		
+		<div id="load">
+	 <img src="../resources/images/loading14.gif" alt="loading">
+	</div>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; 발자취 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

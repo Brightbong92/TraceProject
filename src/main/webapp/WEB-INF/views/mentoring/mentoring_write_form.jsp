@@ -197,6 +197,7 @@
 	   <input type="button" id="writeGo" value="신청하기" />
 	   <input type="reset" value="취소하기" onclick="test()"/>
 	   </div>
+	   <br/><br/>
   </div>
   <!-- /.container -->
 
@@ -537,6 +538,42 @@ $(document).ready(function(){
 				writeForm.submit();
 		});
 });
+</script>
+<style type="text/css">
+
+	#load {
+	 width: 100%;
+	 height: 100%;
+	 top: 0;
+	 left: 0;
+	 position: fixed;
+	 display: block;
+	 opacity: 0.8;
+	 background: white;
+	 z-index: 99;
+	 text-align: center;
+	}
+	
+	 
+	
+	#load > img {
+	 position: absolute;
+	 top: 40%;
+	 left: 30%;
+	 z-index: 100;
+	}
+	
+	</style>
+<div id="load">
+
+ <img src="../resources/images/loading14.gif" alt="loading">
+
+</div>
+<script>
+$(document).ready(function(){
+	document.getElementById("load").style.display = "none";
+});
+
 </script>
 
   <footer class="py-5 bg-dark">

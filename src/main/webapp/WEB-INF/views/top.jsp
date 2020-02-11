@@ -48,7 +48,7 @@
 	
 		<!-- 검색 -->
 	  <div class="autocomplete" style="width:300px;">
-      <input type="text" style="width:600px;" id="searchBar" placeholder="하고 싶은 멘토링을 검색해 보세요." onkeyup="find(this)"/><!-- 검색 -->
+	  	<input class="sc-iuJeZd kCAAcw" type="text" style="text-align: center;width:200%; height: 40px;background:#f2f9ff; border-radius:15px;  margin-left:180px;" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this)"/><!-- 검색 -->
       </div>
  	  <div id="searchOpt" style="color:red;"></div>
       <input type="hidden" id="findFlag" value="Off">
