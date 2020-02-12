@@ -32,14 +32,20 @@
   <link href="../css/lazy.css" rel="stylesheet">
 
 
-  <!-- 검색 자동완성 -->
+  <!-- 검색 자동완성-->
   <script src="../auto/AutoComplete.js" type="text/javascript"></script>
+
   <link href="../auto/AutoComplete.css" rel="stylesheet">
   
-  <!-- 폰트적용 -->
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-	
-	
+  
+  <%-- 
+	<!-- css에는 autocomplet의 요소를 만들떄 필요한 css가 담겨져 있습니다. --> 
+	<link rel="stylesheet" href="../auto2/autoComplete.css"> 
+	<!-- css에는 autocomplet의 요소를 만들떄 필요한 scrpit가 담겨져 있습니다. -->
+	<script type="text/javascript" src="../auto2/autoComplete.js"></script>
+	<script type="text/javascript" src="../auto2/animal.js"></script>
+	--%>
+
 </head>
 <style>
 .nav-counter {
@@ -62,28 +68,35 @@
  box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
 
 }
-@font-face {
-  font-family: 'Noto Sans KR', sans-serif;
-}
-body {
-  font-family: Noto Sans KR;
-}
-</style>
 
+</style>
 <body>
-	
+
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important" >  <!-- 머리색 -->
     <div class="container" style="max-width:80% !important;">
       <a class="navbar-brand" href="/"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
 	
-		<!-- 검색 -->
+	<!-- 검색 onkeyup="find(this)"-->
+	<!-- 검색 -->
+		
 	  <div class="autocomplete" style="width:300px;">
-	  	<input class="sc-iuJeZd kCAAcw" type="text" style="text-align: center;width:200%; height: 40px;background:#f2f9ff; border-radius:15px;  margin-left:180px;" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this)"/><!-- 검색 -->
+	  	
+	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:200%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:100px;" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
+	  
+	  <%----%>
+	  <div id="searchBarautocomplete-list" class="autocomplete-items" style="margin-left:33%;width:200%;">
+	  </div>
+	   
+	  
       </div>
+      <%-- 
+      <input type="hidden" id="keywords" value="">
  	  <div id="searchOpt" style="color:red;"></div>
+ 	  
       <input type="hidden" id="findFlag" value="Off">
+      --%>
 	  <!--  &nbsp;&nbsp;&nbsp;-->
 	  <!--  <button class="btn btn-primary" id="searchBtn" onclick="find()">검색</button>-->
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -151,9 +164,9 @@ body {
 		          </li>
 	          </c:if>
 	          <!--  <img src="../images/cartImg.jpg" width="30px" height="30px"/>-->
-	          <img src="../images/cartImg2.png" width="22px" height="22px" onclick="location.href='../cart/cart.do?mem_email=${loginUser.mem_email}'" style="margin-top:7px;cursor:pointer"/>
+	          <img src="../images/cartImg2.png" width="22px" height="22px" onclick="location.href='../cart/cart.do?mem_email=${loginUser.mem_email}'" style="margin-top:7px"/>
 		          <c:if test="${cartCount ne 0}">
-		          	<span class="nav-counter">${cartCount}</span>
+		          	<span id="cart_tot_count" class="nav-counter">${cartCount}</span>
 		          </c:if>
 	          </c:if>
            <!-- 로그인안했을 시 나오게끔 -->
@@ -166,91 +179,122 @@ body {
       </div>
     </div>
   </nav>
+  
 <script type="text/javascript">
-		function find(e) {
-			var word = document.getElementById('searchBar').value;
-			if($("#searchBar").val() != "") {
-				if(event.keyCode == 13) {
-					//alert(word);
-					var w =  word.indexOf("#");
-					var gugsae = word.indexOf("^");
-					var rSlash = word.indexOf("\\");
-					
-					if(gugsae != -1 || rSlash != -1){
-						alert("검색에 형식에 어긋나는 문자가 있습니다.");
-						$("#searchBar").val("");
-						$("#searchBar").focus();
-						return false;
-					}
-						if(w == -1) {//일반검색시
-							//alert("#포함안됨" + word)
-							location.href="../mentoring/searchList.do?word="+word+"&cp=1";
-						}else {//#검색시
-							//alert("#포함됨" + word);
-							word = word.replace("#",".");
-							//alert(word);
-							location.href="../mentoring/searchList.do?word="+word+"&cp=1";
-						}
-					}
-					//location.href="../mentoring/searchList.do?word="+word+"&cp=1";
-				
-			}else {
-				//alert("검색어를 입력해주세요.");
-				$("#searchBar").focus();
-				return false;
+String.prototype.replaceAll = function(org, dest) {
+    return this.split(org).join(dest);
+}
+arr = [];
+currentFocus = -1;
+function find(e) {
+	var word = document.getElementById('searchBar').value;
+	
+	if($("#searchBar").val() == "") {
+		$("#searchBarautocomplete-list *").remove();
+	}
+	
+	if($("#searchBar").val() != "") {
+		if(event.keyCode == 13) {
+			var w =  word.indexOf("#");
+			var w2 = word.indexOf("^");
+			var w3 = word.indexOf("\\");
+			if(w2 != -1) {
+				word = word.replaceAll("^", " ");
 			}
-			
-		}
-		$(document).ready(function(){
-			$("#searchBar").mouseover(function(){
-				$("#searchOpt").text("해시태그 & 제목 검색가능");
-			});
-			$("#searchBar").mouseleave(function(){
-				$("#searchOpt").text("");
-			});
-		});
-</script>
-<script>
-<%--
-	$(document).ready(function(){
-		$("#searchBar").on('keyup', function(){
-			if($("#searchBar").val() != ""){
-				if($("#searchBar").val().length >= 1) {
-					//setTimeout(function() {
-						$.ajax({
-							type: "POST",
-							contentType: "application/json",
-							url: "../mentoring/autoSearch.do?word="+$("#searchBar").val(),
-							success: function(data){
-								//var arr = JSON.stringify(data);
-								//alert(data.length);
-								var arr = [];
-								for(var i = 0; i<data.length; i++){
-									arr.push(data[i]);
-									//console.log(data[i]);
-								}
-									str = arr;
-									console.log("str: " + str);
-									//alert(str);
-								//autocomplete(document.getElementById("searchBar"), arr);
-							},
-							error: function(err) {
-								alert("실패");
-								console.log(err);
-							}
-						});
-					//}, 3000);
-					
+			if(w3 != -1) {
+				word = word.replaceAll("\\", " ");
+			}
+				if(w == -1) {//일반검색시//alert("#포함안됨" + word)
+					location.href="../mentoring/searchList.do?word="+word+"&cp=1";
 				}
-				
+				else {//#검색시
+					word = word.replace("#","샵");
+					location.href="../mentoring/searchList.do?word="+word+"&cp=1";
+				}
+			}else if(event.keyCode == 40){				//alert("다운키");
+				var x = document.getElementById("searchBarautocomplete-list");
+				if (x) x = x.getElementsByTagName("div");
+				currentFocus++;
+				addActive(x);
+		        $("#searchBar").val($(".autocomplete-active").text());
+		        return false;
+			}else if(event.keyCode == 38) {				//alert("업키");
+				var x = document.getElementById("searchBarautocomplete-list");
+				if (x) x = x.getElementsByTagName("div");
+				currentFocus--;
+				addActive(x);
+				$("#searchBar").val($(".autocomplete-active").text());
+			}else {
+				$.ajax({
+					type: "POST",
+					contentType: "application/json",
+					data: JSON.stringify($("#searchBar").val()),
+					url: "../mentoring/autoSearch.do",
+					success: function(data) {
+						var l = arr.length;
+						arr.splice(0, l);
+
+						$("#searchBarautocomplete-list *").remove();
+						
+						//closeAllLists();
+							for(m of data.list) {
+								//arr.push(m);
+								var b = document.createElement("DIV");
+								//b.innerHTML = "<strong style='color:red'>"+m.substr(0,$("#searchBar").val().length)+"</strong>";
+								//b.innerHTML += m.substr($("#searchBar").val().length);
+								//b.innerHTML += "<input type='hidden' id = 'bong' value='" + m + "'>";
+								b.innerHTML = m;
+								$("#searchBarautocomplete-list").append(b);
+							}
+					},
+					error: function(err) {
+						console.log("err: "+err);
+					}
+				});
 			}
-			
-		});
+			//location.href="../mentoring/searchList.do?word="+word+"&cp=1";
 		
-	});
---%>
+	}else {
+		//alert("검색어를 입력해주세요.");
+		//$("#searchBar").focus();
+		return false;
+	}
+	
+}
+
 </script>
 <script>
-var str = ['요가','요리','여행','여가', '와인', '댄스', '필라테스', '디제잉', '가죽', '향수', '가죽공예', '술', '커피', '음료', '헬스', '보드', '주짓수', '말', '승마', '스쿼시', '펜싱', '아카펠라', '스윙댄스', '스윙', '자수', '베이킹', '바텐더', '유튜브', '피아노', '방송댄스', '케이스', '키링', '초콜렛', '건강', '발레', '#발레', '#키링', '#베이킹', '#빵', '#유튜브', '#방송댄스', '#댄스', '#사진', '사진', '공예', '#공예', '스키', '#스키', '인스타그램', '#인스타그램','눈썹','프랑스자수','자수','반지', '손수건','마카롱','테니스','네일','아트'];
-autocomplete(document.getElementById("searchBar"), str);
+
+function addActive(x) {
+	//alert("x: " + x);
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != document.getElementById("searchBar")) {
+      x[i].parentNode.removeChild(x[i]);
+    }
+  }
+    
+}
+	//var str = arr;
+	//autocomplete(document.getElementById("searchBar"), str);
 </script>
+
