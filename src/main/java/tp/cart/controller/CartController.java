@@ -3,7 +3,9 @@ package tp.cart.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,19 +37,17 @@ public class CartController {
 	}
 	
 	@GetMapping("setCart.do")
-	public void setCart(String[] optionList,String mtr_seq, String mem_email, HttpServletResponse response, HttpSession session) {
+	@ResponseBody
+	public String setCart(String[] optionList,String mtr_seq, String mem_email, HttpSession session) {
 		mem_email = mem_email.trim();
 		mtr_seq = mtr_seq.trim();
 		for (String mtrdi_seq : optionList) {
 			service.setCart(mtrdi_seq, mtr_seq, mem_email);
 		}
-		try {
-			PrintWriter pw = response.getWriter();pw.print("성공");
-		}catch(IOException ie) {
-			System.out.println("#setCart.do = ie: " + ie);
-		}
 		long cartCount = service.getCartCount(mem_email);
 		session.setAttribute("cartCount", cartCount);
+		String cartCnt = Long.toString(cartCount);
+		return cartCnt;
 		//return "redirect:../cart/cart.do?mem_email="+mem_email;
 	}
 	

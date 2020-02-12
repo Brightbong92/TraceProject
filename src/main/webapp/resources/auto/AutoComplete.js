@@ -10,11 +10,14 @@ function autocomplete(inp, arr) {
       if (!val) { return false;}
       currentFocus = -1;
       /*create a DIV element that will contain the items (values):*/
+
       a = document.createElement("DIV");
       a.setAttribute("id", this.id + "autocomplete-list");
       a.setAttribute("class", "autocomplete-items");
+      a.setAttribute("style", "margin-left:33%;width:200%;")
       /*append the DIV element as a child of the autocomplete container:*/
       this.parentNode.appendChild(a);
+
       /*for each item in the array...*/
       for (i = 0; i < arr.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
@@ -34,12 +37,14 @@ function autocomplete(inp, arr) {
               (or any other open lists of autocompleted values:*/
               closeAllLists();
           });
-          a.appendChild(b);
+              a.appendChild(b);
         }
       }
+      
+      
   });
   /*execute a function presses a key on the keyboard:*/
-  inp.addEventListener("keydown", function(e) {
+  inp.addEventListener("keyup", function(e) {
       var x = document.getElementById(this.id + "autocomplete-list");
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode == 40) {
@@ -69,6 +74,7 @@ function autocomplete(inp, arr) {
       }
   });
   function addActive(x) {
+	//alert("x: " + x);
     /*a function to classify an item as "active":*/
     if (!x) return false;
     /*start by removing the "active" class on all items:*/
@@ -98,4 +104,5 @@ function autocomplete(inp, arr) {
 document.addEventListener("click", function (e) {
     closeAllLists(e.target);
 });
+
 }

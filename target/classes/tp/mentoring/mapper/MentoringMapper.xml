@@ -121,12 +121,22 @@
  		 from (select ROWNUM rnum , aa.* from (select * from Mentoring where MTRCG_NO like #{mtrcg_no} and MTR_SEQ not like #{mtr_seq} order by MTR_SEQ desc) aa) where rnum>0 and rnum<=4
  		]]>
  	</select>
+ 	<!-- 멘토링 검색어완성 -->
  	<select id="selectAutoSearchSubject" resultType="String" parameterType="String">
  		<![CDATA[
- 		SELECT MTR_SUBJECT FROM (SELECT ROWNUM rnum, aa.* FROM(SELECT * FROM MENTORING WHERE MTR_SUBJECT LIKE #{word}||'%') aa ) WHERE rnum > 0 and rnum <= 10
+ 		SELECT MTR_SUBJECT FROM (SELECT ROWNUM rnum, aa.* FROM(SELECT * FROM MENTORING WHERE MTR_SUBJECT LIKE '%'||#{word}||'%') aa ) WHERE rnum > 0 and rnum <= 10 order by MTR_JUMSU desc
  		]]>
+ 		<!-- '%'||#{word}||'%' 포함되는-->
+ 		<!-- #{word}||'%' word로 시작하는 -->
  	</select>
  	
+ 	<!-- 멘토링 해시태그검색어완성 -->
+ 	<select id="selectAutoSearchHashtag" resultType="String" parameterType="String">
+ 		<![CDATA[
+ 		SELECT MTR_HASHTAG FROM (SELECT ROWNUM rnum, aa.* FROM(SELECT * FROM MENTORING WHERE MTR_HASHTAG LIKE '%'||#{word}||'%') aa ) WHERE rnum > 0 and rnum <= 10 order by MTR_JUMSU desc
+ 		]]>
+ 	
+ 	</select>
  	<select id="selectMentoringQAList" resultType="Mentoring_QA" parameterType="long">
  		<![CDATA[
  		select * from (select ROWNUM rnum , aa.* from (select * from Mentoring_QA where MTR_SEQ = #{mtr_seq} order by MTRQA_SEQ desc) aa)

@@ -2,7 +2,12 @@ package tp.mentoring.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +36,7 @@ import tp.domain.Mentoring;
 import tp.mentoring.service.MentoringService;
 import tp.vo.MentoringListResult;
 import tp.vo.MentoringViewPageVo;
+import tp.vo.SearchListResult;
 
 @Log4j
 @RequestMapping("/mentoring/*")
@@ -41,14 +47,11 @@ public class MentoringController {
 	
 	@GetMapping("searchList.do")
 	public ModelAndView serachList(HttpServletRequest request, String word) {
+		
+		if(word == null) word = ""; word = word.trim();
+		log.info("#word: " + word);
 		String cpStr = request.getParameter("cp");
 		//String psStr = request.getParameter("ps");
-		log.info("#word: " + word);
-		if(word == null) {
-			word = "";
-		}
-		word = word.trim();
-		
 		HttpSession session = request.getSession();
 		//(1) cp 
 		int cp = 1;
@@ -187,13 +190,22 @@ public class MentoringController {
 		return mv;	
 	}
 	
-	/*
+	
 	@PostMapping("autoSearch.do")
-	public void autoSearch(String word, HttpServletResponse response) {
-		List<String> list = service.getSelectAutoSearchSubject(word);
+	@ResponseBody
+	public void autoSearch(@RequestBody String word, HttpServletResponse response) {
+		word = word.substring(1,word.lastIndexOf('"'));
+		List<String> list = new ArrayList<String>();
+		if(!word.startsWith("#")) {
+			list = service.getSelectAutoSearchSubject(word); log.info("#word: " + word);//log.info("#list: " + list);	
+		}else {
+			list = service.getSelectAutoSearchHashtag(word);
+		}
+
+		SearchListResult listResult = new SearchListResult(); listResult.setList(list);
 		ObjectMapper om = new ObjectMapper();
 		try {
-		String json = om.writeValueAsString(list);
+		String json = om.writeValueAsString(listResult);
 		response.setContentType("application/json;charset=utf-8");
 		PrintWriter pw = response.getWriter();
 		pw.write(json);
@@ -201,7 +213,7 @@ public class MentoringController {
 			log.info("e: " + e);
 		}
 	}
-	*/
+	
 	
 	
 	@GetMapping("list1.do")

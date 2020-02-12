@@ -19,6 +19,8 @@ public interface MentoringService {
 	//멘토링 상세뷰 가져오기
 	MentoringViewPageVo selectMentoringDetailView(long mtr_seq);
 	
-	//자동검색List<String> getSelectAutoSearchSubject(String word);
-	
+	//자동검색
+	//String[] getSelectAutoSearchSubject(String word);
+	List<String> getSelectAutoSearchSubject(String word);
+	List<String> getSelectAutoSearchHashtag(String word);
 }
