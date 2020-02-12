@@ -52,6 +52,7 @@
 
 	   <typeAlias alias="CartListResult" type="tp.vo.CartListResult"/>
 	   <typeAlias alias="CartInfo" type="tp.vo.CartInfo"/>
+	   <typeAlias alias="ReviewFilesList" type="tp.vo.ReviewFilesList"/>
    </typeAliases>
    
    <mappers>

@@ -35,7 +35,11 @@
   <!-- 검색 자동완성 -->
   <script src="../auto/AutoComplete.js" type="text/javascript"></script>
   <link href="../auto/AutoComplete.css" rel="stylesheet">
-
+  
+  <!-- 폰트적용 -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	
+	
 </head>
 <style>
 .nav-counter {
@@ -58,10 +62,16 @@
  box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
 
 }
-
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+body {
+  font-family: Noto Sans KR;
+}
 </style>
-<body>
 
+<body>
+	
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important" >  <!-- 머리색 -->
     <div class="container" style="max-width:80% !important;">
@@ -141,7 +151,7 @@
 		          </li>
 	          </c:if>
 	          <!--  <img src="../images/cartImg.jpg" width="30px" height="30px"/>-->
-	          <img src="../images/cartImg2.png" width="22px" height="22px" onclick="location.href='../cart/cart.do?mem_email=${loginUser.mem_email}'" style="margin-top:7px"/>
+	          <img src="../images/cartImg2.png" width="22px" height="22px" onclick="location.href='../cart/cart.do?mem_email=${loginUser.mem_email}'" style="margin-top:7px;cursor:pointer"/>
 		          <c:if test="${cartCount ne 0}">
 		          	<span class="nav-counter">${cartCount}</span>
 		          </c:if>

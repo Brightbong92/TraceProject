@@ -23,7 +23,7 @@ public class IndexController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
-		IndexListResult bestMentoring = service.bestMentoring();
-		return new ModelAndView("index/index","bestMentoring",bestMentoring);
+		IndexListResult indexListResult = service.indexListResult();
+		return new ModelAndView("index/index","indexListResult",indexListResult);
 	}
 }

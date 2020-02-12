@@ -6,15 +6,12 @@
      <select id="bestMentoringTop" resultType="Mentoring">
 	    <![CDATA[
 	    select * from (select ROWNUM rnum , aa.* from (select * from MENTORING where MTR_JUMSU = (select max(MTR_JUMSU) from MENTORING ) ) aa)
-			 where rnum>0 and rnum<=3 order by rnum
+			 where rnum>0 and rnum<=4 order by rnum
 	    ]]> 	
 	    </select>
-	    
-	
-	
 	<select id="latestArticle" resultType="Mentoring">
 	<![CDATA[
-	 select * from mentoring where mtr_seq <= (select max(mtr_seq) from mentoring ) and mtr_Seq >=(select max(mtr_Seq)-2 from mentoring)
+	 select * from mentoring where mtr_seq <= (select max(mtr_seq) from mentoring ) and mtr_Seq >=(select max(mtr_Seq)-3 from mentoring)
  	 ]]> 
 	</select>
 	    
@@ -24,6 +21,11 @@
 			 where rnum>0 and rnum<=1
 	    ]]> 	
 	</select>
+	<select id="reviewFiles" resultType="ReviewFilesList">
+		<![CDATA[
+		select * from (select ROWNUM rnum , mrf.MTRRVF_FNAME, mr.MTR_SEQ from MENTORING_REVIEW_FILE mrf, MENTORING_REVIEW mr where mr.MTRRV_SEQ = mrf.MTRRV_SEQ) where rnum>0 and rnum<=23
+		]]> 
+	</select>  
 	
 	
 	

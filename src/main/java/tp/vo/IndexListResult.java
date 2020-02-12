@@ -17,6 +17,6 @@ public class IndexListResult {
 	private Member mtr_bestMentor;
 	private List<Mentoring> topMentoring;
 	private List<Mentoring> latestArticle;
-
+	private List<ReviewFilesList> reviewFiles;
 	
 }
