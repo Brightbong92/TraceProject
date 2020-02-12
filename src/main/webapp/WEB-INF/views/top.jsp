@@ -150,10 +150,16 @@
 	          </c:if>
 	          <!--  <img src="../images/cartImg.jpg" width="30px" height="30px"/>-->
 	          <img src="../images/cartImg2.png" width="22px" height="22px" onclick="location.href='../cart/cart.do?mem_email=${loginUser.mem_email}'" style="margin-top:7px; cursor:pointer;"/>
-		          <c:if test="${cartCount ne 0}">
+	          	<c:choose>
+		          <c:when test="${cartCount ne 0}">
 		          	<span id="cart_tot_count" class="nav-counter">${cartCount}</span>
-		          </c:if>
-	          </c:if>
+		          </c:when>
+		          <c:when test="${cartCount eq 0}">
+		          	<span id="cart_tot_count" class="nav-counter" style="display:none;"></span>
+		          </c:when>
+		        </c:choose>
+		        
+		       </c:if>
            <!-- 로그인안했을 시 나오게끔 -->
 	      <c:if test="${empty loginUser}">
 		          <li class="nav-item">

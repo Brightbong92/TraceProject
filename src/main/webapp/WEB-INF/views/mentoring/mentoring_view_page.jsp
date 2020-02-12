@@ -143,10 +143,33 @@ table {
           
 	        <c:forEach items="${listResult.detail_Info_List}" var="timelist">
 	        	<tr align='center'>
+	        	
+	        	
+	        	
+	        	<c:choose>
+	        	<c:when test="${timelist.mtrdi_now_pcnt ne timelist.mtrdi_max_pcnt}">
 	        	<td align='center' style="width:200px;"><span>${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
+	        	</c:when>
+	        	<c:otherwise>
+	        	<td align='center' style="width:200px;"><span style="text-decoration:line-through;">${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
+	        	</c:otherwise>
+	        	</c:choose>
+	        	
+	        	
+	        	
 	        	<td align='center' style="width:50px;"><span>${timelist.mtrdi_now_pcnt}</span>/<span>${timelist.mtrdi_max_pcnt}</span></td>
+	        	
+	        	<c:choose>
+	        	<c:when test="${timelist.mtrdi_now_pcnt ne timelist.mtrdi_max_pcnt}">
 	        	<td align='center'><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" style="width:20px;height:20px;" onclick="selectOption(this)"></td>
+	        	</c:when>
+	        	<c:otherwise>
+	        	<td align='center'><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" disabled="disabled" style="width:20px;height:20px;"></td>
+	        	</c:otherwise>
+	        	</c:choose>
+	        	
 	        	</tr>
+	        	
 	        </c:forEach>
 	        </tbody>
           </table>
@@ -307,6 +330,7 @@ table {
 				success: function(data){
 					console.clear();
 					//console.log("data: "+data);
+					$('#cart_tot_count').css('display', "");
 					$('#cart_tot_count').text(data);
 				},error: function(err){
 					console.clear();
