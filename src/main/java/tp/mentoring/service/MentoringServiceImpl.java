@@ -53,7 +53,7 @@ public class MentoringServiceImpl implements MentoringService {
 	}
 	@Override
 	public MentoringListResult getMentoringListResultSearch(int cp, int ps, String word) {
-			if(word.startsWith(".")) {//해시검색일시
+			if(word.startsWith("샵")) {//해시검색일시
 				word = word.substring(1);//.이후부터 시작
 				//log.info("#word: " + word);
 				int totalCount = mentoringMapper.selectMentoringHashSearchCount(word);
@@ -155,25 +155,24 @@ public class MentoringServiceImpl implements MentoringService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("mtrcg_no", mvpVo.getMtrcg_no());
 		map.put("mtr_seq", mtr_seq);
-		
-		
-		
+
 		//List<Mentoring_QA> mtr_qa_list = mentoringMapper.selectMentoringQAList(mtr_seq);
 		//mvpVo.setMtr_qa_list(mtr_qa_list);
-		
-		
-		
-		
+
 		List<Mentoring> relative_mtr_list = mentoringMapper.selectRelativeMentoring(map);
 		mvpVo.setDetail_Info_List(mtrdi_list);
 		mvpVo.setRelative_mtr_list(relative_mtr_list);
 		return mvpVo;
 	}
-	/*
+	
 	@Override
 	public List<String> getSelectAutoSearchSubject(String word) {
 		List<String> autoList = mentoringMapper.selectAutoSearchSubject(word);
 		return autoList;
 	}
-	*/
+	@Override
+	public List<String> getSelectAutoSearchHashtag(String word) {
+		List<String> autoList = mentoringMapper.selectAutoSearchHashtag(word);
+		return autoList;
+	}
 }

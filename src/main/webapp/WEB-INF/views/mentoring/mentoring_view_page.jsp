@@ -271,8 +271,14 @@ table {
 			//alert("체크해제 시 배열 : " + optionList);
 		}
 	}
+	function clearOptionList() {
+		$("[name=checkOpt]").prop("checked", false);
+		var l = optionList.length;
+		optionList.splice(0, l);
+		//alert(optionList);
+	}
+	
 	function goPaymentForm(){
-		
 		if("${loginUser.mem_email}" == "") {
 			alert("로그인 후 이용가능합니다.");
 			return false;
@@ -297,14 +303,17 @@ table {
 		}else {
 			$.ajax({
 				url: "../cart/setCart.do?optionList=" + optionList+"&mtr_seq=${listResult.mtr_seq}&mem_email=${loginUser.mem_email}",
+				contentType: "application/json",
 				success: function(data){
 					console.clear();
-					console.log("성공");
-				},error: function(data){
+					//console.log("data: "+data);
+					$('#cart_tot_count').text(data);
+				},error: function(err){
 					console.clear();
-					console.log("에러");
+					//console.log("에러");
 				}
 			});
+			clearOptionList();
 			$('#myModal').show();
 			//alert("선택값 있음");
 			//location.href="../cart/setCart.do?optionList=" + optionList+"&mtr_seq=${listResult.mtr_seq}&mem_email=${loginUser.mem_email}";
@@ -312,6 +321,8 @@ table {
 	}	
     function close_pop(flag) {
         $('#myModal').hide();
+        //location.reload();
+        // history.go(0);
    };
    function goMyCartlist(){
 	   location.href="../cart/cart.do?mem_email=${loginUser.mem_email}";

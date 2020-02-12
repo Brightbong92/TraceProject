@@ -54,8 +54,10 @@ public interface MentoringMapper {
 	
 	List<Mentoring> selectRelativeMentoring(HashMap<String, Object> map);
 	
-	//검색자동완성List<String> selectAutoSearchSubject(String word);
-	
+	//검색자동완성
+	//String[] selectAutoSearchSubject(String word);
+	List<String> selectAutoSearchSubject(String word);
+	List<String> selectAutoSearchHashtag(String word);
 	
 	List<Mentoring_QA> selectMentoringQAList(long mtr_seq);
 }

@@ -27,10 +27,10 @@ public class MentoringTests {
 	
 	@Test
 	public void autoSearchTest() {
-		String word = "요";
+		String word = "가";
 		
-		//List<String> strList = mentoringMapper.selectAutoSearchSubject(word);
-		
+		//List<Mentoring> strList = mentoringMapper.selectAutoSearchSubject(word);
+		//log.info("word: " + word);
 		//log.info("#strList: " + strList);
 	}
 	/*

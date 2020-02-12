@@ -30,7 +30,7 @@
 
 	<resources mapping="/qa/**" location="/resources/qa/" />
 	<resources mapping="/auto/**" location="/resources/auto/" />
-	
+	<resources mapping="/auto2/**" location="/resources/auto2/" />
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
