@@ -5,9 +5,6 @@
 <jsp:include page="../top.jsp" />
 
   <link href="../css/flexslider.css" rel="stylesheet">
-  <script src="../js/jquery.flexslider.js"></script>
-  
-
 
   <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

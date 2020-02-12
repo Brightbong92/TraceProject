@@ -34,18 +34,8 @@
 
   <!-- 검색 자동완성-->
   <script src="../auto/AutoComplete.js" type="text/javascript"></script>
-
   <link href="../auto/AutoComplete.css" rel="stylesheet">
   
-  
-  <%-- 
-	<!-- css에는 autocomplet의 요소를 만들떄 필요한 css가 담겨져 있습니다. --> 
-	<link rel="stylesheet" href="../auto2/autoComplete.css"> 
-	<!-- css에는 autocomplet의 요소를 만들떄 필요한 scrpit가 담겨져 있습니다. -->
-	<script type="text/javascript" src="../auto2/autoComplete.js"></script>
-	<script type="text/javascript" src="../auto2/animal.js"></script>
-	--%>
-
 </head>
 <style>
 .nav-counter {
@@ -91,12 +81,7 @@
 	   
 	  
       </div>
-      <%-- 
-      <input type="hidden" id="keywords" value="">
- 	  <div id="searchOpt" style="color:red;"></div>
- 	  
-      <input type="hidden" id="findFlag" value="Off">
-      --%>
+
 	  <!--  &nbsp;&nbsp;&nbsp;-->
 	  <!--  <button class="btn btn-primary" id="searchBtn" onclick="find()">검색</button>-->
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -164,7 +149,7 @@
 		          </li>
 	          </c:if>
 	          <!--  <img src="../images/cartImg.jpg" width="30px" height="30px"/>-->
-	          <img src="../images/cartImg2.png" width="22px" height="22px" onclick="location.href='../cart/cart.do?mem_email=${loginUser.mem_email}'" style="margin-top:7px"/>
+	          <img src="../images/cartImg2.png" width="22px" height="22px" onclick="location.href='../cart/cart.do?mem_email=${loginUser.mem_email}'" style="margin-top:7px; cursor:pointer;"/>
 		          <c:if test="${cartCount ne 0}">
 		          	<span id="cart_tot_count" class="nav-counter">${cartCount}</span>
 		          </c:if>

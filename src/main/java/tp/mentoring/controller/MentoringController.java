@@ -81,7 +81,7 @@ public class MentoringController {
 	@GetMapping("mentoring_list.do")
 	public ModelAndView mentoringList(String sort) {//리스트 & 정렬
 		int cp = 1;
-		int ps = 6;
+		int ps = 8;
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mentoring/mentoring_list");
 		switch(sort) {
@@ -131,7 +131,7 @@ public class MentoringController {
 	}
 	
 	private void ajaxListWrite(int cp, HttpServletResponse response, String sort) {
-		int ps = 6;
+		int ps = 8;
 		MentoringListResult mentoringListResult = service.getMentoringListResult(cp, ps, sort);
 		ObjectMapper om = new ObjectMapper();
 		try {
