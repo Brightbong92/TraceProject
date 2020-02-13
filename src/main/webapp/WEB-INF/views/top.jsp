@@ -75,11 +75,9 @@
 	  	
 	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:200%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:100px;" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
 	  
-	  <%----%>
 	  <div id="searchBarautocomplete-list" class="autocomplete-items" style="margin-left:33%;width:200%;">
 	  </div>
 	   
-	  
       </div>
 
 	  <!--  &nbsp;&nbsp;&nbsp;-->
@@ -189,12 +187,21 @@ function find(e) {
 			var w =  word.indexOf("#");
 			var w2 = word.indexOf("^");
 			var w3 = word.indexOf("\\");
-			if(w2 != -1) {
-				word = word.replaceAll("^", " ");
-			}
-			if(w3 != -1) {
-				word = word.replaceAll("\\", " ");
-			}
+	        var w4 = word.indexOf("[");
+	        var w5 = word.indexOf("]");
+
+	         if(w2 != -1) {
+	            word = word.replaceAll("^", " ");
+	         }
+	         if(w3 != -1) {
+	            word = word.replaceAll("\\", " ");
+	         }
+	         
+	         if(w4 != -1 || w5 != -1) {
+	            alert("특수문자 [] 를 제거해주세요.");
+	            return false;
+	         }
+
 				if(w == -1) {//일반검색시//alert("#포함안됨" + word)
 					location.href="../mentoring/searchList.do?word="+word+"&cp=1";
 				}
@@ -224,27 +231,27 @@ function find(e) {
 					success: function(data) {
 						var l = arr.length;
 						arr.splice(0, l);
-
 						$("#searchBarautocomplete-list *").remove();
-						
-						//closeAllLists();
 							for(m of data.list) {
-								//arr.push(m);
 								var b = document.createElement("DIV");
+								b.setAttribute("class", "click-item");
 								//b.innerHTML = "<strong style='color:red'>"+m.substr(0,$("#searchBar").val().length)+"</strong>";
 								//b.innerHTML += m.substr($("#searchBar").val().length);
 								//b.innerHTML += "<input type='hidden' id = 'bong' value='" + m + "'>";
 								b.innerHTML = m;
 								$("#searchBarautocomplete-list").append(b);
 							}
+				              $('.click-item').click(function(e) {
+				                  $("#searchBar").val(e.target.innerText);
+				                  $("#searchBarautocomplete-list *").remove();
+				                  $("#searchBar").focus();
+				              });     
 					},
 					error: function(err) {
 						console.log("err: "+err);
 					}
 				});
 			}
-			//location.href="../mentoring/searchList.do?word="+word+"&cp=1";
-		
 	}else {
 		//alert("검색어를 입력해주세요.");
 		//$("#searchBar").focus();
@@ -255,37 +262,17 @@ function find(e) {
 
 </script>
 <script>
-
 function addActive(x) {
-	//alert("x: " + x);
-    /*a function to classify an item as "active":*/
     if (!x) return false;
-    /*start by removing the "active" class on all items:*/
     removeActive(x);
     if (currentFocus >= x.length) currentFocus = 0;
     if (currentFocus < 0) currentFocus = (x.length - 1);
-    /*add class "autocomplete-active":*/
     x[currentFocus].classList.add("autocomplete-active");
   }
 function removeActive(x) {
-    /*a function to remove the "active" class from all autocomplete items:*/
     for (var i = 0; i < x.length; i++) {
       x[i].classList.remove("autocomplete-active");
     }
   }
-function closeAllLists(elmnt) {
-    /*close all autocomplete lists in the document,
-    except the one passed as an argument:*/
-    var x = document.getElementsByClassName("autocomplete-items");
-    
-    for (var i = 0; i < x.length; i++) {
-      if (elmnt != x[i] && elmnt != document.getElementById("searchBar")) {
-      x[i].parentNode.removeChild(x[i]);
-    }
-  }
-    
-}
-	//var str = arr;
-	//autocomplete(document.getElementById("searchBar"), str);
 </script>
 

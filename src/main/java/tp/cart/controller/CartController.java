@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,7 +49,6 @@ public class CartController {
 		session.setAttribute("cartCount", cartCount);
 		String cartCnt = Long.toString(cartCount);
 		return cartCnt;
-		//return "redirect:../cart/cart.do?mem_email="+mem_email;
 	}
 	
 	@GetMapping("deleteCart.do")
@@ -61,5 +61,13 @@ public class CartController {
 		//session.removeAttribute("cartCount");
 		session.setAttribute("cartCount", cartCount);
 		return "redirect:../cart/cart.do?mem_email="+mem_email;
+	}
+	@RequestMapping(value="deleteCartAll.do", method=RequestMethod.GET)
+	public String deleteCartAll(String mem_email, HttpSession session) {
+		//log.info("#mem_email : " + mem_email);
+		service.deleteCartAllS(mem_email);
+		long cartCount = service.getCartCount(mem_email);
+		session.setAttribute("cartCount", cartCount);
+		return "cart/cart_del_all_msg";
 	}
 }

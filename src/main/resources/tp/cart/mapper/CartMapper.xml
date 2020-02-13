@@ -23,6 +23,13 @@
 		<![CDATA[
 		SELECT COUNT(*) FROM CART WHERE MEM_EMAIL = #{mem_email}
 		]]>
-			
 	</select>
+	
+	<!-- 장바구니 전체삭제 -->
+	<select id="deleteCartAll" parameterType="String">
+		<![CDATA[
+			DELETE FROM CART WHERE MEM_EMAIL = #{mem_email}
+		]]>
+	</select>
+	
 </mapper>

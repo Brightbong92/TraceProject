@@ -6,20 +6,11 @@
   <!-- Page Content -->
   <div class="container">
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">멘토링 리스트
-     <%--  <small>검색한 멘토링</small>--%>
-    </h1>
-
-<%-- 
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="/">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Portfolio 2</li>
-    </ol>
---%>
 	<c:if test="${!empty mentoringListResultSearch}">
+	    <!-- Page Heading/Breadcrumbs -->
+   		<b>${mentoringListResultSearch.category_no}</b>로 검색한 내용입니다.
+
+	
     <div class="row">
     <c:forEach items="${mentoringListResultSearch.mtr_list}" var="list">
       <div class="col-lg-4 col-sm-6 portfolio-item">
@@ -102,7 +93,7 @@
     </c:forEach>
     </div><!-- /.row -->
 	    <c:if test="${empty mentoringListResultSearch.mtr_list}">
-	        <div align="center">찾으시는 멘토링이 없습니다.</div>
+	        <div align="center">${mentoringListResultSearch.category_no}로 찾으시는 멘토링이 없습니다.</div>
 	    </c:if>
     </c:if>
     

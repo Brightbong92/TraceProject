@@ -1,6 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html; charset=utf-8"%>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nDate" />
+
 <jsp:include page="../top.jsp" />
+
+
 
 <style>
 table {
@@ -142,10 +148,9 @@ table {
           <th align='center'>선택</th>
           
 	        <c:forEach items="${listResult.detail_Info_List}" var="timelist">
+	        	<fmt:parseDate value="${timelist.mtrdi_stime}" pattern="yyyy-MM-dd" var="rDate"/>	        	
+	        	<c:if test="${rDate > nDate}"><%--멘토링시작날짜 > 현재날짜 --%>
 	        	<tr align='center'>
-	        	
-	        	
-	        	
 	        	<c:choose>
 	        	<c:when test="${timelist.mtrdi_now_pcnt ne timelist.mtrdi_max_pcnt}">
 	        	<td align='center' style="width:200px;"><span>${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
@@ -167,9 +172,8 @@ table {
 	        	<td align='center'><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" disabled="disabled" style="width:20px;height:20px;"></td>
 	        	</c:otherwise>
 	        	</c:choose>
-	        	
 	        	</tr>
-	        	
+	        	</c:if>
 	        </c:forEach>
 	        </tbody>
           </table>
