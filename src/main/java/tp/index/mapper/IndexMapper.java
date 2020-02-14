@@ -12,4 +12,5 @@ public interface IndexMapper {
 	List<Mentoring> latestArticle();
 	Member bestMentoringMentor();
 	List<ReviewFilesList> reviewFiles();
+	List<Mentoring> cheapArticle();
 }

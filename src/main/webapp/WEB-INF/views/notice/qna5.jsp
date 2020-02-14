@@ -26,7 +26,7 @@
 		}
 		 #div1_2{
 		 	position: relative;
-            left:750px
+            left:250%
         }
         #div1_2_btn{
             margin-left: 5px;

@@ -26,7 +26,7 @@
 		}
 		 #div1_2{
 		 	position: relative;
-            left:750px
+            left:250%
         }
         #div1_2_btn{
             margin-left: 5px;
@@ -97,9 +97,10 @@
 	</div> 
 	<br/>
 		<div id="div2_3" class="col" align="center"> 
-					
-			<button type="button"  class="btn btn-light"><a href="update_form.do?noti_seq=${noticeContentList.content_list.noti_seq}">수정</a></button>
-			<button type="button"  class="btn btn-light"><a href="delete.do?noti_seq=${noticeContentList.content_list.noti_seq}">삭제</a></button>
+			<c:if test="${loginUser.mem_email eq 'admin'}">		
+				<button type="button"  class="btn btn-light"><a href="update_form.do?noti_seq=${noticeContentList.content_list.noti_seq}">수정</a></button>
+				<button type="button"  class="btn btn-light"><a href="delete.do?noti_seq=${noticeContentList.content_list.noti_seq}">삭제</a></button>
+			</c:if>
 			<button type="button"  class="btn btn-light"><a href="list.do" >목록</a></button>
 		</div>
 		<br/>

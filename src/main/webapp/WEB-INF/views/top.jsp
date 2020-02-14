@@ -36,6 +36,8 @@
   <script src="../auto/AutoComplete.js" type="text/javascript"></script>
   <link href="../auto/AutoComplete.css" rel="stylesheet">
   
+  <!-- 폰트적용 -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <style>
 .nav-counter {
@@ -58,12 +60,17 @@
  box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
 
 }
-
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+body {
+  font-family: Noto Sans KR;
+}
 </style>
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important" >  <!-- 머리색 -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important; border-bottom:1px solid #dfe1e5;" >  <!-- 머리색 -->
     <div class="container" style="max-width:80% !important;">
       <a class="navbar-brand" href="/"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
@@ -73,7 +80,7 @@
 		
 	  <div class="autocomplete" style="width:300px;">
 	  	
-	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:200%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:100px;" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
+	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:200%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:100px; " id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
 	  
 	  <div id="searchBarautocomplete-list" class="autocomplete-items" style="margin-left:33%;width:200%;">
 	  </div>
@@ -166,6 +173,7 @@
           </c:if>
         </ul>
       </div>
+      
     </div>
   </nav>
   

@@ -27,6 +27,10 @@
 		]]> 
 	</select>  
 	
-	
+	<select id="cheapArticle" resultType="Mentoring">
+		<![CDATA[
+		 select * from (select * from mentoring order by mtr_price) where ROWNUM <=4
+ 	 	]]> 
+	</select> 
 	
 </mapper>

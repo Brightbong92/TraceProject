@@ -67,7 +67,7 @@ public class MentoringController {
 		session.setAttribute("cp", cp);
 		
 		//(2) ps 
-		int ps = 3;
+		int ps = 4;
 		session.setAttribute("ps", ps);
 				
 

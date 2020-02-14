@@ -61,19 +61,20 @@ table {
     <!-- Portfolio Item Row -->
     <div class="row">
     
-      <div class="col-md-8"><!-- md -->
+      <div class="col-md-8" style="border-bottom:1px solid #dfe1e5;"><!-- md -->
         <!--  <img class="img-fluid" src="http://placehold.it/750x500" alt="">-->
-        <img class="img-fluid" src="../resources/mentoring_list_images/${listResult.mtr_profile}" alt="" height="" width="500">
+        <img class="img-fluid" src="../resources/mentoring_list_images/${listResult.mtr_profile}"  style="width:75%; margin-top:60px; margin-left:80px; margin-bottom:30px;" alt="">
         <br/>
         <!-- 멘토링 제목 -->
-        <div><h1>${listResult.mtr_subject}</h1></div>
-        <!-- 멘토링 금액 -->
-	    <div style="font-size:2.0em" class="badge badge-primary">금액: ${listResult.mtr_price}원</div><br/><br/>
-	    <!-- 멘토링해시태그 -->
-	    <div style="font-size:2.0em" class="badge badge-warning mb-2">${listResult.mtr_hashtag}</div>
+        <div style="font-size:25px" align="center"><strong>${listResult.mtr_subject}</strong></div><br/>
+        <!-- 멘토링해시태그 -->
+	    <div style="font-size:17px; margin-left:80px;" class="badge badge-warning mb-2">${listResult.mtr_hashtag}</div>
+        
+	    
 	    <c:choose>
 	           <c:when test="${listResult.mtr_jumsu eq 0}">
-	            <div class="starRev">
+	            <div class="starRev" style="margin-left:80px; font-size:17px;">
+	            	<strong>평점 : </strong>
 				  <span style="height:20px;" class="starK">별1</span>
 				  <span style="height:20px;"class="starK">별2</span>
 				  <span style="height:20px;"class="starK">별3</span>
@@ -82,7 +83,8 @@ table {
 	           </div>
 	           </c:when>
 	           <c:when test="${listResult.mtr_jumsu eq 1}">
-	            <div class="starRev">
+	            <div class="starRev" style="margin-left:80px; font-size:17px;">
+	            	<strong>평점 : </strong> 
 				  <span style="height:20px;"class="starK on">별1</span>
 				  <span style="height:20px;"class="starK">별2</span>
 				  <span style="height:20px;"class="starK">별3</span>
@@ -91,7 +93,8 @@ table {
 	           </div>
 	           </c:when>
 	           <c:when test="${listResult.mtr_jumsu eq 2}">
-	            <div class="starRev">
+	            <div class="starRev" style="margin-left:80px; font-size:17px;">
+	            	<strong>평점 : </strong>
 				  <span style="height:20px;"class="starK on">별1</span>
 				  <span style="height:20px;"class="starK on">별2</span>
 				  <span style="height:20px;"class="starK">별3</span>
@@ -100,7 +103,8 @@ table {
 	           </div>
 	           </c:when>
 	           <c:when test="${listResult.mtr_jumsu eq 3}">
-	            <div class="starRev">
+	            <div class="starRev" style="margin-left:80px; font-size:17px;">
+	            	<strong>평점 : </strong>
 				  <span style="height:20px;"class="starK on">별1</span>
 				  <span style="height:20px;"class="starK on">별2</span>
 				  <span style="height:20px;"class="starK on">별3</span>
@@ -109,7 +113,8 @@ table {
 	           </div>
 	           </c:when>
 	           <c:when test="${listResult.mtr_jumsu eq 4}">
-	            <div class="starRev">
+	            <div class="starRev" style="margin-left:80px; font-size:17px;">
+	            	<strong>평점 : </strong> 
 				  <span style="height:20px;"class="starK on">별1</span>
 				  <span style="height:20px;"class="starK on">별2</span>
 				  <span style="height:20px;"class="starK on">별3</span>
@@ -118,7 +123,8 @@ table {
 	           </div>
 	           </c:when>
 	          <c:when test="${listResult.mtr_jumsu eq 5}">
-	            <div class="starRev">
+	            <div class="starRev" style="margin-left:80px; font-size:17px;">
+	            	<strong>평점 : </strong>
 				  <span style="height:20px;"class="starK on">별1</span>
 				  <span style="height:20px;"class="starK on">별2</span>
 				  <span style="height:20px;"class="starK on">별3</span>
@@ -127,53 +133,53 @@ table {
 	           </div>
 	           </c:when>
 	          </c:choose>
+	          <!-- 멘토링 금액 -->
+	    <div style="font-size:17px; margin-left:80px; margin-top:12px"><strong>금액  : ${listResult.mtr_price}원</strong></div><br/>
       </div>
 
 
-
+	<hr>
      <!--   <div class="col-md-4">-->
-     <div class="col-md-4">
+     <div class="col-md-4" style="border-left:1px solid #dfe1e5; border-bottom:1px solid #dfe1e5;">
 
       <!-- 멘토링 옵션들 -->
         <!-- <h3 class="my-3">멘토링 타임</h3>-->
                 <!-- Side Widget -->
         <!-- <div class="card my-4">-->
 		
-	    <div>
-          <h5 class="card-header">옵션</h5>
-          <table>
-          <tbody align='center'>
-          <th align='center'>시간</th>
-          <th align='center'>인원</th>
-          <th align='center'>선택</th>
-          
+	    <div style="margin-top:60px; font-size:14px;">
+          <h5 class="card-header" style="font-size:20px;">옵션</h5>
+          <table style="margin-left:14px">
+          <thead align="center">
+          	<th>선택</th>
+          	<th style="width:75%;">시간</th>
+         	<th>인원</th>
+          </thead>
+          <tbody align="center">
+	          
 	        <c:forEach items="${listResult.detail_Info_List}" var="timelist">
-	        	<fmt:parseDate value="${timelist.mtrdi_stime}" pattern="yyyy-MM-dd" var="rDate"/>	        	
-	        	<c:if test="${rDate > nDate}"><%--멘토링시작날짜 > 현재날짜 --%>
-	        	<tr align='center'>
+	        	<tr align="center">
 	        	<c:choose>
-	        	<c:when test="${timelist.mtrdi_now_pcnt ne timelist.mtrdi_max_pcnt}">
-	        	<td align='center' style="width:200px;"><span>${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
-	        	</c:when>
-	        	<c:otherwise>
-	        	<td align='center' style="width:200px;"><span style="text-decoration:line-through;">${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
-	        	</c:otherwise>
+		        	<c:when test="${timelist.mtrdi_now_pcnt ne timelist.mtrdi_max_pcnt}">
+		        		<td><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" style="width:20px;height:20px;" onclick="selectOption(this)"></td>
+		        		
+		        		<fmt:parseDate value="${timelist.mtrdi_stime}" pattern="yyyy-MM-dd" var="rDate"/>	        	
+	        			<c:if test="${rDate > nDate}"><%--멘토링시작날짜 > 현재날짜 --%>
+		        			<td align='center' style="width:200px;"><span>${timelist.mtrdi_stime}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
+		        			<td align='center' style="width:50px;"><span>${timelist.mtrdi_now_pcnt}</span>/<span>${timelist.mtrdi_max_pcnt}</span></td>
+	        			</c:if>
+		        	</c:when>
+		        	<c:otherwise>
+		        		<td><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" disabled="disabled" style="width:20px;height:20px;"></td>
+		        		<fmt:parseDate value="${timelist.mtrdi_stime}" pattern="yyyy-MM-dd" var="rDate"/>	        	
+	        			<c:if test="${rDate > nDate}"><%--멘토링시작날짜 > 현재날짜 --%>
+		        			<td align='center' style="width:200px;"><span style="text-decoration:line-through; color:gray;">${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
+		        			<td align='center' style="width:50px;color:gray;"><span>${timelist.mtrdi_now_pcnt}</span>/<span>${timelist.mtrdi_max_pcnt}</span></td>
+	        			</c:if>
+		        	</c:otherwise>
 	        	</c:choose>
-	        	
-	        	
-	        	
-	        	<td align='center' style="width:50px;"><span>${timelist.mtrdi_now_pcnt}</span>/<span>${timelist.mtrdi_max_pcnt}</span></td>
-	        	
-	        	<c:choose>
-	        	<c:when test="${timelist.mtrdi_now_pcnt ne timelist.mtrdi_max_pcnt}">
-	        	<td align='center'><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" style="width:20px;height:20px;" onclick="selectOption(this)"></td>
-	        	</c:when>
-	        	<c:otherwise>
-	        	<td align='center'><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" disabled="disabled" style="width:20px;height:20px;"></td>
-	        	</c:otherwise>
-	        	</c:choose>
+	       
 	        	</tr>
-	        	</c:if>
 	        </c:forEach>
 	        </tbody>
           </table>
@@ -184,9 +190,9 @@ table {
         <!--  <h3 class="my-3">결제 / 장바구니</h3>-->
         <br/>
         <br/>
-        <div align='center'>
-			<button style="height:40pt; width:300pt;font-size: 25px;"type="button" class="btn btn-primary" onclick="goPaymentForm()">결제하기</button><br/><br/>
-			<button style="height:40pt; width:300pt;font-size: 25px;"type="button" class="btn btn-primary" onclick="goCart()">장바구니</button>
+        <div align="center">
+        	<button style="height:40px; width:120pt;font-size: 20px; background-color:#dbefff; " type="button" onclick="goCart()">장바구니</button>
+			<button style="height:40px; width:120pt;font-size: 20px; background-color:#dbefff; " type="button" onclick="goPaymentForm()">결제하기</button><br/><br/>
 		</div>
 			
         </div>
@@ -199,39 +205,62 @@ table {
     <div style="font-size:2.0em" class="badge badge-primary">${listResult.mtr_area}</div> 
     --%>
     	      
-    
-    
+    <br/>
+    <div style="border-bottom:1px solid #dfe1e5;">
     <!-- 멘토 프로필 -->
-    <h3 class="my-4"><b>멘토 프로필</b></h3>
-    <button class="btn btn-primary" 
-    onclick="window.open('../mentor/popup.do?mem_email=${listResult.mem_email}','멘토정보',
-    'width=700px,height=800px,left=100px,top=100px');">프로필보기</button>
-   
+    <div class="mb-4" id="accordion" role="tablist" aria-multiselectable="true">
+	     <div class="card" style="box-shadow:none">
+	        <div class="card-header" role="tab" id="headingTwo">
+	          <h5 class="mb-0" style="text-align:left; margin-left:30px;">
+	            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"  style="margin-left:40px;">멘토 소개 <span style="font-size:15px;">▼</span>  
+	            </a>
+	          </h5>
+	        </div>
+	        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+	          <div class="card-body">
+	           		<div class="profile-thumb-wrap" style="margin-left:45px;">
+						<img src="../resources/profileImage/${loginUser.mem_profile}" onError="this.src='../resources/profileImage/TraceDefaultProfile.jpg'" class="thumb-profile" alt="프로필사진" style="width:150px; height:150px; float:left; border-radius: 100px;" />
+						<div style="margin-left:10%; font-size:20px;">
+						<p>멘토 이름 :  이름입니다. <p>
+						<p>멘토 소개 및 경력 : 멘토 정보 및 경력입니다.멘토 정보 및 경력입니다.멘토 정보 및 경력입니다.멘토 정보 및 경력입니다. <p><br>
+						</div>
+					</div>
+	          </div>
+	        </div>
+	      </div>
+      </div>
+      </div>
      <!-- 멘토링 내용-->
-     <h3 class="my-4"><b>내용</b></h3>
-     <div>
+     <br/>
+     <div  style="font-size:25px;" ><b>멘토링 소개</b></div> 
+     <br/>
+     <div align="center" style="margin-left:80px;">  
      	${listResult.mtr_content}
      </div>
-    
-    
+    <br/>
     <!-- 멘토링 장소 -->
-    <h3 class="my-4"><b>멘토링 장소</b></h3>
-	<div id="map" style="width:500px;height:300px;"></div>
-	<br/>
-	<span><b>주소 :</b> ${listResult.mtr_addr}</span>&nbsp;&nbsp;&nbsp;
-	<button class="btn btn-primary" id="addrcopy" data-clipboard-text="${listResult.mtr_addr}">주소복사</button>
-    
+    <div style="border-bottom:1px solid #dfe1e5;">
+	    <h3 class="my-4" ><b>멘토링 장소</b></h3>
+		<div id="map" style="width:80%;height:400px; margin-left:10%"></div>
+		<br/>
+		<span style="border-bottom:30px; margin-left:65%;"><b>주소 :</b> ${listResult.mtr_addr}</span>&nbsp;&nbsp;&nbsp;
+		<button style="background-color:#dbefff; border-radius:20px;" id="addrcopy" data-clipboard-text="${listResult.mtr_addr}">주소복사</button>
+    </div>
     
     <!-- 멘토링 질문 게시판-->
-    <h3 class="my-4"><b>멘토링 문의</b></h3>
-    <button class="btn btn-primary" onclick="goQABoard()">문의하기</button>
-    
+    <div style="border-bottom:1px solid #dfe1e5; margin-top:40px; height:90px;">
+    <span class="my-4" style="font-size:25px;"><b>멘토링 문의</b></span> &nbsp;&nbsp;
+    <button style="background-color:#dbefff; border-radius:20px;" onclick="goQABoard()">문의하기</button>
+    <br/>
+    </div>
+    <br/>
+    <div style="border-bottom:1px solid #dfe1e5; margin-top:40px; height:90px;">
     <!-- 멘토링 후기 게시판 -->
-    <h3 class="my-4"><b>멘토링 후기</b></h3>
-    <button class="btn btn-primary" onclick="goReviewBoard()">후기보러가기</button>
+    <span class="my-4" style="font-size:25px;"><b>멘토링 후기</b></span> &nbsp;&nbsp;
+    <button style="background-color:#dbefff; border-radius:20px;"  onclick="goReviewBoard()">후기보러가기</button>
+    </div>
     
-    
-    
+    <br/>
     <!-- Related Projects Row -->
     <h3 class="my-4"><b>관련된 멘토링</b></h3>
 
@@ -269,7 +298,7 @@ table {
             	<div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="goMyCartlist()">
                 <span class="pop_bt" style="font-size: 13pt;">장바구니 보러가기</span>
       </div>
- 
+ 	</div>
     </div>
         <!--End Modal-->
     

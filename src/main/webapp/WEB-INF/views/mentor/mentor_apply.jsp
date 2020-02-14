@@ -1,13 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <jsp:include page="../top.jsp"/>
-
+<!--  
 <script>
 	if(${empty sessionScope.loginUser}){
 		alert("로그인 후 서비스 이용 가능합니다");
 		location.href="../login/login.do";
 	}
-</script>
+</script>-->
 <script>
 	var mem_auth = ${loginUser.mem_auth};
 	if(mem_auth == 1){
@@ -66,6 +66,7 @@
 	});
 
 </script> 
+ 
 <script>
 	$(document).ready(function(){
 		document.getElementById("sms").style.display = "none";
@@ -84,8 +85,8 @@
 			success: function(result) { 
 				if (result == "true") { 
 					console.log(result); 
-					document.getElementById("sms").style.display = "block";
-					document.getElementById("check").style.display = "block";
+					document.getElementById("sms").style.display = "inline-block";
+					document.getElementById("check").style.display = "inline-block";
 					alert("인증번호 전송 성공");
 				} else { 
 					alert("인증번호 전송 실패"); 

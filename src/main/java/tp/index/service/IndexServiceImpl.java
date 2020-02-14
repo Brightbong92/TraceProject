@@ -26,8 +26,9 @@ public class IndexServiceImpl implements IndexService {
 		List<Mentoring> latestArticle = indexMapper.latestArticle();
 		Member bestMentoringMentor = indexMapper.bestMentoringMentor();
 		List<ReviewFilesList> reviewFiles = indexMapper.reviewFiles();
+		List<Mentoring> cheapArticle = indexMapper.cheapArticle();
 		
-		return new IndexListResult(bestMentoringMentor,topMentoring,latestArticle,reviewFiles);
+		return new IndexListResult(bestMentoringMentor,topMentoring,latestArticle,reviewFiles, cheapArticle);
 	}
 
 
