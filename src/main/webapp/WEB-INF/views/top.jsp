@@ -86,7 +86,7 @@ body {
 	  </div>
 	   
       </div>
-
+      
 	  <!--  &nbsp;&nbsp;&nbsp;-->
 	  <!--  <button class="btn btn-primary" id="searchBtn" onclick="find()">검색</button>-->
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -141,6 +141,7 @@ body {
 	              <c:if test="${loginUser.mem_auth > 0}">
 	              <a class="dropdown-item" href="../mentoring/mentoringWriteForm.do">멘토링등록하기</a>
 	              </c:if>
+	              <a class="dropdown-item" href="../chat/free.do"></a>
 	              <a class="dropdown-item" href="../login/logout.do">로그아웃</a>
 	            </div>
 	          </li>
@@ -283,4 +284,42 @@ function removeActive(x) {
     }
   }
 </script>
+<%--
+<script>
+var socket = null;
+function connect() {
+	var ws = new WebSocket("ws://127.0.0.1:8080/replyEcho?bno=1234");
+	socket = ws;
+
+	ws.onopen = function () {
+	    console.log('Info: connection opened.');
+	    
+	};
+
+	ws.onmessage = function (event) {
+	    console.log("ReceiveMessage: ", event.data+'\n');
+	};
+
+	ws.onclose = function (event) { 
+		console.log('Info: connection closed.'); 
+   		//setTimeout( function(){ connect(); }, 1000); // retry connection!!
+	};
+	ws.onerror = function (err) { console.log('Error', err); };	
+}
+</script>
+
+<script>
+$(document).ready(function (){
+	connect();
+	$('#sendMsg').on('click', function(evt) {
+		  evt.preventDefault();
+		if (socket.readyState !== 1) return;
+		
+			  
+			  let msg = $('#message').val();
+			  socket.send(msg);
+		});
+});
+</script>
+--%>
 

@@ -92,12 +92,12 @@
             	<input type="text" class="form-control" name="hashtag" id="hashtag" placeholder="ex)#요가" />
             	<br/>
             	<button type="button" class="btn btn-primary" id="tagPlus">태그추가</button>
-            	<button type="button" class="btn btn-primary" id="check">태그값확인</button>
+            	<%-- <button type="button" class="btn btn-primary" id="check">태그값확인</button>--%>
             	</td>
             </tr>
             
             <tr>
-            	<th>태그추가되는곳</th>
+            	<th></th>
                 <td id="tag-list">
                 
                 </td>
@@ -114,7 +114,7 @@
             </tr>
             
             <tr>
-            	<th>맵나오는곳</th>
+            	<th></th>
             	<td><div id="map" style="width:900px;height:300px;margin-top:10px;display:none"></div></td>
             </tr>
             

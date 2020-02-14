@@ -28,7 +28,8 @@
 	   <typeAlias alias="Cart" type="tp.domain.Cart"/>
 	   <typeAlias alias="CartOrderListVo" type="tp.vo.CartOrderListVo"/>
 	   <typeAlias alias="Refund_Info" type="tp.domain.Refund_Info"/>
-		
+	   <typeAlias alias="BestMentorVo" type="tp.vo.BestMentorVo"/>
+	   <typeAlias alias="MentorInfoVo" type="tp.vo.MentorInfoVo"/>
 
 	   <!-- 성지 -->
 	   <typeAlias alias="MemberPagingVo" type="tp.vo.MemberPagingVo"/>

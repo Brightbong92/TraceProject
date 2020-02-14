@@ -11,6 +11,8 @@ import tp.domain.Member;
 import tp.domain.Mentoring;
 import tp.domain.Mentoring_Review_File;
 import tp.index.mapper.IndexMapper;
+import tp.vo.BestMentorListResult;
+import tp.vo.BestMentorVo;
 import tp.vo.IndexListResult;
 import tp.vo.ReviewFilesList;
 
@@ -26,11 +28,19 @@ public class IndexServiceImpl implements IndexService {
 		List<Mentoring> latestArticle = indexMapper.latestArticle();
 		Member bestMentoringMentor = indexMapper.bestMentoringMentor();
 		List<ReviewFilesList> reviewFiles = indexMapper.reviewFiles();
+
 		List<Mentoring> cheapArticle = indexMapper.cheapArticle();
 		
 		return new IndexListResult(bestMentoringMentor,topMentoring,latestArticle,reviewFiles, cheapArticle);
 	}
 
-
-
+	@Override
+	public BestMentorListResult getBestMentorListResult() {
+		Member bestMentoringMentor = indexMapper.bestMentoringMentor();
+		String mem_email = bestMentoringMentor.getMem_email();
+		BestMentorVo bestMentorVo = indexMapper.selectBestMentor(mem_email);
+		List<Mentoring> list = indexMapper.selectBestMentorMentoringList(mem_email);
+		return new BestMentorListResult(bestMentorVo, list);
+	}
+	
 }

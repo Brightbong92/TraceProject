@@ -6,9 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
+import tp.domain.Mentor_List;
 import tp.domain.Mentoring;
 import tp.domain.Mentoring_Detail_Info;
 import tp.domain.Mentoring_QA;
+import tp.vo.MentorInfoVo;
 import tp.vo.MentoringPagingVo;
 import tp.vo.MentoringViewPageVo;
 
@@ -60,4 +62,9 @@ public interface MentoringMapper {
 	List<String> selectAutoSearchHashtag(String word);
 	
 	List<Mentoring_QA> selectMentoringQAList(long mtr_seq);
+	
+	
+	String selectMentoringWriter(long mtr_seq);
+	MentorInfoVo selectMentor(String mem_email);
+	
 }

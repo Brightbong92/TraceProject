@@ -4,6 +4,9 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <jsp:include page="../top.jsp" />
 
+
+
+
   <link href="../css/flexslider.css" rel="stylesheet">
 
   <header>
@@ -313,87 +316,23 @@
 	<br/><br/>
     <!-- Features Section -->
     <div class="row">
-     <c:forEach items="${indexListResult.topMentoring}" var="mtr_top" end="0">
       <div class="col-lg-6">
         <div class="alert alert-danger" role="alert">
-		  <strong>이달의 멘토링</strong> /이번 달 가장 인기있는 멘토링을 소개합니다 
+		  <strong>이달의 멘토</strong> /이번 달 가장 인기있는 멘토를 소개합니다 
 		</div>
         <ul>
           <li style="font-size:20px;">
-            <strong>멘토링 : ${mtr_top.mtr_subject}</strong>
+            <strong style="font-size:30px;">이름: ${bestMentorListResult.bestMentorVo.mem_nick}</strong>
           </li>
-          <li><span class="badge badge-primary">지역  : ${mtr_top.mtr_area}</span></li>
-          <li><span class="badge badge-warning mb-2">${mtr_top.mtr_hashtag} </span></li>
-          <li><c:choose>
-          	
-					          <c:when test="${mtr_top.mtr_jumsu eq 0}">
-					            <div class="starRev">
-					            <span class="badge badge-primary">평점:</span>&emsp;
-								  <span class="starR">별1</span>
-								  <span class="starR">별2</span>
-								  <span class="starR">별3</span>
-								  <span class="starR">별4</span>
-								  <span class="starR">별5</span>
-								</div>
-						      </c:when>
-						      <c:when test="${mtr_top.mtr_jumsu eq 1}">
-						      	 <div class="starRev">
-						      	 <span class="badge badge-primary">평점  :</span>&emsp;
-								  <span class="starR on">별1</span>
-								  <span class="starR">별2</span>
-								  <span class="starR">별3</span>
-								  <span class="starR">별4</span>
-								  <span class="starR">별5</span>
-								</div>
-						      </c:when>
-						      <c:when test="${mtr_top.mtr_jumsu eq 2}">
-						      	 <div class="starRev">
-						      	 <span class="badge badge-primary">평점:</span>&emsp;
-								  <span class="starR on">별1</span>
-								  <span class="starR on">별2</span>
-								  <span class="starR">별3</span>
-								  <span class="starR">별4</span>
-								  <span class="starR">별5</span>
-								</div>
-						      </c:when>
-						      <c:when test="${mtr_top.mtr_jumsu eq 3}">
-						      	 <div class="starRev">
-						      	 <span class="badge badge-primary">평점:</span>&emsp;
-								  <span class="starR on">별1</span>
-								  <span class="starR on">별2</span>
-								  <span class="starR on">별3</span>
-								  <span class="starR">별4</span>
-								  <span class="starR">별5</span>
-								</div>
-						      </c:when>
-						      <c:when test="${mtr_top.mtr_jumsu eq 4}">
-						      	 <div class="starRev">
-						      	 <span class="badge badge-primary">평점:</span>&emsp;
-								  <span class="starR on">별1</span>
-								  <span class="starR on">별2</span>
-								  <span class="starR on">별3</span>
-								  <span class="starR on">별4</span>
-								  <span class="starR">별5</span>
-								</div>
-						      </c:when>
-						      <c:when test="${mtr_top.mtr_jumsu eq 5}">
-						      	 <div class="starRev">
-						      	 <span class="badge badge-primary">평점:</span>&emsp;
-								  <span class="starR on">별1</span>
-								  <span class="starR on">별2</span>
-								  <span class="starR on">별3</span>
-								  <span class="starR on">별4</span>
-								  <span class="starR on">별5</span>
-								</div>
-						      </c:when>
-					          </c:choose></li>
+          <li><span class="badge badge-primary">가입일: ${bestMentorListResult.bestMentorVo.mem_rdate}</span></li>
         </ul>
-        <p>${mtr_top.mtr_content}</p>
+        
+        <div>자기소개: ${bestMentorListResult.bestMentorVo.ml_yourself}</div>
       </div>
-      <div class="col-lg-6">
-        <a href="#"><img class="img-flud" style="width:500px; height:400px;"src="../resources/mentoring_list_images/${mtr_top.mtr_profile}" alt=""></a>
+      
+      <div class="profile-thumb-wrap" align="center">
+        <img src="../resources/profileImage/${bestMentorListResult.bestMentorVo.mem_profile}" alt="">
       </div>
-      </c:forEach>
     </div>
     <!-- /.row -->
     <hr>
@@ -417,5 +356,6 @@
   </div>
 </div>
   <!-- /.container -->
+
 <%@include file="../footer.jsp"%>
 

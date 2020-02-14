@@ -21,7 +21,7 @@
 --%>
     <!-- Contact Form -->
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-    <form name="sentMessage" id="qaForm" action="/qa/qaRegister.do" method="post">
+    <form name="f" id="qaForm" action="/qa/qaRegister.do" method="post">
     <div class="row">
 			<input type="hidden" name="mtr_seq" value="${mtr_seq}">
           <div class="control-group form-group">
@@ -31,12 +31,12 @@
           </div>
     </div>
       <div align='center'> 
-      <button type="submit" class="btn btn-primary" id="sendMessageButton">질문등록</button>
+      <button type="button" class="btn btn-primary" id="sendMessageButton">질문등록</button>
+           
       </div>
     <!-- /.row -->
      </form>
 
   </div>
   <!-- /.container -->
-        
 <%@ include file="../footer.jsp" %>
