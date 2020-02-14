@@ -68,7 +68,7 @@ body {
 }
 </style>
 <body>
-
+  <div id="socketAlert" class="alert alert-success" role="alert" style="height:50px;display:none;"></div>
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important; border-bottom:1px solid #dfe1e5;" >  <!-- 머리색 -->
     <div class="container" style="max-width:80% !important;">
@@ -141,7 +141,7 @@ body {
 	              <c:if test="${loginUser.mem_auth > 0}">
 	              <a class="dropdown-item" href="../mentoring/mentoringWriteForm.do">멘토링등록하기</a>
 	              </c:if>
-	              <a class="dropdown-item" href="../chat/free.do"></a>
+	              <%-- <a class="dropdown-item" href="../chat/free.do"></a>--%>
 	              <a class="dropdown-item" href="../login/logout.do">로그아웃</a>
 	            </div>
 	          </li>

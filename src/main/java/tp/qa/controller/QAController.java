@@ -73,6 +73,7 @@ public class QAController {
 		mv.setViewName("qa/qa_write_form");
 		mv.addObject("mtr_seq",mtr_seq);
 		mv.addObject("mtr_subject", mtr.getMtr_subject());
+		mv.addObject("mtr_mem_email", mtr.getMem_email());
 		return mv;
 	}
 	@RequestMapping(value="/qaRegister.do", method=RequestMethod.POST)

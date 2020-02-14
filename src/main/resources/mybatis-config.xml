@@ -64,6 +64,7 @@
    	   <mapper resource="tp/qa/mapper/QAMapper.xml"/>
    	   <mapper resource="tp/review/mapper/ReviewMapper.xml"/>
    	   <mapper resource="tp/payment/mapper/PaymentMapper.xml"/>
+   	   <mapper resource="tp/socket/mapper/SocketMapper.xml"/>
 	<!-- 성지 -->   	   
    	   <mapper resource="tp/admin/mapper/AdminMapper.xml"/>
    	   <mapper resource="tp/notice/mapper/NoticeMapper.xml"/>

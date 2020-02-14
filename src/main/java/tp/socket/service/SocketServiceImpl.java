@@ -22,6 +22,12 @@ public class SocketServiceImpl implements SocketService {
 
 	@Autowired
 	SocketMapper socketMapper;
+
+	@Override
+	public Mentoring getMentoringInfo(long mtr_seq) {
+		Mentoring mtr = socketMapper.selectMentoring(mtr_seq);
+		return mtr;
+	}
 	
 
 }

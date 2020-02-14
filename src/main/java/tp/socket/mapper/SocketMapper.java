@@ -15,6 +15,6 @@ import tp.vo.MentoringReviewPagingVo;
 
 public interface SocketMapper {
 	
-
+	Mentoring selectMentoring(long mtr_seq);
 	
 }
