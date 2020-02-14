@@ -317,22 +317,26 @@
     <!-- Features Section -->
     <div class="row">
       <div class="col-lg-6">
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" style="width:200%;" role="alert">
 		  <strong>이달의 멘토</strong> /이번 달 가장 인기있는 멘토를 소개합니다 
 		</div>
-        <ul>
-          <li style="font-size:20px;">
-            <strong style="font-size:30px;">이름: ${bestMentorListResult.bestMentorVo.mem_nick}</strong>
-          </li>
-          <li><span class="badge badge-primary">가입일: ${bestMentorListResult.bestMentorVo.mem_rdate}</span></li>
-        </ul>
+		<div class="profile-thumb-wrap">
+        	<img src="../resources/profileImage/${bestMentorListResult.bestMentorVo.mem_profile}" onError="this.src='../resources/profileImage/기본프로필사진.jpg'" class="thumb-profile" alt="프로필사진" style="width:220px; height:220px; float:left; border-radius:200px;" >
+      
+	        <div style="margin-left:50%; font-size:18px; width:130%;" >
+	            <span class="badge badge-primary" style="font-size:15px;">멘토 이름  </span>&nbsp;&nbsp;<span style="font-size:15px;">${bestMentorListResult.bestMentorVo.mem_nick} </span> <br/><br/>
+				<span class="badge badge-primary" style="font-size:15px;">멘토 이메일  </span> &nbsp;&nbsp;<span style="font-size:15px;">${bestMentorListResult.bestMentorVo.mem_email}</span> <br/><br/>
+				<span class="badge badge-primary" style="font-size:15px;">멘토 소개 및 경력  </span>&nbsp;&nbsp; <span style="font-size:15px;">${bestMentorListResult.bestMentorVo.ml_yourself} </span><br><br/>
+		        <span class="badge badge-primary" style="font-size:15px;"> 담당 멘토링  </span>
+		        <c:forEach items="${bestMentorListResult.bestMentorMentoringList}" var="list"> 
+		        	<span style="font-size:15px;">${list.mtr_subject} &nbsp; / </span> 
+		        </c:forEach>
+	        </div>
+        </div>
         
-        <div>자기소개: ${bestMentorListResult.bestMentorVo.ml_yourself}</div>
       </div>
       
-      <div class="profile-thumb-wrap" align="center">
-        <img src="../resources/profileImage/${bestMentorListResult.bestMentorVo.mem_profile}" alt="">
-      </div>
+      
     </div>
     <!-- /.row -->
     <hr>

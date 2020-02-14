@@ -82,7 +82,7 @@ function setImg() {
     <div class="my-summary-wrap">
 		<div class="profile-wrap">
 			<div class="profile-thumb-wrap" align="center">
-			<img src="../resources/profileImage/${loginUser.mem_profile}" onError="this.src='../resources/profileImage/TraceDefaultProfile.jpg'" class="thumb-profile" alt="프로필사진" style="width:120px; height:120px; border-radius: 100px;" />
+			<img src="../resources/profileImage/${loginUser.mem_profile}" onError="this.src='../resources/profileImage/기본프로필사진.jpg'" class="thumb-profile" alt="프로필사진" style="width:120px; height:120px; border-radius: 100px;" />
 			</div>
 			<div class="profile-info-wrap" align="center" style="margin-top:15px;">
 				안녕하세요.

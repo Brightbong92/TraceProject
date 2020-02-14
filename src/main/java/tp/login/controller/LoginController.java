@@ -65,7 +65,7 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		session.setAttribute("loginUser", m);	
 		session.setAttribute("cartCount", getCartCount(mem_email));
-		mv.setViewName("index/index");
+		mv.setViewName("login/email_login_msg");
         return mv;
 	}
 	

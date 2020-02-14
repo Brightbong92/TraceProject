@@ -219,10 +219,11 @@ table {
 	        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
 	          <div class="card-body">
 	           		<div class="profile-thumb-wrap" style="margin-left:45px;">
-						<img src="../resources/profileImage/${loginUser.mem_profile}" onError="this.src='../resources/profileImage/TraceDefaultProfile.jpg'" class="thumb-profile" alt="프로필사진" style="width:150px; height:150px; float:left; border-radius: 100px;" />
-						<div style="margin-left:10%; font-size:20px;">
-						<p>멘토 이름 :  이름입니다. <p>
-						<p>멘토 소개 및 경력 : 멘토 정보 및 경력입니다.멘토 정보 및 경력입니다.멘토 정보 및 경력입니다.멘토 정보 및 경력입니다. <p><br>
+						<img src="../resources/profileImage/${mentorInfo.mem_profile}" onError="this.src='../resources/profileImage/기본프로필사진.jpg'" class="thumb-profile" alt="프로필사진" style="width:150px; height:150px; float:left; border-radius: 100px;" />
+						<div style="margin-left:20%; font-size:18px;">
+							<span>멘토 이름 : </span>&nbsp;&nbsp;<span>${mentorInfo.mem_nick} </span> <br/><br>
+							<span>멘토 이메일 : </span> &nbsp;&nbsp;<span>${mentorInfo.mem_email}</span> <br/><br>
+							<span>멘토 소개 및 경력 : </span>&nbsp;&nbsp; <span>${mentorInfo.ml_yourself} </span><br>
 						</div>
 					</div>
 	          </div>
@@ -243,7 +244,7 @@ table {
 	    <h3 class="my-4" ><b>멘토링 장소</b></h3>
 		<div id="map" style="width:80%;height:400px; margin-left:10%"></div>
 		<br/>
-		<span style="border-bottom:30px; margin-left:65%;"><b>주소 :</b> ${listResult.mtr_addr}</span>&nbsp;&nbsp;&nbsp;
+		<span style="border-bottom:30px; margin-left:63%;"><b>주소 :</b> ${listResult.mtr_addr}</span>&nbsp;&nbsp;&nbsp;
 		<button style="background-color:#dbefff; border-radius:20px;" id="addrcopy" data-clipboard-text="${listResult.mtr_addr}">주소복사</button>
     </div>
     

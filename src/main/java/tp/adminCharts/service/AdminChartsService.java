@@ -1,6 +1,12 @@
 package tp.adminCharts.service;
 
+import java.util.List;
+
+
+
 public interface AdminChartsService {
+	
+	int reviewList();
 	int countmem1();
 	int countmem2();
 	int countmem3();
@@ -40,4 +46,5 @@ public interface AdminChartsService {
 	int dis_reson4();
 	int dis_reson5();
 	int dis_reson6();
+	
 }

@@ -1,5 +1,7 @@
 package tp.adminCharts.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -182,4 +184,11 @@ public class AdminChartsServiceImpl implements AdminChartsService{
 	public int dis_reson6() {
 		return adminchartsMapper.dis_reson6();
 	}
+
+	@Override
+	public int reviewList() {
+		 
+		return adminchartsMapper.reviewList();
+	}
+
 }
