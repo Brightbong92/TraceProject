@@ -9,14 +9,14 @@
 		location.href="../login/login.do";
 	}
 </script>
-	<div style="width:1200px;height:800px">
-		<div id="msgContents">
-	
-		</div>
 
+	<div style="width:1200px;height:1000px;">
+		<div id="msgContents">
+		</div>
+	</div>
+	<div align='center'>
 	<input type="text" name="txt" id="msg"/>
 	<button type="button" name="btn" id="sendMsg">send</button>
-	
 	</div>
 <script>
 var socket = null;

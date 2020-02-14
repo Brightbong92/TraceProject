@@ -34,7 +34,7 @@
 <script>
 var socket = null;
 $(document).ready(function(){
-	
+	connectWS();
 	<%--
 	if("${loginUser.mem_email}" != "") {//로그인되었을 시 웹소켓 연결
 		console.clear();
@@ -45,7 +45,10 @@ $(document).ready(function(){
 	document.getElementById("load").style.display = "none";
 	
 	function connectWS() {
-		var ws = new WebSocket("ws://127.0.0.1:8080/freeEcho");
+		//var ws = new WebSocket("ws://127.0.0.1:8080/qaEcho");
+		
+		var ws = new WebSocket("ws://192.168.0.129:8080/qaEcho");
+		
 		socket = ws;
 		ws.onopen = function () {
 		    console.log('Info: connection opened.');
@@ -53,7 +56,13 @@ $(document).ready(function(){
 		ws.onmessage = function (event) {
 		    console.log("ReceiveMessage: ", event.data+'\n');
 		    
-		    $("#msgContents").append(event.data);
+		    //$("#msgContents").append(event.data);
+		    let $socketAlert = $("div#socketAlert");
+		    $socketAlert.html(event.data);
+		    $socketAlert.css('display', 'block');
+		    setTimeout(function (){
+		    	$socketAlert.css('display', 'none');
+		    }, 3000);
 		};
 		ws.onclose = function (event) { 
 			console.log('Info: connection closed.');
@@ -78,7 +87,6 @@ $(document).ready(function (){
 });
 </script>
 --%>
-
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">

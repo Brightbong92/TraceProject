@@ -3,7 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tp.socket.mapper.SocketMapper">
+	<!--  
 		<select id="selectMentorEmail" parameterType="long" resultType="String">
 			select MEM_EMAIL from MEMBER natural join MENTORING where mtr_seq=#{mtr_seq}
 		</select>
+	-->
+	<select id="selectMentoring" parameterType="long" resultType="Mentoring">
+		SELECT * FROM MENTORING WHERE MTR_SEQ = #{mtr_seq}
+	</select>
 </mapper>

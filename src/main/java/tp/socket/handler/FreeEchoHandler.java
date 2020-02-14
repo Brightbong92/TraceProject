@@ -15,32 +15,46 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import lombok.extern.log4j.Log4j;
+import tp.domain.Member;
 
 
 @Log4j
 public class FreeEchoHandler extends TextWebSocketHandler{
-	 List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();//접속 유저 담기
+	 List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();//접속 유저 담기
+	 Map<String, WebSocketSession> userSessionsMap = new HashMap<String, WebSocketSession>();
 	 
 	 @Override
 	 public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		 log.info("#afterConnectionEstablished: " + session);
-		 sessionList.add(session);//접속된 세션들 모두 담는다.
+		 sessions.add(session);
+		 String senderEmail = getEmail(session);
+		 log.info("#senderEmail: " + senderEmail);
+		 userSessionsMap.put(senderEmail, session);
+		 
 	 }
 	 @Override
 	 protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception{
 		 log.info("#handleTextMessage: " + session + " #TextMessage: " + message);
-		 String senderId = session.getId();
 		 
-		 for(WebSocketSession sess : sessionList) {
-			sess.sendMessage(new TextMessage(session.getId() + " : " + message.getPayload()));
-		 }
 		 
-		 //log.info("#senderId: " + senderId); 
+		 
 	 }
 	 
 	 @Override
 	 public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		 log.info("#afterConnectionClosed: " + session + "#status : " + status);
-		 sessionList.remove(session);
+		 log.info("#session.getId: " + session.getId());
+		 userSessionsMap.remove(session.getId());
+		 sessions.remove(session);
+	 }
+	 
+	 private String getEmail(WebSocketSession session) {
+		 Map<String, Object> httpSession = session.getAttributes();
+		 Member loginUser = (Member)httpSession.get("loginUser");
+		 if(loginUser == null) {
+			 return session.getId();
+		 }else {
+			 return loginUser.getMem_email();
+		 }	 
 	 }
 }

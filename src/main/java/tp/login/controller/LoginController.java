@@ -119,6 +119,7 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("login/login_msgNaver");
 		session.setAttribute("loginUser", member);
+		session.setAttribute("cartCount", 0);
 		return mv;
 	}
 	

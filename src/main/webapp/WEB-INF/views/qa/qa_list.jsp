@@ -30,7 +30,6 @@
     </ol>
 --%>
     <!-- Blog Post -->
-    
     <c:if test="${!empty listResult.mtr_qa_list}">
     
     <c:forEach items="${listResult.mtr_qa_list}" var="qa_list">
