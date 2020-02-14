@@ -17,7 +17,7 @@
 	    
 	<select id="bestMentoringMentor" resultType="Member">
 	    <![CDATA[
-	    select MEM_NICK from (select ROWNUM rnum , aa.*, bb.MEM_NICK from (select * from MENTORING where MTR_JUMSU = (select max(MTR_JUMSU) from MENTORING ) ) aa, MEMBER bb where aa.MEM_EMAIL = bb.MEM_EMAIL)
+	    select MEM_NICK, MEM_EMAIL from (select ROWNUM rnum , aa.*, bb.MEM_NICK from (select * from MENTORING where MTR_JUMSU = (select max(MTR_JUMSU) from MENTORING ) ) aa, MEMBER bb where aa.MEM_EMAIL = bb.MEM_EMAIL)
 			 where rnum>0 and rnum<=1
 	    ]]> 	
 	</select>
@@ -27,6 +27,18 @@
 		]]> 
 	</select>  
 	
+	<select id="selectBestMentor" resultType="BestMentorVo" parameterType="String" >
+		<![CDATA[
+		select me.MEM_EMAIL, me.MEM_NICK, me.MEM_AGE, me.MEM_GENDER, me.MEM_PROFILE, me.MEM_RDATE, ml.ML_YOURSELF 
+		from MEMBER me, MENTOR_LIST ml where me.MEM_EMAIL = ml.MEM_EMAIL and me.MEM_EMAIL = #{mem_email}
+		]]>
+	</select>
+	
+	<select id="selectBestMentorMentoringList" resultType="Mentoring" parameterType="String">
+		<![CDATA[
+		select * from (SELECT ROWNUM rnum, aa.* from(select * from MENTORING WHERE MEM_EMAIL = #{mem_email} order by MTR_SEQ desc) aa) where rnum>0 and rnum <=5
+		]]>
+	</select>
 	
 	
 </mapper>

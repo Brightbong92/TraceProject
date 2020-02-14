@@ -7,7 +7,15 @@
 <jsp:include page="../top.jsp" />
 
 
-
+<style>
+a#MOVE_TOP_BTN {
+    position: fixed;
+    right: 2%;
+    bottom: 50px;
+    display: none;
+    z-index: 999;
+}
+</style>
 <style>
 table {
   border-collapse: separate;
@@ -203,6 +211,10 @@ table {
     
     <!-- 멘토 프로필 -->
     <h3 class="my-4"><b>멘토 프로필</b></h3>
+    <div>${mentorInfo.mem_email}</div>
+    <div>${mentorInfo.mem_nick}</div>
+    <div>${mentorInfo.mem_gender}</div>
+    <div>${mentorInfo.ml_yourself}</div>
     <button class="btn btn-primary" 
     onclick="window.open('../mentor/popup.do?mem_email=${listResult.mem_email}','멘토정보',
     'width=700px,height=800px,left=100px,top=100px');">프로필보기</button>
@@ -417,4 +429,24 @@ geocoder.addressSearch('${listResult.mtr_addr}', function(result, status) {
     } 
 });    
 </script>
+</div>
+<script>
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 500) {
+                $('#MOVE_TOP_BTN').fadeIn();
+            } else {
+                $('#MOVE_TOP_BTN').fadeOut();
+            }
+        });
+         
+        $("#MOVE_TOP_BTN").click(function() {
+            $('html, body').animate({
+                scrollTop : 0
+            }, 400);
+            return false;
+        });
+    });
+</script>
+  <a id="MOVE_TOP_BTN" href="#" style="margin-right:3%;">TOP</a>
 <%@include file="../footer.jsp"%>

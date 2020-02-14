@@ -146,4 +146,17 @@
  	</select>
  	
  	
+ 	<select id="selectMentor" resultType="MentorInfoVo" parameterType="String">
+ 		<![CDATA[
+ 		SELECT * FROM MENTOR_LIST natural join MEMBER WHERE MEM_EMAIL = #{mem_email}
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="selectMentoringWriter" resultType="String" parameterType="long">
+ 		<![CDATA[
+ 		SELECT MEM_EMAIL FROM MENTORING WHERE MTR_SEQ = #{mtr_seq}
+ 		]]>
+ 	</select>
+ 	
+ 	
 </mapper>

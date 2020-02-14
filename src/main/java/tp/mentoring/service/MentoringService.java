@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import tp.domain.Mentor_List;
 import tp.domain.Mentoring;
+import tp.vo.MentorInfoVo;
 import tp.vo.MentoringListResult;
 import tp.vo.MentoringViewPageVo;
 public interface MentoringService {
@@ -23,4 +25,6 @@ public interface MentoringService {
 	//String[] getSelectAutoSearchSubject(String word);
 	List<String> getSelectAutoSearchSubject(String word);
 	List<String> getSelectAutoSearchHashtag(String word);
+	
+	MentorInfoVo getMentorInfo(long mtr_seq);
 }

@@ -11,8 +11,13 @@
     <h1 class="mt-4 mb-3">${listResult.mtr_subject}
       <small></small>
     </h1>
+    
 
+    
 <%-- 
+    <div>
+    <button onclick="location.href='../review/reviewWriteForm.do?mtr_seq=${listResult.mtr_seq}'">후기소켓통신테스트</button>
+    </div>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="#">Home</a>
@@ -155,11 +160,7 @@
     <c:if test="${empty listResult.mtr_review_list}">
    		<div align='center'>등록된 후기가 없습니다.</div>
     </c:if>
-<!--  
-    <c:if test="${empty listResult.mtr_review_list}">
-   		<div align='center'>등록된 후기가 없습니다.</div>
-    </c:if>
--->
+
  
 <c:if test="${!empty listResult.totalPageCount}"> <!-- 토탈페이지가 비어있지않을경우 -->
 <!-- 페이징 -->    
