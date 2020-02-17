@@ -13,10 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import tp.domain.Mentor_List;
 import tp.domain.Mentoring;
 import tp.domain.Mentoring_Detail_Info;
 import tp.domain.Mentoring_QA;
 import tp.mentoring.mapper.MentoringMapper;
+import tp.vo.MentorInfoVo;
 import tp.vo.MentoringListResult;
 import tp.vo.MentoringPagingVo;
 import tp.vo.MentoringViewPageVo;
@@ -174,5 +176,11 @@ public class MentoringServiceImpl implements MentoringService {
 	public List<String> getSelectAutoSearchHashtag(String word) {
 		List<String> autoList = mentoringMapper.selectAutoSearchHashtag(word);
 		return autoList;
+	}
+	@Override
+	public MentorInfoVo getMentorInfo(long mtr_seq) {
+		String mem_email = mentoringMapper.selectMentoringWriter(mtr_seq);
+		MentorInfoVo mentorInfo = mentoringMapper.selectMentor(mem_email);
+		return mentorInfo;
 	}
 }

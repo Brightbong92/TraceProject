@@ -42,7 +42,7 @@ function setImg() {
     <div class="my-summary-wrap">
 		<div class="profile-wrap">
 			<div class="profile-thumb-wrap" align="center">
-			<img src="../resources/profileImage/${loginUser.mem_profile}" onError="this.src='../resources/profileImage/TraceDefaultProfile.jpg'" class="thumb-profile" alt="프로필사진" style="width:120px; height:120px; border-radius: 100px;" />
+			<img src="../resources/profileImage/${loginUser.mem_profile}" onError="this.src='../resources/profileImage/기본프로필사진.jpg'" class="thumb-profile" alt="프로필사진" style="width:120px; height:120px; border-radius: 100px;" />
 			</div>
 			<div class="profile-info-wrap" align="center" style="margin-top:15px;">
 				안녕하세요.
@@ -76,7 +76,7 @@ function setImg() {
           <a href="../mypage/myActivity.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">나의 활동 내역</a>
           <a href="../mypage/myPoint.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:gray;">포인트</a>
           <a href="../mypage/myPaymentInfo.do?mem_email=${loginUser.mem_email}" class="aaa" style="color:white;">구매 &환불 내역 </a>
-          <a href="#" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
+          <a href="../cart/cart.do?mem_email=${loginUser.mem_email}" class="aaa"  style="background:#f74f76; color:white;">장바구니</a>
         </div>
       </div>
       <br/>

@@ -31,7 +31,7 @@ public class NoticeController {
 		
 		int cp = 1;
 		if(cpStr == null) {
-			Object cpObj = session.getAttribute("cp");
+			Object cpObj = session.getAttribute("noticecp");
 			if(cpObj != null) {
 				cp = (Integer)cpObj;
 			}
@@ -39,11 +39,11 @@ public class NoticeController {
 			cpStr = cpStr.trim();
 			cp = Integer.parseInt(cpStr);
 		}
-		session.setAttribute("cp", cp);
+		session.setAttribute("noticecp", cp);
 		
 		int ps = 10;
 		if(psStr == null) {
-			Object psObj = session.getAttribute("ps");
+			Object psObj = session.getAttribute("noticeps");
 			if(psObj != null) {
 				ps = (Integer)psObj;
 			}
@@ -51,23 +51,23 @@ public class NoticeController {
 			psStr = psStr.trim();
 			int psParam = Integer.parseInt(psStr);
 			
-			Object psObj = session.getAttribute("ps");
+			Object psObj = session.getAttribute("noticeps");
 			if(psObj != null) {
 				int psSession = (int)psObj;
 				if(psSession != psParam) {
 					cp = 1;
-					session.setAttribute("cp", cp);
+					session.setAttribute("noticecp", cp);
 				}
 			}else {
 				if(ps != psParam) {
 					cp = 1;
-					session.setAttribute("cp", cp);
+					session.setAttribute("noticecp", cp);
 				}
 			}
 			
 			ps = psParam;
 		}
-		session.setAttribute("ps", ps);
+		session.setAttribute("noticeps", ps);
 		System.out.println("#cp: "+ cp + "#ps : "+ ps);
 		NoticeListResult listResult = service.getNoticeListResult(cp, ps);
 		ModelAndView mv = new ModelAndView("notice/notice_list", "listResult", listResult);
@@ -145,7 +145,7 @@ public class NoticeController {
 		
 		int cp = 1;
 		if(cpStr == null) {
-			Object cpObj = session.getAttribute("cp");
+			Object cpObj = session.getAttribute("noticecp");
 			if(cpObj != null) {
 				cp = (Integer)cpObj;
 			}
@@ -153,11 +153,11 @@ public class NoticeController {
 			cpStr = cpStr.trim();
 			cp = Integer.parseInt(cpStr);
 		}
-		session.setAttribute("cp", cp);
+		session.setAttribute("noticecp", cp);
 		
 		int ps = 10;
 		if(psStr == null) {
-			Object psObj = session.getAttribute("ps");
+			Object psObj = session.getAttribute("noitceps");
 			if(psObj != null) {
 				ps = (Integer)psObj;
 			}
@@ -165,23 +165,23 @@ public class NoticeController {
 			psStr = psStr.trim();
 			int psParam = Integer.parseInt(psStr);
 			
-			Object psObj = session.getAttribute("ps");
+			Object psObj = session.getAttribute("noticeps");
 			if(psObj != null) {
 				int psSession = (int)psObj;
 				if(psSession != psParam) {
 					cp = 1;
-					session.setAttribute("cp", cp);
+					session.setAttribute("noitcecp", cp);
 				}
 			}else {
 				if(ps != psParam) {
 					cp = 1;
-					session.setAttribute("cp", cp);
+					session.setAttribute("noitcecp", cp);
 				}
 			}
 			
 			ps = psParam;
 		}
-		session.setAttribute("ps", ps);
+		session.setAttribute("noitceps", ps);
 		NoticeListResult listResult = service.getNoticeListResultSearch(cp, ps, keyword);
 		ModelAndView mv = new ModelAndView("notice/notice_list", "listResult", listResult);
 		if(listResult.getList().size() == 0) {

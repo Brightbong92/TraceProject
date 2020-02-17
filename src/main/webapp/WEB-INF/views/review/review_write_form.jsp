@@ -164,7 +164,11 @@ var starRating = function(){
 					alert("별점을 맥여주세요.");
 					return false;
 				}
+				
+				if (socket.readyState !== 1) return;
+				socket.send("rv,${mtr_seq},${mtr_mem_email}");
 				reviewForm.submit();
+
 			});
 			
 		});

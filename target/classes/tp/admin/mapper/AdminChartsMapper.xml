@@ -147,7 +147,9 @@
    <select id="dis_reson6" resultType="int">
     	select count(dis_reason) from disabled d, member m where d.mem_email = m.mem_email and m.mem_state = 2 and d.dis_reason=5
    </select>
-   
-   
-	
+   <select id="reviewList" resultType="int">
+		<![CDATA[
+			select count(*) from mentoring_review
+		  ]]>
+   </select>
 </mapper>

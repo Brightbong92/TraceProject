@@ -11,4 +11,5 @@ public interface CartMapper {
 	void setCart(HashMap<String, String> map);
 	void deleteCart(HashMap<String, String> map);
 	long selectCartCount(String mem_email);
+	void deleteCartAll(String mem_email);
 }

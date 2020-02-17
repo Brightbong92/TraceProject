@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
-<!--jsp:include page="../top.jsp" /-->
+<!-- jsp:include page="../top.jsp" /-->
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,7 +88,7 @@
 							//alert("활동적");
 							location.href="../hobbytest/testResult3.do";
 						}
-					},3000);
+					},1500);
 					
 				}
 			
@@ -121,14 +121,15 @@
 	<p style="margin-top:80px;font-size:23px;" align="center"><strong> 취미분석 테스트 </strong> </p>
 	<br/>
 	<pre id="comment1" style="font-size:20px;" > 
+		<strong>
 		당신의 취미는 무엇입니까?
 		취미 분석을 통해 나를 보다 깊게 알아보세요.
 		총 검사 시간은 1분 내외 입니다.
 		
 		-총 10문항-
-		
+		</strong>
 	</pre>
-	<pre align="center" id="comment2" style="display:none;font-size:20px">두 이미지중 마음에 드는 한가지를 선택하세요.</pre>
+	<pre align="center" id="comment2" style="display:none;font-size:20px"><strong>두 이미지중 마음에 드는 한가지를 선택하세요.</strong></pre>
 	<br/>
 	<button class="btn" id="btn1" type="button" onclick="pbFunc(0)" style="margin-left:90px;display:none" ><img class="btn-img" id="img1" src="../resources/hobbyTest/1-1.jpg" style="width:370px; height:370px;"></button>
 	<button class="btn" id="btn2" type="button" onclick="pbFunc(1)" style="margin-left:210px;display:none"><img class="btn-img" id="img2" src="../resources/hobbyTest/1-2.jpg" style="width:370px; height:370px;"></button>
@@ -141,8 +142,9 @@
 	  </div>
 	</div>
 	<div align="center" style="margin-top:10px;">
-	<button type="button" class="button" id="start" onClick="start()" style="margin-bottom:50px;color:white; background:#3b67f7; font-size:1em; border-radius:0.5em; padding:5px 20px;">StartNow</button>
-  	<button onClick="window.location.reload()" style="margin-bottom:50px;color:white; background:pink; font-size:1em; border-radius:0.5em; padding:5px 20px;">Restart</button>
+	<button onClick="window.location.reload()" style="margin-bottom:50px;color:white; background:#ffa04d; font-size:1em; border-radius:0.5em; padding:5px 20px;">Restart</button>
+	<button type="button" class="button" id="start" onClick="start()" style="margin-bottom:50px;color:white; background:#3b67f7; font-size:1em; border-radius:0.5em; padding:5px 20px;">StartNow</button> 
+  
   	
   	</div>
   </div>

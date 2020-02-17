@@ -36,6 +36,8 @@
   <script src="../auto/AutoComplete.js" type="text/javascript"></script>
   <link href="../auto/AutoComplete.css" rel="stylesheet">
   
+  <!-- 폰트적용 -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <style>
 .nav-counter {
@@ -58,12 +60,17 @@
  box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
 
 }
-
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+body {
+  font-family: Noto Sans KR;
+}
 </style>
 <body>
-
+  <div id="socketAlert" class="alert alert-success" role="alert" style="height:50px;display:none;"></div>
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important" >  <!-- 머리색 -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important; border-bottom:1px solid #dfe1e5;" >  <!-- 머리색 -->
     <div class="container" style="max-width:80% !important;">
       <a class="navbar-brand" href="/"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
@@ -73,15 +80,13 @@
 		
 	  <div class="autocomplete" style="width:300px;">
 	  	
-	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:200%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:100px;" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
+	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:200%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:100px; " id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
 	  
-	  <%----%>
 	  <div id="searchBarautocomplete-list" class="autocomplete-items" style="margin-left:33%;width:200%;">
 	  </div>
 	   
-	  
       </div>
-
+      
 	  <!--  &nbsp;&nbsp;&nbsp;-->
 	  <!--  <button class="btn btn-primary" id="searchBtn" onclick="find()">검색</button>-->
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -136,6 +141,7 @@
 	              <c:if test="${loginUser.mem_auth > 0}">
 	              <a class="dropdown-item" href="../mentoring/mentoringWriteForm.do">멘토링등록하기</a>
 	              </c:if>
+	              <%-- <a class="dropdown-item" href="../chat/free.do"></a>--%>
 	              <a class="dropdown-item" href="../login/logout.do">로그아웃</a>
 	            </div>
 	          </li>
@@ -158,7 +164,36 @@
 		          	<span id="cart_tot_count" class="nav-counter" style="display:none;"></span>
 		          </c:when>
 		        </c:choose>
-		        
+		    
+		    	&emsp;
+				<div class="dropdown">
+					<img id="msg_store" data-toggle="dropdown" src="../images/bellIcon.jpg" alt="" style="width:22px;height:22px;margin-top:9px;cursor:pointer;">
+					
+					 
+					<c:choose>
+						<c:when test="${msgAlarmCount ne 0}">
+							<span id="msg_tot_count" class="nav-counter">${msgAlarmCount}</span>
+						</c:when>
+						<c:when test="${msgAlarmCount eq 0}">
+							<span id="msg_tot_count" class="nav-counter" style="display:none;"></span>
+						</c:when>
+					</c:choose>
+					
+					
+					<div id="msg_store_box" class="dropdown-menu">
+					
+					<%-- 
+						<a class="dropdown-item" href="#">333번 글에 댓글이 달렸습니다.</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">32번 글에 질문이 달렸습니다.</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">222번 글에 후기가 달렸습니다.</a>
+						<div class="dropdown-divider"></div>
+					--%>
+						
+					</div>
+				</div>
+
 		       </c:if>
            <!-- 로그인안했을 시 나오게끔 -->
 	      <c:if test="${empty loginUser}">
@@ -168,9 +203,49 @@
           </c:if>
         </ul>
       </div>
+      
     </div>
   </nav>
-  
+<script>
+
+$(document).ready(function(){
+	$("#msg_store").on('click', function(){
+	var flag = $("#msg_store_box").hasClass('dropdown-menu show');//alert("flag: " + flag);
+		if(flag == false) {
+			$.ajax({
+				url: "../login/msgCheck.do",
+				type:"POST",
+				contentType: "application/json",
+				dataType:"json",
+				success: function(data){
+					console.clear();//console.log("data: " + JSON.stringify(data));
+					
+					if(data.length == 0) {
+						$("#msg_store_box").append("<div class='dropdown-item'>메세지가 없습니다.</div>");
+					}
+					$.each(data, function(idx, val) {
+						/*
+						console.log(idx + " " + val.ms_caller);
+						console.log(idx + " " + val.ms_receiver);
+						console.log(idx + " " + val.ms_content);
+						console.log(idx + " " + val.ms_rdate);
+						console.log(idx + " " + val.ms_check);
+						*/
+						$("#msg_store_box").append(val.ms_content);
+					});
+						//$("#msg_tot_count").css("display", "none");
+				},error: function(err) {
+					console.clear();
+					console.log("실패");
+				}
+			});
+		}else if(flag == true) {
+			$("#msg_store_box *").remove();
+		}
+	});
+});
+
+</script>
 <script type="text/javascript">
 String.prototype.replaceAll = function(org, dest) {
     return this.split(org).join(dest);
@@ -189,12 +264,21 @@ function find(e) {
 			var w =  word.indexOf("#");
 			var w2 = word.indexOf("^");
 			var w3 = word.indexOf("\\");
-			if(w2 != -1) {
-				word = word.replaceAll("^", " ");
-			}
-			if(w3 != -1) {
-				word = word.replaceAll("\\", " ");
-			}
+	        var w4 = word.indexOf("[");
+	        var w5 = word.indexOf("]");
+
+	         if(w2 != -1) {
+	            word = word.replaceAll("^", " ");
+	         }
+	         if(w3 != -1) {
+	            word = word.replaceAll("\\", " ");
+	         }
+	         
+	         if(w4 != -1 || w5 != -1) {
+	            alert("특수문자 [] 를 제거해주세요.");
+	            return false;
+	         }
+
 				if(w == -1) {//일반검색시//alert("#포함안됨" + word)
 					location.href="../mentoring/searchList.do?word="+word+"&cp=1";
 				}
@@ -224,27 +308,27 @@ function find(e) {
 					success: function(data) {
 						var l = arr.length;
 						arr.splice(0, l);
-
 						$("#searchBarautocomplete-list *").remove();
-						
-						//closeAllLists();
 							for(m of data.list) {
-								//arr.push(m);
 								var b = document.createElement("DIV");
+								b.setAttribute("class", "click-item");
 								//b.innerHTML = "<strong style='color:red'>"+m.substr(0,$("#searchBar").val().length)+"</strong>";
 								//b.innerHTML += m.substr($("#searchBar").val().length);
 								//b.innerHTML += "<input type='hidden' id = 'bong' value='" + m + "'>";
 								b.innerHTML = m;
 								$("#searchBarautocomplete-list").append(b);
 							}
+				              $('.click-item').click(function(e) {
+				                  $("#searchBar").val(e.target.innerText);
+				                  $("#searchBarautocomplete-list *").remove();
+				                  $("#searchBar").focus();
+				              });     
 					},
 					error: function(err) {
 						console.log("err: "+err);
 					}
 				});
 			}
-			//location.href="../mentoring/searchList.do?word="+word+"&cp=1";
-		
 	}else {
 		//alert("검색어를 입력해주세요.");
 		//$("#searchBar").focus();
@@ -255,37 +339,33 @@ function find(e) {
 
 </script>
 <script>
-
 function addActive(x) {
-	//alert("x: " + x);
-    /*a function to classify an item as "active":*/
     if (!x) return false;
-    /*start by removing the "active" class on all items:*/
     removeActive(x);
     if (currentFocus >= x.length) currentFocus = 0;
     if (currentFocus < 0) currentFocus = (x.length - 1);
-    /*add class "autocomplete-active":*/
     x[currentFocus].classList.add("autocomplete-active");
   }
 function removeActive(x) {
-    /*a function to remove the "active" class from all autocomplete items:*/
     for (var i = 0; i < x.length; i++) {
       x[i].classList.remove("autocomplete-active");
     }
   }
-function closeAllLists(elmnt) {
-    /*close all autocomplete lists in the document,
-    except the one passed as an argument:*/
-    var x = document.getElementsByClassName("autocomplete-items");
-    
-    for (var i = 0; i < x.length; i++) {
-      if (elmnt != x[i] && elmnt != document.getElementById("searchBar")) {
-      x[i].parentNode.removeChild(x[i]);
-    }
-  }
-    
+  
+function msCheck(obj){
+	var ms_seq = $(obj).attr("ms_seq");
+	
+	$.ajax({
+		url:"../login/msgCheckUpdate.do?ms_seq="+ms_seq,
+		success:function(data){
+			console.clear();
+			console.clear("메세지상태변경 & 메세지세션변경 성공");
+		},error:function(err){
+			console.clear();
+			console.clear("메세지상태변경 & 메세지세션변경 실패");
+		}
+	});
+	
 }
-	//var str = arr;
-	//autocomplete(document.getElementById("searchBar"), str);
+  
 </script>
-

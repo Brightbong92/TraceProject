@@ -102,6 +102,12 @@
 		<context:component-scan base-package="tp.refund.mapper" />
 		<mybatis-spring:scan base-package="tp.refund.mapper" />
 		
+		
+	<!-- socket관련 -->
+		<context:component-scan base-package="tp.socket.service"/>
+		<context:component-scan base-package="tp.socket.mapper" />
+		<mybatis-spring:scan base-package="tp.socket.mapper" />
+		
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>

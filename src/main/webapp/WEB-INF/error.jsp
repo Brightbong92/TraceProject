@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>에러</title>
+<title>404에러</title>
 </head>
 <body>
-	에러
+	404에러
 </body>
 </html>

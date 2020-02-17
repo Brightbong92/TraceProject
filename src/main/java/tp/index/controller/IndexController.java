@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import lombok.extern.log4j.Log4j;
 import tp.domain.Mentoring;
 import tp.index.service.IndexService;
+import tp.vo.BestMentorListResult;
 import tp.vo.IndexListResult;
 import tp.vo.MemberListResult;
 
@@ -24,6 +25,11 @@ public class IndexController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
 		IndexListResult indexListResult = service.indexListResult();
-		return new ModelAndView("index/index","indexListResult",indexListResult);
+		BestMentorListResult bestMentorListResult = service.getBestMentorListResult();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index/index");
+		mv.addObject("indexListResult",indexListResult);
+		mv.addObject("bestMentorListResult", bestMentorListResult);
+		return mv;
 	}
 }

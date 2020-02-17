@@ -45,6 +45,7 @@ a {
     	<b>총개수: </b><span id="totCartCount" style="font-size:30pt;">${cartListResult.cartInfo.size()}</span>개
 		<hr>
     	<b>전체선택</b><input type="checkbox" name="chkAll" style="width:20px;height:20px;float:left;"/>
+    	<button type="button" id="delAllBtn" name="delAll" class="btn btn-primary" style="float:right;display:none;">전체삭제</button>
     		<form name="f" method="post" action="/payment/cartListPaymentList.do">			
     		<c:forEach items="${cartListResult.cartInfo}" var="list">
 					<hr>
@@ -59,7 +60,7 @@ a {
 							--%>
 							
 						</div>
-						<div >
+						<div>
 							<input type="hidden" name=mtrdi_seq value="${list.mtrdi_seq}">
 							<span style="margin-left:50px;">(${list.mtrdi_stime}~${list.mtrdi_etime})</span>
 							<span><button type="button" class="btn btn-primary" style="float:right;" onclick="location.href='../cart/deleteCart.do?mem_email=${loginUser.mem_email}&ct_seq=${list.ct_seq}'">삭제</button></span>  
@@ -142,10 +143,12 @@ $(document).ready(function(){
 					}
 				});
 			$("#selectCartCount").text(cartList.length);
+			$("[name=delAll]").css("display", "");//전체삭제버튼 보여지기
 		}else {//전체해제
 			var l = cartList.length;
 			cartList.splice(0, l);
 			$("#selectCartCount").text(cartList.length);
+			$("[name=delAll]").css("display", "none");//전체삭제버튼 지우기
 		}	
 	}
 	function totalPriceCal(obj){
@@ -180,6 +183,9 @@ $(document).ready(function(){
 					cartList.push(ct_seq);
 					allObj.prop("checked", true);
 					$("#selectCartCount").text(cartList.length);
+					
+					$("[name=delAll]").css("display", "");//전체삭제버튼 보여지기
+					
 				}else {//alert("각각 체크 될 시");
 					cartList.push(ct_seq);
 					allObj.prop("checked", false);
@@ -192,9 +198,16 @@ $(document).ready(function(){
 				if(index > -1) {
 					cartList.splice(index, 1);
 					$("#selectCartCount").text(cartList.length);
+					$("[name=delAll]").css("display", "none");//전체삭제버튼 가리기
 				}
 			}	
 	}
+	
+	
+	$("#delAllBtn").on('click', function(){
+		location.href="deleteCartAll.do?mem_email=${loginUser.mem_email}";
+	});
+	
 	
 });
 

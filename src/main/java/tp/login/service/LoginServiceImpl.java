@@ -1,5 +1,7 @@
 package tp.login.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import tp.domain.Email_Auth;
 import tp.domain.Member;
+import tp.domain.Message_Store;
 import tp.login.mapper.LoginMapper;
 
 @Service
@@ -64,6 +67,20 @@ public class LoginServiceImpl implements LoginService{
 	public long getMemberCartCount(String mem_email) {
 		long cartCount = loginMapper.selectCartCount(mem_email);
 		return cartCount;
+	}
+	@Override
+	public long getMemberMessageAlarmCount(String mem_email) {
+		long msgAlarmCount = loginMapper.selectMessageAlarmCount(mem_email);
+		return msgAlarmCount;
+	}
+	@Override
+	public List<Message_Store> getMemberMessageStore(String mem_email) {
+		List<Message_Store> msg_store = loginMapper.selectMessageStore(mem_email);
+		return msg_store;
+	}
+	@Override
+	public void updateMessageStoreMessageCheck(long ms_seq) {
+		loginMapper.updateMessageStoreMsgCheck(ms_seq);
 	}
 	
 }

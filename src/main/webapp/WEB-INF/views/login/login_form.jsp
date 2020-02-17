@@ -98,7 +98,8 @@
 	var naverLogin = new naver.LoginWithNaverId(
 		{
 			clientId: "I04m6PHk8EtEQNKVz2xz",
-			callbackUrl: "http://127.0.0.1:8080/login/naverLoginCallback.do",
+			//callbackUrl: "http://127.0.0.1:8080/login/naverLoginCallback.do",
+			callbackUrl: "http://192.168.0.129:8080/login/naverLoginCallback.do",
 			isPopup: false, /* 팝업을 통한 연동처리 여부 */
 			loginButton: {color: "white", type: 3, height: 70} /* 로그인 버튼의 타입을 지정 */
 		}

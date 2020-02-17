@@ -283,6 +283,10 @@ public class AdminController {
 		int dis_reson5 = chartservice.dis_reson5();
 		int dis_reson6 = chartservice.dis_reson6();
 		
+		int reviewList = chartservice.reviewList();
+		
+		model.addAttribute("reviewList",reviewList);
+		
 		model.addAttribute("dis_reson1",dis_reson1);
 		model.addAttribute("dis_reson2",dis_reson2);
 		model.addAttribute("dis_reson3",dis_reson3);

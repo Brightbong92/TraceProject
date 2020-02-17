@@ -25,7 +25,7 @@
 		}
 		 #div1_2{
 		 	position: relative;
-            left:750px
+            left:250%
         }
         #div1_2_btn{
             margin-left: 5px;
@@ -56,12 +56,12 @@
 	<div id="div1" class="row">
 		<div class="form-inline">
 			<div id="div1_1">
-				<button type="button" onclick="location.href='../notice/list.do?cp=1'"  class="btn btn-link" >공지사항</button>
+				<button type="button"onclick="location.href='../notice/list.do?cp=1'"   class="btn btn-link" >공지사항</button>
 				<button type="button" onclick="location.href='../notice/qna.do'"  class="btn btn-link" style="color:gray;">자주 묻는 질문</button>
 			</div>
 
 			<div id="div1_2"  >
-				<input type="text" id="search" class="form-control" onkeydown="search(this)" placeholder="Search" style="width:160pt;" />
+				<input type="text" id="search" class="form-control" onkeydown="search(this)" placeholder="Search" style="width:160pt; " />
 			</div>
 		</div>
 	</div>
@@ -78,7 +78,7 @@
 				</tr>
 				<c:forEach items="${listResult.list}" var= "notice">
 				<tr style="cursor:pointer;" onclick="location.href='content.do?noti_seq=${notice.noti_seq}'">
-					<td><button class="btn btn-primary" style="width:80px;"><font size=2>공지사항</font></button></td>
+					<td><p class="btn btn-primary" style="width:100px;"><font size=2>공지사항</font></p></td>
 					<td><font size=3>${notice.noti_subject}</font></td>
 					<td><font size=3>관리자</font></td>
 					<td><font size=3>${notice.noti_readcnt}</font></td>

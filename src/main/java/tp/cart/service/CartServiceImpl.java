@@ -43,4 +43,9 @@ public class CartServiceImpl implements CartSerivce {
 		long cartCount = cartMapper.selectCartCount(mem_email);
 		return cartCount;
 	}
+
+	@Override
+	public void deleteCartAllS(String mem_email) {
+		cartMapper.deleteCartAll(mem_email);
+	}
 }

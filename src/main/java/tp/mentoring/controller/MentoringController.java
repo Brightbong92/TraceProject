@@ -32,8 +32,10 @@ import com.google.gson.JsonParser;
 
 import jdk.nashorn.internal.parser.JSONParser;
 import lombok.extern.log4j.Log4j;
+import tp.domain.Mentor_List;
 import tp.domain.Mentoring;
 import tp.mentoring.service.MentoringService;
+import tp.vo.MentorInfoVo;
 import tp.vo.MentoringListResult;
 import tp.vo.MentoringViewPageVo;
 import tp.vo.SearchListResult;
@@ -67,7 +69,7 @@ public class MentoringController {
 		session.setAttribute("cp", cp);
 		
 		//(2) ps 
-		int ps = 3;
+		int ps = 4;
 		session.setAttribute("ps", ps);
 				
 
@@ -183,9 +185,12 @@ public class MentoringController {
 	@RequestMapping(value="mentoringDetail.do", method=RequestMethod.GET)
 	public ModelAndView mentoringDetail(long mtr_seq) {
 		MentoringViewPageVo listResult = service.selectMentoringDetailView(mtr_seq);
+		MentorInfoVo mentorInfo = service.getMentorInfo(mtr_seq);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mentoring/mentoring_view_page");
 		mv.addObject("listResult", listResult);
+		mv.addObject("mentorInfo", mentorInfo);
 		//log.info("#listResult: " + listResult);
 		return mv;	
 	}

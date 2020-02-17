@@ -1,5 +1,8 @@
 package tp.adminCharts.mapper;
 
+import java.util.List;
+
+
 public interface AdminChartsMapper {
 	int chartCount1();//회원 증가수
 	int chartCount2();
@@ -44,5 +47,7 @@ public interface AdminChartsMapper {
 	int dis_reson4();
 	int dis_reson5();
 	int dis_reson6();
+	
+	int reviewList();
 } 
 

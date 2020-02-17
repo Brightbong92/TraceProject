@@ -100,7 +100,7 @@
 <c:forEach items="${memberInfoResult.memberInfo}" var="member">
 	<c:if test="${member.mem_state ne 2}">  <!-- 비활성화 상태가 아니고 -->
 		<c:if test="${member.mem_auth eq 0}"> <!-- 일반 회원이면 -->
-			<a href="../admin/disabled.do?mem_email=${member.mem_email}" onClick="opener.location.reload();" class="btn btn-info">비활성화 하기</a>
+			<a href="../admin/disabled.do?mem_email=${member.mem_email}" onClick="window.close();opener.location.reload();" class="btn btn-info">비활성화 하기</a>
 		</c:if>
 		<c:if test="${member.mem_auth eq 1}"> <!-- 멘토 회원이면 -->
 			<a href="../admin/disabled.do?mem_email=${member.mem_email}" onClick="window.close(); opener.location.reload();" class="btn btn-info">비활성화 하기</a>

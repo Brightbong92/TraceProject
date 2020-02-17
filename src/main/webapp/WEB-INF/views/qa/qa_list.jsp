@@ -30,10 +30,9 @@
     </ol>
 --%>
     <!-- Blog Post -->
-    
     <c:if test="${!empty listResult.mtr_qa_list}">
     
-    <c:forEach items="${listResult.mtr_qa_list}" var="qa_list">
+    <c:forEach items="${listResult.mtr_qa_list}" var="qa_list" varStatus="status">
     
     
     
@@ -70,7 +69,7 @@
         <div class="card my-4">
           <h5 class="card-header">답변폼</h5>
           <div class="card-body">
-          <form name="f" action="../qa/qaReplyRegister.do?mtrqa_seq=${qa_list.mtrqa_seq}" method="post">
+          <form id="f${status.count}" name="f${status.count}" action="../qa/qaReplyRegister.do?mtrqa_seq=${qa_list.mtrqa_seq}" method="post">
               <div class="form-group">
                 <textarea name="mtrqarp_content" class="form-control" rows="3"></textarea>
               </div>
@@ -78,7 +77,7 @@
               <!--  
               <button type="button" class="btn btn-primary" value="${qa_list.mtrqa_seq}" onclick="qaReplyRegi(this)">답변등록</button>
               -->
-              	<button class="btn btn-primary">답변등록</button>
+              	<button type="button" form_name="f${status.count}" mem_email="${qa_list.mem_email}" onclick='qaReplyRegi(this);' class="btn btn-primary">답변등록</button>
           </form>
           </div>
         </div>
@@ -123,7 +122,16 @@
 	function goQAWriteForm(){
 		location.href="../qa/qaWriteForm.do?mtr_seq=${listResult.mtr_seq}";
 	}
-
+		
+function qaReplyRegi(obj) {
+		var mem_email = $(obj).attr("mem_email");
+		//alert("mem_email: " + mem_email);
+		var form_name = $(obj).attr("form_name");
+		
+		if(socket.readyState !== 1) return;
+			socket.send("qarp,${listResult.mtr_seq},"+mem_email);
+			document.getElementById(form_name).submit();
+	}
 </script>
   
 <%@ include file="../footer.jsp" %>

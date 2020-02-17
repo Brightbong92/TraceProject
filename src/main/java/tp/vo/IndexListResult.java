@@ -18,5 +18,5 @@ public class IndexListResult {
 	private List<Mentoring> topMentoring;
 	private List<Mentoring> latestArticle;
 	private List<ReviewFilesList> reviewFiles;
-	
+	private List<Mentoring> cheapArticle;
 }

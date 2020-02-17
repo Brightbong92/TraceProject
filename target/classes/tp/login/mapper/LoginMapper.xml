@@ -26,4 +26,23 @@
    	]]>
    </select>
    
+   <!-- 유저 메세지스토어 읽지않은 알람 갯수-->
+   <select id="selectMessageAlarmCount" parameterType="String" resultType="long">
+   <![CDATA[
+   		SELECT COUNT(*) FROM MESSAGE_STORE WHERE MS_RECEIVER = #{mem_email} and MS_CHECK = 0
+   ]]>
+   </select>
+   <!-- 유저 메세지스토어 / 알람클릭 시  Ajax사용할예정-->
+   <select id="selectMessageStore" parameterType="String" resultType="Message_Store">
+   <![CDATA[
+   		SELECT * FROM MESSAGE_STORE WHERE MS_RECEIVER = #{mem_email} and MS_CHECK = 0
+   ]]>
+   </select>
+   <!-- 유저 메세지 읽을 시 읽음으로 처리 -->
+   <update id="updateMessageStoreMsgCheck" parameterType="long">
+   <![CDATA[
+   		UPDATE MESSAGE_STORE SET MS_CHECK = 1 WHERE MS_SEQ = #{ms_seq}
+   ]]>
+   </update>
+   
 </mapper>
