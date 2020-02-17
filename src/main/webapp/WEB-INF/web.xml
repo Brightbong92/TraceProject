@@ -48,10 +48,10 @@
 		<servlet-name>appServlet</servlet-name>
 	</filter-mapping>
 
-
+<!--  
 	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/error.jsp</location>
 	</error-page>
-
+-->
 </web-app>

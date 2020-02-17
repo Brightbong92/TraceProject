@@ -1,12 +1,8 @@
 package tp.socket.service;
 
-import org.springframework.stereotype.Service;
 
 import tp.domain.Mentoring;
-import tp.domain.Mentoring_QA;
-import tp.domain.Mentoring_QA_Reply;
 import tp.domain.Message_Store;
-import tp.vo.MentoringQAVo;
 
 
 public interface SocketService {
