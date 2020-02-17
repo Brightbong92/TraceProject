@@ -72,6 +72,14 @@
                 <td><input type="file" class="" id="mtr_profile_file" name="mtr_profile_file"/></td>        
             </tr>
             <tr>
+            	<th>이미지</th>
+            	<td>
+            	<div id="img_wrap">
+            		<img id="sum_nailImg" />
+            	</div> <!-- 썸네일미리보기 -->
+     			</td>
+            </tr>
+            <tr>
                 <th>내용</th>
                 <td><textarea id="summernote" class="summernote" name="mtr_content"></textarea></td>
             </tr>
@@ -572,10 +580,34 @@ $(document).ready(function(){
 
 </div>
 <script>
+
+var sel_file;
 $(document).ready(function(){
 	document.getElementById("load").style.display = "none";
+	
+	
+	$("#mtr_profile_file").on('change', handleImgFileSelect);
+	
+	function handleImgFileSelect(e) {
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		filesArr.forEach(function(f){
+			if(!f.type.match("image.*")) {
+				alert("확장자는 이미지만 가능!!");
+				return;
+			}
+			sel_file = f;
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#sum_nailImg").css("width","600px");
+				$("#sum_nailImg").css("height","500px");
+				$("#sum_nailImg").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(f);
+		});
+	}
+	
 });
-
 </script>
 
   <footer class="py-5 bg-dark">
