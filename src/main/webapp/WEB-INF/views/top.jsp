@@ -224,13 +224,6 @@ $(document).ready(function(){
 						$("#msg_store_box").append("<div class='dropdown-item'>메세지가 없습니다.</div>");
 					}
 					$.each(data, function(idx, val) {
-						/*
-						console.log(idx + " " + val.ms_caller);
-						console.log(idx + " " + val.ms_receiver);
-						console.log(idx + " " + val.ms_content);
-						console.log(idx + " " + val.ms_rdate);
-						console.log(idx + " " + val.ms_check);
-						*/
 						$("#msg_store_box").append(val.ms_content);
 					});
 						//$("#msg_tot_count").css("display", "none");

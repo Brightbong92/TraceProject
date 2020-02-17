@@ -24,8 +24,6 @@ public interface SocketMapper {
 	
 	@Insert(value={"INSERT INTO MESSAGE_STORE VALUES (#{ms_seq}, #{ms_caller}, #{ms_receiver}, #{ms_content}, SYSDATE, 0)"})
 	void insertMessageStore(Message_Store msg_store);
-	
-	
 	String selectMemberNick(String mem_email);
 	
 	long selectMessageAlarmCount(String mem_email);

@@ -39,12 +39,10 @@ $(document).ready(function(){
 	document.getElementById("load").style.display = "none";
 	
 	function connectWS() {
-		//var ws = new WebSocket("ws://127.0.0.1:8080/qaEcho");
-		
-		//var ws = new WebSocket("ws://192.168.0.129:8080/qaEcho");
-		
+
 		//var ws = new WebSocket("ws://127.0.0.1:8080/Echo");
 		var ws = new WebSocket("ws://192.168.0.129:8080/Echo");
+
 		
 		socket = ws;
 		ws.onopen = function () {
@@ -74,12 +72,18 @@ $(document).ready(function(){
 		    		console.clear(); console.log("에러");
 		    	}
 		    });
+
+		    
+		    //$("#msgContents").append(event.data);
+
 		    let $socketAlert = $("div#socketAlert");
 		    $socketAlert.html(event.data);
 		    $socketAlert.css('display', 'block');
 		    setTimeout(function (){
 		    	$socketAlert.css('display', 'none');
-		    }, 3000);		    
+
+		    }, 3000);
+
 		};
 		ws.onclose = function (event) { 
 			console.log('Info: connection closed.');
@@ -90,6 +94,7 @@ $(document).ready(function(){
 });
 
 </script>
+
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">

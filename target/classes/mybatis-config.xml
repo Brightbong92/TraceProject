@@ -30,7 +30,9 @@
 	   <typeAlias alias="Refund_Info" type="tp.domain.Refund_Info"/>
 	   <typeAlias alias="BestMentorVo" type="tp.vo.BestMentorVo"/>
 	   <typeAlias alias="MentorInfoVo" type="tp.vo.MentorInfoVo"/>
+
 	   <typeAlias alias="Message_Store" type="tp.domain.Message_Store"/>
+
 
 	   <!-- 성지 -->
 	   <typeAlias alias="MemberPagingVo" type="tp.vo.MemberPagingVo"/>

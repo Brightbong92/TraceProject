@@ -29,6 +29,4 @@
 		SELECT COUNT(*) FROM MESSAGE_STORE WHERE MS_RECEIVER = #{mem_email}
 		]]>
 	</select>
-	
-	
 </mapper>

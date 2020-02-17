@@ -59,7 +59,4 @@ public class SocketServiceImpl implements SocketService {
 		return msgAlarmCount;
 	}
 
-
-	
-
 }

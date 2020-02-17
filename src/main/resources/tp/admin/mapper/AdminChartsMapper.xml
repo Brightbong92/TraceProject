@@ -149,7 +149,7 @@
    </select>
    <select id="reviewList" resultType="int">
 		<![CDATA[
-			select count(*) from mentoring_review
+		select count(*) from mentoring_review
 		  ]]>
    </select>
 </mapper>
