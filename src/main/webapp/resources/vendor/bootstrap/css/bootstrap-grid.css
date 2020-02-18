@@ -15,14 +15,8 @@ html {
   box-sizing: inherit;
 }
 
-.container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
 
+/*
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
@@ -40,7 +34,7 @@ html {
     max-width: 960px;
   }
 }
-
+*/
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
@@ -3715,5 +3709,12 @@ html {
   .mx-xl-auto {
     margin-left: auto !important;
   }
+}
+.container {
+  width: 100% !important;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 /*# sourceMappingURL=bootstrap-grid.css.map */

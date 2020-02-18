@@ -329,7 +329,7 @@
 				<span class="badge badge-primary" style="font-size:15px;">멘토 소개 및 경력  </span>&nbsp;&nbsp; <span style="font-size:15px;">${bestMentorListResult.bestMentorVo.ml_yourself} </span><br><br/>
 		        <span class="badge badge-primary" style="font-size:15px;"> 담당 멘토링  </span>
 		        <c:forEach items="${bestMentorListResult.bestMentorMentoringList}" var="list"> 
-		        	<span style="font-size:15px;">${list.mtr_subject} &nbsp; / </span> 
+		        	<a href="mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><span style="font-size:15px;">${list.mtr_subject} </span> </a>/
 		        </c:forEach>
 	        </div>
         </div>

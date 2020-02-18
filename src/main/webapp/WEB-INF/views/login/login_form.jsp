@@ -55,20 +55,28 @@
                                 </div>
                                	
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a class="btn btn-lg btn-success btn-block" id="btnLogin">Login</a><!-- 일반 -->
-                                <br/>
+                                <a class="btn btn-info" style="width:100%; " id="btnLogin">Login</a><!-- 일반 -->
+                                <br/><br/><br/>
+                                	<p class="panel-title" style="color:gray;" >간편 로그인</p> 
+                                	<br/>
                                 <a id="custom-login-btn" href="javascript:loginWithKakao()"><!-- 카카오 -->
-                                <img src="../resources/images/kakao_button.png" width="327" height="70"/>
+                                <img src="../resources/images/kakao.png" width="100%" height="70"/>
 								</a>
 								<br/>
-								<br/>
-								<div id="naverIdLogin"></div>
+								
+								<div id="naverIdLogin" align="center"></div>
                             </fieldset>
                             <br/>
+                            <!--  
                             <div align='center'>
-                            <a class="btn btn-primary" href="../">돌아가기</a>
-                            <a class="btn btn-primary" href="../join/join.do">회원가입</a>
+                            <a class="btn btn-info" href="../">돌아가기</a>
                             </div>
+                            -->
+                            <br/><br/>
+                            <p align="center">회원이 아니시라면 </p>
+                            <p style="text-align: center;">
+                            <a  href="../join/join.do">회원가입</a>
+                            </p>
                         </form>
 						
                     </div>
@@ -101,7 +109,7 @@
 			//callbackUrl: "http://127.0.0.1:8080/login/naverLoginCallback.do",
 			callbackUrl: "http://192.168.0.129:8080/login/naverLoginCallback.do",
 			isPopup: false, /* 팝업을 통한 연동처리 여부 */
-			loginButton: {color: "white", type: 3, height: 70} /* 로그인 버튼의 타입을 지정 */
+			loginButton: {color: "green", type: 3, height: 65} /* 로그인 버튼의 타입을 지정 */
 		}
 	);
 	

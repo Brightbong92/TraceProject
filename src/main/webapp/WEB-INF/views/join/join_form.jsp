@@ -2,31 +2,27 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <jsp:include page="../top.jsp"/>
 
+	<link href="../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- font awesome -->
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <!-- Custom style -->
+        <link rel="stylesheet" href="../plugin/bootstrap/css/style.css" media="screen" title="no title" charset="utf-8">
+        
 </head>
 
 <body>
   <!-- Page Content -->
-  <div class="container">
+  <div class="container" style="margin-left:30%">
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">회원가입
-      <small>Subheading</small>
-    </h1>
-
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="/">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Contact</li>
-    </ol>
-
-    <!-- 회원가입 Form -->
+	<br/><br/>
+    <!-- 회원가입 Form --> 
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
       <div class="col-lg-8 mb-4">
         <h3>회원가입</h3>
+        <br/>
         <form name="join_form" id="join_form" method="POST" action="../join/memberJoin.do"novalidate>
-        
+         
           <div class="control-group form-group">
             <div class="controls">
               <label>이메일:</label>
@@ -65,6 +61,16 @@
               <div id="msgPwdCheck"></div>
             </div>
           </div>
+          
+          <div class="control-group form-group">
+            <div class="controls">
+           <label>성별:</label>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          	<input type="radio" name="mem_gender" value="1" /> 남자
+          	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<input type="radio" name="mem_gender" value="2" /> 여자
+			</div>
+			</div>
                     
           <div class="control-group form-group">
             <div class="controls">
@@ -86,21 +92,20 @@
           	<input type="hidden" id="mem_age" name="mem_age" value="">
           </div>
           
-           <div class="control-group form-group">
-            <div class="controls">
-           <label>성별:</label>
-          	<input type="radio" name="mem_gender" value="1" /> 남자
-  			<input type="radio" name="mem_gender" value="2" /> 여자
-			</div>
-			</div>
-
+           
           <!--  <div id="success"></div>-->
           <!-- For success/fail messages -->
-          <input type="button" class="btn btn-primary" id="send_btn_join" value="가입" onclick="send()"/>
-          <input type="button" class="btn btn-primary" id="cancel_btn_join" value="취소" onclick="cancel()"/>
+          <br/>
+          <div align="center">
+          <button type="button" class="btn btn-info" id="send_btn_join" onclick="send()">회원가입<i class="fa fa-check spaceLeft"></i></button> 
+          <button type="button" class="btn btn-warning" id="cancel_btn_join" value="취소" onclick="cancel()">취소<i class="fa fa-times spaceLeft"></i></button>
+          </div>
         </form>
+        <br/><br/>
       </div>
+      
 
+	
     </div>
     <!-- /.row -->
   </div>

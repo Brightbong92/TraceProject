@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <jsp:include page="../top.jsp"/>
+
+
  
 <script>
 	if(${empty sessionScope.loginUser}){
@@ -69,8 +71,8 @@
  
 <script>
 	$(document).ready(function(){
-		document.getElementById("sms").style.display = "none";
-		document.getElementById("check").style.display = "none";
+		document.getElementById("sms").disabled = "true";
+		document.getElementById("check").disabled = "true";
 	});
 </script>
 <script> 
@@ -85,8 +87,8 @@
 			success: function(result) { 
 				if (result == "true") { 
 					console.log(result); 
-					document.getElementById("sms").style.display = "inline-block";
-					document.getElementById("check").style.display = "inline-block";
+					document.getElementById("sms").disabled = "false";
+					document.getElementById("check").disabled = "false";
 					alert("인증번호 전송 성공");
 				} else { 
 					alert("인증번호 전송 실패"); 
@@ -123,60 +125,71 @@
 
 
   <!-- Page Content -->
-  <div class="container">
+  <div class="container" style="margin-left:30%">
+  <br/><br/>
+		<h3>멘토신청</h3>
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">멘토 신청 :
-      <small>당신의 재능 마음껏 펼치세요</small>
-    </h1>
-
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="/">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Mentor</li>
-    </ol>
-
+	<br/> 
 	<form id="f" name="applyForm" action="../mentor/apply.do" method="post" enctype="multipart/form-data">
 		<input type='hidden' id="email" name='mem_email' value="${loginUser.mem_email}" />
-		<table class="table table-boardered">
-			<tr>
-                <th style="width:100px;">이름</th>
-                <td><input type="text" id="name" class="form-control" name="ml_name" style="width:500px;" placeholder="이름 입력"></td>        
-            </tr>
-            <tr>
-                <th>전화번호</th>
-                <td><input type="text" class="form-control" name="ml_phone" id="ml_phone" style="width:500px; float:left" placeholder="'-'를 제외한 휴대폰번호를 입력해주세요.">&nbsp;
-                <button type="button" class="btn btn-light" id="send" onclick="sendSms();">인증번호 전송</button> <br/><br/>    
-                <input type="text"  class="form-control" name="sms" id="sms" style="width:500px; float:left" placeholder="발송된 인증번호 입력"> &nbsp;
-                <button type="button" class="btn btn-light" id="check" onclick="phoneCheck();">인증하기</button>
-                <input type="hidden" id="pAuth" value="fail"></td>
-            </tr>
-            <tr>
-                <th>자기소개</th>
-                <td><textarea class="form-control" id="yourself" rows="3" name="ml_yourself" style="width:700px; height:250px;" placeholder="간단한 소개와 약력을 입력해 주세요."></textarea></td>
-            </tr>
-            <tr>
-                <th>카테고리 </th>
-                <td> <label style="font-size:15px;"><input type="radio" name="mtrcg_no" value="0">운동</label>&emsp;&emsp;&emsp;&emsp;
-                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="1">음악</label>&emsp;&emsp;&emsp;&emsp;
-                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="2">공예</label>&emsp;&emsp;&emsp;&emsp;
-                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="3">요리</label>&emsp;&emsp;&emsp;&emsp;
-                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="4">사진 & 영상</label>&emsp;&emsp;&emsp;&emsp;
-                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="5">뷰티</label>&emsp;&emsp;&emsp;&emsp;
-                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="6">음료</label> </td>
-            </tr>
-            <tr>
-            	<th>첨부자료</th>
-            	<td><input type="file" class="input_st iw100" name="ml_ofname" id="file"/><br/><br/>
-            	</td>
-            </tr>
-		</table>
-		<div class="board_btn_wrap ac">
-		    <input type="button" value="신청하기" id="apply_btn"/>
-		    <input type="button" value="취소하기"  onclick='history.back(-1); return false;' />
+		
+           <div class="control-group form-group">
+            <div class="controls">
+              <label>이름:</label>
+               <input type="text" id="name" class="form-control" name="ml_name" style="width:700px;" placeholder="이름 입력">     
+            	</div>
+          </div>
+            
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>전화번호:</label><br>
+                <input type="text" class="form-control" name="ml_phone" id="ml_phone" style="width:580px; float:left" placeholder="'-'를 제외한 휴대폰번호를 입력해주세요.">&nbsp;
+                <button type="button" class="btn btn-info" id="send" onclick="sendSms();">인증번호 전송</button> <br/><br/>    
+                <input type="text"  class="form-control" name="sms" id="sms" style="width:580px; float:left" placeholder="발송된 인증번호 입력"> &nbsp;
+                <button type="button" class="btn btn-info" id="check" onclick="phoneCheck();">인증하기</button>
+                <input type="hidden" id="pAuth" value="fail">
+            	</div>
+          </div>
+          
+            
+                <div class="control-group form-group">
+            <div class="controls">
+              <label>자기소개:</label>
+                <textarea class="form-control" id="yourself" rows="3" name="ml_yourself" style="width:700px; height:250px;" placeholder="간단한 자기소개와 약력을 입력해 주세요."></textarea>
+            	</div>
+            </div>
+            
+            <div class="control-group form-group">
+            <div class="controls">
+           <label>카테고리:</label>
+           		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <label style="font-size:15px;"><input type="radio" name="mtrcg_no" value="0">운동</label>&emsp;&emsp;&emsp;
+                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="1">음악</label>&emsp;&emsp;&emsp;
+                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="2">공예</label>&emsp;&emsp;&emsp;
+                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="3">요리</label>&emsp;&emsp;&emsp;
+                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="4">사진 & 영상</label>&emsp;&emsp;&emsp;
+                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="5">뷰티</label>&emsp;&emsp;&emsp;
+                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no"  value="6">음료</label> 
+            	</div>
+            </div>
+            
+            
+            <div class="control-group form-group">
+            <div class="controls">
+           		<label style="margin-top:20px;">사업자등록증 or 자격증 : </label>
+            		<input type="file" style="display: inline;" class="input_st iw100" name="ml_ofname" id="file"/><br/><br/>
+            	
+            	</div> 
+            </div>
+
+		<div style="margin-left:25%;"> 
+		    <button type="button" class="btn btn-info"  id="apply_btn">멘토 신청하기<i class="fa fa-check spaceLeft"></i></button> 
+		    <button type="reset" class="btn btn-warning" >취소<i class="fa fa-times spaceLeft"></i></button>
 		</div>
 	</form>
+		
+        
+	
 	
   </div>
   <!-- /.container -->

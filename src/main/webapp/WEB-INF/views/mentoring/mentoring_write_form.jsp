@@ -19,7 +19,7 @@
 <!-- 해시태그 -->
 <style>
     .tag-item:hover {
-        background-color: #262626;
+        background-color: #3fb1fc;
         color: #fff;
     }
     .del-btn {
@@ -30,102 +30,115 @@
     }
     
     #list_table th{
-    	border:1px solid purple;
     	background-color:#F2F2F2;
     	font-weight: bold;
     }
     #list_table td{
-    	border:1px solid purple;
     	font-weight: bold;
     	
     }
-    
+    table.table {
+    border-collapse: collapse;
+    text-align: left;
+
+	}
+	table.table thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #000;
+    border-bottom: 3px solid #036;
+}
 </style>
   <!-- Page Content -->
   <div class="container">
-
-<%-- 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">멘토링 글쓰기
-      <small>당신의 능력을 발휘해보세요</small>
-    </h1>
---%>
-	<%-- 
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="/">Home</a>
-      </li>
-      <li class="breadcrumb-item active">멘토링 글쓰기 폼</li>
-    </ol>
-    --%>
-    <!-- 글쓰기 Form -->
-    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+	<br/><br/>
     <div class="row">
-	<form name="writeForm" action="../mentoring/mentoringWrite.do" method="post" enctype="multipart/form-data">
-		<table class="table table-boardered">
-			<tr>
-                <th style="width:150px;">멘토링 제목</th>
-                <td><input type="text" class="form-control" name="mtr_subject" id = "mtr_subject" style="width:950px;"></td>        
-            </tr>
-            <tr>
-                <th>썸네일 이미지</th>
-                <td><input type="file" class="" id="mtr_profile_file" name="mtr_profile_file"/></td>        
-            </tr>
-            <tr>
-                <th>내용</th>
-                <td><textarea id="summernote" class="summernote" name="mtr_content"></textarea></td>
-            </tr>
-            <tr>
-                <th>카테고리 </th>
-                <td> <label style="font-size:15px;"><input type="radio" name="mtrcg_no" value="0">운동</label>&emsp;&emsp;&emsp;&emsp;
+    	<h3>멘토링 등록</h3>
+    	<br/><br/>
+	<form id="writeForm" name="writeForm" action="../mentoring/mentoringWrite.do" method="post" enctype="multipart/form-data">
+				
+				<div class="control-group form-group" style="float:left;width:550px;height:330px; margin-right:50px; border-right:1px solid #dfe1e5; background:#edf8ff">
+            		<div class="controls">
+              	<label style="margin-left:5%">썸네일 :</label> &nbsp; &nbsp;
+                <input type="file" class="" id="mtr_profile_file" name="mtr_profile_file"/>  
+                	<img id="sum_nailImg" style="margin-left:5%"/>    
+            		</div>
+          		</div> 
+          		
+				<div class="control-group form-group" >
+            		<div class="controls">
+              	<label>멘토링 제목 :</label>
+                <input type="text" class="form-control" name="mtr_subject" id = "mtr_subject" style="width:500px;" placeholder="제목을 입력해주세요">    
+            		</div> 
+          		</div>
+ 				
+          		
+				<div class="control-group form-group">
+            		<div class="controls">
+              	<label>금액 :</label>
+            	<input type="text" class="form-control" name="mtr_price" id="mtr_price" style="width:500px;" placeholder="숫자만 입력가능" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+            		</div>
+            	</div>
+				
+          		<div class="control-group form-group">
+            		<div class="controls">
+              	<span><label>해시태그 :</label></span>
+            	<span id="tag-list"> </span>
+            	<br/>
+            	<input type="text" class="form-control" style="width:420px; float:left;" name="hashtag" id="hashtag" placeholder="ex)#요가" />
+				&nbsp;&nbsp;
+            	<button type="button" class="btn btn-info" id="tagPlus">태그추가</button>
+            	<%-- <button type="button" class="btn btn-primary" id="check">태그값확인</button>--%>
+            		</div>
+            	</div>
+            	<br/><br/>
+            	
+            	<hr>
+            	<div class="control-group form-group">
+            		<div class="controls">
+              	<label>카테고리 :</label>&emsp;&emsp;&emsp;
+                 <label style="font-size:15px;"><input type="radio" name="mtrcg_no" value="0">운동</label>&emsp;&emsp;&emsp;&emsp;
                 	<label style="font-size:15px;"><input type="radio" name="mtrcg_no" value="1">음악</label>&emsp;&emsp;&emsp;&emsp;
                 	<label style="font-size:15px;"><input type="radio" name="mtrcg_no" value="2">공예</label>&emsp;&emsp;&emsp;&emsp;
                 	<label style="font-size:15px;"><input type="radio" name="mtrcg_no" value="3">요리</label>&emsp;&emsp;&emsp;&emsp;
                 	<label style="font-size:15px;"><input type="radio" name="mtrcg_no" value="4">사진 & 영상</label>&emsp;&emsp;&emsp;&emsp;
                 	<label style="font-size:15px;"><input type="radio" name="mtrcg_no" value="5">뷰티</label>&emsp;&emsp;&emsp;&emsp;
-                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no" value="6">음료</label> </td>
-            </tr>
+                	<label style="font-size:15px;"><input type="radio" name="mtrcg_no" value="6">음료</label> 
+            		</div>
+          		</div>
+            	<hr> 
+            	
+            	<div class="control-group form-group">
+            		<div class="controls"> 
+              	<label>멘토링 내용 :</label>
+                <textarea id="summernote" class="summernote" name="mtr_content" ></textarea>
+            		</div>
+          		</div>
+            	
+            	<hr>
+            	<div class="control-group form-group">
+            		<div class="controls">
+              	<label>지역:</label>
+            	<input type="text" class="form-control" name="mtr_area" id="mtr_area" placeholder="ex)신촌/홍대"/>
+            		</div>
+            	</div>
             
-            <tr>
-            	<th>해시태그</th>
-            	<td>
-            	<input type="text" class="form-control" name="hashtag" id="hashtag" placeholder="ex)#요가" />
+            	
+            	<div id="map" style="width:100%;height:300px;margin-top:10px;display:none"></div>
+            
+            
+            	<div class="control-group form-group">
+            		<div class="controls">
+              	<label>상세주소 :</label>
             	<br/>
-            	<button type="button" class="btn btn-primary" id="tagPlus">태그추가</button>
-            	<%-- <button type="button" class="btn btn-primary" id="check">태그값확인</button>--%>
-            	</td>
-            </tr>
-            
-            <tr>
-            	<th></th>
-                <td id="tag-list">
-                
-                </td>
-            </tr>
-            
-             <tr>
-            	<th>금액</th>
-            	<td><input type="text" class="form-control" name="mtr_price" id="mtr_price" placeholder="숫자만 입력가능" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/></td>
-            </tr>
-            
-            <tr>
-            	<th>지역</th>
-            	<td><input type="text" class="form-control" name="mtr_area" id="mtr_area" placeholder="ex)신촌/홍대"/></td>
-            </tr>
-            
-            <tr>
-            	<th></th>
-            	<td><div id="map" style="width:900px;height:300px;margin-top:10px;display:none"></div></td>
-            </tr>
-            
-            <tr>
-            	<th>상세주소</th>
-            	<td>
-            	<input type="text" class="form-control" id="mtr_addr" name="mtr_addr" placeholder="주소검색을 클릭해주세요" style="width:950px;">
-            	<br/>
-            	<input type="button" class="btn btn-primary" onclick="sample5_execDaumPostcode()" value="주소 검색"></td>
-            </tr>
-            
+            	<input type="text" class="form-control" id="mtr_addr" name="mtr_addr" placeholder="주소검색을 클릭해주세요" style="width:90%; float:left;">
+            	&nbsp;&nbsp;
+            	<input type="button" class="btn btn-info" onclick="sample5_execDaumPostcode()" value="주소 검색">
+            		</div>
+            	</div>
+            	
+            	<hr>
             <!--  
             <tr>
             	<th>인원</th>
@@ -133,11 +146,11 @@
             	<input type="text" id="mtrdi_max_pcnt" name="mtrdi_max_pcnt" style="width:70px;"placeholder="최대인원"/>
             </tr>
             -->
-            
-            <tr>
-            	<th>날짜선택</th>
-            	<td>
-					<div class="calenCon">
+            	<div class="control-group form-group">
+            		<div class="controls">
+              		<label>날짜선택 :</label>
+            	
+					<div class="calenCon"  align="center">
 						<label for="calender"><Strong>시작 날짜</Strong></label> 
 						<input type="text" id="datetimepicker" name="calender" style="width:100px;" autocomplete="off">&nbsp;
 						
@@ -151,14 +164,16 @@
 						<label for="maxpcnt"><Strong>최대인원</Strong></label> 
 						<input type="text" id="max_pcnt" name="pcnt" style="width:100px;" autocomplete="off" disabled>&nbsp;&nbsp;&nbsp;
 						
-						<button type="button" class="btn btn-primary"  id="dataPlus">일정추가</button>
+						<button type="button" class="btn btn-info"  id="dataPlus">일정추가</button>
 					</div>
-            	</td>
-            </tr>	
+					</div>
+				</div>
+            	
+            	
 
-		</table>
+		<br/>
 		 <!--동적테이블 날짜 -->
-		<table border="1" bordercolor="purple" id="list_table">
+		<table  class="table" id="list_table">
 			<colgroup>
 				<!-- column 의 설정을 할수 있다. -->
 				<col style="width:300px;">
@@ -196,8 +211,8 @@
    <br/>
    <br/>
 	  <div align="center">
-	   <input type="button" class="btn btn-primary" id="writeGo" value="신청하기" />
-	   <input type="reset" class="btn btn-primary" value="취소하기"/>
+	   <button type="button" class="btn btn-info" id="writeGo" >멘토링 개설하기<i class="fa fa-check spaceLeft"></i></button> 
+	   <button id="clearBtn" class="btn btn-warning" >취소하기<i class="fa fa-times spaceLeft"></i></button>
 	   </div>
 	   <br/><br/>
   </div>
@@ -572,8 +587,35 @@ $(document).ready(function(){
 
 </div>
 <script>
+var sel_file;
 $(document).ready(function(){
 	document.getElementById("load").style.display = "none";
+	
+	
+	$("#clearBtn").on('click', function(){
+		document.getElementById('writeForm').reset();
+	});
+	
+	   $("#mtr_profile_file").on('change', handleImgFileSelect);
+	   
+	   function handleImgFileSelect(e) {
+	      var files = e.target.files;
+	      var filesArr = Array.prototype.slice.call(files);
+	      filesArr.forEach(function(f){
+	         if(!f.type.match("image.*")) {
+	            alert("확장자는 이미지만 가능!!");
+	            return;
+	         }
+	         sel_file = f;
+	         var reader = new FileReader();
+	         reader.onload = function(e) {
+	            $("#sum_nailImg").css("width","90%");
+	            $("#sum_nailImg").css("height","280px");
+	            $("#sum_nailImg").attr("src", e.target.result);
+	         }
+	         reader.readAsDataURL(f);
+	      });
+	   }
 });
 
 </script>
