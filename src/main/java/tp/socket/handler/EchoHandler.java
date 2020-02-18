@@ -59,25 +59,21 @@ public class EchoHandler extends TextWebSocketHandler{
 				 WebSocketSession userSession = userSessionsMap.get(ms_receiverEmail);
 
 				 if(protocol.equals("qa")) {
-					 long ms_seq = service.selectMessageStoreNextSeq();
+					 long ms_seq = selectMessageStoreNextSeq();
 					 String ms_content = "<a class='dropdown-item' href='../qa/qaList.do?mtr_seq="+mtr_seq+"&cp=1' ms_seq="+ms_seq+" onclick='msCheck(this);'>"+ms_callerNick+"님으로부터 질문이 작성됐습니다.</a>";
-					 Message_Store msg_store = new Message_Store(ms_seq, ms_callerEmail, ms_receiverEmail, ms_content, null, 0);
-					 insertMessageStore(msg_store);
+					 insertMessageStore(new Message_Store(ms_seq, ms_callerEmail, ms_receiverEmail, ms_content, null, 0));
 				 }else if(protocol.equals("qarp")) {
-					 long ms_seq = service.selectMessageStoreNextSeq();
+					 long ms_seq = selectMessageStoreNextSeq();
 					 String ms_content = "<a class='dropdown-item' href='../qa/qaList.do?mtr_seq="+mtr_seq+"&cp=1' ms_seq="+ms_seq+" onclick='msCheck(this);'>"+ms_callerNick+"님으로부터 질문답변이 작성됐습니다.</a>";
-					 Message_Store msg_store = new Message_Store(ms_seq, ms_callerEmail, ms_receiverEmail, ms_content, null, 0);
-					 insertMessageStore(msg_store);
+					 insertMessageStore(new Message_Store(ms_seq, ms_callerEmail, ms_receiverEmail, ms_content, null, 0));
 				 }else if(protocol.equals("rv")) {
-					 long ms_seq = service.selectMessageStoreNextSeq();
+					 long ms_seq = selectMessageStoreNextSeq();
 					 String ms_content = "<a class='dropdown-item' href='../review/reviewList.do?mtr_seq="+mtr_seq+"&cp=1' ms_seq="+ms_seq+" onclick='msCheck(this);'>"+ms_callerNick+"님으로부터 리뷰가 작성됐습니다.</a>";
-					 Message_Store msg_store = new Message_Store(ms_seq, ms_callerEmail, ms_receiverEmail, ms_content, null, 0);
-					 insertMessageStore(msg_store);
+					 insertMessageStore(new Message_Store(ms_seq, ms_callerEmail, ms_receiverEmail, ms_content, null, 0));
 				 }else if(protocol.equals("rvrp")) {
-					 long ms_seq = service.selectMessageStoreNextSeq();
+					 long ms_seq = selectMessageStoreNextSeq();
 					 String ms_content = "<a class='dropdown-item' href='../review/reviewList.do?mtr_seq="+mtr_seq+"&cp=1' ms_seq="+ms_seq+" onclick='msCheck(this);'>"+ms_callerNick+"님으로부터 리뷰답글이 작성됐습니다.</a>";
-					 Message_Store msg_store = new Message_Store(ms_seq, ms_callerEmail, ms_receiverEmail, ms_content, null, 0);
-					 insertMessageStore(msg_store);
+					 insertMessageStore(new Message_Store(ms_seq, ms_callerEmail, ms_receiverEmail, ms_content, null, 0));
 				 }
 				 
 				 	if(protocol.equals("qa") && userSession != null) {//온라인 일 시 
@@ -85,7 +81,6 @@ public class EchoHandler extends TextWebSocketHandler{
 						 String mtr_subject = mentoring.getMtr_subject();
 						 TextMessage tmpMsg = new TextMessage(ms_callerNick+"님이 " + "<a href='../qa/qaList.do?mtr_seq="+mtr_seq+"&cp=1'>"+mtr_subject +"</a> 글에 질문을 작성하였습니다."); 
 						 userSession.sendMessage(tmpMsg);
-				 		 //long msgAlarmCount = service.getselectMessageAlarmCount(ms_receiverEmail);
 				 	}else if(protocol.equals("qarp") && userSession != null) {
 				 		 Mentoring mentoring = getMentoringInfo(mtr_seq);
 						 String mtr_subject = mentoring.getMtr_subject();
@@ -104,6 +99,12 @@ public class EchoHandler extends TextWebSocketHandler{
 				 	}
 			 }
 		 }
+	 }
+	 
+	 
+	 private long selectMessageStoreNextSeq() {
+		 long seq = service.selectMessageStoreNextSeq();
+		 return seq;
 	 }
 	 
 	 private void insertMessageStore(Message_Store msg_store) {

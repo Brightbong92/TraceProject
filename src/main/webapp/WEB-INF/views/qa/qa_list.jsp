@@ -48,22 +48,29 @@
         </div>
       </div>
       <hr>
-      
-      
+
+     <c:if test="${!empty listResult.mtr_qa_reply_list}">
      <c:forEach items="${listResult.mtr_qa_reply_list}" var="qa_reply_list">
      	<c:forEach items="${qa_reply_list}" var="list">
-     <c:if test="${list.mtrqa_seq eq qa_list.mtrqa_seq}">
-	      <div class="card-footer text-muted">
-	      <img style="float:left;" class="d-flex mr-3 rounded-circle" src="../resources/profileImage/${list.mem_profile}" alt="" width="50px" height=50px>
-	      <div class="mt-0" >${list.mem_nick} / <fmt:formatDate value="${list.mtrqarp_rdate}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
-	      <br/>
-		  <img src="../images/reply_arrow.png" width="15" height="15">${list.mtrqarp_content}
-	      </div>  
-	 </c:if>
-    	 </c:forEach>
+		     <c:if test="${list.mtrqa_seq eq qa_list.mtrqa_seq}">
+		     	  <c:set var="flag" value="true"/>
+			      <div class="card-footer text-muted">
+			      <img style="float:left;" class="d-flex mr-3 rounded-circle" src="../resources/profileImage/${list.mem_profile}" alt="" width="50px" height=50px>
+			      <div class="mt-0" >${list.mem_nick} / <fmt:formatDate value="${list.mtrqarp_rdate}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+			      <br/>
+				  <img src="../images/reply_arrow.png" width="15" height="15">${list.mtrqarp_content}
+			      </div>
+			 </c:if>
+    	</c:forEach>
     </c:forEach>
-    <hr>
+    </c:if>
     
+    <c:if test="${flag ne 'true'}">
+	<div>나와요?</div>
+    </c:if>
+    
+    
+    <hr>
        <c:if test="${listResult.mem_email eq loginUser.mem_email}">
         <!-- 답변자 =답변달기 Form -->
         <div class="card my-4">
