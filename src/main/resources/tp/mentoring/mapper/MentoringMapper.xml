@@ -158,5 +158,17 @@
  		]]>
  	</select>
  	
+ 	<select id="selectMentoringQACount" resultType="long" parameterType="long">
+		<![CDATA[
+		SELECT COUNT(*) FROM MENTORING_QA WHERE MTR_SEQ = #{mtr_seq}
+		]]> 	
+ 	</select>
+ 	
+ 	<select id="selectMentoringReviewCount" resultType="long" parameterType="long">
+ 		<![CDATA[
+ 		SELECT COUNT(*) FROM MENTORING_REVIEW WHERE MTR_SEQ = #{mtr_seq}
+ 		]]>
+ 	</select>
+ 	
  	
 </mapper>

@@ -830,19 +830,19 @@ a#MOVE_TOP_BTN {
     currentPage = 1;
     sort = document.getElementById('hidden_id').value;
     $(window).scroll(function() {
-        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+    	
+        //if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+       	let $window = $(this);
+        let scrollTop = $window.scrollTop();
+        let windowHeight = $window.height();
+        let documentHeight = $(document).height();
+        if(scrollTop + windowHeight + 30 > documentHeight) {
           ++currentPage;
           $.ajax({
         	  type:'GET',
         	  contentType:"application/json",
         	  url:'../mentoring/ajaxList.do?cp='+currentPage+'&sort='+sort,
 			  success: function(data) {
-				  //alert("sort: " + sort);
-				  //console.log("data: " + data);
-				  //var dataArr = JSON.stringify(data);
-				  //alert("dataArr: " + dataArr);
-				  //console.log("data.mtr_list: " + data.mtr_list);
-				  //var mtr_list = JSON.stringify(data.mtr_list);
 				 	for(m of data.mtr_list){
 				 		if(m.mtr_jumsu == 0){
 				 			 $(".row").append("<div class='col-lg-3 col-md-4 col-sm-6 portfolio-item'><div class='card h-100'> <a href='../mentoring/mentoringDetail.do?mtr_seq="+m.mtr_seq+"'><img class='card-img-top' src='../resources/mentoring_list_images/"+m.mtr_profile+"' alt=''></a><div class='card-body'><h4 class='card-title'><p style='font-size:15px;'>"+m.mtr_subject+"</p></h4><p class='card-text'><span  class='badge badge-warning mb-2'>"+m.mtr_hashtag+"</span></p><p class='card-text'><span class='badge badge-primary' >지역:</span>"+m.mtr_area+"</p><p class='card-text'><span class='badge badge-primary' >금액:</span>"+m.mtr_price+"</p>"+

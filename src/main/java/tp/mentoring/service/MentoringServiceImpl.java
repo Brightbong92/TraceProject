@@ -21,6 +21,7 @@ import tp.mentoring.mapper.MentoringMapper;
 import tp.vo.MentorInfoVo;
 import tp.vo.MentoringListResult;
 import tp.vo.MentoringPagingVo;
+import tp.vo.MentoringViewPageQaRvCountVo;
 import tp.vo.MentoringViewPageVo;
 
 @Service
@@ -182,5 +183,12 @@ public class MentoringServiceImpl implements MentoringService {
 		String mem_email = mentoringMapper.selectMentoringWriter(mtr_seq);
 		MentorInfoVo mentorInfo = mentoringMapper.selectMentor(mem_email);
 		return mentorInfo;
+	}
+	@Override
+	public MentoringViewPageQaRvCountVo getQaRvCount(long mtr_seq) {
+		long qaCnt = mentoringMapper.selectMentoringQACount(mtr_seq);
+		long rvCnt = mentoringMapper.selectMentoringReviewCount(mtr_seq);
+		
+		return new MentoringViewPageQaRvCountVo(qaCnt, rvCnt);
 	}
 }
