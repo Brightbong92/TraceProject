@@ -11,4 +11,22 @@
 	<select id="selectMentoring" parameterType="long" resultType="Mentoring">
 		SELECT * FROM MENTORING WHERE MTR_SEQ = #{mtr_seq}
 	</select>
+	
+	<select id="selectReceiverEmail" parameterType="long" resultType="String">
+		<![CDATA[
+		SELECT MEM_EMAIL FROM MENTORING WHERE MTR_SEQ = #{mtr_seq}
+		]]>	
+	</select>
+	
+	<select id="selectMemberNick" parameterType="String" resultType="String">
+		<![CDATA[
+		SELECT MEM_NICK FROM MEMBER WHERE MEM_EMAIL = #{mem_email}
+		]]>
+	</select>
+	
+	<select id="selectMessageAlarmCount" parameterType="String" resultType="long">
+		<![CDATA[
+		SELECT COUNT(*) FROM MESSAGE_STORE WHERE MS_RECEIVER = #{mem_email}
+		]]>
+	</select>
 </mapper>

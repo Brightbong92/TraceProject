@@ -149,10 +149,7 @@
    </select>
    <select id="reviewList" resultType="int">
 		<![CDATA[
-			select aa.cnt  
-			from (select MEM_EMAIL, COUNT(MEM_EMAIL) as cnt from MENTORING_REVIEW group by MEM_EMAIL order by cnt desc) aa, MEMBER bb  
-			where  aa.MEM_EMAIL = bb.MEM_EMAIL and rownum <= 1
-		
+		select count(*) from mentoring_review
 		  ]]>
    </select>
 </mapper>

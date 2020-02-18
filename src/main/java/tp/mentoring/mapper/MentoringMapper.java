@@ -67,4 +67,7 @@ public interface MentoringMapper {
 	String selectMentoringWriter(long mtr_seq);
 	MentorInfoVo selectMentor(String mem_email);
 	
+	long selectMentoringQACount(long mtr_seq);
+	long selectMentoringReviewCount(long mtr_seq);
+	
 }

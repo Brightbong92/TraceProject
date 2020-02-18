@@ -35,19 +35,14 @@
 var socket = null;
 $(document).ready(function(){
 	connectWS();
-	<%--
-	if("${loginUser.mem_email}" != "") {//로그인되었을 시 웹소켓 연결
-		console.clear();
-		//console.log("${loginUser.mem_email}");
-		connectWS();//소켓연결
-	}
-	--%>	
+
 	document.getElementById("load").style.display = "none";
 	
 	function connectWS() {
-		//var ws = new WebSocket("ws://127.0.0.1:8080/qaEcho");
-		
-		var ws = new WebSocket("ws://192.168.0.129:8080/qaEcho");
+
+		//var ws = new WebSocket("ws://127.0.0.1:8080/Echo");
+		var ws = new WebSocket("ws://192.168.0.129:8080/Echo");
+
 		
 		socket = ws;
 		ws.onopen = function () {
@@ -55,14 +50,40 @@ $(document).ready(function(){
 		};
 		ws.onmessage = function (event) {
 		    console.log("ReceiveMessage: ", event.data+'\n');
+
+		    //$("#msgContents").append(event.data);
+
+		   $.ajax({
+		    	url: "../login/msgAlarmCheck.do",
+		    	type:"POST",
+		    	data: "${loginUser.mem_email}",
+		    	dataType:"json",
+		    	contentType:"application/json",
+		    	success: function(data){
+		    		//console.clear();console.log("성공data= "+data);
+		    		if($("#msg_tot_count").css("display") == "none") {
+		    			let $msg_tot_count = $("span#msg_tot_count");
+			   			$msg_tot_count.css('display', 'inline');
+			   			$msg_tot_count.text(data);
+		   			}else {
+		   				$("#msg_tot_count").text(data);
+		   			}
+		    	},error: function(err) {
+		    		console.clear(); console.log("에러");
+		    	}
+		    });
+
 		    
 		    //$("#msgContents").append(event.data);
+
 		    let $socketAlert = $("div#socketAlert");
 		    $socketAlert.html(event.data);
 		    $socketAlert.css('display', 'block');
 		    setTimeout(function (){
 		    	$socketAlert.css('display', 'none');
+
 		    }, 3000);
+
 		};
 		ws.onclose = function (event) { 
 			console.log('Info: connection closed.');
@@ -73,20 +94,7 @@ $(document).ready(function(){
 });
 
 </script>
-<%--
-<script>
-$(document).ready(function (){
-	connect();
-	
-	$('#sendMsg').on('click', function(evt) {
-		  evt.preventDefault();
-		if (socket.readyState !== 1) return;
-			  let msg = $('#message').val();
-			  socket.send(msg);
-		});
-});
-</script>
---%>
+
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">

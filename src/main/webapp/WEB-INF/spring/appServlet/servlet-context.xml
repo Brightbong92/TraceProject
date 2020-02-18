@@ -78,9 +78,17 @@
 	<beans:bean id="freeEchochoHandler" class="tp.socket.handler.FreeEchoHandler" />
 	<beans:bean id="replyEchochoHandler" class="tp.socket.handler.ReplyEchoHandler" />
 	<beans:bean id="qaEchochoHandler" class="tp.socket.handler.QAEchoHandler" />
-	
+	<beans:bean id="EchochoHandler" class="tp.socket.handler.EchoHandler" />
 	
 	<!-- 소켓API 세션 사용하기위해// 웹소켓세션에 HTTP세션을 올려주기위해서 -->
+		<websocket:handlers>
+        <websocket:mapping handler="EchochoHandler" path="/Echo" />
+        <websocket:handshake-interceptors>
+            <beans:bean
+                class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+	
 	<websocket:handlers>
         <websocket:mapping handler="freeEchochoHandler" path="/freeEcho" />
         <websocket:handshake-interceptors>

@@ -37,6 +37,7 @@ import tp.domain.Mentoring;
 import tp.mentoring.service.MentoringService;
 import tp.vo.MentorInfoVo;
 import tp.vo.MentoringListResult;
+import tp.vo.MentoringViewPageQaRvCountVo;
 import tp.vo.MentoringViewPageVo;
 import tp.vo.SearchListResult;
 
@@ -187,11 +188,15 @@ public class MentoringController {
 		MentoringViewPageVo listResult = service.selectMentoringDetailView(mtr_seq);
 		MentorInfoVo mentorInfo = service.getMentorInfo(mtr_seq);
 		
+		
+		MentoringViewPageQaRvCountVo qaRvCount = service.getQaRvCount(mtr_seq);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mentoring/mentoring_view_page");
 		mv.addObject("listResult", listResult);
 		mv.addObject("mentorInfo", mentorInfo);
 		//log.info("#listResult: " + listResult);
+		mv.addObject("qaRvCount", qaRvCount);
 		return mv;	
 	}
 	

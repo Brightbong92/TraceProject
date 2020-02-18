@@ -164,7 +164,37 @@ body {
 		          	<span id="cart_tot_count" class="nav-counter" style="display:none;"></span>
 		          </c:when>
 		        </c:choose>
-		        
+		    
+		    	&emsp;
+				<div id="msg_store_dropdown" class="dropdown">
+					<img id="msg_store" data-toggle="dropdown" src="../images/bellIcon.jpg" alt="" style="width:22px;height:22px;margin-top:9px;cursor:pointer;">
+					
+					 
+					<c:choose>
+						<c:when test="${msgAlarmCount ne 0}">
+							<span id="msg_tot_count" class="nav-counter">${msgAlarmCount}</span>
+						</c:when>
+						<c:when test="${msgAlarmCount eq 0}">
+							<span id="msg_tot_count" class="nav-counter" style="display:none;"></span>
+						</c:when>
+					</c:choose>
+					
+					
+					
+					<div id="msg_store_box" class="dropdown-menu">
+					<%-- 
+					<div id="msg_store_box" class="dropdown-menu" style="display:none;">
+						<a class="dropdown-item" href="#">333번 글에 댓글이 달렸습니다.</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">32번 글에 질문이 달렸습니다.</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">222번 글에 후기가 달렸습니다.</a>
+						<div class="dropdown-divider"></div>
+					--%>
+						
+					</div>
+				</div>
+
 		       </c:if>
            <!-- 로그인안했을 시 나오게끔 -->
 	      <c:if test="${empty loginUser}">
@@ -177,7 +207,58 @@ body {
       
     </div>
   </nav>
-  
+<script>
+
+$(document).ready(function(){
+	
+	$(document).click(function(e){
+		if(!$(e.target).is("#msg_store_box")) {
+			$("#msg_store_box *").remove();
+		}
+	});
+	
+	
+	$("#msg_store").on('click', function(){
+	//var flag = $("#msg_store_box").hasClass('dropdown-menu show');//alert("flag: " + flag);
+	var flag = $("#msg_store_dropdown").hasClass('dropdown show');
+		if(flag == false) {
+			//$("#msg_tot_count").append("<div id='msg_store_box' class='dropdown-menu show'>");
+			//$("#msg_store_box").show();
+			$.ajax({
+				url: "../login/msgCheck.do",
+				type:"POST",
+				contentType: "application/json",
+				dataType:"json",
+				success: function(data){
+					console.clear();//console.log("data: " + JSON.stringify(data));
+
+					if(data.length == 0) {
+						$("#msg_store_box").append("<div class='dropdown-item'>메세지가 없습니다.</div>");
+					}
+					$.each(data, function(idx, val) {
+						$("#msg_store_box").append(val.ms_content);
+					});
+						//$("#msg_tot_count").css("display", "none");
+				},error: function(err) {
+					console.clear();
+					console.log("실패");
+				}
+			});
+		}else if(flag == true) {
+			$("#msg_store_box *").remove();
+		}
+	});
+	
+	/*
+	$("#msg_store_box").on('mouseleave', function(){
+		$("#msg_store_box *").remove();
+	});
+	*/
+	
+	
+});
+
+</script>
 <script type="text/javascript">
 String.prototype.replaceAll = function(org, dest) {
     return this.split(org).join(dest);
@@ -283,43 +364,21 @@ function removeActive(x) {
       x[i].classList.remove("autocomplete-active");
     }
   }
-</script>
-<%--
-<script>
-var socket = null;
-function connect() {
-	var ws = new WebSocket("ws://127.0.0.1:8080/replyEcho?bno=1234");
-	socket = ws;
-
-	ws.onopen = function () {
-	    console.log('Info: connection opened.');
-	    
-	};
-
-	ws.onmessage = function (event) {
-	    console.log("ReceiveMessage: ", event.data+'\n');
-	};
-
-	ws.onclose = function (event) { 
-		console.log('Info: connection closed.'); 
-   		//setTimeout( function(){ connect(); }, 1000); // retry connection!!
-	};
-	ws.onerror = function (err) { console.log('Error', err); };	
+  
+function msCheck(obj){
+	var ms_seq = $(obj).attr("ms_seq");
+	
+	$.ajax({
+		url:"../login/msgCheckUpdate.do?ms_seq="+ms_seq,
+		success:function(data){
+			console.clear();
+			console.clear("메세지상태변경 & 메세지세션변경 성공");
+		},error:function(err){
+			console.clear();
+			console.clear("메세지상태변경 & 메세지세션변경 실패");
+		}
+	});
+	
 }
+  
 </script>
-
-<script>
-$(document).ready(function (){
-	connect();
-	$('#sendMsg').on('click', function(evt) {
-		  evt.preventDefault();
-		if (socket.readyState !== 1) return;
-		
-			  
-			  let msg = $('#message').val();
-			  socket.send(msg);
-		});
-});
-</script>
---%>
-

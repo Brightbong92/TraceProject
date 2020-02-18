@@ -251,14 +251,14 @@ table {
     <!-- 멘토링 질문 게시판-->
     <div style="border-bottom:1px solid #dfe1e5; margin-top:40px; height:90px;">
     <span class="my-4" style="font-size:25px;"><b>멘토링 문의</b></span> &nbsp;&nbsp;
-    <button style="background-color:#dbefff; border-radius:20px;" onclick="goQABoard()">문의하기</button>
+    <button style="background-color:#dbefff; border-radius:20px;" onclick="goQABoard()">${qaRvCount.qaCnt}개의 문의보러가기</button>
     <br/>
     </div>
     <br/>
     <div style="border-bottom:1px solid #dfe1e5; margin-top:40px; height:90px;">
     <!-- 멘토링 후기 게시판 -->
     <span class="my-4" style="font-size:25px;"><b>멘토링 후기</b></span> &nbsp;&nbsp;
-    <button style="background-color:#dbefff; border-radius:20px;"  onclick="goReviewBoard()">후기보러가기</button>
+    <button style="background-color:#dbefff; border-radius:20px;"  onclick="goReviewBoard()">${qaRvCount.rvCnt}개의 후기보러가기</button>
     </div>
     
     <br/>

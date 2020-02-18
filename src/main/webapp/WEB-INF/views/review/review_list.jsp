@@ -33,7 +33,7 @@
     
     
     <c:if test="${!empty listResult.mtr_review_list}">
-    <c:forEach items="${listResult.mtr_review_list}" var="review">
+    <c:forEach items="${listResult.mtr_review_list}" var="review" varStatus="status">
 
     <div class="card mb-4"><!-- 전체 -->
 
@@ -119,7 +119,7 @@
             </div>
        </div>
      </div>
-     <div style="margin-bottom:10px;margin-right:5px;"align="right">도움이됐어요 :<b>${review.mtrrv_likecnt}</b><a idx="${review.mtrrv_seq}" onclick="likePlus(this)"><img src="../resources/images/likeButton.png" alt="" width="30px" height="30px" id="likeBtn" style="margin-bottom:13px;"/></a></div>
+     <div style="margin-bottom:10px;margin-right:5px;"align="right">도움이됐어요 :<b>${review.mtrrv_likecnt}</b><a idx="${review.mtrrv_seq}" onclick="likePlus(this)"><img src="../resources/images/likeButton.png" alt="" width="30px" height="30px" id="likeBtn" style="margin-bottom:13px;cursor:pointer;"/></a></div>
      <!-- 후기내용들까지 -->
     
       
@@ -142,12 +142,12 @@
 	        <div class="card my-4">
 	          <h5 class="card-header">후기답변폼</h5>
 	          <div class="card-body">
-	          <form name="f" action="../review/reviewReplyRegister.do?mtrrv_seq=${review.mtrrv_seq}" method="post">
+	          <form id="f${status.count}" name="f${status.count}" action="../review/reviewReplyRegister.do?mtrrv_seq=${review.mtrrv_seq}" method="post">
 	              <div class="form-group">
 	                <textarea name="mtrrvrp_content" class="form-control" rows="3"></textarea>
 	              </div>
 	              <input type="hidden" name="mtr_seq" value="${listResult.mtr_seq}"/>
-	              <button class="btn btn-primary">답변등록</button>
+	              <button type="button" form_name="f${status.count}" mem_email="${review.mem_email}" onclick='rvReplyRegi(this);' class="btn btn-primary">답변등록</button>
 	          </form>
 	          </div>
 	        </div>
@@ -196,10 +196,16 @@
 	$(document).ready(function(){
 		$("#likeBtn").on('click',function(){
 			//alert("좋아요누름");
-			
 		});
 	});
 	
+	function rvReplyRegi(obj) {
+		var mem_email = $(obj).attr("mem_email");
+		var form_name = $(obj).attr("form_name");
+		if(socket.readyState !== 1) return;
+			socket.send("rvrp,${listResult.mtr_seq},"+mem_email);
+			document.getElementById(form_name).submit();
+	}
 	
 	function likePlus(obj) {
 		//alert($(obj).attr("idx"));

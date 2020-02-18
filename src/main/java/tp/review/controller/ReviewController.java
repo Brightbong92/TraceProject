@@ -86,9 +86,11 @@ public class ReviewController {
 	public ModelAndView reviewWriteForm(long mtr_seq) {
 		ModelAndView mv = new ModelAndView();
 		Mentoring mtr = reviewService.getMentoringSubject(mtr_seq);
+		String mtr_mem_email = mtr.getMem_email();
 		mv.setViewName("review/review_write_form");
 		mv.addObject("mtr_seq",mtr_seq);
 		mv.addObject("mtr_subject", mtr.getMtr_subject());
+		mv.addObject("mtr_mem_email", mtr_mem_email);
 		return mv;
 	}
 	@PostMapping("reviewRegister.do")

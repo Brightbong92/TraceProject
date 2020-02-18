@@ -9,6 +9,7 @@ import tp.domain.Mentor_List;
 import tp.domain.Mentoring;
 import tp.vo.MentorInfoVo;
 import tp.vo.MentoringListResult;
+import tp.vo.MentoringViewPageQaRvCountVo;
 import tp.vo.MentoringViewPageVo;
 public interface MentoringService {
 	MentoringListResult getMentoringListResult(int cp, int ps, String sort);//리스트 & 정렬
@@ -27,4 +28,6 @@ public interface MentoringService {
 	List<String> getSelectAutoSearchHashtag(String word);
 	
 	MentorInfoVo getMentorInfo(long mtr_seq);
+	
+	MentoringViewPageQaRvCountVo getQaRvCount(long mtr_seq);
 }
