@@ -23,10 +23,10 @@
     <link href="../resources/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <title>회원 상세정보</title>
 </head>
-<body onresize="parent.resizeTo(800,300)" onload="parent.resizeTo(800,300)">
-<center>
+<body onload="parent.resizeTo(800,400)"><%--onresize="parent.resizeTo(1000,600)"  --%>
+<div align='center'>
 <tr/><tr/><tr/>
-<table  width="100%" class="table table-striped table-bordered table-hover" id="">
+<table width="100%" class="table table-striped table-bordered table-hover" id="">
 <thead>
 <tr>
 		<th>이메일</th>
@@ -71,7 +71,7 @@
 		<td>활성화</td>
 		</c:if>
 		<c:if test="${member.mem_state eq 1}">
-		<td>활성화 (신고계정)</td>
+		<td style="color:red;">활성화 (신고계정)</td>
 		</c:if>
 		<c:if test="${member.mem_state eq 2}">
 		<td>비활성화</td>
@@ -85,6 +85,33 @@
 	</c:forEach>
 </tbody>
 </table>
+
+<table class="table table-striped table-bordered table-hover">
+<thead>
+<tr>
+	<th>신고번호</th>
+	<th>신고받은사람</th>
+	<th>신고한사람</th>
+	<th>신고내용</th>
+	<th>신고날짜</th>
+	<th>질문글번호</th>
+	<th>후기글번호</th>
+</tr>
+</thead>
+	<c:forEach items="${reportList}" var="list">
+		<tr class="odd gradeX">
+			<td>${list.rep_seq}</td>
+			<td>${list.rep_receiver}</td>
+			<td>${list.rep_caller}</td>
+			<td>${list.rep_content}</td>
+			<td>${list.rep_rdate}</td>
+			<td>${list.mtrqa_seq}</td>
+			<td>${list.mtrrv_seq}</td>
+		</tr>
+	</c:forEach>
+
+</table>
+
 
 <c:if test="${!empty memberInfoResult.disInfo}">
 <c:forEach items="${memberInfoResult.disInfo}" var="dis">
@@ -114,7 +141,7 @@
 		</c:if>
 	</c:if>
 </c:forEach>
-</center>
+</div>
 
 <!-- jQuery -->
     <script src="../resources/admin/vendor/jquery/jquery.min.js"></script>

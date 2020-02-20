@@ -338,6 +338,7 @@ table {
 	function goPaymentForm(){
 		if("${loginUser.mem_email}" == "") {
 			alert("로그인 후 이용가능합니다.");
+			location.href="../login/login.do";
 			return false;
 		}
 
@@ -352,6 +353,7 @@ table {
 		
 		if("${loginUser.mem_email}" == "") {
 			alert("로그인 후 이용가능합니다.");
+			location.href="../login/login.do";
 			return false;
 		}
 		

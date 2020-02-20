@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
@@ -24,6 +26,7 @@ import tp.domain.Member;
 import tp.domain.Mentoring;
 import tp.domain.Mentoring_QA;
 import tp.domain.Mentoring_QA_Reply;
+import tp.domain.Report;
 import tp.qa.service.QAService;
 import tp.vo.MentoringListResult;
 import tp.vo.MentoringQAVo;
@@ -96,7 +99,18 @@ public class QAController {
 		int cpInt = (int)session.getAttribute("cp");
 		long cp = (long)cpInt;		
 		return "redirect:qaList.do?mtr_seq="+mtr_seq+"&cp=1";
-		
+	}
+	
+	@PostMapping("qaReport.do")
+	@ResponseBody
+	public String qaReport(@RequestBody Report report) {
+		//log.info("report: " + report);
+		boolean flag = qaService.insertReportQaBoardS(report);
+		if(!flag) {
+			return "duplicate";
+		}else {
+			return "noDuplicate";
+		}
 	}
 	
 	

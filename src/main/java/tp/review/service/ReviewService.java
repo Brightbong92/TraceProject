@@ -8,6 +8,7 @@ import tp.domain.Mentoring;
 import tp.domain.Mentoring_QA_Reply;
 import tp.domain.Mentoring_Review_Like;
 import tp.domain.Mentoring_Review_Reply;
+import tp.domain.Report;
 import tp.vo.MentoringReviewVo;
 
 public interface ReviewService {
@@ -21,5 +22,6 @@ public interface ReviewService {
 			int star_input, String mem_email);
 	
 	boolean mentoringReviewLikePlus(Mentoring_Review_Like mtr_review_like);
+	boolean insertReportRvBoardS(Report report);
 	
 }

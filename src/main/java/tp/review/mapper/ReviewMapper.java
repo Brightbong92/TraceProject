@@ -11,6 +11,7 @@ import tp.domain.Mentoring_Review;
 import tp.domain.Mentoring_Review_File;
 import tp.domain.Mentoring_Review_Like;
 import tp.domain.Mentoring_Review_Reply;
+import tp.domain.Report;
 import tp.vo.MentoringReviewPagingVo;
 
 public interface ReviewMapper {
@@ -63,5 +64,21 @@ public interface ReviewMapper {
 	
 	@Update(value = {"UPDATE MENTORING_REVIEW SET MTRRV_LIKECNT = MTRRV_LIKECNT+1 WHERE MTRRV_SEQ = #{mtrrv_seq}"})
 	void updateMentoringReviewLikeCnt(long mtrrv_seq);
+	
+	
+	//신고
+	
+	@Select(value= {"SELECT REPORT_SEQ.nextval FROM DUAL"})
+	long selectReportNextSeq();
+	@Insert(value= {"INSERT INTO REPORT VALUES(#{rep_seq}, #{rep_content}, #{rep_caller}, #{rep_receiver}, SYSDATE, #{mtrqa_seq}, #{mtrrv_seq})"})
+	void insertReportRvBoard(Report report);
+	@Update(value = {"UPDATE MEMBER SET MEM_STATE = 1 WHERE MEM_EMAIL = #{mem_email}"})
+	void updateMemberState(String mem_email);
+	
+	@Select(value= {"SELECT REP_CALLER FROM REPORT WHERE MTRRV_SEQ = #{mtrrv_seq} AND REP_CALLER = #{rep_caller}"})
+	String selectReportDuplicate(Report report);
+	
+	
+	
 	
 }

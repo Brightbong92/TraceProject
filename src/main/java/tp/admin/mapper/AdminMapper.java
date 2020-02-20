@@ -5,6 +5,7 @@ import java.util.List;
 import tp.domain.Disabled;
 import tp.domain.Member;
 import tp.domain.Mentor_List;
+import tp.domain.Report;
 import tp.vo.MemberPagingVo;
 import tp.vo.MemberVo;
 import tp.vo.MentorPagingVo;
@@ -30,4 +31,6 @@ public interface AdminMapper {
    List<Mentor_List> mentorList(MentorPagingVo mentorpaingVo);
    void mentorApproved(String mem_email);
    void mentorDisapproved(String mem_email);
+   
+   List<Report> selectMemberReport(String mem_email);
 }
