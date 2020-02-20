@@ -15,6 +15,7 @@ import lombok.extern.log4j.Log4j;
 import tp.domain.Mentoring;
 import tp.domain.Mentoring_QA;
 import tp.domain.Mentoring_QA_Reply;
+import tp.domain.Report;
 import tp.vo.MentoringQAPagingVo;
 import tp.vo.MentoringQAVo;
 
@@ -24,6 +25,17 @@ import tp.vo.MentoringQAVo;
 public class QATests {
 	@Autowired
 	private QAMapper qaMapper;
+	
+	
+	
+	@Test
+	public void testQaReport() {
+		long rep_seq = qaMapper.selectReportNextSeq();
+		Report report = new Report(rep_seq, "신고내용", "b@naver.com", "c@naver.com", null, 2, 0);
+		qaMapper.insertReportQaBoard(report);
+		
+	}
+	
 	/*
 	@Test
 	public void testSubject() {

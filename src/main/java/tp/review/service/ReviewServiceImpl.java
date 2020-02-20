@@ -18,6 +18,7 @@ import tp.domain.Mentoring_Review;
 import tp.domain.Mentoring_Review_File;
 import tp.domain.Mentoring_Review_Like;
 import tp.domain.Mentoring_Review_Reply;
+import tp.domain.Report;
 import tp.mentoring.service.MentoringPath;
 import tp.review.mapper.ReviewMapper;
 
@@ -169,6 +170,19 @@ public class ReviewServiceImpl implements ReviewService {
 			return true;
 		}else {
 			return false;
+		}
+	}
+
+	@Override
+	public boolean insertReportRvBoardS(Report report) {
+		String duplicateCheck = reviewMapper.selectReportDuplicate(report);
+		if(duplicateCheck != null) {//중복
+			return false;
+		}else {//중복x
+			long rep_seq = reviewMapper.selectReportNextSeq(); report.setRep_seq(rep_seq);
+			reviewMapper.insertReportRvBoard(report);
+			reviewMapper.updateMemberState(report.getRep_receiver());//신고받은사람 상태변경
+			return true;
 		}
 	}
 

@@ -144,10 +144,10 @@
 							       }
 							    </script>
 							    
-							    <div class="input-group custom-search-form" style="width:220px; float:right">
+							    <div class="input-group custom-search-form" style="width:220px;float:right;">
 	                                <input type="text" class="form-control" id="search_input2" placeholder="회원 검색">
 	                                <span class="input-group-btn">
-	                                <button type="submit" class="btn btn-default" id="search_button2" ">
+	                                <button type="submit" class="btn btn-default" id="search_button2">
 	                                    <i class="fa fa-search"></i>
 	                                </button>
 	                            </span>

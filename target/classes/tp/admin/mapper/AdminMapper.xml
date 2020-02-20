@@ -78,4 +78,12 @@
 	<update id="insertDisabled" parameterType="String">
 		insert into DISABLED(DIS_IMPROVE, MEM_EMAIL) values('관리자에 의한 비활성화 회원입니다.', #{mem_email}) 
 	</update>
+	
+	
+	<select id="selectMemberReport" parameterType="String" resultType="Report">
+		<![CDATA[
+		SELECT * FROM REPORT WHERE REP_RECEIVER = #{mem_email}
+		]]>
+	</select>
+	
 </mapper>

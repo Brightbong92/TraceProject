@@ -100,6 +100,7 @@
 	           </div>
 	           </c:when>
 	          </c:choose>
+	          <img src="../resources/images/reportIcon2.jpg" style="margin-left:60%;width:30px;height:30px;cursor:pointer;" mtrrv_seq="${review.mtrrv_seq} "mem_email="${review.mem_email}" onclick="goReportForm(this);"/>
           </div><!-- .row -->
        
         <div><!-- class="col-lg-6" -->
@@ -213,11 +214,57 @@
 		var mtr_seq = '<c:out value="${listResult.mtr_seq}"/>';
 		if(mem_email == "") {
 			alert("로그인 후 이용 가능합니다.");
+			location.href="../login/login.do";
 			return false;
 		}else{
 			location.href="../review/likePlus.do?mem_email="+mem_email+"&mtrrv_seq="+mtrrv_seq+"&mtr_seq="+mtr_seq;
 		}
+	}
+	
+	function goReportForm(obj) {
+		if('${loginUser.mem_email}' == '') {
+			alert("로그인 후 신고 가능합니다.");
+			location.href="../login/login.do"
+			return;
+		}
+		var rep_content = prompt("신고 내용을 입력해주세요.");
+		if(rep_content == null || rep_content == '') {
+			alert("내용을 입력해주세요.");
+			return;
+		}else {
+			var mtrrv_seq = $(obj).attr("mtrrv_seq");
+			var rep_receiver = $(obj).attr("mem_email");
+			var rep_caller = "${loginUser.mem_email}";
+
+			var report = {
+					mtrrv_seq: mtrrv_seq,
+					rep_receiver: rep_receiver,
+					rep_caller: rep_caller,
+					rep_content: rep_content
+					};
+			$.ajax({
+				url:"../review/rvReport.do",
+				data: JSON.stringify(report),
+				contentType:"application/json",
+				type:"POST",
+				success: function(data) {
+					//console.clear();console.log("성공");
+					if(data == "duplicate") {
+						alert("이미 신고가 반영되었습니다.");
+						return false;
+					}else {
+						alert("신고가 반영되었습니다.");
+						return false;
+					}
+					
+				},error: function(err) {
+					//console.clear();console.log("실패");
+				}
+			});
 			
+			
+		}
+		
 	}
 	
 	

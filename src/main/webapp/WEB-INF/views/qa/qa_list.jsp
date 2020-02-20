@@ -42,7 +42,8 @@
         <div class="row">
           <img class="d-flex mr-3 rounded-circle" src="../resources/profileImage/${qa_list.mem_profile}" alt="" width="60px" height=60px>
             <div class="mt-0" style="font-size:15px;"><strong>${qa_list.mem_nick}</strong></div> &nbsp;&nbsp;&nbsp;&nbsp; <div style="color:gray;"><fmt:formatDate value="${qa_list.mtrqa_rdate}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
-        </div> 
+            <div style="float:right;margin-left:750px;margin-bottom:10px;"><img src="../resources/images/reportIcon2.jpg" style="width:30px;height:30px;cursor:pointer;" mtrqa_seq="${qa_list.mtrqa_seq} "mem_email="${qa_list.mem_email}" onclick="goReportForm(this);"/></div>
+        </div>
         <div><!-- class="col-lg-6" -->
             <p class="card-text" style="margin-left:80px;">${qa_list.mtrqa_content}</p>
         </div>
@@ -131,7 +132,58 @@
 	function goQAWriteForm(){
 		location.href="../qa/qaWriteForm.do?mtr_seq=${listResult.mtr_seq}";
 	}
+	function goReportForm(obj){
+		
+		if('${loginUser.mem_email}' == '') {
+			alert("로그인 후 신고 가능합니다.");
+			location.href="../login/login.do"
+			return;
+		}
+		var rep_content = prompt("신고 내용을 입력해주세요.");
+		
+		if(rep_content == null || rep_content == '') {
+			alert("내용을 입력해주세요.");
+			return;
+		}else {
+			var mtrqa_seq = $(obj).attr("mtrqa_seq");
+			var rep_receiver = $(obj).attr("mem_email");
+			var receiver = rep_receiver;
+			var caller = "${loginUser.mem_email}";
+			var content = rep_content;
+			var report = {
+					mtrqa_seq: mtrqa_seq,
+					rep_receiver: receiver,
+					rep_caller: caller,
+					rep_content: content
+					};
+			$.ajax({
+				url:"../qa/qaReport.do",
+				data: JSON.stringify(report),
+				contentType: "application/json",
+				type:"POST",
+				success: function(data) {
+					//console.clear();console.log("성공");
+					if(data == "duplicate") {
+						alert("이미 신고가 반영되었습니다.");
+						return false;
+					}else {
+						alert("신고가 반영되었습니다.");
+						return false;
+					}
+					
+				},error: function(err) {
+					//console.clear();console.log("실패");
+				}
+			});
+			
+			
+			
+			
+		}
+				
 
+	}
 </script>
+
   
 <%@ include file="../footer.jsp" %>

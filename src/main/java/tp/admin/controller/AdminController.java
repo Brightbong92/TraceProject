@@ -19,6 +19,7 @@ import tp.admin.service.AdminService;
 import tp.adminCharts.service.AdminChartsService;
 import tp.domain.Member;
 import tp.domain.Notice;
+import tp.domain.Report;
 import tp.vo.MemberInfo;
 import tp.vo.MemberListResult;
 import tp.vo.MentorListResult;
@@ -226,10 +227,12 @@ public class AdminController {
     }
 	@GetMapping("popup.do")
 	public ModelAndView pupup(String mem_email) {
-		MemberInfo memberInfoResult = service.getMemberInfo(mem_email);
+		MemberInfo memberInfoResult = service.getMemberInfo(mem_email);//회원정보
+		List<Report> reportList = service.getMemberReport(mem_email);//신고정보
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/member_popup");
 		mv.addObject("memberInfoResult",memberInfoResult);
+		mv.addObject("reportList", reportList);
 		return mv;
 	}
 	@GetMapping("disabled.do")

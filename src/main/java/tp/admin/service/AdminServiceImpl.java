@@ -11,6 +11,7 @@ import tp.domain.Disabled;
 import tp.domain.Member;
 import tp.domain.Mentor_List;
 import tp.domain.Notice;
+import tp.domain.Report;
 import tp.notice.mapper.NoticeMapper;
 import tp.vo.MemberListResult;
 import tp.vo.MemberPagingVo;
@@ -82,4 +83,10 @@ public class AdminServiceImpl implements AdminService {
    public void updateAuth(String mem_email) {
       adminMapper.updateAuth(mem_email);
    }
+
+@Override
+public List<Report> getMemberReport(String mem_email) {
+	List<Report> list = adminMapper.selectMemberReport(mem_email);
+	return list;
+}
 }

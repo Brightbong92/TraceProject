@@ -32,6 +32,7 @@
 	   <typeAlias alias="MentorInfoVo" type="tp.vo.MentorInfoVo"/>
 
 	   <typeAlias alias="Message_Store" type="tp.domain.Message_Store"/>
+	   <typeAlias alias="Report" type="tp.domain.Report"/>
 
 
 	   <!-- 성지 -->
