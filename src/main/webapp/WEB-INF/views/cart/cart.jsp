@@ -21,9 +21,9 @@ a {
   <!-- Page Content -->
   <div class="container">
 
-
+	<br/><br/>
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">장바구니
+    <h1 class="mt-4 mb-3" style="font-size:25px;">장바구니
       <%-- <small>선택페이지</small>--%>
     </h1>
 
@@ -40,16 +40,41 @@ a {
     		장바구니에 담긴 상품이 없습니다.
     	</c:if>
     	<c:if test="${!empty cartListResult.cartInfo}">
-    	<b style="font-size:25pt;">나의 장바구니 정보</b>
-    	<hr>
-    	<b>총개수: </b><span id="totCartCount" style="font-size:30pt;">${cartListResult.cartInfo.size()}</span>개
-		<hr>
-    	<b>전체선택</b><input type="checkbox" name="chkAll" style="width:20px;height:20px;float:left;"/>
+    	<!-- b style="font-size:25pt;">나의 장바구니 정보</b>
+    	<hr-->
+    	<b>상품 개수: </b><span id="totCartCount" style="font-size:20px;">${cartListResult.cartInfo.size()}</span> 개
+		<form name="f" method="post" action="/payment/cartListPaymentList.do">		
+		<table class="table table-boardered">
+			<thead>
+			<tr>
+				<td style="width:5%;"><input type="checkbox" name="chkAll" style="width:20px;height:20px;float:left;"/> </td>
+				<td style="width:10%;"> 이미지</td>
+				<td> 멘토링 제목</td>
+				<td> 시간</td>
+				<td> 가격</td>
+				<td> <button type="button" id="delAllBtn" name="delAll" class="btn btn-info" style="float:right;display:none;">전체삭제</button></td>
+			</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${cartListResult.cartInfo}" var="list">
+					<tr valign="middle">
+						<td><input type="checkbox" name="chkbox" ct_seq="${list.ct_seq}" mtr_seq="${list.mtr_seq}" mtrdi_seq="${list.mtrdi_seq}" mtr_price="${list.mtr_price}" value="${list.mtr_price}" onclick="SumPrice(this.form)" style="width:20px;height:20px; float:left; margin-top:50px;"></td>
+						<td><img src="../resources/mentoring_list_images/${list.mtr_profile}" alt="img" width="100px" height="100px"> </td>
+						<td><a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}">${list.mtr_subject}</a><input type="hidden" name=mtr_seq value="${list.mtr_seq}"><br><div class="badge badge-warning mb-2" style="font-size:1.0em;">${list.mtr_hashtag}</div></td>
+						<td> ${list.mtrdi_stime}<br>&nbsp;&nbsp;~${list.mtrdi_etime}</td>
+						<td> ${list.mtr_price}원 <input type="hidden" name=mtrdi_seq value="${list.mtrdi_seq}"></td>
+						<td><button type="button" class="btn btn-info" style="float:right;" onclick="location.href='../cart/deleteCart.do?mem_email=${loginUser.mem_email}&ct_seq=${list.ct_seq}'">삭제</button> </td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<!--
+    	<b>전체 선택</b><input type="checkbox" name="chkAll" style="width:20px;height:20px;float:left;"/>
     	<button type="button" id="delAllBtn" name="delAll" class="btn btn-primary" style="float:right;display:none;">전체삭제</button>
     		<form name="f" method="post" action="/payment/cartListPaymentList.do">			
     		<c:forEach items="${cartListResult.cartInfo}" var="list">
 					<hr>
-						<input type="checkbox" name="chkbox" ct_seq="${list.ct_seq}" mtr_seq="${list.mtr_seq}" mtrdi_seq="${list.mtrdi_seq}" mtr_price="${list.mtr_price }" value="${list.mtr_price}" onclick="SumPrice(this.form)" style="width:20px;height:20px; float:left; margin-top:50px;">
+						<input type="checkbox" name="chkbox" ct_seq="${list.ct_seq}" mtr_seq="${list.mtr_seq}" mtrdi_seq="${list.mtrdi_seq}" mtr_price="${list.mtr_price}" value="${list.mtr_price}" onclick="SumPrice(this.form)" style="width:20px;height:20px; float:left; margin-top:50px;">
 						<div style="margin-left:50px;">
 							<img src="../resources/mentoring_list_images/${list.mtr_profile}" alt="img" width="100px" height="100px">&nbsp;&nbsp;&nbsp;
 							<span class="badge badge-warning mb-2" style="font-size:1.0em;">${list.mtr_hashtag}</span>
@@ -68,11 +93,14 @@ a {
 							<br/>
 						</div>
 			</c:forEach>
+			-->
 			<hr>
-			<b>선택: </b><span id="selectCartCount" style="font-size:30pt;">0</span>개
+			<b>선택: </b><span id="selectCartCount" style="font-size:20px;">0</span>개
+			<span style="float:right; margin-right:20px;"><b>합계: </b><span id="totPrice" style="font-size:20px;">0</span>원 </span>
+			<br/><br/>
 			<hr>
-			<b>합계: </b><span id="totPrice" style="font-size:30pt;">0</span>원<button class="btn btn-primary" id="purchase" type="button" style="float:right;">결제하기</button>
-			<hr>
+			<button class="btn btn-info" id="purchase" type="button" style="float:right;">결제하기</button>
+
 					<input type="hidden" id="sumPaymentPrice" name="sumPaymentPrice" value=""/>
 					<input type="hidden" id="cartList" name="cartList" value=""/>
 			</form>

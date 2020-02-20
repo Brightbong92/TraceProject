@@ -26,9 +26,9 @@
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
   <!-- Page Content -->
   <div class="container">
-
+	<br/><br/>
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">결제
+    <h1 class="mt-4 mb-3" style="font-size:25px;">결제
      <%--  <small>결제페이지</small>--%>
     </h1>
 <%-- 
@@ -39,22 +39,44 @@
       <li class="breadcrumb-item active"></li>
     </ol>
 --%>
+	<form name="f" method="post" action="../payment/cartPurchaseInfo.do">
     <div class="jumbotron">
-    <form name="f" method="post" action="../payment/cartPurchaseInfo.do">
-    	<b style="font-size:25pt;">결제자정보</b>
+    
+    	<b style="font-size:25px;">구매자정보</b>
     	<hr>
     		<div>
-    			<b>이름: </b> <input type="text" id="pi_name" name="pi_name" placeholder="구매자이름"/>
+    			<b>이름 : </b> <input type="text" id="pi_name" name="pi_name" placeholder="구매자이름"/>
     			<br/>
     			<br/>
-    			<b>번호: </b> <input type="text" id="pi_phone" name="pi_phone" placeholder="휴대폰번호 -제외" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+    			<b>번호 : </b> <input type="text" id="pi_phone" name="pi_phone" placeholder="휴대폰번호 -제외" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
     		</div>
-    	<hr>
-    	<b style="font-size:25pt;">주문정보</b>
-		<hr>
-
-		<c:forEach items="${listResult.cartPaymentInfoList}" var="list">
-			<div>
+    </div>
+    <div class="jumbotron">
+    	<b style="font-size:25px;">주문정보</b>
+			<table class="table table-boardered">
+				
+				<thead>
+					<tr>
+						<td style="width:10%;"> 이미지</td>
+						<td> 멘토링 제목</td>
+						<td> 시간</td>
+						<td> 가격</td>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${listResult.cartPaymentInfoList}" var="list">
+					<tr>
+						<td><img src="../resources/mentoring_list_images/${list.mtr_profile}" alt="img" width="100px" height="100px"></td>
+						<td><b id="pi_products">${list.mtr_subject}</b><br><div style="font-size:14px" class="badge badge-warning mb-2">${list.mtr_hashtag}</div></td>
+						<td>${list.mtrdi_stime}<br>&nbsp;&nbsp;~${list.mtrdi_etime} <input type="hidden" name="ct_seq" value="${list.ct_seq}"></td>
+						<td>${list.mtr_price}원</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		
+			
+			<!-- div>
 				<img src="../resources/mentoring_list_images/${list.mtr_profile}" alt="img" width="100px" height="100px">&nbsp;&nbsp;&nbsp;
 				<span style="font-size:1.0em" class="badge badge-warning mb-2">${list.mtr_hashtag}</span>&nbsp;&nbsp;<span><b id="pi_products">${list.mtr_subject}</b></span>
 			</div>
@@ -62,25 +84,24 @@
 				<hr>
 				<span>옵션: <b>${list.mtrdi_stime}~${list.mtrdi_etime}</b></span><span style="float:right;">${list.mtr_price}원</span><br/>
 				<input type="hidden" name="ct_seq" value="${list.ct_seq}">
-			</div>
-		</c:forEach>
+			</div-->
 		
 		<hr>
 		<b>나의 포인트:&nbsp;</b>
 		<%--<hr>--%>
 			<span>
-				<span> </span><span id="mem_point" style="font-size:30pt;" point="${listResult.mem_point}">${listResult.mem_point}</span>P&nbsp;&nbsp;&nbsp;
+				<span> </span><span id="mem_point" style="font-size:25px;" point="${listResult.mem_point}">${listResult.mem_point}</span>P&nbsp;&nbsp;&nbsp;
 				<c:if test="${loginUser.mem_point ne 0}">
-				<input type="text" id="pointText" placeholder="포인트사용"/>
-				<button class="btn btn-primary" type="button" style="float:right;" onclick="pointUse();">사용하기</button>
+				<input type="text" id="pointText" placeholder="포인트입력"/>
+				<button class="btn btn-info" type="button" style="float:right;" onclick="pointUse();">사용하기</button>
 				</c:if>
 			</span>
 		<hr>
 		<b>결제금액:&nbsp;</b>
 		<%-- <hr>--%>
 			<span>
-				<span id="pi_price" style="font-size:30pt;">${listResult.sumPaymentPrice}</span>원
-				<button class="btn btn-primary" id="check_module" type="button" style="float:right;">결제하기</button>
+				<span id="pi_price" style="font-size:25px;">${listResult.sumPaymentPrice}</span>원
+				<button class="btn btn-info" id="check_module" type="button" style="float:right;">결제하기</button>
 			</span>
 			
 			<input type="hidden" id="usedPointTot" name="usedPointTot" value="0"/>
@@ -88,10 +109,10 @@
 			<input type="hidden" id="pi_muid" name="pi_muid" value=""/>
 			<input type="hidden" id="pi_product" name="pi_product" value=""/>
 			<input type="hidden" name="mem_email" value="${loginUser.mem_email}"/>
+	</div><!-- /.jumbotron -->
 	</form>
-    </div><!-- /.jumbotron -->
-	
-  </div><!-- /.container -->
+    </div><!-- /.container -->
+
 <script>
 <%--포인트관련로직--%>
 $(document).ready(function(){

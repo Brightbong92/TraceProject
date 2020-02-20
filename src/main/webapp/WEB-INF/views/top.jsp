@@ -149,7 +149,7 @@ body {
 	         <!-- 관리자로그인 했을시 나오게끔 -->
 	         <c:if test="${loginUser.mem_email eq 'admin'}">
 		          <li class="nav-item">
-		            <a class="nav-link" href="../admin/search.do?cp=1&keyword=" style="color:black;" >
+		            <a class="nav-link" href="../admin/charts.do" style="color:black;" >
 		              	관리자 페이지
 		            </a>
 		          </li>

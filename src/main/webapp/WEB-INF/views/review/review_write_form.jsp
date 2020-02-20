@@ -51,7 +51,7 @@ star_input>.input.focus{outline:1px dotted #ddd;}
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">${mtr_subject}
+    <h1 class="mt-4 mb-3" style="font-size:30px;"><a href="../mentoring/mentoringDetail.do?mtr_seq=${mtr_seq}">${mtr_subject}</a> - 후기 등록하기
       <%-- <small>: 리뷰</small>--%>
     </h1>
 <%-- 
@@ -65,48 +65,65 @@ star_input>.input.focus{outline:1px dotted #ddd;}
     <!-- Contact Form -->
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <form name="reviewForm" id="reviewForm" action="/review/reviewRegister.do" method="post" enctype="multipart/form-data">
-    <div class="row">
-
+    <div class="row" style="margin-top:40px">
+	
+	
+	<div class="control-group form-group">
+          <div style="margin-left:200px; margin-right:10px">
+          	<label>작성자:</label><br/>
+          	<input type="text" style="width:750px;" placeholder="${loginUser.mem_nick}" disabled="true">
+          </div>
+        </div>
+          
 	<input type="hidden" name="mtr_seq" value="${mtr_seq}">
 		<div class="control-group form-group">
 			<div style="margin-left:200px;">
+			<label>후기내용:</label>
 		    <textarea rows="10" cols="100" name="mtrrv_content" class="form-control" id="message" placeholder="후기를 등록해주세요" maxlength="999" style="resize:none;size:1000;"></textarea>
 		    </div>
 		</div>
     </div><!-- /.row -->
     
     
-    <div id="fileDiv">
-	</div>
-	<div id="imgs_wrap">
-	</div>
-
-    <div align='center'>별점먹이기
+	<div style="margin-top:-15px;">
+    <label style="margin-left:200px;"><strong>별점 :</strong></label>
     <span class="star_input">
-	<span class="input">
-    	<input type="radio" name="star_input" value="1" id="p1">
-    	<label for="p1">1</label>
-    	<input type="radio" name="star_input" value="2" id="p2">
-    	<label for="p2">2</label>
-    	<input type="radio" name="star_input" value="3" id="p3">
-    	<label for="p3">3</label>
-    	<input type="radio" name="star_input" value="4" id="p4">
-    	<label for="p4">4</label>
-    	<input type="radio" name="star_input" value="5" id="p5">
-    	<label for="p5">5</label>
-  	</span>
-  	<%-- 
-  		<output for="star-input" ><b>0</b>점</output>
-    --%>						
+		<span class="input">
+	    	<input type="radio" name="star_input" value="1" id="p1">
+	    	<label for="p1">1</label>
+	    	<input type="radio" name="star_input" value="2" id="p2">
+	    	<label for="p2">2</label>
+	    	<input type="radio" name="star_input" value="3" id="p3">
+	    	<label for="p3">3</label>
+	    	<input type="radio" name="star_input" value="4" id="p4">
+	    	<label for="p4">4</label>
+	    	<input type="radio" name="star_input" value="5" id="p5">
+	    	<label for="p5">5</label>
+	  	</span>					
 	</span>
-    </div> 
+	</div>
+	<br/>
 	
-	<br/><br/>
-    <div align='center'>
-    <button type="button" class="btn btn-primary" id="reviewRegiBtn">리뷰등록</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="#this" id="add" class="btn btn-primary">파일 추가하기</a>
+	<div class="control-group form-group">
+			<div style="margin-left:200px;">
+			<label>사진첨부 :</label> &nbsp;&nbsp;&nbsp;&nbsp;
+			
+		</div>
     </div>
     
+    
+    <div id="fileDiv">
+	</div>
+	<a href="#this" id="add" style="margin-left:200px;" >사진 추가하려면 클릭!!</a><br/>
+	<div id="imgs_wrap" style="background:#edf8ff;margin-left:200px; width:70%"> 
+	</div>
+    
+	<br/><br/>
+    <div align='center'>
+    <button type="button" class="btn btn-info" id="reviewRegiBtn">후기등록</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+    </div>
+    <br/><br/>
   </form>
   
   </div><!-- /.container -->
@@ -161,7 +178,7 @@ var starRating = function(){
 			
 			$("#reviewRegiBtn").on('click', function(){
 				if($("input:radio[name='star_input']:checked").val() == null) {
-					alert("별점을 맥여주세요.");
+					alert("별점을 등록해주세요.");
 					return false;
 				}
 				
@@ -172,13 +189,13 @@ var starRating = function(){
 			});
 			
 		});
-		
+		//"+cnt+"번째 사진 : 
 		function fn_fileAdd(){
 			cnt++;
-			var str = "<p align='center'><label style='margin-top:8px;'class='btn btn-primary btn-file'>파일추가<input type='file' idx='"+cnt+"' id='mtrrv_file' name='mtrrv_file' accept='.gif, .jpg, .png' onchange='fileUpload(this)' style='display:none'/></label>&nbsp;&nbsp;<a href='#this' idx='"+cnt+"' name='delete' class='btn btn-primary btn-file'>삭제하기</a></p>";
+			var str = "<p style='margin-left:200px;'><label style='margin-top:8px;'class='btn btn-info btn-file'>파일추가<input type='file' idx='"+cnt+"' id='mtrrv_file' name='mtrrv_file' accept='.gif, .jpg, .png' onchange='fileUpload(this)' style='display:none'/></label>&nbsp;&nbsp;<a href='#this' idx='"+cnt+"' name='delete' class='btn btn-danger btn-file'>삭제하기</a></p>";
 			$("#fileDiv").append(str);
 			$("a[name='delete']").on("click",function(e){
-				e.preventDefault();
+				e.preventDefault(); 
 				//fn_fileDelete($(this));
 				$(this).parent().remove();
 				var i = $(this).attr("idx");

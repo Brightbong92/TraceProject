@@ -8,10 +8,9 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">${listResult.mtr_subject}
-      <small></small>
-    </h1>
-    
+    <p style="font-size:25px;margin-top:40px;" class="mt-4 mb-3"><a href="../mentoring/mentoringDetail.do?mtr_seq=${listResult.mtr_seq}">${listResult.mtr_subject}</a> - 후기
+    </p>
+    <br/>
 
     
 <%-- 
@@ -35,16 +34,16 @@
     <c:if test="${!empty listResult.mtr_review_list}">
     <c:forEach items="${listResult.mtr_review_list}" var="review" varStatus="status">
 
-    <div class="card mb-4"><!-- 전체 -->
-
+    <div><!-- 전체 -->
     <!-- 후기 -->
       <div class="card-body">
         <div class="row">
           <img class="d-flex mr-3 rounded-circle" src="../resources/profileImage/${review.mem_profile}" alt="" width="50px" height=50px>
-
-           <div class="mt-0">${review.mem_nick} / 
+			
+           <div class="mt-0"><strong>${review.mem_nick}</strong> </div>&nbsp;&nbsp;&nbsp;&nbsp;
+           <div style="color:gray;"> 
            <fmt:formatDate value="${review.mtrrv_rdate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-           </div>
+           </div>&nbsp;&nbsp;&nbsp;&nbsp;
 	           <c:choose>
 	           <c:when test="${review.mtrrv_jumsu eq 0}">
 	            <div class="starRev">
@@ -111,7 +110,7 @@
            	 	  <c:forEach items="${review_file_list}" var="review_file">
 	            	  <c:if test="${review.mtrrv_seq eq review_file.mtrrv_seq}">
 		                 <a style="cursor:pointer;" onClick="window.open('../resources/mentoring_review_images/${review_file.mtrrvf_fname}','_blank','width=700, height=700, location=no, scrollbars=yes, status=no')">
-		                 <img src="../resources/mentoring_review_images/${review_file.mtrrvf_fname}" alt="" width="120px" height="120px"/>
+		                 &nbsp;&nbsp;<img src="../resources/mentoring_review_images/${review_file.mtrrvf_fname}" alt="" width="110px" height="110px"/>
 		                 </a>
 	          		  </c:if>
          		  </c:forEach>
@@ -119,10 +118,10 @@
             </div>
        </div>
      </div>
-     <div style="margin-bottom:10px;margin-right:5px;"align="right">도움이됐어요 :<b>${review.mtrrv_likecnt}</b><a idx="${review.mtrrv_seq}" onclick="likePlus(this)"><img src="../resources/images/likeButton.png" alt="" width="30px" height="30px" id="likeBtn" style="margin-bottom:13px;cursor:pointer;"/></a></div>
+     <div style="margin-bottom:10px;margin-right:5px;"align="right">도움이 됐어요 : <b>${review.mtrrv_likecnt} </b><a idx="${review.mtrrv_seq}" onclick="likePlus(this)"><img src="../resources/images/likeButton.png" alt="" width="30px" height="30px" id="likeBtn" style="margin-bottom:13px;cursor:pointer;"/></a></div>
      <!-- 후기내용들까지 -->
     
-      
+      <br/><br/><br/>
     <!-- 답변 -->
 	<c:forEach items="${listResult.mtr_review_reply_list}" var="review_reply_list">
 		<c:forEach items="${review_reply_list}" var="review_reply">
@@ -135,8 +134,8 @@
 			      </div>
 		    </c:if>
 	   	</c:forEach>
-	</c:forEach> 	
-    	
+	</c:forEach> 
+	
     	<c:if test="${listResult.mem_email eq loginUser.mem_email}">
         <!-- 답변자 =답변달기 Form -->
 	        <div class="card my-4">
@@ -152,15 +151,15 @@
 	          </div>
 	        </div>
 		</c:if>
-    
+    	<hr>
 	</div><!-- .card mb-4  -->
 	</c:forEach>
 	</c:if>
 	
     <c:if test="${empty listResult.mtr_review_list}">
-   		<div align='center'>등록된 후기가 없습니다.</div>
+   		<div align='center' style="height:452px; margin-top:130px;">등록된 후기가 없습니다.</div>
     </c:if>
-
+	
  
 <c:if test="${!empty listResult.totalPageCount}"> <!-- 토탈페이지가 비어있지않을경우 -->
 <!-- 페이징 -->    
@@ -185,7 +184,7 @@
 		<button  onclick="javascript:location.href='../review/reviewList.do?cp=${listResult.totalPageCount}&mtr_seq=${listResult.mtr_seq}'">&#x000BB;</button>
 	</div>
 </c:if>
-
+<br/><br/>
 
   </div> <!-- /.container -->
 <script>

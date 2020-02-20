@@ -78,7 +78,7 @@
 				</tr>
 				<c:forEach items="${listResult.list}" var= "notice">
 				<tr style="cursor:pointer;" onclick="location.href='content.do?noti_seq=${notice.noti_seq}'">
-					<td><p class="btn btn-primary" style="width:100px;"><font size=2>공지사항</font></p></td>
+					<td><p class="btn btn-info" style="width:100px;"><font size=2>공지사항</font></p></td>
 					<td><font size=3>${notice.noti_subject}</font></td>
 					<td><font size=3>관리자</font></td>
 					<td><font size=3>${notice.noti_readcnt}</font></td>

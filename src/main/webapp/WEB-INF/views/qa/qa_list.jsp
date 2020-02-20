@@ -9,7 +9,7 @@
 
     <!-- Page Heading/Breadcrumbs -->
     
-    <p style="font-size:25px;margin-top:40px;">${listResult.mtr_subject}  - Q & A 
+    <p style="font-size:25px;margin-top:40px;"><a href="../mentoring/mentoringDetail.do?mtr_seq=${listResult.mtr_seq}">${listResult.mtr_subject}</a>  - Q & A 
         <c:if test="${!empty loginUser}">
         <div style="float:right;">
         <button class="btn btn-primary" onclick="goQAWriteForm()">문의하기</button>
@@ -97,7 +97,7 @@
     	
 	</c:if>
     <c:if test="${empty listResult.mtr_qa_list}">
-   		<div align='center'>등록된 질문이 없습니다.</div>
+   		<div align='center' style="height:432px; margin-top:130px;">등록된 질문이 없습니다.</div>
     </c:if>
 <br/><br/>
 <c:if test="${!empty listResult.totalPageCount}"> <!-- 토탈페이지가 비어있지않을경우 -->
