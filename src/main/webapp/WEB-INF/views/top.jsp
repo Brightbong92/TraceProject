@@ -92,20 +92,36 @@ body {
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" >
-          <li class="nav-item">
-              <a class="nav-link" href="../mentoring/mentoring_list.do?sort=99" style="color:black;">멘토링</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../mentor/mentor_apply.do" style="color:black;">멘토신청</a>
-          </li>
+
+
+           <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black;">
+	               발자취
+	       </a>
+	        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog" >
+	        	  <a class="dropdown-item" href="../mentoring/mentoring_list.do?sort=99" >멘토링</a>
+	              <a class="dropdown-item" href="../mentor/mentor_apply.do">멘토신청</a>
+	        </div>
+           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="../hobbytest/hobby_test.do" style="color:black;">취미테스트</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../notice/list.do" style="color:black;">공지사항</a>
           </li>
+          
+ 	<%--
+ 	      <li class="nav-item">
+              <a class="nav-link" href="../mentoring/mentoring_list.do?sort=99" style="color:black;">멘토링</a>
+          </li>
+          <li class="nav-item">
+           	  <a class="nav-link" href="../mentor/mentor_apply.do" style="color:black;">멘토신청</a>
+          </li>
+ 	 --%>
           
             <!-- 로그인했을 시 나오게끔 -->
 	          <c:if test="${!empty loginUser}">
@@ -142,10 +158,15 @@ body {
 	              <a class="dropdown-item" href="../mentoring/mentoringWriteForm.do">멘토링등록하기</a>
 	              </c:if>
 	              <%-- <a class="dropdown-item" href="../chat/free.do"></a>--%>
+	              <!-- 관리자로그인 했을시 나오게끔 -->
+		          <c:if test="${loginUser.mem_email eq 'admin'}">
+			          <a class="dropdown-item" href="../admin/charts.do">관리자 페이지</a>
+		          </c:if>
+	              
 	              <a class="dropdown-item" href="../login/logout.do">로그아웃</a>
 	            </div>
 	          </li>
-	          
+	          <%-- 
 	         <!-- 관리자로그인 했을시 나오게끔 -->
 	         <c:if test="${loginUser.mem_email eq 'admin'}">
 		          <li class="nav-item">
@@ -154,6 +175,7 @@ body {
 		            </a>
 		          </li>
 	          </c:if>
+	          --%>
 	          <!--  <img src="../images/cartImg.jpg" width="30px" height="30px"/>-->
 	          <img src="../images/cartImg2.png" width="22px" height="22px" onclick="location.href='../cart/cart.do?mem_email=${loginUser.mem_email}'" style="margin-top:7px; cursor:pointer;"/>
 	          	<c:choose>
