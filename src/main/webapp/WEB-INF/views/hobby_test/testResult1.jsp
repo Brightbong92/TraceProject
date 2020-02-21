@@ -60,7 +60,7 @@
 	<c:forEach items="${mentoringList}" var="list">
 		<div class="col-lg-4 col-sm-6 portfolio-item">
 			<div class="card h-100">
-	          <a href="#"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
+	          <a href="../mentoring/mentoringDetail.do?mtr_seq=${list.mtr_seq}"><img class="card-img-top" src="../resources/mentoring_list_images/${list.mtr_profile}" alt=""></a>
 	          <div class="card-body">
 	            <h4 class="card-title">
 	              <p><Heading1>${list.mtr_subject}</p> </h4>
