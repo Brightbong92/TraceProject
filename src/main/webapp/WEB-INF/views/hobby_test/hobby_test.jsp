@@ -100,7 +100,7 @@
 					image2.style.height = 370;
 					btn1.style.display = "inline-block";
 					image1.style.display = "inline-block";
-				},2500);
+				},1500);
 			}
 			//다음 이미지 띄우기 & 결과페이지로 이동하기
 			setTimeout(function(){
