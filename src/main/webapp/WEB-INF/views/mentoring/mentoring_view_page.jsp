@@ -161,24 +161,24 @@ table {
 	        	<tr align="center">
 	        	<c:choose>
 		        	<c:when test="${timelist.mtrdi_now_pcnt ne timelist.mtrdi_max_pcnt}">
-		        		<td><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" style="width:20px;height:20px;" onclick="selectOption(this)"></td>
-		        		
-		        		<fmt:parseDate value="${timelist.mtrdi_stime}" pattern="yyyy-MM-dd" var="rDate"/>	        	
-	        			<c:if test="${rDate > nDate}"><%--멘토링시작날짜 > 현재날짜 --%>
+		        		<fmt:parseDate value="${timelist.mtrdi_stime}" pattern="yyyy-MM-dd" var="rDate"/>
+		        		<fmt:formatDate value="${rDate}" pattern="yyyy-MM-dd" var="rDate2"/>
+	        			<c:if test="${rDate2 > nDate}"><%--멘토링시작날짜 > 현재날짜 --%>
+	        				<td><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" style="width:20px;height:20px;" onclick="selectOption(this)"></td>
 		        			<td align='center' style="width:200px;"><span>${timelist.mtrdi_stime}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
 		        			<td align='center' style="width:50px;"><span>${timelist.mtrdi_now_pcnt}</span>/<span>${timelist.mtrdi_max_pcnt}</span></td>
 	        			</c:if>
 		        	</c:when>
 		        	<c:otherwise>
-		        		<td><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" disabled="disabled" style="width:20px;height:20px;"></td>
-		        		<fmt:parseDate value="${timelist.mtrdi_stime}" pattern="yyyy-MM-dd" var="rDate"/>	        	
-	        			<c:if test="${rDate > nDate}"><%--멘토링시작날짜 > 현재날짜 --%>
+		        		<fmt:parseDate value="${timelist.mtrdi_stime}" pattern="yyyy-MM-dd" var="rDate"/>
+		        		<fmt:formatDate value="${rDate}" pattern="yyyy-MM-dd" var="rDate2"/> 	        	
+	        			<c:if test="${rDate2 > nDate}"><%--멘토링시작날짜 > 현재날짜 --%>
+	        				<td><input type="checkbox" mtrdi_seq="${timelist.mtrdi_seq}" name="checkOpt" value="${timelist.mtrdi_seq}" disabled="disabled" style="width:20px;height:20px;"></td>
 		        			<td align='center' style="width:200px;"><span style="text-decoration:line-through; color:gray;">${timelist.mtrdi_stime}<br/>&nbsp;~${timelist.mtrdi_etime}</span><br/></td>
 		        			<td align='center' style="width:50px;color:gray;"><span>${timelist.mtrdi_now_pcnt}</span>/<span>${timelist.mtrdi_max_pcnt}</span></td>
 	        			</c:if>
 		        	</c:otherwise>
 	        	</c:choose>
-	       
 	        	</tr>
 	        </c:forEach>
 	        </tbody>
