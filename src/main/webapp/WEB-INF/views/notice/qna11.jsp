@@ -60,9 +60,6 @@
 				<button type="button" onclick="location.href='../notice/list.do?cp=1'"  class="btn btn-link" style="color:gray;">공지사항</button>
 				<button type="button" onclick="location.href='../notice/qna.do'"  class="btn btn-link">자주 묻는 질문</button>
 			</div>
-			<div id="div1_2" class="form-group">
-				<input type="text" id="search" class="form-control" onkeydown="search(this)" placeholder="Search" style="width:160pt;" />
-			</div>
 		</div>
 	</div>
 	<div class="board_view_top">

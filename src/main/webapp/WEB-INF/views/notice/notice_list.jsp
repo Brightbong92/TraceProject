@@ -56,13 +56,14 @@
 	<div id="div1" class="row">
 		<div class="form-inline">
 			<div id="div1_1">
+			
+				
 				<button type="button"onclick="location.href='../notice/list.do?cp=1'"   class="btn btn-link" >공지사항</button>
 				<button type="button" onclick="location.href='../notice/qna.do'"  class="btn btn-link" style="color:gray;">자주 묻는 질문</button>
+				
 			</div>
 
-			<div id="div1_2"  >
-				<input type="text" id="search" class="form-control" onkeydown="search(this)" placeholder="Search" style="width:160pt; " />
-			</div>
+			
 		</div>
 	</div>
 
@@ -88,8 +89,9 @@
 				</c:forEach>
 			</tbody>
 		</table>
+			<input type="text" id="search" class="form-control" onkeydown="search(this)" placeholder="공지사항 검색" style="width:200pt; margin-left:650px;" /><br/>
 			<div class="board_paging" align="center" style="margin-bottom: 20px">
-				
+				 
 				<button  onclick="javascript:location.href='../notice/list.do?cp=1'">&#x000AB;</button>
 				<c:if test="${listResult.page ne 1}">
 				<button  onclick="javascript:location.href='../notice/list.do?cp=${listResult.page-1}'">&#x02039;</button>
