@@ -140,10 +140,8 @@ public class MypageController {
 	@PostMapping("changeProfile.do")
 	public String loadImg(String mem_email, MultipartFile mem_profile,String fname, HttpServletRequest request) {
 		String ofname = mem_profile.getOriginalFilename();
-		log.info("#ofname : " + ofname);
-		
 		File file = new File(MypagePath.FILE_STORE, fname);
-		if(file.exists()) {
+		if(file.exists() & !fname.equals("TraceDefaultProfile.jpg")) {
 			file.delete();
 		}
 		

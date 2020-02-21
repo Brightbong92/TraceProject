@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <jsp:include page="../top.jsp" />
-
+<!-- 적극적 성향 페이지 -->
 <div class="container" align="center">
 	<br/><br/>
 	<div id="content">

@@ -30,7 +30,7 @@
 					    	return false;
 					    }
 					    
-					   	else if ($('#phone').val() == "") {
+					   	else if ($('#ml_phone').val() == "") {
 					    	alert("전화번호를 입력해주세요.");
 					    	document.applyForm.ml_name.focus();
 					    	$("#phone").focus();
@@ -77,6 +77,15 @@
 </script>
 <script> 
 	function sendSms() { 
+		
+		if ($('#ml_phone').val() == "") {
+	    	alert("전화번호를 입력해주세요.");
+	    	document.applyForm.ml_name.focus();
+	    	$("#ml_phone").focus();
+	    	return false;
+	    }
+		
+
 		var receiver = $("#ml_phone").val();
 		$.ajax({ 
 			url: "${pageContext.request.contextPath}sendSms?receiver="+ receiver, 
@@ -87,8 +96,8 @@
 			success: function(result) { 
 				if (result == "true") { 
 					console.log(result); 
-					document.getElementById("sms").disabled = "false";
-					document.getElementById("check").disabled = "false";
+					$('#sms').removeAttr("disabled");
+					$('#check').removeAttr("disabled");
 					alert("인증번호 전송 성공");
 				} else { 
 					alert("인증번호 전송 실패"); 
