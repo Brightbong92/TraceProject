@@ -95,8 +95,12 @@ body {
       </button>
       
       <div class="collapse navbar-collapse" id="navbarResponsive">
+      <c:if test="${empty loginUser}">
+        <ul class="navbar-nav ml-auto" style="margin-right:8%; width:45%;">
+		</c:if>
+		<c:if test="${!empty loginUser}">
         <ul class="navbar-nav ml-auto" style="margin-right:20%; width:45%;">
-
+		</c:if>
 
            <li class="nav-item dropdown">
            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black;">
@@ -389,19 +393,28 @@ function removeActive(x) {
   }
   
 function msCheck(obj){
-	var ms_seq = $(obj).attr("ms_seq");
-	
-	$.ajax({
-		url:"../login/msgCheckUpdate.do?ms_seq="+ms_seq,
-		success:function(data){
-			console.clear();
-			console.clear("메세지상태변경 & 메세지세션변경 성공");
-		},error:function(err){
-			console.clear();
-			console.clear("메세지상태변경 & 메세지세션변경 실패");
-		}
-	});
-	
-}
+	   var ms_seq = $(obj).attr("ms_seq");
+	   
+	   $.ajax({
+	      url:"../login/msgCheckUpdate.do?ms_seq="+ms_seq,
+	      success:function(data){
+	         console.clear();
+	         //console.log("메세지상태변경 & 메세지세션변경 성공");
+	         
+	         //console.log("data: " + data);
+	         
+	         if(data == 0) {
+	            $("#msg_tot_count").css('display', 'none');
+	            console.log("data1: " + data);
+	         }else {
+	              $("#msg_tot_count").text(data);
+	              console.log("data2: " + data);
+	           }
+
+	      },error:function(err){
+	         console.clear();
+	         //console.log("메세지상태변경 & 메세지세션변경 실패");
+	      }
+	   });
   
 </script>
