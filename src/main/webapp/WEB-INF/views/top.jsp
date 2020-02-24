@@ -394,10 +394,21 @@ function msCheck(obj){
 		url:"../login/msgCheckUpdate.do?ms_seq="+ms_seq,
 		success:function(data){
 			console.clear();
-			console.clear("메세지상태변경 & 메세지세션변경 성공");
+			//console.log("메세지상태변경 & 메세지세션변경 성공");
+			
+			//console.log("data: " + data);
+			
+			if(data == 0) {
+				$("#msg_tot_count").css('display', 'none');
+				console.log("data1: " + data);
+			}else {
+	  			$("#msg_tot_count").text(data);
+	  			console.log("data2: " + data);
+	  		}
+
 		},error:function(err){
 			console.clear();
-			console.clear("메세지상태변경 & 메세지세션변경 실패");
+			//console.log("메세지상태변경 & 메세지세션변경 실패");
 		}
 	});
 	
