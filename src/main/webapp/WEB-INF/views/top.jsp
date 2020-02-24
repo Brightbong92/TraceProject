@@ -237,14 +237,13 @@ body {
 <script>
 
 $(document).ready(function(){
-	
+
 	$(document).click(function(e){
 		if(!$(e.target).is("#msg_store_box")) {
 			$("#msg_store_box *").remove();
 		}
 	});
-	
-	
+
 	$("#msg_store").on('click', function(){
 	//var flag = $("#msg_store_box").hasClass('dropdown-menu show');//alert("flag: " + flag);
 	var flag = $("#msg_store_dropdown").hasClass('dropdown show');
@@ -330,6 +329,8 @@ function find(e) {
 				var x = document.getElementById("searchBarautocomplete-list");
 				if (x) x = x.getElementsByTagName("div");
 				currentFocus++;
+				console.clear();
+				console.log(currentFocus);
 				addActive(x);
 		        $("#searchBar").val($(".autocomplete-active").text());
 		        return false;
@@ -374,9 +375,7 @@ function find(e) {
 		//$("#searchBar").focus();
 		return false;
 	}
-	
 }
-
 </script>
 <script>
 function addActive(x) {
@@ -416,5 +415,5 @@ function msCheck(obj){
 	         //console.log("메세지상태변경 & 메세지세션변경 실패");
 	      }
 	   });
-  
+	}
 </script>
