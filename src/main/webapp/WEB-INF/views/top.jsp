@@ -72,7 +72,9 @@ body {
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important; border-bottom:1px solid #dfe1e5;" >  <!-- 머리색 -->
     <div class="container" style="max-width:80% !important;">
-      <a class="navbar-brand" href="/"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <%-- <a class="navbar-brand" href="/"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     --%>
+    <a class="navbar-brand" href="/"><img src="../images/hobbyspace-logo.png" width="140" height="80" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
 	
 	<!-- 검색 onkeyup="find(this)"-->
