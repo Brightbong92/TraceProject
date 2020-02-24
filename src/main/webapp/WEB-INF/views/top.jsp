@@ -81,7 +81,7 @@ body {
 	<!-- 검색 -->
 		
 	  <div class="autocomplete" style="width:300px;">
-	  	
+	  
 	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:200%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:100px; " id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
 	  
 	  <div id="searchBarautocomplete-list" class="autocomplete-items" style="margin-left:33%;width:200%;">
