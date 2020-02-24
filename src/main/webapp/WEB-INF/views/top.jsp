@@ -58,7 +58,6 @@
  background-image: linear-gradient(to bottom, #e8616c, #dd202f);
  -webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
  box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
-
 }
 @font-face {
   font-family: 'Noto Sans KR', sans-serif;
@@ -72,19 +71,18 @@ body {
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important; border-bottom:1px solid #dfe1e5;" >  <!-- 머리색 -->
     <div class="container" style="max-width:80% !important;">
-     <%-- <a class="navbar-brand" href="/"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     --%>
-    <a class="navbar-brand" href="/"><img src="../images/hobbyspace-logo.png" width="140" height="80" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <!-- a class="navbar-brand" href="/" style="margin-left:13%"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+      <a class="navbar-brand" href="/" style="margin-left:13%"><img src="../images/hobbyspace-logo.png" width="120" height="70" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
 	
 	<!-- 검색 onkeyup="find(this)"-->
 	<!-- 검색 -->
 		
-	  <div class="autocomplete" style="width:300px;">
+	  <div class="autocomplete" style="width:15%;margin-left:-5%">
+	  	
+	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:170%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:45%; border:0px; outline:none" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
 	  
-	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:200%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:100px; " id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
-	  
-	  <div id="searchBarautocomplete-list" class="autocomplete-items" style="margin-left:33%;width:200%;">
+	  <div id="searchBarautocomplete-list" class="autocomplete-items" style="margin-left:45%;width:170%;">
 	  </div>
 	   
       </div>
@@ -96,9 +94,12 @@ body {
       </button>
       
       <div class="collapse navbar-collapse" id="navbarResponsive">
-
+      <c:if test="${empty loginUser}">
+        <ul class="navbar-nav ml-auto" style="margin-right:8%; width:45%;">
+		</c:if>
+		<c:if test="${!empty loginUser}">
         <ul class="navbar-nav ml-auto" style="margin-right:20%; width:45%;">
-
+		</c:if>
 
            <li class="nav-item dropdown">
            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black;">
@@ -233,7 +234,6 @@ body {
     </div>
   </nav>
 <script>
-
 $(document).ready(function(){
 	
 	$(document).click(function(e){
@@ -256,7 +256,6 @@ $(document).ready(function(){
 				dataType:"json",
 				success: function(data){
 					console.clear();//console.log("data: " + JSON.stringify(data));
-
 					if(data.length == 0) {
 						$("#msg_store_box").append("<div class='dropdown-item'>메세지가 없습니다.</div>");
 					}
@@ -282,7 +281,6 @@ $(document).ready(function(){
 	
 	
 });
-
 </script>
 <script type="text/javascript">
 String.prototype.replaceAll = function(org, dest) {
@@ -304,7 +302,6 @@ function find(e) {
 			var w3 = word.indexOf("\\");
 	        var w4 = word.indexOf("[");
 	        var w5 = word.indexOf("]");
-
 	         if(w2 != -1) {
 	            word = word.replaceAll("^", " ");
 	         }
@@ -316,7 +313,6 @@ function find(e) {
 	            alert("특수문자 [] 를 제거해주세요.");
 	            return false;
 	         }
-
 				if(w == -1) {//일반검색시//alert("#포함안됨" + word)
 					location.href="../mentoring/searchList.do?word="+word+"&cp=1";
 				}
@@ -374,7 +370,6 @@ function find(e) {
 	}
 	
 }
-
 </script>
 <script>
 function addActive(x) {
@@ -391,30 +386,27 @@ function removeActive(x) {
   }
   
 function msCheck(obj){
-	var ms_seq = $(obj).attr("ms_seq");
-	
-	$.ajax({
-		url:"../login/msgCheckUpdate.do?ms_seq="+ms_seq,
-		success:function(data){
-			console.clear();
-			//console.log("메세지상태변경 & 메세지세션변경 성공");
-			
-			//console.log("data: " + data);
-			
-			if(data == 0) {
-				$("#msg_tot_count").css('display', 'none');
-				console.log("data1: " + data);
-			}else {
-	  			$("#msg_tot_count").text(data);
-	  			console.log("data2: " + data);
-	  		}
-
-		},error:function(err){
-			console.clear();
-			//console.log("메세지상태변경 & 메세지세션변경 실패");
-		}
-	});
-	
-}
+	   var ms_seq = $(obj).attr("ms_seq");
+	   
+	   $.ajax({
+	      url:"../login/msgCheckUpdate.do?ms_seq="+ms_seq,
+	      success:function(data){
+	         console.clear();
+	         //console.log("메세지상태변경 & 메세지세션변경 성공");
+	         
+	         //console.log("data: " + data);
+	         
+	         if(data == 0) {
+	            $("#msg_tot_count").css('display', 'none');
+	            console.log("data1: " + data);
+	         }else {
+	              $("#msg_tot_count").text(data);
+	              console.log("data2: " + data);
+	           }
+	      },error:function(err){
+	         console.clear();
+	         //console.log("메세지상태변경 & 메세지세션변경 실패");
+	      }
+	   });
   
 </script>
