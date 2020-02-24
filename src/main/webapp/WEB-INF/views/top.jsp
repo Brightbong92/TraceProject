@@ -58,6 +58,7 @@
  background-image: linear-gradient(to bottom, #e8616c, #dd202f);
  -webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
  box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.12);
+
 }
 @font-face {
   font-family: 'Noto Sans KR', sans-serif;
@@ -234,6 +235,7 @@ body {
     </div>
   </nav>
 <script>
+
 $(document).ready(function(){
 	
 	$(document).click(function(e){
@@ -256,6 +258,7 @@ $(document).ready(function(){
 				dataType:"json",
 				success: function(data){
 					console.clear();//console.log("data: " + JSON.stringify(data));
+
 					if(data.length == 0) {
 						$("#msg_store_box").append("<div class='dropdown-item'>메세지가 없습니다.</div>");
 					}
@@ -281,6 +284,7 @@ $(document).ready(function(){
 	
 	
 });
+
 </script>
 <script type="text/javascript">
 String.prototype.replaceAll = function(org, dest) {
@@ -302,6 +306,7 @@ function find(e) {
 			var w3 = word.indexOf("\\");
 	        var w4 = word.indexOf("[");
 	        var w5 = word.indexOf("]");
+
 	         if(w2 != -1) {
 	            word = word.replaceAll("^", " ");
 	         }
@@ -313,6 +318,7 @@ function find(e) {
 	            alert("특수문자 [] 를 제거해주세요.");
 	            return false;
 	         }
+
 				if(w == -1) {//일반검색시//alert("#포함안됨" + word)
 					location.href="../mentoring/searchList.do?word="+word+"&cp=1";
 				}
@@ -370,6 +376,7 @@ function find(e) {
 	}
 	
 }
+
 </script>
 <script>
 function addActive(x) {
@@ -403,6 +410,7 @@ function msCheck(obj){
 	              $("#msg_tot_count").text(data);
 	              console.log("data2: " + data);
 	           }
+
 	      },error:function(err){
 	         console.clear();
 	         //console.log("메세지상태변경 & 메세지세션변경 실패");
