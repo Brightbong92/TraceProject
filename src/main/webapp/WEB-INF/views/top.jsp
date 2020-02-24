@@ -72,7 +72,8 @@ body {
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important; border-bottom:1px solid #dfe1e5;" >  <!-- 머리색 -->
     <div class="container" style="max-width:80% !important;">
-      <a class="navbar-brand" href="/" style="margin-left:13%"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <!-- a class="navbar-brand" href="/" style="margin-left:13%"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+      <a class="navbar-brand" href="/" style="margin-left:13%"><img src="../images/hobbyspace-logo.png" width="120" height="70" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
 	
 	<!-- 검색 onkeyup="find(this)"-->
@@ -80,9 +81,9 @@ body {
 		
 	  <div class="autocomplete" style="width:15%;margin-left:-5%">
 	  	
-	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:200%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:100px; border:0px; outline:none" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
+	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:170%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:45%; border:0px; outline:none" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
 	  
-	  <div id="searchBarautocomplete-list" class="autocomplete-items" style="margin-left:33%;width:200%;">
+	  <div id="searchBarautocomplete-list" class="autocomplete-items" style="margin-left:45%;width:170%;">
 	  </div>
 	   
       </div>
@@ -99,7 +100,7 @@ body {
 
            <li class="nav-item dropdown">
            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black;">
-	               발자취
+	               취미공간
 	       </a>
 	        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog" >
 	        	  <a class="dropdown-item" href="../mentoring/mentoring_list.do?sort=99" >멘토링</a>
