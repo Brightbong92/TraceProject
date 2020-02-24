@@ -72,15 +72,15 @@ body {
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important; border-bottom:1px solid #dfe1e5;" >  <!-- 머리색 -->
     <div class="container" style="max-width:80% !important;">
-      <a class="navbar-brand" href="/"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="navbar-brand" href="/" style="margin-left:13%"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
 	
 	<!-- 검색 onkeyup="find(this)"-->
 	<!-- 검색 -->
 		
-	  <div class="autocomplete" style="width:300px;">
+	  <div class="autocomplete" style="width:15%;margin-left:-5%">
 	  	
-	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:200%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:100px; " id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
+	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:200%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:100px; border:0px; outline:none" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
 	  
 	  <div id="searchBarautocomplete-list" class="autocomplete-items" style="margin-left:33%;width:200%;">
 	  </div>
@@ -94,7 +94,7 @@ body {
       </button>
       
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto" >
+        <ul class="navbar-nav ml-auto" style="margin-right:20%;">
 
 
            <li class="nav-item dropdown">
