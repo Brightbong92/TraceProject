@@ -1,8 +1,5 @@
 package tp.login.controller;
 
-
-
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -69,14 +66,17 @@ public class LoginController {
 		return msg_store;
 	}
 	@GetMapping("msgCheckUpdate.do")
-	public void msgCheckUpdateAjax(long ms_seq, HttpSession session) {
+	@ResponseBody
+	public String msgCheckUpdateAjax(long ms_seq, HttpSession session) {
 		service.updateMessageStoreMessageCheck(ms_seq);
 		Member m = (Member)session.getAttribute("loginUser"); String mem_email = m.getMem_email();
 		long msgAlarmCount = getMessageAlarmCount(mem_email);
 		session.setAttribute("msgAlarmCount", msgAlarmCount);
+		String msgAlarmCountStr = String.valueOf(msgAlarmCount);
+		return msgAlarmCountStr;
 	}
 	
-	@PostMapping("msgAlarmCheck.do")
+	@PostMapping("msgAlarmCheck.do")//footer.jsp에 있음
 	@ResponseBody
 	public String msgAlarmCheck(@RequestBody String mem_email, HttpSession session) {
 		//log.info("#mem_email: " + mem_email);
