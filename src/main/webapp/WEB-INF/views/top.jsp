@@ -96,7 +96,8 @@ body {
       </button>
       
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto" >
+
+        <ul class="navbar-nav ml-auto" style="margin-right:20%; width:45%;">
 
 
            <li class="nav-item dropdown">
