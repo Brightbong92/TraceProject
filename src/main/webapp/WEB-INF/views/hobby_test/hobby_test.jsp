@@ -57,10 +57,11 @@
 				var image2= document.getElementById("img2");
 				var btn1= document.getElementById("btn1");
 				var btn2= document.getElementById("btn2");
-				image1.style.width = 900;
+				image1.style.width = 100+'%';
 				image1.style.height = 500;
-				btn1.style.width = 920;
+				btn1.style.width = 100+'%';
 				btn1.style.height = 520;
+				btn1.style.margin = 'auto';
 				btn1.disabled = "true";
 				btn1.style.opacity = 100;
 				document.getElementById("comment2").style.display = "none";
@@ -71,6 +72,7 @@
 					btn1.disabled = "";
 					btn1.style.width = 390;
 					btn1.style.height = 390;
+					btn1.style.marginLeft = 90;
 					image1.style.width = 370;
 					image1.style.height = 370;
 					btn2.style.display = "inline-block";
@@ -82,10 +84,11 @@
 				var image2= document.getElementById("img2");
 				var btn1= document.getElementById("btn1");
 				var btn2= document.getElementById("btn2");
-				image2.style.width = 900;
+				image2.style.width = 100+'%'
 				image2.style.height = 500;
-				btn2.style.width = 920;
+				btn2.style.width = 100+'%'
 				btn2.style.height = 520;
+				btn2.style.margin = 'auto';
 				btn2.disabled = "true";
 				btn2.style.opacity = 100;
 				document.getElementById("comment2").style.display = "none";
@@ -96,6 +99,7 @@
 					btn2.disabled = "";
 					btn2.style.width = 390;
 					btn2.style.height = 390;
+					btn2.style.marginLeft = 210;
 					image2.style.width = 370;
 					image2.style.height = 370;
 					btn1.style.display = "inline-block";

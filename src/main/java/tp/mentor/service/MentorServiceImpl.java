@@ -90,10 +90,12 @@ public class MentorServiceImpl implements MentorService {
 	}
 	@Override
 	public void setCode(String ml_phone, int sms_uuid) {
+		//log.info("#서비스 phone :" + ml_phone);
 		HashMap<String, Object> code =  new HashMap<String, Object>();
 		code.put("ml_phone",ml_phone);
 		code.put("sms_uuid",sms_uuid);
 		String check = mentorMapper.checkCode(ml_phone);
+		log.info("체크 : " + check);
 		if(check==null) {
 			mentorMapper.setCode(code);
 		}else {

@@ -93,6 +93,7 @@ public class MentorController {
 		credsProvider.setCredentials(new AuthScope(hostname, 443, AuthScope.ANY_REALM), 
 				
 		// 청기와랩에 등록한 Application Id 와 API key 를 입력합니다. 
+		//new UsernamePasswordCredentials("Trace", "0db78300579211ea9bbc0cc47a1fcfae"));
 		new UsernamePasswordCredentials("TraceProject", "42e9fa4c462811eab9760cc47a1fcfae")); 
 		
 		AuthCache authCache = new BasicAuthCache(); 
