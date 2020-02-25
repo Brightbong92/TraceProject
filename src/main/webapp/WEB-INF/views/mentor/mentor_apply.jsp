@@ -50,17 +50,10 @@
 					    	alert("첨부파일을 입력해주세요.");
 					    	return false;
 					    }
-					   	
-						
-						/*
 					   	else if($('#pAuth').val() == "fail") {
 					   		alert("핸드폰 인증을 해주세요.");
 					   		return false;
-					   	}다시살려야함
-						*/
-						
-						
-						
+					   	}
 						f.submit();
 				    	alert("멘토신청이 완료되었습니다. 담당자 확인 후 연락 드리겠습니다.");
 						history.back(-1);
