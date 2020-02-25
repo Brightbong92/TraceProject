@@ -86,4 +86,9 @@ public class QAServiceImpl implements QAService {
 		}
 	}
 
+	@Override
+	public void deleteQAS(long mtrqa_seq) {
+		qaMapper.deleteQA(mtrqa_seq);
+	}
+
 }

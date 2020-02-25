@@ -38,7 +38,11 @@
 	]]>
 	</select>
 	
-	
+	<delete id="deleteReview" parameterType="long">
+	<![CDATA[
+	DELETE FROM MENTORING_REVIEW WHERE MTRRV_SEQ = #{mtrrv_seq}
+	]]>
+	</delete>
 	
 	
 </mapper>

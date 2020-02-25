@@ -12,4 +12,6 @@ public interface QAService {
 	void MentoringQAReplyRegister(Mentoring_QA_Reply mtr_qa_reply);
 	Mentoring getMentoringSubject(long mtr_seq);
 	boolean insertReportQaBoardS(Report report);
+	
+	void deleteQAS(long mtrqa_seq);
 }

@@ -186,4 +186,9 @@ public class ReviewServiceImpl implements ReviewService {
 		}
 	}
 
+	@Override
+	public void deleteReviewS(long mtrrv_seq) {
+		reviewMapper.deleteReview(mtrrv_seq);
+	}
+
 }

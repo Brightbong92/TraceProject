@@ -30,6 +30,12 @@
 		select MTRQARP_SEQ, MTRQARP_CONTENT, MTRQARP_RDATE, mqr.MEM_EMAIL, MTRQA_SEQ, MEM_NICK, MEM_PROFILE from 
 		MENTORING_QA_REPLY mqr, MEMBER me where mqr.MEM_EMAIL = me.MEM_EMAIL and MTRQA_SEQ = #{mtrqa_seq} order by MTRQA_SEQ desc
 		]]>
-	</select>	
+	</select>
+	<delete id="deleteQA" parameterType="long">
+		<![CDATA[
+		DELETE FROM MENTORING_QA WHERE MTRQA_SEQ = #{mtrqa_seq}
+		]]>
+	
+	</delete>
 	
 </mapper>

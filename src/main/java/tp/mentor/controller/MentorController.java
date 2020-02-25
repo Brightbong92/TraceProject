@@ -93,8 +93,8 @@ public class MentorController {
 		credsProvider.setCredentials(new AuthScope(hostname, 443, AuthScope.ANY_REALM), 
 				
 		// 청기와랩에 등록한 Application Id 와 API key 를 입력합니다. 
-		//new UsernamePasswordCredentials("Trace", "0db78300579211ea9bbc0cc47a1fcfae"));
-		new UsernamePasswordCredentials("TraceProject", "42e9fa4c462811eab9760cc47a1fcfae")); 
+		new UsernamePasswordCredentials("Trace", "0db78300579211ea9bbc0cc47a1fcfae"));
+		//new UsernamePasswordCredentials("TraceProject", "42e9fa4c462811eab9760cc47a1fcfae")); 
 		
 		AuthCache authCache = new BasicAuthCache(); 
 		authCache.put(new HttpHost(hostname, 443, "https"), new BasicScheme()); 
@@ -110,7 +110,7 @@ public class MentorController {
 			httpPost.setHeader("Content-type", "application/json; charset=utf-8"); 
 			
 			//문자에 대한 정보 
-			String json = "{\"sender\":\"01021735831\",\"receivers\":[\"" + receiver 
+			String json = "{\"sender\":\"01064008039\",\"receivers\":[\"" + receiver 
 					+ "\"],\"content\":\"발자취 프로젝트 본인인증 메세지 입니다. 인증번호 : "+rand+"\"}"; 
 			
 			StringEntity se = new StringEntity(json, "UTF-8"); 

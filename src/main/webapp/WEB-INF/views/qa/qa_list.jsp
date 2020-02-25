@@ -32,16 +32,21 @@
     <c:if test="${!empty listResult.mtr_qa_list}">
     
     <c:forEach items="${listResult.mtr_qa_list}" var="qa_list" varStatus="status">
-    
-    
-    
-		<br/><br/>
+	<br/><br/>
     <!--  <div class="card mb-4">-->
     <div>
       <div class="card-body">
         <div class="row">
           <img class="d-flex mr-3 rounded-circle" src="../resources/profileImage/${qa_list.mem_profile}" alt="" width="60px" height=60px>
             <div class="mt-0" style="font-size:15px;"><strong>${qa_list.mem_nick}</strong></div> &nbsp;&nbsp;&nbsp;&nbsp; <div style="color:gray;"><fmt:formatDate value="${qa_list.mtrqa_rdate}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+            <c:choose>
+            <c:when test="${loginUser.mem_email eq 'admin'}">
+            <a mtrqa_seq="${qa_list.mtrqa_seq}" style="cursor:pointer;"onclick="qaDel(this);">삭제</a>
+            </c:when>
+            <c:when test="${loginUser.mem_email eq qa_list.mem_email}">
+            <a mtrqa_seq="${qa_list.mtrqa_seq}" style="cursor:pointer;"onclick="qaDel(this);">삭제</a>
+            </c:when>
+            </c:choose>
             <div style="float:right;margin-left:750px;margin-bottom:10px;"><img src="../resources/images/reportIcon2.jpg" style="width:30px;height:30px;cursor:pointer;" mtrqa_seq="${qa_list.mtrqa_seq} "mem_email="${qa_list.mem_email}" onclick="goReportForm(this);"/></div>
         </div>
         <div><!-- class="col-lg-6" -->
@@ -143,6 +148,14 @@
 			document.getElementById(form_name).submit();
 	}
 
+	function qaDel(obj) {
+		var mtrqa_seq = $(obj).attr("mtrqa_seq");
+		//alert(mtrqa_seq);
+		location.href="../qa/qaDel.do?mtr_seq=${listResult.mtr_seq}&mtrqa_seq="+mtrqa_seq;
+	}
+	
+	
+	
 	
 	function goReportForm(obj){
 		
@@ -187,13 +200,7 @@
 					//console.clear();console.log("실패");
 				}
 			});
-			
-			
-			
-			
 		}
-				
-
 	}
 </script>
 

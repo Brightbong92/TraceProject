@@ -10,6 +10,7 @@
     <!-- Page Heading/Breadcrumbs -->
     <p style="font-size:25px;margin-top:40px;" class="mt-4 mb-3"><a href="../mentoring/mentoringDetail.do?mtr_seq=${listResult.mtr_seq}">${listResult.mtr_subject}</a> - 후기
     </p>
+    <button class="btn btn-info" onclick="goReviewWriteForm()">리뷰하기</button>
     <br/>
 
     
@@ -100,7 +101,15 @@
 	           </div>
 	           </c:when>
 	          </c:choose>
-	          <img src="../resources/images/reportIcon2.jpg" style="margin-left:60%;width:30px;height:30px;cursor:pointer;" mtrrv_seq="${review.mtrrv_seq} "mem_email="${review.mem_email}" onclick="goReportForm(this);"/>
+	          <c:choose>
+	          <c:when test="${loginUser.mem_email eq 'admin'}">
+	          <a style="cursor:pointer;" mtrrv_seq="${review.mtrrv_seq}" onclick="reviewDel(this);">삭제</a>
+	          </c:when>
+	          <c:when test="${loginUser.mem_email eq review.mem_email}">
+	          <a style="cursor:pointer;" mtrrv_seq="${review.mtrrv_seq}" onclick="reviewDel(this);">삭제</a>
+	          </c:when>
+	          </c:choose>
+	          <img src="../resources/images/reportIcon2.jpg" style="margin-left:610px;width:30px;height:30px;cursor:pointer;" mtrrv_seq="${review.mtrrv_seq} "mem_email="${review.mem_email}" onclick="goReportForm(this);"/>
           </div><!-- .row -->
        
         <div><!-- class="col-lg-6" -->
@@ -260,14 +269,15 @@
 				},error: function(err) {
 					//console.clear();console.log("실패");
 				}
-			});
-			
-			
+			});	
 		}
-		
 	}
 	
-	
+	function reviewDel(obj){
+		var mtrrv_seq = $(obj).attr("mtrrv_seq");
+		//alert(mtrrv_seq);
+		location.href="../review/reviewDel.do?mtr_seq=${listResult.mtr_seq}&mtrrv_seq="+mtrrv_seq;
+	}
 </script>
 
 <%@ include file="../footer.jsp" %>

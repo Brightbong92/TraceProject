@@ -78,7 +78,7 @@ public interface ReviewMapper {
 	@Select(value= {"SELECT REP_CALLER FROM REPORT WHERE MTRRV_SEQ = #{mtrrv_seq} AND REP_CALLER = #{rep_caller}"})
 	String selectReportDuplicate(Report report);
 	
-	
+	void deleteReview(long mtrrv_seq);
 	
 	
 }

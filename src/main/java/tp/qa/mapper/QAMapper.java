@@ -46,5 +46,5 @@ public interface QAMapper {
 	@Select(value= {"SELECT REP_CALLER FROM REPORT WHERE MTRQA_SEQ = #{mtrqa_seq} AND REP_CALLER = #{rep_caller}"})
 	String selectReportDuplicate(Report report);
 	
-	
+	void deleteQA(long mtrqa_seq);
 }

@@ -113,5 +113,10 @@ public class QAController {
 		}
 	}
 	
+	@GetMapping("qaDel.do")
+	public String qaDel(long mtr_seq, long mtrqa_seq, HttpSession session) {
+		qaService.deleteQAS(mtrqa_seq);
+		return "redirect:qaList.do?mtr_seq="+mtr_seq+"&cp=1";
+	}
 	
 }

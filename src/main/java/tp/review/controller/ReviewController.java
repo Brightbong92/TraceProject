@@ -138,5 +138,11 @@ public class ReviewController {
 		}
 	}
 	
+	@GetMapping("reviewDel.do")
+	public String reviewDel(long mtrrv_seq, HttpSession session, long mtr_seq) {
+		reviewService.deleteReviewS(mtrrv_seq);
+		long cp = (long)session.getAttribute("cp");
+		return "redirect:reviewList.do?mtr_seq="+mtr_seq+"&cp="+cp;
+	}
 	
 }

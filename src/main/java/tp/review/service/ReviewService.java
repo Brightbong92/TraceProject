@@ -24,4 +24,6 @@ public interface ReviewService {
 	boolean mentoringReviewLikePlus(Mentoring_Review_Like mtr_review_like);
 	boolean insertReportRvBoardS(Report report);
 	
+	void deleteReviewS(long mtrrv_seq);
+	
 }
