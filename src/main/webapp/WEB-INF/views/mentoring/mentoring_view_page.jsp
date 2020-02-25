@@ -14,6 +14,15 @@ table {
   border-spacing: 0 10px;
   align: center;
 }
+
+a#MOVE_TOP_BTN {
+    position: fixed;
+    right: 2%;
+    bottom: 50px;
+    display: none;
+    z-index: 999;
+}
+
 </style>
     <style>
         /* The Modal (background) */
@@ -449,4 +458,24 @@ geocoder.addressSearch('${listResult.mtr_addr}', function(result, status) {
     } 
 });    
 </script>
+
+<script>
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 500) {
+                $('#MOVE_TOP_BTN').fadeIn();
+            } else {
+                $('#MOVE_TOP_BTN').fadeOut();
+            }
+        });
+         
+        $("#MOVE_TOP_BTN").click(function() {
+            $('html, body').animate({
+                scrollTop : 0
+            }, 400);
+            return false;
+        });
+    });
+</script>
+<a id="MOVE_TOP_BTN" href="#" style="margin-right:15%;">TOP</a>
 <%@include file="../footer.jsp"%>
