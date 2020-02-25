@@ -38,6 +38,10 @@
   
   <!-- 폰트적용 -->
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <!---->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+	<link ="stylesheet" type="text/css" href="path/to/xeicon/xeicon.min.css">
+	  
 </head>
 <style>
 .nav-counter {
@@ -71,35 +75,50 @@ body {
   <div id="socketAlert" class="alert alert-success" role="alert" style="height:50px;display:none;"></div>
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color :#ffffff !important; border-bottom:1px solid #dfe1e5;" >  <!-- 머리색 -->
-    <div class="container" style="max-width:80% !important;">
+    <div class="container">
+    <!-- <div class="container" style="max-width:80% !important;"> -->
       <!-- a class="navbar-brand" href="/" style="margin-left:13%"><img src="../images/로고1.png" width="120" height="50" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-      <a class="navbar-brand" href="/" style="margin-left:13%"><img src="../images/hobbyspace-logo.png" width="120" height="70" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="navbar-brand" href="/"><img src="../images/hobbyspace-logo.png" width="120" height="70" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</a>
 	
 	<!-- 검색 onkeyup="find(this)"-->
 	<!-- 검색 -->
-		
-	  <div class="autocomplete" style="width:15%;margin-left:-5%">
-	  	
-	  <input name="cur" class="sc-iuJeZd kCAAcw" type="text" style="text-align:center; width:170%; height: 40px;background:#f2f9ff; border-radius:15px;margin-left:45%; border:0px; outline:none" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
-	  
-	  <div id="searchBarautocomplete-list" class="autocomplete-items" style="margin-left:45%;width:170%;">
-	  </div>
+
+<style>
+
+.autocomplete .seacrh_Wrap { position:relative;}
+.autocomplete .seacrh_Wrap .search_form {width:100%; height: 40px; border-radius:20px; border:0px; padding:3px 11% 3px 5%; border:2px solid #3fb1fc; outline:none;}
+.autocomplete .seacrh_Wrap .search_btn {position:absolute; right:0; top:0; width:40px; height:40px;}
+.autocomplete .seacrh_Wrap .search_btn .xi { width:100%; height:auto; font-size:28px; line-height:40px; color:#3fb1fc;}
+@media (min-width: 992px){
+	.top_right_wrap { display:inline-block !important; width:45%; }
+	.top_right_wrap > ul {float:right; clear:both;}
+	.top_right_wrap > ul > li {display:inline-block !important;}
+}
+
+</style>
+	  <div class="autocomplete" style=" width:40%; ">
+	  	<div class="seacrh_Wrap">
+	  	<input name="cur" class="sc-iuJeZd kCAAcw search_form" type="text" style="" id="searchBar" placeholder="멘토링 or 태그 검색" onkeyup="find(this);"/>
+	  	<a class="search_btn"><i class="xi-search xi"></i></a>
+	  	</div>
+		  <div id="searchBarautocomplete-list" class="autocomplete-items" style="width:100%;">
+		  </div>
 	   
       </div>
       
 	  <!--  &nbsp;&nbsp;&nbsp;-->
 	  <!--  <button class="btn btn-primary" id="searchBtn" onclick="find()">검색</button>-->
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler navbar-toggler-right" type="button"  style="background:#3fb1fc" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+      <div class="collapse navbar-collapse top_right_wrap" id="navbarResponsive">
       <c:if test="${empty loginUser}">
-        <ul class="navbar-nav ml-auto" style="margin-right:8%; width:45%;">
+        <ul class="navbar-nav ml-auto" style="">
 		</c:if>
 		<c:if test="${!empty loginUser}">
-        <ul class="navbar-nav ml-auto" style="margin-right:20%; width:45%;">
+        <ul class="navbar-nav ml-auto" style="">
 		</c:if>
 
            <li class="nav-item dropdown">

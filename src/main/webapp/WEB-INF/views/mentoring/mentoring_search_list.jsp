@@ -5,7 +5,7 @@
 
   <!-- Page Content -->
   <div class="container">
-
+	<br/><br/>
 	<c:if test="${!empty mentoringListResultSearch}">
 	    <!-- Page Heading/Breadcrumbs -->
 	    <div  style="font-size:20px;margin-top:30px; width:50%; text-align:center; border-radius:20px; margin-left:25%;background-color:#b3deff;">
@@ -124,7 +124,7 @@
     <c:forEach begin="<%=startPage%>" end="<%=endPage%>" var ="i">
    		<c:choose>
 	   		<c:when test="${i == mentoringListResultSearch.currentPage}">
-				<a class="active" href="searchList.do?cp=${i}&word=<%=lr.getCategory_no()%>">${i}</a>&nbsp;
+				<a class="active" style="color:#ffffff" href="searchList.do?cp=${i}&word=<%=lr.getCategory_no()%>">${i}</a>&nbsp;
 			</c:when>
 			<c:otherwise>
 				<a href="searchList.do?cp=${i}&word=<%=lr.getCategory_no()%>">${i}</a>
@@ -143,7 +143,7 @@
 	 	</div><!-- .page_nation -->
 	 </div><!-- .page_wrap -->
 	
-    <br/><br/>
+    <br/><br/><br/><br/>
   </div><!-- /.container -->
 
 <%@include file="../footer.jsp"%>
