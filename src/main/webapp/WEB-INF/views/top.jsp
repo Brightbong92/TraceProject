@@ -40,7 +40,7 @@
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   <!---->
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-	<link ="stylesheet" type="text/css" href="path/to/xeicon/xeicon.min.css">
+	<link rel="stylesheet" type="text/css" href="path/to/xeicon/xeicon.min.css">
 	  
 </head>
 <style>

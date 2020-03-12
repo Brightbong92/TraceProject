@@ -140,6 +140,94 @@ insert into MEMBER values('a3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8t
 insert into MEMBER values('a4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박준형','60~69',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
 insert into MEMBER values('a5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박종균','50~59',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
 
+
+-- 02.27 차트 api를 위한 insert
+insert into MEMBER values('v1@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지희','30~39',2,'TraceDefaultProfile.jpg','2020-02-21',0,0,0);
+insert into MEMBER values('w1@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김민주','40~49',2,'TraceDefaultProfile.jpg','2020-02-21',0,0,0);
+insert into MEMBER values('x1@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차두리','30~39',1,'TraceDefaultProfile.jpg','2020-02-21',0,0,0);
+insert into MEMBER values('y1@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','손흥민','40~49',1,'TraceDefaultProfile.jpg','2020-02-21',0,0,0);
+insert into MEMBER values('z1@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','강소연','30~39',2,'TraceDefaultProfile.jpg','2020-02-24',0,0,0);
+insert into MEMBER values('v2@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박보람','40~49',2,'TraceDefaultProfile.jpg','2020-02-24',0,0,0);
+insert into MEMBER values('w2@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','장가인','30~39',2,'TraceDefaultProfile.jpg','2020-02-24',0,0,0);
+insert into MEMBER values('x2@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김태희','30~39',2,'TraceDefaultProfile.jpg','2020-02-24',0,0,0);
+insert into MEMBER values('y2@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박지성','60~69',1,'TraceDefaultProfile.jpg','2020-02-24',0,0,0);
+insert into MEMBER values('z2@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범근','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+
+insert into MEMBER values('v3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지수','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('w3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김민수','40~49',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('x3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차두수','30~39',1,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('y3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','손흥수','40~49',1,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('z3@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','강소수','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박보수','40~49',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('w4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','장가수','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('x4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김태수','30~39',2,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('y4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박지수','60~69',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('z4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범수','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+
+insert into MEMBER values('z5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범가','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+insert into MEMBER values('z6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범나','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+insert into MEMBER values('z7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범다','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+insert into MEMBER values('z8@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범라','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+insert into MEMBER values('z9@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범마','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+insert into MEMBER values('z10@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범바','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+insert into MEMBER values('z11@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범사','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+insert into MEMBER values('z12@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범아','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+insert into MEMBER values('z13@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범자','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+insert into MEMBER values('z14@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범차','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+insert into MEMBER values('z15@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범카','50~59',1,'TraceDefaultProfile.jpg','2020-02-25',0,0,0);
+
+insert into MEMBER values('v5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지가','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지나','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지다','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v8@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지라','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v9@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지마','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v10@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지바','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v11@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지사','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v12@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지아','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v13@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지자','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v14@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지차','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v15@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지카','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+insert into MEMBER values('v16@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','이지타','30~39',2,'TraceDefaultProfile.jpg','2020-02-22',0,0,0);
+
+insert into MEMBER values('za@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범고','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zb@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범노','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zc@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범도','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zd@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범로','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('ze@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범모','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zf@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범보','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+
+insert into MEMBER values('zg@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범소','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zh@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범오','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zi@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범조','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zj@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범초','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zk@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범코','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zl@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범토','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zm@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범포','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zn@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범호','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zo@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범핫','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+
+insert into MEMBER values('z99@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범갸','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('z88@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범냐','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('z77@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범댜','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('z66@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범랴','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('z55@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범먀','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('z44@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범뱌','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('z33@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범샤','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('z22@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범야','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('z11@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범쟈','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('z00@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범챠','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+insert into MEMBER values('zpp@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','차범캬','50~59',1,'TraceDefaultProfile.jpg','2020-02-23',0,0,0);
+
+update member set mem_state = 1 where mem_email = 'z@naver.com';
+update disabled set DIS_IMPROVE = '' where mem_email = 'z@naver.com';
+commit;
+
+rollback;
+select mem_email from member;
+--
+
+
+/*발표 7일전 부터 넣기
 insert into MEMBER values('a6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박홍도','50~59',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
 insert into MEMBER values('a7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박홍기','20~29',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
 insert into MEMBER values('a8@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박근회','50~59',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
@@ -151,6 +239,7 @@ insert into MEMBER values('b4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8t
 insert into MEMBER values('b5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','장이수','60~69',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
 insert into MEMBER values('b6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','박상주','40~49',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
 
+
 insert into MEMBER values('b7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김영섭','40~49',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
 insert into MEMBER values('b8@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김수지','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
 insert into MEMBER values('b9@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','최문선','60~69',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
@@ -161,7 +250,7 @@ insert into MEMBER values('c4@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8t
 insert into MEMBER values('c5@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','문지은','30~39',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
 insert into MEMBER values('c6@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','문지영','40~49',2,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
 insert into MEMBER values('c7@naver.com','$2a$10$P1AYVvH2a00gBDQKxqbZyOEPxCPr/8tSVMjTW8aNpQnUnL88TfKxm','김형섭','70~79',1,'TraceDefaultProfile.jpg',SYSDATE,0,0,0);
-
+*/
 
 --insert into MEMBER(MEM_EMAIL, MEM_AGE, MEM_GENDER, MEM_RDATE, MEM_POINT, MEM_AUTH, MEM_STATE) values('disken@naver.com','20-29',2,SYSDATE,0,0,1);
 commit;
@@ -208,11 +297,11 @@ ML_APPLY number(1),
 constraint MENTOR_LIST_PK primary key(MEM_EMAIL)
 );
 
-insert into MENTOR_LIST values('a@naver.com', '임성지', '01064008039', '안녕하세요. 웰페리온은 프리미엄 라이프스타일 클럽입니다. 1) 신개념 라이프스타일 클럽으로, 2900평의 여유로운 공간에서 나만의 동선에 따라 다양한 스포츠를 즐기실 수 있습니다. (헬스, 수영, 골프, 스쿼시, 필라테스, g.x., 유소년 스포츠, 사우나, 스파, 헤어, 카페, 테라스까지!) 2) 온가족이 함께 즐길 수 있는 공간입니다. 유소년 프로그램이 (총 10종목: 체조, 수영, 야구, 골프, 아이스하키, 스쿼시, 필라테스, 성장기 PT, 스키, 트라이애슬론) 준비되어 있습니다. 여유로운 운동 공간과 휴식을 약속드립니다','사업자등록증.png','사업자등록증1.png',0,0);
-insert into MENTOR_LIST values('c@naver.com', '김성태', '01046145442', '집-회사 반복되는 일상 탈출! 영화같은 파티+라라랜드의 댄스+다양한 사람들과의 만남! 해외가서 처음만난 외국인과도 함께 출 수 있는 스윙댄스의 매력! 낯설음은 잠깐, 우리에겐 춤과 재즈가 있잖아요~! 몸치여도 괜찮아요! 우리 모두 그렇게 시작했어요~! 라라랜드의 일상으로 초대합니다! 쉘 위 댄스?','사업자등록증.png','사업자등록증2.png',1,0);
-insert into MENTOR_LIST values('d@naver.com', '손영빈', '01033453453', '안녕하세요. 저는 왕십리에서 도예 공방을 하고 있습니다. 흙을 만지는 것이 좋아 도예를 전공해 여기 까지 왔는데요 흙을 만지는 매력을 알게되면 정말 빠질 수 밖에 없을거에요! 손재주가 걱정되도 괜찮습니다. 어렵지 않아요! 도전 해보시겠어요?','사업자등록증.png','사업자등록증3.png',2,0);
+insert into MENTOR_LIST values('a@naver.com', '임성지', '01012341234', '안녕하세요. 웰페리온은 프리미엄 라이프스타일 클럽입니다. 1) 신개념 라이프스타일 클럽으로, 2900평의 여유로운 공간에서 나만의 동선에 따라 다양한 스포츠를 즐기실 수 있습니다. (헬스, 수영, 골프, 스쿼시, 필라테스, g.x., 유소년 스포츠, 사우나, 스파, 헤어, 카페, 테라스까지!) 2) 온가족이 함께 즐길 수 있는 공간입니다. 유소년 프로그램이 (총 10종목: 체조, 수영, 야구, 골프, 아이스하키, 스쿼시, 필라테스, 성장기 PT, 스키, 트라이애슬론) 준비되어 있습니다. 여유로운 운동 공간과 휴식을 약속드립니다','사업자등록증.png','사업자등록증1.png',0,0);
+insert into MENTOR_LIST values('c@naver.com', '김성태', '01012341234', '집-회사 반복되는 일상 탈출! 영화같은 파티+라라랜드의 댄스+다양한 사람들과의 만남! 해외가서 처음만난 외국인과도 함께 출 수 있는 스윙댄스의 매력! 낯설음은 잠깐, 우리에겐 춤과 재즈가 있잖아요~! 몸치여도 괜찮아요! 우리 모두 그렇게 시작했어요~! 라라랜드의 일상으로 초대합니다! 쉘 위 댄스?','사업자등록증.png','사업자등록증2.png',1,0);
+insert into MENTOR_LIST values('d@naver.com', '손영빈', '01012341234', '안녕하세요. 저는 왕십리에서 도예 공방을 하고 있습니다. 흙을 만지는 것이 좋아 도예를 전공해 여기 까지 왔는데요 흙을 만지는 매력을 알게되면 정말 빠질 수 밖에 없을거에요! 손재주가 걱정되도 괜찮습니다. 어렵지 않아요! 도전 해보시겠어요?','사업자등록증.png','사업자등록증3.png',2,0);
 insert into MENTOR_LIST values('e@naver.com', '김보라', '01034534531', '안녕하세요:) 뷰티를 사랑하고, 늘 함께 하고 싶습니다. 메이크업 / 퍼스널컬러 / 헤어 / 패션. 이젠 고민하지 마시고 저와 함께 한번에 해결하세요:) 당신도 몰랐던 내 안의 아름다움, 어제와 다른 나를 만나보세요♥','사업자등록증.png','사업자등록증4.png',5,0);
-insert into MENTOR_LIST values('b@naver.com', '장현봉', '01021735831', 'TVCF을 하는 광고 프로덕션에서 PD경력을 쌓았고, 지금은 웅필름이라는 회사를 운영하며 1인 영상제작자로 활동 중입니다. 개인 유튜브 채널을 운영하며 개인 콘텐츠도 만들고 다른 회사들의 영상을 제작하고 채널을 관리해주기도 합니다. 그 외에도 바이럴 영상 / 인터뷰 / 스케치 등 다양한 영상을 제작하고 있으며 기획 / 촬영 / 편집 / 색보정 / 자막잡업까지 계속하여 발전하고 있는 영상 실무자입니다.','사업자등록증.png','사업자등록증1.png',4,0);
+insert into MENTOR_LIST values('b@naver.com', '장현봉', '01012341234', 'TVCF을 하는 광고 프로덕션에서 PD경력을 쌓았고, 지금은 웅필름이라는 회사를 운영하며 1인 영상제작자로 활동 중입니다. 개인 유튜브 채널을 운영하며 개인 콘텐츠도 만들고 다른 회사들의 영상을 제작하고 채널을 관리해주기도 합니다. 그 외에도 바이럴 영상 / 인터뷰 / 스케치 등 다양한 영상을 제작하고 있으며 기획 / 촬영 / 편집 / 색보정 / 자막잡업까지 계속하여 발전하고 있는 영상 실무자입니다.','사업자등록증.png','사업자등록증1.png',4,0);
 insert into MENTOR_LIST values('f@naver.com', '모건일', '01078967855', '안녕하세요. 저희는 샌드쿠키,만주,오란다,스콘,아이스월병,휘낭시에,누가크래커,스쿱쿠키등 다양한 클래스를 진행하고하고있습니다. 많은 관심부탁드려요^^','사업자등록증.png','자격증1.png',3,0);
 insert into MENTOR_LIST values('g@naver.com', '공병찬', '01034573463', '안녕하세요~ 일본 동경제과학교 졸업 후 양재동에서 베이킹 원데이 클래스와 핸드드립 수업을 진행하고 있는 커피 매니악 제작소 라고 합니다:) ~ 커피와 과자를 좋아하시는 분들은 꼭 들려주세요~!','사업자등록증.png','자격증2.png',6,0);
 insert into MENTOR_LIST values('h@naver.com', '송승훈', '01053104869', '이태원역 4번출구 도보 5분 앤틱가구 거리에 위치한 예쁜 공방입니다. 도자기 1일 체험, 레귤러 클래스, 기프트샾 을 운영하고 있습니다. 특별한 추억을 만들고 싶은 커플, 자녀들의 정서 함양, 나만의 작품을 만들고 싶은 분들 누구나 오셔서 체험할 수 있는 공방입니다.','사업자등록증.png','자격증3.png',2,0);
@@ -1828,4 +1917,8 @@ MTRRV_SEQ number
 
 create sequence REPORT_SEQ start with 1 minvalue 0 increment by 1 nocache;
 
-      
+
+update member set mem_point = 30000 where mem_nick = 'bong';
+commit;
+select mtr_subject from mentoring;
+delete from mentoring where mtr_subject = '자전거 타는법 배우기';
