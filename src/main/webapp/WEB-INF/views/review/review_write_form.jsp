@@ -51,7 +51,8 @@ star_input>.input.focus{outline:1px dotted #ddd;}
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3" style="font-size:30px;"><a href="../mentoring/mentoringDetail.do?mtr_seq=${mtr_seq}">${mtr_subject}</a> - 후기 등록하기
+    <h1 class="mt-4 mb-3" style="font-size:30px;">
+    <a href="../mentoring/mentoringDetail.do?mtr_seq=${mtr_seq}">${mtr_subject}</a> - 후기 등록하기
       <%-- <small>: 리뷰</small>--%>
     </h1>
 <%-- 

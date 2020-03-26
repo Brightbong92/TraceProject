@@ -10,7 +10,9 @@
     <!-- Page Heading/Breadcrumbs -->
     <p style="font-size:25px;margin-top:40px;" class="mt-4 mb-3"><a href="../mentoring/mentoringDetail.do?mtr_seq=${listResult.mtr_seq}">${listResult.mtr_subject}</a> - 후기
     </p>
+    <%-- 
     <button class="btn btn-info" onclick="goReviewWriteForm()">리뷰하기</button>
+    --%>
     <br/>
 
     

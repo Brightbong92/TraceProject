@@ -76,7 +76,7 @@ public class JoinServiceImpl implements JoinService {
 		
 		Random r = new Random();
         int email_uuid = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
-        String setfrom = "wkdgusqhd080@gmail.com";
+        String setfrom = ""; //보내는 사람 이메일
         String tomail = mem_email; // 받는 사람 이메일
         String title = "회원가입 인증 이메일 입니다."; // 제목
         String content =
